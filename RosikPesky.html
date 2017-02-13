@@ -48,6 +48,7 @@
           .add("images/BackGround.png")
           .add("images/HouseBackground.png")
           .add("images/HouseOutside.png")
+          .add("images/ACPH.png")
           .load(setup);
 
         //set the game state to use the play function
@@ -81,8 +82,6 @@
           door = new Sprite(doorText);
           animalAnimated = new SpriteUtilities(PIXI);
 
-
-          //animalTextures = animalAnimated.filmstrip("", 60, 60);
 
           //TODO shift from basic Sprite Object TO an animated sprite Object
           // Maybe extend a class or look at API for pixi and Animations
@@ -169,10 +168,25 @@
 
           //add both the background and the animal to the stage
           map.addChild(whiteFloor);
+          spawnAnimalControl();
           map.addChild(player.sprite);
-          map.addChild(houseOutside1);
+          //map.addChild(houseOutside1);
 
           stage = map;
+        }
+
+        //variables for animal control
+        // TODO these will be likely to change, Just are placeholders
+        var aCTexture, aCObject;
+
+        function spawnAnimalControl() {
+          aCTexture = TextureCache["images/ACPH.png"];
+          aCObject = new Sprite(aCTexture);
+
+          aCObject.x = 500;
+          aCObject.y = 700;
+
+          map.addChild(aCObject);
         }
 
         //function to pick the correct animal object for player
