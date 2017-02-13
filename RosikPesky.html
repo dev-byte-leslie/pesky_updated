@@ -12,6 +12,7 @@
       <script src="libraries/keyboardMovement.js"></script>
       <script src="libraries/animalObjects.js"></script>
       <script src="libraries/KeyBoardPress.js"></script>
+      <script src="libraries/EnemyAI.js"></script>
       <script>
         //Aliases
         // add the aliases for different pixi objects
@@ -186,6 +187,9 @@
           aCObject.x = 500;
           aCObject.y = 700;
 
+          aCObject.vx = 0;
+          aCObject.vy = 0;
+
           map.addChild(aCObject);
         }
 
@@ -199,7 +203,10 @@
         function play() {
           animalObject.x += animalObject.vx;
           animalObject.y += animalObject.vy;
+          aCObject.x += aCObject.vx;
+          aCObject.y += aCObject.vy;
           jump();
+          aiMovemnt();
         }
 
         function gameLoop() {
