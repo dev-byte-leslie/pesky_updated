@@ -9,23 +9,24 @@
 *
 *********************************************************************/
 
-// TODO: Check that player is in the correct spot to move into hedge
-// if(player is in correct area)
+//
+// if(player is colliding with space that allows character switch)
 // {
-//    if(TODO: Player presses the correct button)
+//    if(e button is pressed)
 //    {
-//        TODO: Player moves into hedge area aniamtion
+//       switchE function simmilar, expect the background doesnt change only
+//        current character dissappears, current character is marked inactive
 //    }
 // }
 //
 // displayMenu()
 //
-// TODO: New player is returned to game by leaving the hedge
+// new charcter is displayed to screen
 //
 // ========================= Function Definitions ============================== //
 // function displayMenu()
 // {
-//    TODO: Menu pops up for character selection
+//    box pops up with instructions on how to scitch character with button press
 //    handleInput()
 //    TODO: Menu dissappears
 //    TODO: Object is changes from original one to the newly selected one
@@ -33,13 +34,15 @@
 //
 // function handleInput()
 // {
-//    TODO: Handle user input on menu - switch statements
-//    TODO: User selects character by pressing button
-//    changeCharacter(object1, object2)
+//    is user presses R switch active to raccon
+//    if user pressed P switch active to possom
+//    if user presses G switch sctive to goose
+//
+//    changeCharacter(newCharacter)
 // }
 //
-// function changeCharacter(object1, object2)
+//
+// function changeCharacter(newCharacter)
 // {
-//    TODO: Changes the currently active object from object1 to
-//          object2, possible return new object?
+//    set the newly selected animal to active, display to screen
 // }
