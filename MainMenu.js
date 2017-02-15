@@ -14,10 +14,22 @@ var buttonGroup = new PIXI.DisplayObjectContainer(); // Container for all the me
 var creditsGroup = new PIXI.DisplayObjectContainer(); // Container for objects on credits screen
 creditsGroup.visible = false;  // Initialize credits to be invisible at first
 
+
+var buttonBlankSprite = PIXI.Texture.fromImage('images/btn/buttonBlank.png');
+var buttonBlankHoverSprite = PIXI.Texture.fromImage('images/btn/buttonBlankHover.png');
+var buttonBlankClickSprite = PIXI.Texture.fromImage('images/btn/buttonBlankClick.png');
+
 // Start button and text
-var buttonStart = createButton(renderer.width / 2, renderer.width / 2, startGame, buttonGroup, "start");
-var buttonCredits = createButton(renderer.width / 4, renderer.width / 4, showCredits, buttonGroup, "credits");
-var buttonBack = createButton(renderer.width / 2, renderer.height / 4, showMainMenu, creditsGroup, "back");
+var buttonStart = createButton(renderer.width / 2, renderer.width / 2, startGame, buttonBlankSprite);
+var buttonCredits = createButton(renderer.width / 4, renderer.width / 4, showCredits);
+var buttonBack = createButton(renderer.width / 2, renderer.height / 4, showMainMenu);
+
+// Add buttons to the button container
+buttonGroup.addChild(buttonStart);
+buttonGroup.addChild(buttonCredits);
+
+// Add objects to credits group container
+creditsGroup.addChild(buttonBack);
 
 // Add button container to the stage for display
 stage.addChild(buttonGroup);
@@ -34,13 +46,13 @@ function animate() {
 
 // Button interaction functions
 function onButtonDown() {
-  this.texture = PIXI.Texture.fromImage('images/btn/' + this.spriteName + 'Click.png');
+  this.texture = buttonBlankClickSprite;
 }
 function onButtonUp() {
-  this.texture = PIXI.Texture.fromImage('images/btn/' + this.spriteName + 'Blank.png');
+  this.texture = buttonBlankSprite;
 }
 function hoverOver() {
-  this.texture = PIXI.Texture.fromImage('images/btn/' + this.spriteName + 'Hover.png');
+  this.texture = buttonBlankHoverSprite;
 }
 function startGame() {
   buttonGroup.visible = false;
@@ -56,26 +68,23 @@ function showMainMenu() {
   buttonGroup.visible = true;
   creditsGroup.visible = false;
 }
-// Create a button with text given its x and y coords, click function, button group, and sprite name
-// Returns the button as a PIXI sprite
-function createButton(x, y, clickFunction, buttonGroup, spriteName) {
-  var buttonSprite = PIXI.Texture.fromImage('images/btn/' + spriteName + 'Blank.png');
+// Create a button with text given its text string, x and y coords, and click function
+// Returns a container with the button and text inside
+function createButton(x, y, clickFunction, buttonSprite) {
+  var localGroup = {};
   var button = new PIXI.Sprite(buttonSprite);
   button.anchor.x = 0.5;
   button.anchor.y = 0.5;
   button.position.x = x;
   button.position.y = y;
   button.interactive = true;
-  button.spriteName = spriteName;
 
   button
     .on('mousedown', onButtonDown)
-    .on('click', clickFunction)
+    .on('mouseup', clickFunction)
     .on('mouseupoutside', onButtonUp)
     .on('mouseover', hoverOver)
-    .on('mouseout', onButtonUp)
-
-  buttonGroup.addChild(button);
+    .on('mouseout', onButtonUp);
 
   return button;
 }
