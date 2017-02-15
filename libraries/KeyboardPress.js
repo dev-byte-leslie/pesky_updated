@@ -30,15 +30,10 @@ function Keys() {
   //Up
   up.press = function() {
   //TODO Make sure only works in certain spots
-    animalObject.vy = -5;
-    animalObject.vx = 0;
   };
 
 
   up.release = function() {
-    if (!down.isDown && animalObject.vx === 0) {
-      animalObject.vy = 0;
-    }
   };
 
 
@@ -58,15 +53,10 @@ function Keys() {
   //Down
   //TODO Make sure only works in certain spots
   down.press = function() {
-    animalObject.vy = 5;
-    animalObject.vx = 0;
   };
 
 
   down.release = function() {
-    if (!up.isDown && animalObject.vx === 0) {
-      animalObject.vy = 0;
-    }
   };
 
 
