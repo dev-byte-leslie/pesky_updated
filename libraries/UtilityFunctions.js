@@ -70,7 +70,7 @@ function spawnAnimalControl() {
   aCTexture = TextureCache['images/ACPH.png'];
   aCObject = new Sprite(aCTexture);
 
-  aCObject.x = 500;
+  aCObject.x = 900;
   aCObject.y = 700;
 
   aCObject.vx = 0;
