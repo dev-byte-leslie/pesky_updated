@@ -14,8 +14,9 @@ function play() {
 
   // Check game states
   mainMenuGroup.visible = (activeElement == 'mainMenu');
-  //creditsGroup.visible = (activeElement == 'credits');
+  creditsGroup.visible = (activeElement == 'credits');
   //gameGroup.visible = (activeElement == 'game');
+  optionsGroup.visible = (activeElement == 'options');
 }
 
 function animate() {

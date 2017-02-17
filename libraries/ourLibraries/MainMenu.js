@@ -5,9 +5,9 @@ var tutorialGroup = new PIXI.Container(); // Container for objects on tutorial s
 // creditsGroup.visible = false;  // Initialize credits to be invisible at first
 
 var buttonStart = createButton($(document).width() / 2, $(document).height() / 16, startGame, buttonGroup, 'start');
-var buttonOptions = createButton($(document).width() / 2, $(document).height() / 4, showOptions, buttonGroup, 'options');
-var buttonTutorial = createButton($(document).width() / 2, $(document).height() / 2.25, showTutorial, buttonGroup, 'tutorial');
-var buttonCredits = createButton($(document).width() / 2, $(document).height() / 1.55, showCredits, buttonGroup, 'credits');
+var buttonOptions = createButton($(document).width() / 2, $(document).height() / 5, showOptions, buttonGroup, 'options');
+var buttonTutorial = createButton($(document).width() / 2, $(document).height() / 2.9, showTutorial, buttonGroup, 'tutorial');
+var buttonCredits = createButton($(document).width() / 2, $(document).height() / 2.05, showCredits, buttonGroup, 'credits');
 mainMenuGroup.addChild(buttonGroup);
 mainMenuGroup.addChild(creditsGroup);
 mainMenuGroup.addChild(tutorialGroup);
