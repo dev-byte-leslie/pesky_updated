@@ -1,4 +1,4 @@
-var activeElement = "mainMenu";
+var activeElement = 'mainMenu';
 var g = hexi(1280, 720, setup);
 
 g.start();
@@ -13,13 +13,9 @@ function play() {
   g.scaleToWindow();
 
   // Check game states
-  if (activeElement != "mainMenu") {
-    mainMenuGroup.visible = false;
-  }
-  if (activeElement == "credits") {
-
-  }
-  if (activeElement == "mainGame");
+  mainMenuGroup.visible = (activeElement == 'mainMenu');
+  //creditsGroup.visible = (activeElement == 'credits');
+  //gameGroup.visible = (activeElement == 'game');
 }
 
 function animate() {

@@ -4,16 +4,16 @@
       <title>Pesky - GDD 325</title>
   </head>
   <body>
-      <script src="libraries/pixi.min.js"></script>
-      <script src="libraries/bump.js"></script>
-      <script src="libraries/scaleToWindow.js"></script>
-      <script src="libraries/spriteUtilities.js"></script>
-      <script src="libraries/tink.js"></script>
-      <script src="libraries/keyboardMovement.js"></script>
-      <script src="libraries/animalObjects.js"></script>
-      <script src="libraries/KeyBoardPress.js"></script>
-      <script src="libraries/EnemyAI.js"></script>
-      <script src="libraries/UtilityFunctions.js"></script>
+      <script src="../pixi.min.js"></script>
+      <script src="../bump.js"></script>
+      <script src="../scaleToWindow.js"></script>
+      <script src="../spriteUtilities.js"></script>
+      <script src="../tink.js"></script>
+      <script src="keyboardMovement.js"></script>
+      <script src="animalObjects.js"></script>
+      <script src="KeyboardPress.js"></script>
+      <script src="EnemyAI.js"></script>
+      <script src="UtilityFunctions.js"></script>
       <script>
         //Aliases
         // add the aliases for different pixi objects
@@ -46,11 +46,11 @@
 
         //instantiate the loader
         loader
-          .add("images/AnimalPlaceHolder.png")
-          .add("images/BackGround.png")
-          .add("images/HouseBackground.png")
-          .add("images/HouseOutside.png")
-          .add("images/ACPH.png")
+          .add("../../images/AnimalPlaceHolder.png")
+          .add("../../images/BackGround.png")
+          .add("../../images/HouseBackground.png")
+          .add("../../images/HouseOutside.png")
+          .add("../../images/ACPH.png")
           .load(setup);
 
         //set the game state to use the play function
@@ -71,10 +71,10 @@
           tinkPoint = new Tink(PIXI, renderer.view, scale);
 
           //create the background texture from the cache
-          wTexture = TextureCache["images/BackGround.png"];
-          houseBackgroundTexture1 = TextureCache["images/HouseBackground.png"];
-          houseOutsideTexture1 = TextureCache["images/HouseOutside.png"];
-          doorText = TextureCache["images/AnimalPlaceHolder.png"];
+          wTexture = TextureCache["../../images/BackGround.png"];
+          houseBackgroundTexture1 = TextureCache["../../images/HouseBackground.png"];
+          houseOutsideTexture1 = TextureCache["../../images/HouseOutside.png"];
+          doorText = TextureCache["../../images/AnimalPlaceHolder.png"];
 
 
           //create the background sprite out of the texture
@@ -89,7 +89,7 @@
           // Maybe extend a class or look at API for pixi and Animations
 
           //create the animal object and its texture from the cache
-          animalObjectTexture = TextureCache["images/AnimalPlaceHolder.png"];
+          animalObjectTexture = TextureCache["../../images/AnimalPlaceHolder.png"];
           animalObject = new Sprite(animalObjectTexture);
 
           //call the function to build the outside map
@@ -114,9 +114,9 @@
 
           //checkes when to add the y velocity to the player object
           // TODO change this when we add floors/platforms to jump on
-          if (!(player.sprite.y > player.lowestHeight) && !player.jumping) {
-            animalObject.y += animalObject.vy;
-          }
+          //if (!(player.sprite.y > player.lowestHeight) && !player.jumping) {
+          animalObject.y += animalObject.vy;
+          //}
 
           //add x and y velocities to the animal control object
           aCObject.x += aCObject.vx;

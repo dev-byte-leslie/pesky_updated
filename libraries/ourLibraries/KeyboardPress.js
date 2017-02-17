@@ -69,6 +69,7 @@ function Keys() {
 
   space.release = function() {
     //animalObject.gotoAndStop(0);
+    player.spacePush = false;
 
   };
 

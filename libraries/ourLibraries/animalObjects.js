@@ -1,5 +1,5 @@
 //instantiates the Raccoon object
-Raccoon = {
+var Raccoon = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
@@ -9,7 +9,7 @@ Raccoon = {
 };
 
 //instantiates the Goose object
-Goose = {
+var Goose = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
@@ -19,7 +19,8 @@ Goose = {
 };
 
 //instantiates the Skunk object
-Skunk = {
+
+var Skunk = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
