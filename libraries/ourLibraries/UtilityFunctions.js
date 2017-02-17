@@ -2,14 +2,13 @@ function jump() {
   //start the player jump
   if (!player.jumping && player.spacePush) {
     player.jumping = true;
-    animalObject.vy = -10;
+    player.sprite.vy = -10;
 
   }
 
   //make sure there is no double jump
   if (player.sprite.y >= player.lowestHeight) {
     player.jumping = false;
-    player.spacePush = false;
     player.sprite.y = player.lowestHeight;
   }
 }
@@ -38,7 +37,8 @@ function buildOutside() {
     jumping : false,
     jumpHeight : 350,
     spacePush : false,
-    lowestHeight : 700
+    lowestHeight : 700,
+    active : true
   };
 
   //set the objects starting velocities
