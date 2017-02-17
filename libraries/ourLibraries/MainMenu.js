@@ -2,7 +2,6 @@ var mainMenuGroup = new PIXI.Container(); /// Parent container for ALL menu item
 var buttonGroup = new PIXI.Container(); // Container for all the menu buttons
 var creditsGroup = new PIXI.Container(); // Container for objects on credits screen
 var tutorialGroup = new PIXI.Container(); // Container for objects on tutorial screen
-// creditsGroup.visible = false;  // Initialize credits to be invisible at first
 
 var buttonStart = createButton($(document).width() / 2, $(document).height() / 16, startGame, buttonGroup, 'start');
 var buttonOptions = createButton($(document).width() / 2, $(document).height() / 5, showOptions, buttonGroup, 'options');
@@ -23,13 +22,11 @@ function hoverOver() {
   this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
-  //buttonGroup.visible = false;
   activeElement = 'mainGame';
 }
 function showCredits() {
   activeElement = 'credits';
- // buttonGroup.visible = false;
- // creditsGroup.visible = true;
+  credits.y = 1100;
 }
 function showTutorial() {
   activeElement = 'tutorial';

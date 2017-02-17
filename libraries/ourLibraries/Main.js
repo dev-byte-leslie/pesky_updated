@@ -15,6 +15,9 @@ function play() {
   // Check game states
   mainMenuGroup.visible = (activeElement == 'mainMenu');
   creditsGroup.visible = (activeElement == 'credits');
+  if (creditsGroup.visible) { // Scroll credits if they're visible
+    credits.y -= 2;
+  }
   //gameGroup.visible = (activeElement == 'game');
   optionsGroup.visible = (activeElement == 'options');
 }
