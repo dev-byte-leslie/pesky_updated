@@ -1,10 +1,5 @@
 var creditsGroup = new PIXI.Container();
-//buttonBack = createButton($(document).width() / 2, $(document).height() / 2, mainMenu, creditsGroup, 'back');
-
-function mainMenu() {
-  activeElement = 'mainMenu';
-}
-
+buttonBack = createButton($(document).width() / 2, $(document).height() / 2, mainMenu, creditsGroup, 'back');
 var credits = new PIXI.Text('test1\n\n\ntest2\n\n\ntest3\n\n\ntest4');
 credits.anchor.x = 0.5;
 credits.anchor.y = 0.5;
