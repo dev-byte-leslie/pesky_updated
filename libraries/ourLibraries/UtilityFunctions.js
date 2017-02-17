@@ -67,7 +67,7 @@ function buildOutside() {
 var aCTexture, aCObject;
 
 function spawnAnimalControl() {
-  aCTexture = TextureCache['images/ACPH.png'];
+  aCTexture = TextureCache['../../images/ACPH.png'];
   aCObject = new Sprite(aCTexture);
 
   aCObject.x = 900;
