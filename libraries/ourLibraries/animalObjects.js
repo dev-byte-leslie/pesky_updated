@@ -1,26 +1,30 @@
 //instantiates the Raccoon object
-Raccoon = {
+var Raccoon = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
   spacePush : false,
-  lowestHeight : 700
+  lowestHeight : 700,
+  active : false
 };
 
 //instantiates the Goose object
-Goose = {
+var Goose = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
   spacePush : false,
-  lowestHeight : 700
+  lowestHeight : 700,
+  active : false
 };
 
-//instantiates the Possum object
-Possum = {
+//instantiates the Skunk object
+
+var Skunk = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
   spacePush : false,
-  lowestHeight : 700
+  lowestHeight : 700,
+  active : false
 };

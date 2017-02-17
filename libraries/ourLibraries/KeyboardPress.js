@@ -69,6 +69,7 @@ function Keys() {
 
   space.release = function() {
     //animalObject.gotoAndStop(0);
+    player.spacePush = false;
 
   };
 
@@ -89,6 +90,10 @@ function Keys() {
 
     if (b.hitTestRectangle(player.sprite, door)) {
       buildOutside();
+    }
+    if (b.hitTestRectangle(player.sprite, hedge))
+    {
+      switchCharacter();
     }
   };
 
