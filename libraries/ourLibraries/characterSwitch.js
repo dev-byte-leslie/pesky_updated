@@ -26,7 +26,8 @@
 
  function handleInput()
  {
-    if(user clicks raccoon button )
+   //TOFO: implement button presses in if statements
+    if(/*user pressed raccoon button*/)
     {
       Raccoon.active = true;
       player = Raccoon;
@@ -34,7 +35,7 @@
     }
 
 
-    if(  user pressed skunk button )
+    if(/*user pressed skunk button*/)
     {
       Skunk.active = true;
       player = Skunk;
@@ -42,7 +43,7 @@
 
     }
 
-    if( user presses goose button )
+    if(/*user presses goose button*/ )
     {
       Goosoe.active = true;
       player = Goose;
