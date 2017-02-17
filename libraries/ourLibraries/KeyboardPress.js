@@ -90,6 +90,10 @@ function Keys() {
     if (b.hitTestRectangle(player.sprite, door)) {
       buildOutside();
     }
+    if (b.hitTestRectangle(player.sprite, hedge))
+    {
+      switchCharacter();
+    }
   };
 
   switchE.release = function() {

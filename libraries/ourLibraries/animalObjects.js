@@ -4,7 +4,8 @@ Raccoon = {
   jumping : false,
   jumpHeight : 350,
   spacePush : false,
-  lowestHeight : 700
+  lowestHeight : 700,
+  active : false
 };
 
 //instantiates the Goose object
@@ -13,14 +14,16 @@ Goose = {
   jumping : false,
   jumpHeight : 350,
   spacePush : false,
-  lowestHeight : 700
+  lowestHeight : 700,
+  active : false
 };
 
-//instantiates the Possum object
-Possum = {
+//instantiates the Skunk object
+Skunk = {
   sprite : '',
   jumping : false,
   jumpHeight : 350,
   spacePush : false,
-  lowestHeight : 700
+  lowestHeight : 700,
+  active : false
 };

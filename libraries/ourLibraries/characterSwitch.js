@@ -9,40 +9,44 @@
 *
 *********************************************************************/
 
-//
-// if(player is colliding with space that allows character switch)
-// {
-//    if(e button is pressed)
-//    {
-//       switchE function simmilar, expect the background doesnt change only
-//        current character dissappears, current character is marked inactive
-//    }
-// }
-//
-// displayMenu()
-//
-// new charcter is displayed to screen
-//
-// ========================= Function Definitions ============================== //
-// function displayMenu()
-// {
-//    box pops up with instructions on how to scitch character with button press
-//    handleInput()
+ function switchCharacter()
+ {
+     // TODO: animate the player up
+     //  TODO: set active to false, it disappears.
+      state = switchCharacter; //a sort of pause state
+      displayMenu();
+ }
+
+ function displayMenu()
+ {
+     handleInput()
 //    TODO: Menu dissappears
 //    TODO: Object is changes from original one to the newly selected one
-// }
-//
-// function handleInput()
-// {
-//    is user presses R switch active to raccon
-//    if user pressed P switch active to possom
-//    if user presses G switch sctive to goose
-//
-//    changeCharacter(newCharacter)
-// }
-//
-//
-// function changeCharacter(newCharacter)
-// {
-//    set the newly selected animal to active, display to screen
-// }
+ }
+
+ function handleInput()
+ {
+    if(user clicks raccoon button )
+    {
+      Raccoon.active = true;
+      player = Raccoon;
+      //TODO: draw new player
+    }
+
+
+    if(  user pressed skunk button )
+    {
+      Skunk.active = true;
+      player = Skunk;
+      //TODO: draw new player
+
+    }
+
+    if( user presses goose button )
+    {
+      Goosoe.active = true;
+      player = Goose;
+      //TODO: draw new player
+    }
+
+  }
