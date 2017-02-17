@@ -1,3 +1,4 @@
+//---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
   //start the player jump
   if (!player.jumping && player.spacePush) {
