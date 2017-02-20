@@ -4,13 +4,15 @@ function jump() {
   if (!player.jumping && player.spacePush) {
     player.jumping = true;
     player.sprite.vy = -10;
-
   }
 
   //make sure there is no double jump
   if (player.sprite.y >= player.lowestHeight) {
     player.jumping = false;
     player.sprite.y = player.lowestHeight;
+    if (!moveMent) {
+      player.sprite.vx = 0;
+    }
   }
 }
 

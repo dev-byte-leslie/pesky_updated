@@ -1,4 +1,6 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
+var moveMent = false;
+
 function Keys() {
   //Capture the keyboard arrow keys
   var left = keyboard(37),
@@ -14,6 +16,7 @@ function Keys() {
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
     animalObject.vx = -5;
+    moveMent = true;
   };
 
 
@@ -23,7 +26,10 @@ function Keys() {
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
     if (!right.isDown) {
-      animalObject.vx = 0;
+      if (!player.jumping) {
+        animalObject.vx = 0;
+      }
+      moveMent = false;
     }
   };
 
@@ -41,12 +47,16 @@ function Keys() {
   //Right
   right.press = function() {
     animalObject.vx = 5;
+    moveMent = true;
   };
 
 
   right.release = function() {
     if (!left.isDown) {
-      animalObject.vx = 0;
+      if (!player.jumping) {
+        animalObject.vx = 0;
+      }
+      moveMent = false;
     }
   };
 
