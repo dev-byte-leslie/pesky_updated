@@ -17,14 +17,11 @@ buttonGoose = createButton(x, y, handleInput, switchCharacterGroup, spriteName) 
  function switchCharacter()
  {
      // TODO: animate the player up
-     //  TODO: set current active to false, it disappears.
-      state = switchCharacter; //a sort of pause state for game
-      displayMenu();
- }
+     // TODO: set current active to false, it disappears.
 
- function displayMenu()
- {
-    
+      g.state = switchCharacterState; //a sort of pause state for game
+    // TODO: Display menu
+
     handleInput()
 
 //    TODO: Menu dissappears
@@ -33,8 +30,10 @@ buttonGoose = createButton(x, y, handleInput, switchCharacterGroup, spriteName) 
 
  function handleInput()
  {
-   //TOFO: implement button presses in if statements
-    if(/*user pressed raccoon button*/)
+   //https://github.com/kittykatattack/tink#buttons
+
+   //TODO: implement button presses in if statements
+    if(buttonRaccoon.action == "pressed")
     {
       Raccoon.active = true;
       player = Raccoon;
