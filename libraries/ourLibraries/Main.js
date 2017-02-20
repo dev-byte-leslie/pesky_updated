@@ -33,6 +33,15 @@ function tutorialState() {
   tutorialGroup.visible = true;
 }
 
+function switchCharacterState()
+{
+  g.scaleToWndow();
+  hideAll();
+
+}
+
+
+
 // Hide all stage elements
 function hideAll() {
   for (var i = 0; i < g.stage.children.length; i++) {
