@@ -14,6 +14,7 @@
       <script src="KeyboardPress.js"></script>
       <script src="EnemyAI.js"></script>
       <script src="UtilityFunctions.js"></script>
+      <script src="spriteCreator.js"></script>
       <script>
         //Aliases
         // add the aliases for different pixi objects
@@ -70,18 +71,12 @@
           //add the ability to add mouse/input events
           tinkPoint = new Tink(PIXI, renderer.view, scale);
 
-          //create the background texture from the cache
-          wTexture = TextureCache["../../images/BackGround.png"];
-          houseBackgroundTexture1 = TextureCache["../../images/HouseBackground.png"];
-          houseOutsideTexture1 = TextureCache["../../images/HouseOutside.png"];
-          doorText = TextureCache["../../images/AnimalPlaceHolder.png"];
-
 
           //create the background sprite out of the texture
-          whiteFloor = new Sprite(wTexture);
-          houseBackground1 = new Sprite(houseBackgroundTexture1);
-          houseOutside1 = new Sprite(houseOutsideTexture1);
-          door = new Sprite(doorText);
+          whiteFloor = new spriteCreator("../../images/BackGround.png");
+          houseBackground1 = new spriteCreator("../../images/HouseBackground.png");
+          houseOutside1 = new spriteCreator("../../images/HouseOutside.png");
+          door = new spriteCreator("../../images/AnimalPlaceHolder.png")
           animalAnimated = new SpriteUtilities(PIXI);
 
 
@@ -89,8 +84,7 @@
           // Maybe extend a class or look at API for pixi and Animations
 
           //create the animal object and its texture from the cache
-          animalObjectTexture = TextureCache["../../images/AnimalPlaceHolder.png"];
-          animalObject = new Sprite(animalObjectTexture);
+          animalObject = new spriteCreator("../../images/AnimalPlaceHolder.png");
 
           //call the function to build the outside map
           buildOutside();
