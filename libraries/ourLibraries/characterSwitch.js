@@ -9,18 +9,24 @@
 *
 *********************************************************************/
 
+var switchCharacterGroup = new PIXI.Contaner(); //Container for objects on switch character menu
+buttonRaccoon = createButton(x, y, handleInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+buttonSkunk = createButton(x, y, handleInput, switchCharacterGroup, spriteName) //TODO: sprintName, and x and y position(center of button)
+buttonGoose = createButton(x, y, handleInput, switchCharacterGroup, spriteName) //TODO: sprintName, and x and y position(center of button)
+
  function switchCharacter()
  {
      // TODO: animate the player up
-     //  TODO: set active to false, it disappears.
+     //  TODO: set current active to false, it disappears.
       state = switchCharacter; //a sort of pause state for game
       displayMenu();
  }
 
  function displayMenu()
  {
-     handleInput()
-     
+    
+    handleInput()
+
 //    TODO: Menu dissappears
 //    TODO: Object is changes from original one to the newly selected one
  }

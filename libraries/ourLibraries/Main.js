@@ -33,14 +33,11 @@ function tutorialState() {
   tutorialGroup.visible = true;
 }
 
-function switchCharacterState()
-{
+function switchCharacterState() {
   g.scaleToWndow();
   hideAll();
-
+  switchCharacterGroup.visible = true;
 }
-
-
 
 // Hide all stage elements
 function hideAll() {

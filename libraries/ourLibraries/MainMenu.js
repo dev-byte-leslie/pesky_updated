@@ -2,7 +2,6 @@ var mainMenuGroup = new PIXI.Container(); /// Parent container for ALL menu item
 var buttonGroup = new PIXI.Container(); // Container for all the menu buttons
 var creditsGroup = new PIXI.Container(); // Container for objects on credits screen
 var tutorialGroup = new PIXI.Container(); // Container for objects on tutorial screen
-var switchCharacterGroup = new PIXI.Contaner(); //Contaoner for objects on switch character menu
 
 var buttonStart = createButton($(document).width() / 2, $(document).height() / 16, startGame, buttonGroup, 'start');
 var buttonOptions = createButton($(document).width() / 2, $(document).height() / 5, showOptions, buttonGroup, 'options');
