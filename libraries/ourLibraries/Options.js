@@ -1,5 +1,5 @@
 var optionsGroup = new PIXI.Container();
-let buttonBack = createButton($(document).width() / 2, $(document).height() / 2, mainMenu, optionsGroup, 'back');
+let buttonBack = createButton(renderer.width * 0.15, renderer.height * .85, mainMenu, optionsGroup, 'back');
 optionsGroup.addChild(buttonBack); // this button is reused for credits and tutorial
 g.stage.addChild(optionsGroup);
 

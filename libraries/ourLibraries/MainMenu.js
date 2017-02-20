@@ -2,12 +2,11 @@ var mainMenuGroup = new PIXI.Container(); /// Parent container for ALL menu item
 var buttonGroup = new PIXI.Container(); // Container for all the menu buttons
 var tutorialGroup = new PIXI.Container(); // Container for objects on tutorial screen
 
-var buttonStart = createButton($(document).width() / 2, $(document).height() / 16, startGame, buttonGroup, 'start');
-var buttonOptions = createButton($(document).width() / 2, $(document).height() / 5, showOptions, buttonGroup, 'options');
-var buttonTutorial = createButton($(document).width() / 2, $(document).height() / 2.9, showTutorial, buttonGroup, 'tutorial');
-var buttonCredits = createButton($(document).width() / 2, $(document).height() / 2.05, showCredits, buttonGroup, 'credits');
+var buttonStart = createButton(renderer.width / 2, renderer.height * 0.25 - 90, startGame, buttonGroup, 'start');
+var buttonOptions = createButton(renderer.width / 2, renderer.height * 0.5 - 90, showOptions, buttonGroup, 'options');
+var buttonTutorial = createButton(renderer.width / 2, renderer.height * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
+var buttonCredits = createButton(renderer.width / 2, renderer.height - 90, showCredits, buttonGroup, 'credits');
 mainMenuGroup.addChild(buttonGroup);
-mainMenuGroup.addChild(tutorialGroup);
 g.stage.addChild(mainMenuGroup);
 // Button interaction functions
 function onButtonDown() {

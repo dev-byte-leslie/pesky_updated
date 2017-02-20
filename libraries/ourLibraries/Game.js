@@ -29,11 +29,11 @@ var scale = scaleToWindow(renderer.view);
 
 //instantiate the loader
 loader
-  .add("images/AnimalPlaceHolder.png")
-  .add("images/BackGround.png")
-  .add("images/HouseBackground.png")
-  .add("images/HouseOutside.png")
-  .add("images/ACPH.png")
+  .add('images/AnimalPlaceHolder.png')
+  .add('images/BackGround.png')
+  .add('images/HouseBackground.png')
+  .add('images/HouseOutside.png')
+  .add('images/ACPH.png')
   .load(setup);
 
 //set the game state to use the play function
@@ -54,10 +54,10 @@ function setup() {
   tinkPoint = new Tink(PIXI, renderer.view, scale);
 
   //create the background texture from the cache
-  wTexture = TextureCache["images/BackGround.png"];
-  houseBackgroundTexture1 = TextureCache["images/HouseBackground.png"];
-  houseOutsideTexture1 = TextureCache["images/HouseOutside.png"];
-  doorText = TextureCache["images/AnimalPlaceHolder.png"];
+  wTexture = TextureCache['images/BackGround.png'];
+  houseBackgroundTexture1 = TextureCache['images/HouseBackground.png'];
+  houseOutsideTexture1 = TextureCache['images/HouseOutside.png'];
+  doorText = TextureCache['images/AnimalPlaceHolder.png'];
 
 
   //create the background sprite out of the texture
@@ -72,7 +72,7 @@ function setup() {
   // Maybe extend a class or look at API for pixi and Animations
 
   //create the animal object and its texture from the cache
-  animalObjectTexture = TextureCache["images/AnimalPlaceHolder.png"];
+  animalObjectTexture = TextureCache['images/AnimalPlaceHolder.png'];
   animalObject = new Sprite(animalObjectTexture);
 
   //call the function to build the outside map
@@ -88,8 +88,8 @@ function setup() {
 function jump() {
   //start the player jump
   if (!player.jumping && player.spacePush) {
-      player.jumping = true;
-      animalObject.vy = -10;
+    player.jumping = true;
+    animalObject.vy = -10;
 
   }
 
@@ -158,7 +158,7 @@ function buildOutside() {
 var aCTexture, aCObject;
 
 function spawnAnimalControl() {
-  aCTexture = TextureCache["images/ACPH.png"];
+  aCTexture = TextureCache['images/ACPH.png'];
   aCObject = new Sprite(aCTexture);
 
   aCObject.x = 500;

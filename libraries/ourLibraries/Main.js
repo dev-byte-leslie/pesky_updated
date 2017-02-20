@@ -1,4 +1,5 @@
 var g = hexi(1280, 720, setup);
+var renderer = PIXI.autoDetectRenderer(1280, 720, this.options); // Use only for renderer.height and width
 g.start();
 
 function setup() {
