@@ -9,26 +9,31 @@
 *
 *********************************************************************/
 
+var switchCharacterGroup = new PIXI.Contaner(); //Container for objects on switch character menu
+buttonRaccoon = createButton(x, y, handleInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+buttonSkunk = createButton(x, y, handleInput, switchCharacterGroup, spriteName) //TODO: sprintName, and x and y position(center of button)
+buttonGoose = createButton(x, y, handleInput, switchCharacterGroup, spriteName) //TODO: sprintName, and x and y position(center of button)
+
  function switchCharacter()
  {
      // TODO: animate the player up
-     //  TODO: set active to false, it disappears.
-      state = switchCharacter; //a sort of pause state for game
-      displayMenu();
- }
+     // TODO: set current active to false, it disappears.
 
- function displayMenu()
- {
-     handleInput()
-     
+      g.state = switchCharacterState; //a sort of pause state for game
+    // TODO: Display menu
+
+    handleInput()
+
 //    TODO: Menu dissappears
 //    TODO: Object is changes from original one to the newly selected one
  }
 
  function handleInput()
  {
-   //TOFO: implement button presses in if statements
-    if(/*user pressed raccoon button*/)
+   //https://github.com/kittykatattack/tink#buttons
+
+   //TODO: implement button presses in if statements
+    if(buttonRaccoon.action == "pressed")
     {
       Raccoon.active = true;
       player = Raccoon;
