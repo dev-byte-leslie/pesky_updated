@@ -1,8 +1,9 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
+//variable to control if movement stops when landing during a jump
 var moveMent = false;
 
 function Keys() {
-  //Capture the keyboard arrow keys
+  //Capture the keyboard arrow keys/other keys needed for controls
   var left = keyboard(37),
     up = keyboard(38),
     right = keyboard(39),
