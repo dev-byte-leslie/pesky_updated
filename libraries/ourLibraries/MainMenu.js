@@ -23,7 +23,7 @@ function startGame() {
   g.state = gameState;
 }
 function showCredits() {
-  credits.y = 1100;
+  credits.y = renderer.height + 200;
   g.state = creditsState;
 }
 function showTutorial() {
