@@ -1,27 +1,41 @@
-var activeElement = 'mainMenu';
 var g = hexi(1280, 720, setup);
-
 g.start();
 
 function setup() {
   g.scaleToWindow();
-  g.state = play;
+  g.state = menuState;
 }
-// Game loop
-function play() {
-  animate();
+// Game loops dependent on state
+function menuState() {
   g.scaleToWindow();
-
-  // Check game states
-  mainMenuGroup.visible = (activeElement == 'mainMenu');
-  creditsGroup.visible = (activeElement == 'credits');
-  if (creditsGroup.visible) { // Scroll credits if they're visible
-    credits.y -= 2;
-  }
-  //gameGroup.visible = (activeElement == 'game');
-  optionsGroup.visible = (activeElement == 'options');
+  hideAll();
+  mainMenuGroup.visible = true;
+}
+function gameState() {
+  g.scaleToWindow();
+  hideAll();
+  gameGroup.visible = true;
+}
+function optionsState() {
+  g.scaleToWindow();
+  hideAll();
+  optionsGroup.visible = true;
+}
+function creditsState() {
+  g.scaleToWindow();
+  hideAll();
+  creditsGroup.visible = true;
+  credits.y -= 2;
+}
+function tutorialState() {
+  g.scaleToWindow();
+  hideAll();
+  tutorialGroup.visible = true;
 }
 
-function animate() {
-  requestAnimationFrame(animate);
+// Hide all stage elements
+function hideAll() {
+  for (var i = 0; i < g.stage.children.length; i++) {
+    g.stage.getChildAt(i).visible = false;
+  }
 }

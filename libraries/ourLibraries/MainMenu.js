@@ -22,17 +22,17 @@ function hoverOver() {
   this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
-  activeElement = 'mainGame';
+  g.state = gameState;
 }
 function showCredits() {
-  activeElement = 'credits';
   credits.y = 1100;
+  g.state = creditsState;
 }
 function showTutorial() {
-  activeElement = 'tutorial';
+  g.state = tutorialState;
 }
 function showOptions() {
-  activeElement = 'options';
+  g.state = optionsState;
 }
 // Create a button with text given its x and y coords, click function, button group, and sprite name
 // Returns the button as a PIXI sprite
