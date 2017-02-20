@@ -13,13 +13,14 @@
  {
      // TODO: animate the player up
      //  TODO: set active to false, it disappears.
-      state = switchCharacter; //a sort of pause state
+      state = switchCharacter; //a sort of pause state for game
       displayMenu();
  }
 
  function displayMenu()
  {
      handleInput()
+     
 //    TODO: Menu dissappears
 //    TODO: Object is changes from original one to the newly selected one
  }

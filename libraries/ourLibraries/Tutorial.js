@@ -6,3 +6,5 @@ g.stage.addChild(tutorialGroup);
 function mainMenu() {
   g.state = menuState;
 }
+
+var tutorial = new PIXI.Text('use arrow keys to move');
