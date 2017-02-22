@@ -15,25 +15,30 @@ buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); 
 buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
 
 function switchCharacter()
- {
-     // TODO: animate the player up
-     // TODO: set current active to false, it disappears.
+{
+     // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
+  if(Raccoon.active)
+    {
+         // TODO: animate the player up
+    Raccoon.active = false;
+  }
+  else if(Skunk.active)
+    {
+         // TODO: animate the player up
+    Skunk.active = false;
+  }
+  else if(Gosoe.active)
+    {
+         // TODO: animate the player up
+    Goose.active = false;
+  }
 
   g.state = switchCharacterState; //a sort of pause state for game
-    // TODO: Display menu
-
-  handleInput();
-
-//    TODO: Menu dissappears
-//    TODO: Object is changes from original one to the newly selected one
 }
 
-
-   //https://github.com/kittykatattack/tink#buttons
-
- //TODO: implement button presses in if statements
+//TODO: implement button presses in if statements
 function raccoonInput()
-  {
+{
   Raccoon.active = true;
   player = Raccoon;
     //TODO: draw new player
@@ -41,15 +46,15 @@ function raccoonInput()
 
 
 function skunkInput()
-  {
+{
   Skunk.active = true;
   player = Skunk;
+  // TODO: Switch game state back to game
     //TODO: draw new player
-
 }
 
 function gooseInput()
-  {
+{
   Goosoe.active = true;
   player = Goose;
     //TODO: draw new player
