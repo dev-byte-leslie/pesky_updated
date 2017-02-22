@@ -2,6 +2,7 @@
 //variable to control if movement stops when landing during a jump
 var moveMent = false;
 
+
 function Keys() {
   //Capture the keyboard arrow keys/other keys needed for controls
   var left = keyboard(37),
@@ -17,6 +18,8 @@ function Keys() {
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
     animalObject.vx = -5;
+    player.sprite.play();
+    player.sprite.animationSpeed = .5;
     moveMent = true;
   };
 
@@ -27,6 +30,7 @@ function Keys() {
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
     if (!right.isDown) {
+      player.sprite.stop();
       if (!player.jumping) {
         animalObject.vx = 0;
       }
@@ -47,6 +51,9 @@ function Keys() {
 
   //Right
   right.press = function() {
+    player.sprite.scale.x = -1;
+    player.sprite.play();
+    player.sprite.animationSpeed = .5;
     animalObject.vx = 5;
     moveMent = true;
   };
@@ -54,6 +61,7 @@ function Keys() {
 
   right.release = function() {
     if (!left.isDown) {
+      player.sprite.stop();
       if (!player.jumping) {
         animalObject.vx = 0;
       }

@@ -41,7 +41,8 @@ function buildOutside() {
     jumpHeight : 350,
     spacePush : false,
     lowestHeight : 700,
-    active : true
+    active : true,
+    moveStates : ['Left', 'Right', 'Jump', 'StopL', 'StopR']
   };
 
   //set the objects starting velocities
