@@ -14,8 +14,13 @@ buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteNam
 buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
 buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
 
+switchCharacterGroup.addChild(buttonRaccoon);
+switchCharacterGroup.addChild(buttonSkunk);
+switchCharacterGroup.addChaild(buttonGoose);
+
 function switchCharacter() {
-    // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
+
+  // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
   if (Raccoon.active)
   {
     //TODO: animate the player up
@@ -39,25 +44,22 @@ function switchCharacter() {
 function raccoonInput()
 {
   Raccoon.active = true;
-  player = Raccoon;
+  player.sprite = Raccoon;
   g.state = gameState;
-  //TODO: draw new player
 }
 
 // -- Handles Skunk Button Press -- //
 function skunkInput()
 {
   Skunk.active = true;
-  player = Skunk;
+  player.sprite = Skunk;
   g.state = gameState;
-  //TODO: draw new player
 }
 
 // -- Handles Goose Button Press -- //
 function gooseInput()
 {
   Goosoe.active = true;
-  player = Goose;
+  player.sprite = Goose;
   g.state = gameState;
-  //TODO: draw new player
 }
