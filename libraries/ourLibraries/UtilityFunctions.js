@@ -45,6 +45,8 @@ function buildOutside() {
     moveStates : ['Left', 'Right', 'Jump', 'StopL', 'StopR']
   };
 
+  player.sprite.anchor.set(0.5, 0.5);
+
   //set the objects starting velocities
   player.sprite.vx = 0;
   player.sprite.vy = 0;

@@ -17,9 +17,10 @@ function Keys() {
   //Left arrow key `press` method
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
+    player.sprite.scale.x = 1;
     animalObject.vx = -5;
     player.sprite.play();
-    player.sprite.animationSpeed = .5;
+    player.sprite.animationSpeed = .3;
     moveMent = true;
   };
 
@@ -30,7 +31,7 @@ function Keys() {
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
     if (!right.isDown) {
-      player.sprite.stop();
+      player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         animalObject.vx = 0;
       }
@@ -53,7 +54,7 @@ function Keys() {
   right.press = function() {
     player.sprite.scale.x = -1;
     player.sprite.play();
-    player.sprite.animationSpeed = .5;
+    player.sprite.animationSpeed = .3;
     animalObject.vx = 5;
     moveMent = true;
   };
@@ -61,7 +62,7 @@ function Keys() {
 
   right.release = function() {
     if (!left.isDown) {
-      player.sprite.stop();
+      player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         animalObject.vx = 0;
       }
