@@ -45,7 +45,7 @@ function buildOutside() {
     moveStates : ['Left', 'Right', 'Jump', 'StopL', 'StopR']
   };
 
-  player.sprite.anchor.set(0.5, 0.5);
+  player.sprite.anchor.set(0.5, 1);
 
   //set the objects starting velocities
   player.sprite.vx = 0;
@@ -73,8 +73,9 @@ function buildOutside() {
 var aCTexture, aCObject;
 
 function spawnAnimalControl() {
-  aCTexture = TextureCache['../../images/ACPH.png'];
-  aCObject = new Sprite(aCTexture);
+  aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
+  aCObject.anchor.set(0.5, 1);
+  aCObject.animationSpeed = .3;
 
   aCObject.x = 900;
   aCObject.y = 700;
