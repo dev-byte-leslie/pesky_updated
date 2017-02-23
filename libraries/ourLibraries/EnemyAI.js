@@ -1,8 +1,10 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
 function aiMovemnt() {
+  //doesnt let ai fall below the "floor"
   if (aCObject.y > 700) {
     aCObject.y = 700;
   }
+  
   if (Math.abs(aCObject.x - player.sprite.x) <=  300 && Math.abs(aCObject.y - player.sprite.y) <= 300) {
   //if player is to the right of enemy
     if (aCObject.x < player.sprite.x) {
