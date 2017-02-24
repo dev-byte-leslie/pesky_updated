@@ -22,7 +22,6 @@ function startGame() {
   g.state = gameState;
 }
 function showCredits() {
-  credits.y = HEIGHT /2;
   g.state = creditsState;
 }
 function showTutorial() {
