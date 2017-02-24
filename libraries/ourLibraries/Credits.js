@@ -1,10 +1,10 @@
 var creditsGroup = new PIXI.Container();
-buttonBack = createButton(renderer.width * 0.15, renderer.height * .85, mainMenu, creditsGroup, 'back');
+buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, creditsGroup, 'back');
 var credits = new PIXI.Text('test1\n\n\ntest2\n\n\ntest3\n\n\ntest4');
 credits.anchor.x = 0.5;
 credits.anchor.y = 0.5;
-credits.y = renderer.height + 50;
-credits.x = renderer.width / 2;
+credits.y = HEIGHT + 50;
+credits.x = WIDTH / 2;
 creditsGroup.addChild(credits);
 creditsGroup.addChild(buttonBack);
 g.stage.addChild(creditsGroup);
