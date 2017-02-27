@@ -25,7 +25,7 @@
           TextureCache = PIXI.utils.TextureCache,
           Texture = PIXI.Texture,
           Sprite = PIXI.Sprite,
-          MovieClip = PIXI.extras.MovieClip;
+          MovieClip = PIXI.extras.AnimatedSprite;
 
 
         //create the stage container
@@ -52,6 +52,8 @@
           .add("../../images/HouseBackground.png")
           .add("../../images/HouseOutside.png")
           .add("../../images/ACPH.png")
+          .add("../../images/CarlosWalkCycle.png")
+          .add("../../images/animal_control.png")
           .load(setup);
 
         //set the game state to use the play function
@@ -62,7 +64,7 @@
 
         //instantiate global variables that will be used in setup function and in
         // other locations
-        var animalObject, wTexture, tinkPoint, b, whiteFloor, animalTextures, animalAnimated,
+        var animalObject, animalObjectInverse, wTexture, tinkPoint, b, whiteFloor, animalTextures, animalAnimated,
           animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
           houseOutsideTexture1, doorText, door;
 
@@ -70,21 +72,22 @@
           b = new Bump(PIXI);
           //add the ability to add mouse/input events
           tinkPoint = new Tink(PIXI, renderer.view, scale);
+          animalAnimated = new SpriteUtilities(PIXI);
 
 
           //create the background sprite out of the texture
-          whiteFloor = new spriteCreator("../../images/BackGround.png");
-          houseBackground1 = new spriteCreator("../../images/HouseBackground.png");
-          houseOutside1 = new spriteCreator("../../images/HouseOutside.png");
-          door = new spriteCreator("../../images/AnimalPlaceHolder.png")
-          animalAnimated = new SpriteUtilities(PIXI);
+          whiteFloor = new spriteCreator("../../images/BackGround.png", 1000, 1000);
+          houseBackground1 = new spriteCreator("../../images/HouseBackground.png", 1000, 1000);
+          houseOutside1 = new spriteCreator("../../images/HouseOutside.png", 400, 400);
+          door = new spriteCreator("../../images/AnimalPlaceHolder.png", 80, 80)
 
 
           //TODO shift from basic Sprite Object TO an animated sprite Object
           // Maybe extend a class or look at API for pixi and Animations
 
           //create the animal object and its texture from the cache
-          animalObject = new spriteCreator("../../images/AnimalPlaceHolder.png");
+          animalObject = new spriteCreator("../../images/CarlosWalkCycle.png", 55, 45);
+
 
           //call the function to build the outside map
           buildOutside();

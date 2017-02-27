@@ -1,56 +1,64 @@
 /********************************************************************
-*
-*File: characterSwitch.js
-*Project: Pesky
-*Author: Leslie Murphy
-*Description: JavaScript code that implements switching chracters.
-*Date: 2-15-17
-*Comments:
-*
-*********************************************************************/
+ *
+ *File: characterSwitch.js
+ *Project: Pesky
+ *Author: Leslie Murphy
+ *Description: JavaScript code that implements switching chracters.
+ *Date: 2-15-17
+ *Comments:
+ *
+ *********************************************************************/
+var switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
+var buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+var buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+var buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
 
-var switchCharacterGroup = new PIXI.Contaner(); //Container for objects on switch character menu
-buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+switchCharacterGroup.addChild(buttonRaccoon);
+switchCharacterGroup.addChild(buttonSkunk);
+switchCharacterGroup.addChaild(buttonGoose);
 
-function switchCharacter()
- {
-     // TODO: animate the player up
-     // TODO: set current active to false, it disappears.
+function switchCharacter() {
 
-  g.state = switchCharacterState; //a sort of pause state for game
-    // TODO: Display menu
+  // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
+  if (Raccoon.active)
+  {
+    //TODO: animate the player up
+    Raccoon.active = false;
+  }
+  else if (Skunk.active)
+  {
+    //TODO: animate the player up
+    Skunk.active = false;
+  }
+  else if (Gosoe.active)
+  {
+    //TODO: animate the player up
+    Goose.active = false;
+  }
 
-  handleInput();
-
-//    TODO: Menu dissappears
-//    TODO: Object is changes from original one to the newly selected one
+  g.state = switchCharacterState; // -- Displays Menu -- //
 }
 
-
-   //https://github.com/kittykatattack/tink#buttons
-
- //TODO: implement button presses in if statements
+// -- Handes Raccoon Button Press -- //
 function raccoonInput()
-  {
+{
   Raccoon.active = true;
-  player = Raccoon;
-    //TODO: draw new player
+  player.sprite = Raccoon;
+  g.state = gameState;
 }
 
-
+// -- Handles Skunk Button Press -- //
 function skunkInput()
-  {
+{
   Skunk.active = true;
-  player = Skunk;
-    //TODO: draw new player
-
+  player.sprite = Skunk;
+  g.state = gameState;
 }
 
+// -- Handles Goose Button Press -- //
 function gooseInput()
-  {
+{
   Goosoe.active = true;
-  player = Goose;
-    //TODO: draw new player
+  player.sprite = Goose;
+  g.state = gameState;
 }
