@@ -1,16 +1,25 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
 function spawnAnimalControl(x , y) {
+  //instantiate animal control sprite
   this.aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
+
+  //change the anchor point of the sprite so when it flips it looks normal
   this.aCObject.anchor.set(0.5, 1);
+
+  //set sprite animation speed to not be too fast
   this.aCObject.animationSpeed = .3;
 
+  //set x and y values of sprite
   this.aCObject.x = x;  //900;
   this.aCObject.y = y;  //700;
 
+  //instantiate the velocities to be 0 in both directions
   this.aCObject.vx = 0;
   this.aCObject.vy = 0;
 
 
+  //method that will be called every time "play" is called to deal with
+  // ai movement
   this.aiMovement = function() {
       //doesnt let ai fall below the "floor"
     if (this.aCObject.y > 700) {

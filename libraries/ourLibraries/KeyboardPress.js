@@ -82,7 +82,6 @@ function Keys() {
 
 
   space.press = function() {
-    //animalObject.play();
     //animalObject.animationSpeed = 0.55;
     player.spacePush = true;
   };
