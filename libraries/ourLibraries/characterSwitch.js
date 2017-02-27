@@ -8,11 +8,10 @@
  *Comments:
  *
  *********************************************************************/
-
-var switchCharacterGroup = new PIXI.Contaner(); //Container for objects on switch character menu
-buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+var switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
+var buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+var buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+var buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
 
 switchCharacterGroup.addChild(buttonRaccoon);
 switchCharacterGroup.addChild(buttonSkunk);
