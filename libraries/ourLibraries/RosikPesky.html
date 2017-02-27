@@ -64,9 +64,8 @@
 
         //instantiate global variables that will be used in setup function and in
         // other locations
-        var animalObject, animalObjectInverse, wTexture, tinkPoint, b, whiteFloor, animalTextures, animalAnimated,
-          animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-          houseOutsideTexture1, doorText, door;
+        var animalObject, tinkPoint, b, whiteFloor, animalAnimated,
+          houseBackground1, houseOutside1, door, animalCont1;
 
         function setup() {
           b = new Bump(PIXI);
@@ -81,12 +80,11 @@
           houseOutside1 = new spriteCreator("../../images/HouseOutside.png", 400, 400);
           door = new spriteCreator("../../images/AnimalPlaceHolder.png", 80, 80)
 
-
-          //TODO shift from basic Sprite Object TO an animated sprite Object
-          // Maybe extend a class or look at API for pixi and Animations
-
-          //create the animal object and its texture from the cache
+          //create the animal object
           animalObject = new spriteCreator("../../images/CarlosWalkCycle.png", 55, 45);
+
+          //Create a animal Control Object
+          animalCont1 = new spawnAnimalControl(900, 700);
 
 
           //call the function to build the outside map
@@ -102,7 +100,7 @@
 
         function play() {
           //add x velocity to player's x location
-          animalObject.x += animalObject.vx;
+          player.sprite.x += player.sprite.vx;
 
           //checks when to apply gravity to the player object
           if (!(player.sprite.y > player.lowestHeight)) {
@@ -111,15 +109,11 @@
 
           //checkes when to add the y velocity to the player object
           // TODO change this when we add floors/platforms to jump on
-          animalObject.y += animalObject.vy;
-
-          //add x and y velocities to the animal control object
-          aCObject.x += aCObject.vx;
-          aCObject.y += aCObject.vy;
+          player.sprite.y += player.sprite.vy;
 
           //call functions for player and ai logic
           jump();
-          aiMovemnt();
+          animalCont1.aiMovement();
         }
 
         function gameLoop() {

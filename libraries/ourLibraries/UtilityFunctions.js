@@ -61,29 +61,11 @@ function buildOutside() {
 
   //add both the background and the animal to the stage
   map.addChild(whiteFloor);
-  spawnAnimalControl();
+  map.addChild(animalCont1.aCObject);
   map.addChild(player.sprite);
   //map.addChild(houseOutside1);
 
   stage = map;
-}
-
-//variables for animal control
-// TODO these will be likely to change, Just are placeholders
-var aCTexture, aCObject;
-
-function spawnAnimalControl() {
-  aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
-  aCObject.anchor.set(0.5, 1);
-  aCObject.animationSpeed = .3;
-
-  aCObject.x = 900;
-  aCObject.y = 700;
-
-  aCObject.vx = 0;
-  aCObject.vy = 0;
-
-  map.addChild(aCObject);
 }
 
 //function to pick the correct animal object for player
