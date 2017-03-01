@@ -14,8 +14,8 @@ $(document).ready(function() {
   //add the ability to add mouse/input events
   var tinkPoint = new Tink(PIXI, renderer.view);
 
-  initCharacterSwap();
-  
+  initCharacterSwitch();
+
   g.start();
 });
 
