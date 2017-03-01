@@ -5,50 +5,10 @@ var map = new PIXI.Container(),
   sewer = new PIXI.Container(),
   gameObjects = new PIXI.Container();
 
-$(document).ready(function() {
-  g.stage.addChild(map);
-  g.stage.addChild(house);
-  g.stage.addChild(sewer);
-  g.stage.addChild(gameObjects);
-});
-
-//function setup() {
-  //create the background texture from the cache
-wTexture = TextureCache['../../images/BackGround.png'];
-houseBackgroundTexture1 = TextureCache['../../images/HouseBackground.png'];
-houseOutsideTexture1 = TextureCache['../../images/HouseOutside.png'];
-doorText = TextureCache['../../images/AnimalPlaceHolder.png'];
-
-
-  //create the background sprite out of the texture
-whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
-houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
-houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
-door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
-
-
-  //create the animal object
-
-  //Create a animal Control Object
-animalCont1 = new spawnAnimalControl(900, 700);
-
-
-  //TODO shift from basic Sprite Object TO an animated sprite Object
-  // Maybe extend a class or look at API for pixi and Animations
-
-  //create the animal object and its texture from the cache
-animalObjectTexture = TextureCache['../../images/AnimalPlaceHolder.png'];
-animalObject = new Sprite(animalObjectTexture);
-
-  //call the function to build the outside map
-buildOutside();
-//}
-
-//instantiate global variables that will be used in setup function and in
-// other locations
-var animalObject, wTexture, tinkPoint, b, whiteFloor, animalTextures, animalAnimated,
-  animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door;
+g.stage.addChild(map);
+g.stage.addChild(house);
+g.stage.addChild(sewer);
+g.stage.addChild(gameObjects);
 
 function jump() {
   //start the player jump
@@ -119,17 +79,77 @@ function buildOutside() {
 // TODO these will be likely to change, Just are placeholders
 var aCTexture, aCObject;
 
-function spawnAnimalControl() {
-  aCTexture = TextureCache['../../images/ACPH.png'];
-  aCObject = new Sprite(aCTexture);
+function spawnAnimalControl(x , y) {
+  //instantiate animal control sprite
+  this.aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
 
-  aCObject.x = 500;
-  aCObject.y = 700;
+  //change the anchor point of the sprite so when it flips it looks normal
+  this.aCObject.anchor.set(0.5, 1);
 
-  aCObject.vx = 0;
-  aCObject.vy = 0;
+  //set sprite animation speed to not be too fast
+  this.aCObject.animationSpeed = .3;
 
-  map.addChild(aCObject);
+  //set x and y values of sprite
+  this.aCObject.x = x;  //900;
+  this.aCObject.y = y;  //700;
+
+  //instantiate the velocities to be 0 in both directions
+  this.aCObject.vx = 0;
+  this.aCObject.vy = 0;
+
+
+  //method that will be called every time "play" is called to deal with
+  // ai movement
+  this.aiMovement = function() {
+      //doesnt let ai fall below the "floor"
+    if (this.aCObject.y > 700) {
+      this.aCObject.y = 700;
+    }
+
+    if (Math.abs(this.aCObject.x - player.sprite.x) <=  300 && Math.abs(this.aCObject.y - player.sprite.y) <= 300) {
+      //if player is to the right of enemy
+      if (this.aCObject.x < player.sprite.x) {
+        this.aCObject.vx = 3.5;
+        this.aCObject.scale.x = 1;
+        this.aCObject.play();
+      }
+
+    //if player is to the left of enemy
+      if (this.aCObject.x > player.sprite.x) {
+        this.aCObject.vx = -3.5;
+        this.aCObject.scale.x = -1;
+        this.aCObject.play();
+      }
+    /*
+    //if player is below enemy
+        if (animalCont1.y < player.sprite.y) {
+          animalCont1.vy = 3.5;
+        }
+
+    //if player is above enemy
+        if (animalCont1.y > player.sprite.y) {
+          animalCont1.vy = -3.5;
+        }*/
+
+      //if player is next to enemy
+      if (b.hitTestRectangle(this.aCObject, player.sprite)) {
+        this.aCObject.gotoAndStop(0);
+        this.aCObject.vy = 0;
+        this.aCObject.vx = 0;
+      }
+    }
+
+      //stops enemy movement if player is too far away
+    if (Math.abs(this.aCObject.x - player.sprite.x) >  300 || Math.abs(this.aCObject.y - player.sprite.y) > 300) {
+      this.aCObject.gotoAndStop(0);
+      this.aCObject.vx = 0;
+      this.aCObject.vy = 0;
+    }
+
+    //add x and y velocities to the animal control object
+    this.aCObject.x += this.aCObject.vx;
+    this.aCObject.y += this.aCObject.vy;
+  };
 }
 
 //function to pick the correct animal object for player

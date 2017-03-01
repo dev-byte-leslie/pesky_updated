@@ -1,31 +1,42 @@
 $(document).ready(function() {
-  var g = hexi(1280, 720, setupGame);
-  var Container = PIXI.Container,
-    autoDetectRenderer = PIXI.autoDetectRenderer,
-    loader = PIXI.loader,
-    resources = PIXI.loader.resources,
-    TextureCache = PIXI.utils.TextureCache,
-    Texture = PIXI.Texture,
-    Sprite = PIXI.Sprite,
-    MovieClip = PIXI.extras.MovieClip;
-  const WIDTH = 1280, HEIGHT = 720;
-  var renderer = new PIXI.autoDetectRenderer(1280, 720);
-  var b = new Bump(PIXI);
-  //add the ability to add mouse/input events
-  var tinkPoint = new Tink(PIXI, renderer.view);
-
   initCharacterSwap();
-  
-  g.start();
 });
+var g = hexi(1280, 720, setupGame);
+var Container = PIXI.Container,
+  autoDetectRenderer = PIXI.autoDetectRenderer,
+  loader = PIXI.loader,
+  resources = PIXI.loader.resources,
+  TextureCache = PIXI.utils.TextureCache,
+  Texture = PIXI.Texture,
+  Sprite = PIXI.Sprite,
+  MovieClip = PIXI.extras.MovieClip;
+const WIDTH = 1280, HEIGHT = 720;
+var renderer = new PIXI.autoDetectRenderer(1280, 720);
+var b = new Bump(PIXI);
+//add the ability to add mouse/input events
+var tinkPoint = new Tink(PIXI, renderer.view);
+g.start();
 
 function setupGame() {
   g.scaleToWindow();
   g.state = menuState;
-  animalAnimated = new SpriteUtilities(PIXI);
-  var animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
 
-  //
+  var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
+    animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
+    houseOutsideTexture1, doorText, door;
+  animalAnimated = new SpriteUtilities(PIXI);
+  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
+  whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
+  houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+  houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
+  door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
+  animalCont1 = new spawnAnimalControl(900, 700);
+
+  animalObjectTexture = TextureCache['../../images/AnimalPlaceHolder.png'];
+  animalObject = new Sprite(animalObjectTexture);
+
+  buildOutside();
+
   loader
     .add('../../images/AnimalPlaceHolder.png')
     .add('../../images/BackGround.png')
