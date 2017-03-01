@@ -1,89 +1,54 @@
-//Aliases
-// add the aliases for different pixi objects
-// var Container = PIXI.Container,
-//   autoDetectRenderer = PIXI.autoDetectRenderer,
-//   loader = PIXI.loader,
-//   resources = PIXI.loader.resources,
-//   TextureCache = PIXI.utils.TextureCache,
-//   Texture = PIXI.Texture,
-//   Sprite = PIXI.Sprite,
-//   MovieClip = PIXI.extras.MovieClip;
-//
-//
-// //create the stage container
-// var stage,
-//   renderer = autoDetectRenderer(1000, 1000);
-// document.body.appendChild(renderer.view);
-
 //instantiate variables for the different scenes
 // Liable to change depening on how many houses there are
-var map = new Container(),
-  house = new Container(),
-  sewer = new Container();
+var map = new PIXI.Container(),
+  house = new PIXI.Container(),
+  sewer = new PIXI.Container(),
+  gameObjects = new PIXI.Container();
 
+$(document).ready(function() {
+  g.stage.addChild(map);
+  g.stage.addChild(house);
+  g.stage.addChild(sewer);
+  g.stage.addChild(gameObjects);
+});
 
-
-//scale the stage to the size of the browser window
-var scale = scaleToWindow(renderer.view);
-
-
-//instantiate the loader
-loader
-  .add('images/AnimalPlaceHolder.png')
-  .add('images/BackGround.png')
-  .add('images/HouseBackground.png')
-  .add('images/HouseOutside.png')
-  .add('images/ACPH.png')
-  .load(setup);
-
-//set the game state to use the play function
-// state can be used to assign many different things such as pause,
-// main menu, and game loss for example
-var state = play;
-
-
-//instantiate global variables that will be used in setup function and in
-// other locations
-var animalObject, wTexture, tinkPoint, b, whiteFloor, animalTextures, animalAnimated,
-  animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door;
-
-function setup() {
-  b = new Bump(PIXI);
-  //add the ability to add mouse/input events
-  tinkPoint = new Tink(PIXI, renderer.view, scale);
-
+//function setup() {
   //create the background texture from the cache
-  wTexture = TextureCache['images/BackGround.png'];
-  houseBackgroundTexture1 = TextureCache['images/HouseBackground.png'];
-  houseOutsideTexture1 = TextureCache['images/HouseOutside.png'];
-  doorText = TextureCache['images/AnimalPlaceHolder.png'];
+wTexture = TextureCache['../../images/BackGround.png'];
+houseBackgroundTexture1 = TextureCache['../../images/HouseBackground.png'];
+houseOutsideTexture1 = TextureCache['../../images/HouseOutside.png'];
+doorText = TextureCache['../../images/AnimalPlaceHolder.png'];
 
 
   //create the background sprite out of the texture
-  whiteFloor = new Sprite(wTexture);
-  houseBackground1 = new Sprite(houseBackgroundTexture1);
-  houseOutside1 = new Sprite(houseOutsideTexture1);
-  door = new Sprite(doorText);
-  animalAnimated = new SpriteUtilities(PIXI);
+whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
+houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
+door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
+
+
+  //create the animal object
+
+  //Create a animal Control Object
+animalCont1 = new spawnAnimalControl(900, 700);
 
 
   //TODO shift from basic Sprite Object TO an animated sprite Object
   // Maybe extend a class or look at API for pixi and Animations
 
   //create the animal object and its texture from the cache
-  animalObjectTexture = TextureCache['images/AnimalPlaceHolder.png'];
-  animalObject = new Sprite(animalObjectTexture);
+animalObjectTexture = TextureCache['../../images/AnimalPlaceHolder.png'];
+animalObject = new Sprite(animalObjectTexture);
 
   //call the function to build the outside map
-  buildOutside();
+buildOutside();
+//}
 
-  //calls function that designates what each key does when it is pressed
-  Keys();
-
-  //calls the game loop that runs the game logic
-  gameLoop();
-}
+//instantiate global variables that will be used in setup function and in
+// other locations
+var animalObject, wTexture, tinkPoint, b, whiteFloor, animalTextures, animalAnimated,
+  animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
+  houseOutsideTexture1, doorText, door;
 
 function jump() {
   //start the player jump
@@ -113,7 +78,6 @@ function enterHouse() {
   house.addChild(houseBackground1);
   house.addChild(door);
   house.addChild(player.sprite);
-  stage = house;
 }
 
 //builds the outside game map
@@ -149,8 +113,6 @@ function buildOutside() {
   spawnAnimalControl();
   map.addChild(player.sprite);
   //map.addChild(houseOutside1);
-
-  stage = map;
 }
 
 //variables for animal control
@@ -158,7 +120,7 @@ function buildOutside() {
 var aCTexture, aCObject;
 
 function spawnAnimalControl() {
-  aCTexture = TextureCache['images/ACPH.png'];
+  aCTexture = TextureCache['../../images/ACPH.png'];
   aCObject = new Sprite(aCTexture);
 
   aCObject.x = 500;
@@ -174,36 +136,4 @@ function spawnAnimalControl() {
 // TODO add functionality to this function. Different character sprites
 function pickAnimal(animal) {
 
-}
-
-
-function play() {
-  //add x velocity to player's x location
-  animalObject.x += animalObject.vx;
-
-  //checks when to apply gravity to the player object
-  if (!(player.sprite.y > player.lowestHeight)) {
-    player.sprite.vy += 0.3;
-  }
-
-  //checkes when to add the y velocity to the player object
-  // TODO change this when we add floors/platforms to jump on
-  if (!(player.sprite.y > player.lowestHeight) && !player.jumping) {
-    animalObject.y += animalObject.vy;
-  }
-
-  //add x and y velocities to the animal control object
-  aCObject.x += aCObject.vx;
-  aCObject.y += aCObject.vy;
-
-  //call functions for player and ai logic
-  jump();
-  aiMovemnt();
-}
-
-function gameLoop() {
-  requestAnimationFrame(gameLoop);
-  state();
-  tinkPoint.update();
-  renderer.render(stage);
 }
