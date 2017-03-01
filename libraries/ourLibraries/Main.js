@@ -1,18 +1,23 @@
-var g = hexi(1280, 720, setupGame);
-var Container = PIXI.Container,
-  autoDetectRenderer = PIXI.autoDetectRenderer,
-  loader = PIXI.loader,
-  resources = PIXI.loader.resources,
-  TextureCache = PIXI.utils.TextureCache,
-  Texture = PIXI.Texture,
-  Sprite = PIXI.Sprite,
-  MovieClip = PIXI.extras.MovieClip;
-const WIDTH = 1280, HEIGHT = 720;
-var renderer = new PIXI.autoDetectRenderer(1280, 720);
-var b = new Bump(PIXI);
-//add the ability to add mouse/input events
-var tinkPoint = new Tink(PIXI, renderer.view);
-g.start();
+$(document).ready(function() {
+  var g = hexi(1280, 720, setupGame);
+  var Container = PIXI.Container,
+    autoDetectRenderer = PIXI.autoDetectRenderer,
+    loader = PIXI.loader,
+    resources = PIXI.loader.resources,
+    TextureCache = PIXI.utils.TextureCache,
+    Texture = PIXI.Texture,
+    Sprite = PIXI.Sprite,
+    MovieClip = PIXI.extras.MovieClip;
+  const WIDTH = 1280, HEIGHT = 720;
+  var renderer = new PIXI.autoDetectRenderer(1280, 720);
+  var b = new Bump(PIXI);
+  //add the ability to add mouse/input events
+  var tinkPoint = new Tink(PIXI, renderer.view);
+
+  initCharacterSwap();
+  
+  g.start();
+});
 
 function setupGame() {
   g.scaleToWindow();
@@ -29,9 +34,6 @@ function setupGame() {
     .add('../../images/ACPH.png')
     .add('../../images/CarlosWalkCycle.png')
     .add('../../images/animal_control.png');
-  $(document).ready(function() {
-    //loader.load(setup);
-  });
 
   //calls function that designates what each key does when it is pressed
   Keys();
