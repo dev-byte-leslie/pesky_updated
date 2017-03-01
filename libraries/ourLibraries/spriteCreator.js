@@ -9,7 +9,7 @@ function spriteCreator(stringTexture, width, height) {
     this.stringTexture = stringTexture;
   }
   //creates a filmstrip of the new texture
-  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
+  this.texture = animalAnimated.filmstrip(stringTexture, width, height);  
 
   //makes the animated sprite object and returns it
   this.sprite = new MovieClip(this.texture);

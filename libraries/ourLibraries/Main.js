@@ -1,6 +1,24 @@
 $(document).ready(function() {
-  initCharacterSwap();
+  //initCharacterSwap();
 });
+var animalAnimated = new SpriteUtilities(PIXI);
+function spriteCreator(stringTexture, width, height) {
+  //checks to see if the input is a string
+  // if it is not a string it converts it to a string
+  if (typeof stringTexture != 'string') {
+    this.stringTexture = String(stringTexture);
+  }
+  else {
+    //sets stringTexture to as the varible passed in
+    this.stringTexture = stringTexture;
+  }
+  //creates a filmstrip of the new texture
+  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
+
+  //makes the animated sprite object and returns it
+  this.sprite = new MovieClip(this.texture);
+  return this.sprite;
+}
 var g = hexi(1280, 720, setupGame);
 var Container = PIXI.Container,
   autoDetectRenderer = PIXI.autoDetectRenderer,
@@ -21,22 +39,6 @@ function setupGame() {
   g.scaleToWindow();
   g.state = menuState;
 
-  var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
-    animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-    houseOutsideTexture1, doorText, door;
-  animalAnimated = new SpriteUtilities(PIXI);
-  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
-  whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
-  houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
-  houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
-  door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
-  animalCont1 = new spawnAnimalControl(900, 700);
-
-  animalObjectTexture = TextureCache['../../images/AnimalPlaceHolder.png'];
-  animalObject = new Sprite(animalObjectTexture);
-
-  buildOutside();
-
   loader
     .add('../../images/AnimalPlaceHolder.png')
     .add('../../images/BackGround.png')
@@ -44,10 +46,25 @@ function setupGame() {
     .add('../../images/HouseOutside.png')
     .add('../../images/ACPH.png')
     .add('../../images/CarlosWalkCycle.png')
-    .add('../../images/animal_control.png');
+    .add('../../images/animal_control.png')
+    .load(setup);
 
   //calls function that designates what each key does when it is pressed
   Keys();
+}
+
+function setup() {
+  var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
+    animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
+    houseOutsideTexture1, doorText, door;
+  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
+  whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
+  houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+  houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
+  door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
+  animalCont1 = new spawnAnimalControl(900, 700);
+
+  buildOutside();
 }
 // Game loops dependent on state
 function menuState() {
