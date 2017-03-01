@@ -8,10 +8,16 @@
  *Comments:
  *
  *********************************************************************/
-var switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
-var buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-var buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-var buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+/* globals PIXI, createButton, Raccoon, Skunk */
+/* exported switchCharacter */
+var buttonRaccoon, buttonSkunk, buttonGoose, switchCharacterGroup;
+
+function initCharacterSwap() {
+  switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
+  buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+  buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+  buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+}
 
 switchCharacterGroup.addChild(buttonRaccoon);
 switchCharacterGroup.addChild(buttonSkunk);
@@ -30,7 +36,7 @@ function switchCharacter() {
     //TODO: animate the player up
     Skunk.active = false;
   }
-  else if (Gosoe.active)
+  else if (Goose.active)
   {
     //TODO: animate the player up
     Goose.active = false;
@@ -58,7 +64,7 @@ function skunkInput()
 // -- Handles Goose Button Press -- //
 function gooseInput()
 {
-  Goosoe.active = true;
+  Goose.active = true;
   player.sprite = Goose;
   g.state = gameState;
 }
