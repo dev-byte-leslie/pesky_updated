@@ -53,10 +53,11 @@ function setupGame() {
   Keys();
 }
 
+var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
+  animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
+  houseOutsideTexture1, doorText, door;
+
 function setup() {
-  var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
-    animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-    houseOutsideTexture1, doorText, door;
   animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
   whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
   houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);

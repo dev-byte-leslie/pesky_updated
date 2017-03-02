@@ -5,9 +5,9 @@ var map = new PIXI.Container(),
   sewer = new PIXI.Container(),
   gameObjects = new PIXI.Container();
 
-g.stage.addChild(map);
-g.stage.addChild(house);
-g.stage.addChild(sewer);
+gameObjects.addChild(map);
+gameObjects.addChild(house);
+gameObjects.addChild(sewer);
 g.stage.addChild(gameObjects);
 
 function jump() {
@@ -82,6 +82,7 @@ var aCTexture, aCObject;
 function spawnAnimalControl(x , y) {
   //instantiate animal control sprite
   this.aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
+  map.addChild(aCObject.sprite);
 
   //change the anchor point of the sprite so when it flips it looks normal
   this.aCObject.anchor.set(0.5, 1);
