@@ -8,11 +8,11 @@
  *Comments:
  *
  *********************************************************************/
-/* globals PIXI, createButton, Raccoon, Skunk */
-/* exported switchCharacter */
+/* globals PIXI, createButton, Raccoon, Skunk, Goose */ //Tells EsLint that these things do exist
+/* exported switchCharacter, initCharacterSwitch */ //Makes ESLint shut up about the created and not used erroe
 var buttonRaccoon, buttonSkunk, buttonGoose, switchCharacterGroup;
 
-function initCharacterSwap() {
+function initCharacterSwitch() {
   switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
   buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
   buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
