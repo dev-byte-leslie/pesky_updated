@@ -1,3 +1,4 @@
+//-------------------------------------------Thomas Rosik-----------------------------------------------------------
 function spriteCreator(stringTexture, width, height) {
   //checks to see if the input is a string
   // if it is not a string it converts it to a string
