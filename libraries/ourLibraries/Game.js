@@ -59,7 +59,7 @@ function buildOutside() {
     jumping : false,
     jumpHeight : 350,
     spacePush : false,
-    lowestHeight : 700
+    lowestHeight : 610
   };
 
   //set the objects starting velocities
@@ -68,7 +68,9 @@ function buildOutside() {
 
   //set the objects starting point
   player.sprite.x = 300;
-  player.sprite.y = 700;
+  player.sprite.y = 610;
+
+  player.sprite.anchor.set(0.5, 1);
 
   //position the example house
   houseOutside1.x = 500;
@@ -96,7 +98,7 @@ function spawnAnimalControl(x, y) {
 
   //set x and y values of sprite
   this.aCObject.x = x;  //900;
-  this.aCObject.y = y;  //700;
+  this.aCObject.y = y;  //600;
 
   //instantiate the velocities to be 0 in both directions
   this.aCObject.vx = 0;
