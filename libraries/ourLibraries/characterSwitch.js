@@ -8,20 +8,27 @@
  *Comments:
  *
  *********************************************************************/
-/* globals PIXI, createButton, Raccoon, Skunk, Goose */ //Tells EsLint that these things do exist
-/* exported switchCharacter, initCharacterSwitch */ //Makes ESLint shut up about the created and not used erroe
-var buttonRaccoon, buttonSkunk, buttonGoose, switchCharacterGroup;
+/* globals PIXI, createButton, Raccoon, Skunk, Goose, WIDTH, HEIGHT, switchCharacterState,
+ */ //Tells EsLint that these things do exist
 
-function initCharacterSwitch() {
+/* exported switchCharacter, initCharacterSwitch */ //Makes ESLint shut up about the created and not used errors
+var buttonRaccoon;
+var buttonSkunk;
+// var buttonGoose;
+var switchCharacterGroup;
+
+function initCharacterSwitch()
+{
   switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
-  buttonRaccoon = createButton(x, y, raccoonInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-  buttonSkunk = createButton(x, y, skunkInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
-  buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+  buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, raccoonInput, switchCharacterGroup, 'carlos');
+  buttonSkunk = createButton(WIDTH/2, HEIGHT/2, skunkInput, switchCharacterGroup, 'stanky');
+//  buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
 }
+
 
 switchCharacterGroup.addChild(buttonRaccoon);
 switchCharacterGroup.addChild(buttonSkunk);
-switchCharacterGroup.addChaild(buttonGoose);
+//switchCharacterGroup.addChaild(buttonGoose);
 
 function switchCharacter() {
 
@@ -62,9 +69,9 @@ function skunkInput()
 }
 
 // -- Handles Goose Button Press -- //
-function gooseInput()
+/*function gooseInput()
 {
   Goose.active = true;
   player.sprite = Goose;
   g.state = gameState;
-}
+}*/
