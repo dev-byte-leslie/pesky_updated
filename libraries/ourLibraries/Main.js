@@ -59,13 +59,10 @@ var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
 
 function setup() {
   animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
-  whiteFloor = new spriteCreator('../../images/BackGround.png', 1000, 1000);
+  whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
   houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
   houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
   door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
-  animalCont1 = new spawnAnimalControl(900, 700);
-
-  buildOutside();
 }
 // Game loops dependent on state
 function menuState() {
@@ -94,7 +91,6 @@ function tutorialState() {
   hideAll();
   tutorialGroup.visible = true;
 }
-
 function switchCharacterState() {
   g.scaleToWindow();
   hideAll();
@@ -120,8 +116,8 @@ function play() {
   }
 
   //add x and y velocities to the animal control object
-  aCObject.x += aCObject.vx;
-  aCObject.y += aCObject.vy;
+  animalCont1.aCObject.x += animalCont1.aCObject.vx;
+  animalCont1.aCObject.y += animalCont1.aCObject.vy;
 
   //call functions for player and ai logic
   jump();

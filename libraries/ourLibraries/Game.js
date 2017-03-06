@@ -3,12 +3,18 @@
 var map = new PIXI.Container(),
   house = new PIXI.Container(),
   sewer = new PIXI.Container(),
-  gameObjects = new PIXI.Container();
+  gameObjects = new PIXI.Container(),
+  animalCont1;
 
 gameObjects.addChild(map);
 gameObjects.addChild(house);
 gameObjects.addChild(sewer);
-g.stage.addChild(gameObjects);
+
+function initGame() {
+  g.stage.addChild(gameObjects);
+  animalCont1 = new spawnAnimalControl(900, 600);
+  buildOutside();
+}
 
 function jump() {
   //start the player jump
@@ -70,19 +76,17 @@ function buildOutside() {
 
   //add both the background and the animal to the stage
   map.addChild(whiteFloor);
-  spawnAnimalControl();
   map.addChild(player.sprite);
+  map.addChild(animalCont1.aCObject);
   //map.addChild(houseOutside1);
 }
 
 //variables for animal control
 // TODO these will be likely to change, Just are placeholders
-var aCTexture, aCObject;
 
-function spawnAnimalControl(x , y) {
+function spawnAnimalControl(x, y) {
   //instantiate animal control sprite
   this.aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
-  map.addChild(aCObject.sprite);
 
   //change the anchor point of the sprite so when it flips it looks normal
   this.aCObject.anchor.set(0.5, 1);
@@ -103,8 +107,8 @@ function spawnAnimalControl(x , y) {
   // ai movement
   this.aiMovement = function() {
       //doesnt let ai fall below the "floor"
-    if (this.aCObject.y > 700) {
-      this.aCObject.y = 700;
+    if (this.aCObject.y > 600) {
+      this.aCObject.y = 600;
     }
 
     if (Math.abs(this.aCObject.x - player.sprite.x) <=  300 && Math.abs(this.aCObject.y - player.sprite.y) <= 300) {
