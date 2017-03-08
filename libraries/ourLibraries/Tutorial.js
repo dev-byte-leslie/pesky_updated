@@ -4,7 +4,7 @@ var tutorial = new PIXI.Text('use arrow keys to move\n\n\navoid animal control\n
 var keys = PIXI.Texture.fromImage('../../images/keys.png');
 var keysSprite = new PIXI.Sprite(keys);
 keysSprite.position.x = WIDTH/2;
-keysSprite.position.y = HEIGHT/2;
+keysSprite.position.y = HEIGHT * .01;
 tutorialGroup.addChild(tutorial);
 tutorialGroup.addChild(buttonBack);
 tutorialGroup.addChild(keysSprite);
