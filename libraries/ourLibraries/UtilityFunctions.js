@@ -7,13 +7,13 @@ function jump() {
   }
 
   //make sure there is no double jump
-  if (player.sprite.y >= player.lowestHeight) {
-    player.jumping = false;
-    player.sprite.y = player.lowestHeight;
-    if (!moveMent) {
-      player.sprite.vx = 0;
-    }
-  }
+  // if (player.sprite.y >= player.lowestHeight) {
+  //   player.jumping = false;
+  //   player.sprite.y = player.lowestHeight;
+  //   if (!moveMent) {
+  //     player.sprite.vx = 0;
+  //   }
+  // }
 }
 
 //build the inside of a house
