@@ -19,6 +19,7 @@ function hoverOver() {
   this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
+  initGame();
   g.state = play;
 }
 function showCredits() {

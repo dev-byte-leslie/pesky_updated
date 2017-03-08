@@ -40,7 +40,7 @@ function buildOutside() {
     jumping : false,
     jumpHeight : 350,
     spacePush : false,
-    lowestHeight : 700,
+    lowestHeight : 600,
     active : true,
     moveStates : ['Left', 'Right', 'Jump', 'StopL', 'StopR']
   };
@@ -53,7 +53,7 @@ function buildOutside() {
 
   //set the objects starting point
   player.sprite.x = 300;
-  player.sprite.y = 700;
+  player.sprite.y = 600;
 
   //position the example house
   houseOutside1.x = 500;
@@ -72,4 +72,9 @@ function buildOutside() {
 // TODO add functionality to this function. Different character sprites
 function pickAnimal(animal) {
 
+}
+
+//generates a random integer between the min and max values
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
