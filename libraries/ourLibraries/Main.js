@@ -19,7 +19,8 @@ function spriteCreator(stringTexture, width, height) {
   this.sprite = new MovieClip(this.texture);
   return this.sprite;
 }
-var g = hexi(1280, 720, setupGame);
+const WIDTH = 1280, HEIGHT = 720;
+var g = hexi(WIDTH, HEIGHT, setupGame);
 var Container = PIXI.Container,
   autoDetectRenderer = PIXI.autoDetectRenderer,
   loader = PIXI.loader,
@@ -28,8 +29,7 @@ var Container = PIXI.Container,
   Texture = PIXI.Texture,
   Sprite = PIXI.Sprite,
   MovieClip = PIXI.extras.MovieClip;
-const WIDTH = 1280, HEIGHT = 720;
-var renderer = new PIXI.autoDetectRenderer(1280, 720);
+var renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
 var b = new Bump(PIXI);
 //add the ability to add mouse/input events
 var tinkPoint = new Tink(PIXI, renderer.view);
@@ -47,6 +47,7 @@ function setupGame() {
     .add('../../images/ACPH.png')
     .add('../../images/CarlosWalkCycle.png')
     .add('../../images/animal_control.png')
+    .add('../../images/floor.png')
     .load(setup);
 
   //calls function that designates what each key does when it is pressed
@@ -55,7 +56,7 @@ function setupGame() {
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door;
+  houseOutsideTexture1, doorText, door, floor;
 
 function setup() {
   animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
@@ -63,6 +64,7 @@ function setup() {
   houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
   houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
   door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
+  floor = new spriteCreator('../../images/floor.png', 720, 1);
 }
 // Game loops dependent on state
 function menuState() {
@@ -70,50 +72,25 @@ function menuState() {
   hideAll();
   mainMenuGroup.visible = true;
 }
-function gameState() {
-  g.scaleToWindow();
-  hideAll();
-  gameGroup.visible = true;
-}
 function optionsState() {
   g.scaleToWindow();
-  hideAll();
-  optionsGroup.visible = true;
 }
 function creditsState() {
   g.scaleToWindow();
-  hideAll();
-  creditsGroup.visible = true;
   credits.y -= 2;
 }
 function tutorialState() {
   g.scaleToWindow();
-  hideAll();
-  tutorialGroup.visible = true;
 }
 function switchCharacterState() {
   g.scaleToWindow();
-  hideAll();
-  switchCharacterGroup.visible = true;
 }
 function play() {
   g.scaleToWindow();
-  hideAll();
-  gameObjects.visible = true;
 
   //add x velocity to player's x location
   animalObject.x += animalObject.vx;
-
-  //checks when to apply gravity to the player object
-  if (!(player.sprite.y > player.lowestHeight)) {
-    player.sprite.vy += 0.3;
-  }
-
-  //checkes when to add the y velocity to the player object
-  // TODO change this when we add floors/platforms to jump on
-  if (!(player.sprite.y > player.lowestHeight) && !player.jumping) {
-    animalObject.y += animalObject.vy;
-  }
+  animalObject.y += animalObject.vy;
 
   //add x and y velocities to the animal control object
   animalCont1.aCObject.x += animalCont1.aCObject.vx;
