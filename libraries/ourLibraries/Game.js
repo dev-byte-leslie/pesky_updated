@@ -12,7 +12,7 @@ gameObjects.addChild(sewer);
 
 function initGame() {
   g.stage.addChild(gameObjects);
-  animalCont1 = new spawnAnimalControl(900, 600);
+  animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
   buildOutside();
 }
 

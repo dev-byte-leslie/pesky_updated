@@ -1,19 +1,16 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
   //start the player jump
-  if (!player.jumping && player.spacePush) {
-    player.jumping = true;
+  if (player.spacePush && player.sprite.vy == 0) {
     player.sprite.vy = -10;
   }
-
-  //make sure there is no double jump
-  // if (player.sprite.y >= player.lowestHeight) {
-  //   player.jumping = false;
-  //   player.sprite.y = player.lowestHeight;
-  //   if (!moveMent) {
-  //     player.sprite.vx = 0;
-  //   }
-  // }
+  if (player.sprite.y < player.lowestHeight) {
+    player.sprite.vy += 0.3;
+  }
+  if (player.sprite.y > player.lowestHeight) {
+    player.sprite.vy = 0;
+    player.sprite.y = player.lowestHeight;
+  }
 }
 
 //build the inside of a house

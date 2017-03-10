@@ -19,7 +19,8 @@ function spriteCreator(stringTexture, width, height) {
   this.sprite = new MovieClip(this.texture);
   return this.sprite;
 }
-var g = hexi(1280, 720, setupGame);
+const WIDTH = 1280, HEIGHT = 720;
+var g = hexi(WIDTH, HEIGHT, setupGame);
 var Container = PIXI.Container,
   autoDetectRenderer = PIXI.autoDetectRenderer,
   loader = PIXI.loader,
@@ -28,8 +29,7 @@ var Container = PIXI.Container,
   Texture = PIXI.Texture,
   Sprite = PIXI.Sprite,
   MovieClip = PIXI.extras.MovieClip;
-const WIDTH = 1280, HEIGHT = 720;
-var renderer = new PIXI.autoDetectRenderer(1280, 720);
+var renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
 var b = new Bump(PIXI);
 //add the ability to add mouse/input events
 var tinkPoint = new Tink(PIXI, renderer.view);
@@ -103,17 +103,7 @@ function play() {
 
   //add x velocity to player's x location
   animalObject.x += animalObject.vx;
-
-  //checks when to apply gravity to the player object
-  if (!(player.sprite.y > player.lowestHeight)) {
-    player.sprite.vy += 0.3;
-  }
-
-  //checkes when to add the y velocity to the player object
-  // TODO change this when we add floors/platforms to jump on
-  if (!(player.sprite.y > player.lowestHeight) && !player.jumping) {
-    animalObject.y += animalObject.vy;
-  }
+  animalObject.y += animalObject.vy;
 
   //add x and y velocities to the animal control object
   animalCont1.aCObject.x += animalCont1.aCObject.vx;
