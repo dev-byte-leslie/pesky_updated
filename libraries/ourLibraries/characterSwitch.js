@@ -8,27 +8,27 @@
  *Comments:
  *
  *********************************************************************/
-/* globals PIXI, createButton, Raccoon, Skunk, Goose, WIDTH, HEIGHT, switchCharacterState, 
+/* globals createButton, Raccoon, Skunk, Goose, WIDTH, HEIGHT, switchCharacterState,
  */ //Tells EsLint that these things do exist
 
 /* exported switchCharacter, initCharacterSwitch */ //Makes ESLint shut up about the created and not used errors
+//1280 x 720
 var buttonRaccoon;
 var buttonSkunk;
-// var buttonGoose;
+var buttonGoose;
 var switchCharacterGroup;
 
 function initCharacterSwitch()
 {
-  switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
   buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, raccoonInput, switchCharacterGroup, 'carlos');
   buttonSkunk = createButton(WIDTH/2, HEIGHT/2, skunkInput, switchCharacterGroup, 'stanky');
-//  buttonGoose = createButton(x, y, gooseInput, switchCharacterGroup, spriteName); //TODO: sprintName, and x and y position(center of button)
+  buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
 }
 
-
+switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
 switchCharacterGroup.addChild(buttonRaccoon);
 switchCharacterGroup.addChild(buttonSkunk);
-//switchCharacterGroup.addChaild(buttonGoose);
+switchCharacterGroup.addChaild(buttonGoose);
 
 function switchCharacter() {
 
@@ -69,9 +69,9 @@ function skunkInput()
 }
 
 // -- Handles Goose Button Press -- //
-/*function gooseInput()
+function gooseInput()
 {
   Goose.active = true;
   player.sprite = Goose;
   g.state = gameState;
-}*/
+}
