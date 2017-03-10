@@ -1,6 +1,6 @@
 //Load the music
 sounds.load([
-  "music/pinklife.wav"
+  "music/pinklife.mp3"
 ]);
 
 sounds.whenLoaded = setup;
@@ -9,7 +9,7 @@ function setup() {
   console.log("sounds loaded");
 
 //Create the sounds
-  var music = sounds["music/pinklife.wav"];
+  var music = sounds["music/pinklife.mp3"];
 
   //Make the music loop
   music.loop = true;
