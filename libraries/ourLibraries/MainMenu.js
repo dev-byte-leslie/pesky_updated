@@ -20,15 +20,23 @@ function hoverOver() {
 }
 function startGame() {
   initGame();
+  hideAll();
+  gameObjects.visible = true;
   g.state = play;
 }
 function showCredits() {
+  hideAll();
+  creditsGroup.visible = true;
   g.state = creditsState;
 }
 function showTutorial() {
+  hideAll();
+  tutorialGroup.visible = true;
   g.state = tutorialState;
 }
 function showOptions() {
+  hideAll();
+  optionsGroup.visible = true;
   g.state = optionsState;
 }
 // Create a button with text given its x and y coords, click function, button group, and sprite name

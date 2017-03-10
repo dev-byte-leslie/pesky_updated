@@ -113,6 +113,8 @@ function Keys() {
     }
     if (b.hitTestRectangle(player.sprite, hedge))
     {
+      hideAll();
+      switchCharacterGroup.visible = true;
       switchCharacter();
     }
   };
