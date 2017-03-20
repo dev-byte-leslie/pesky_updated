@@ -24,6 +24,25 @@ function enterHouse() {
   stage = house;
 }
 
+function attack()
+{
+  if(Raccoon.active)
+  {
+    //TODO: do raccoon attack, shoot rabies
+  }
+  if(Skunk.active)
+  {
+      //TODO: do skunk attack, spray smells
+  }
+  if(Goose.active)
+  {
+    //TODO: do goose attack, fly, poop
+  }
+
+}
+
+
+
 //builds the outside game map
 function buildOutside() {
 

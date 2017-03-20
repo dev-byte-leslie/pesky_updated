@@ -95,6 +95,8 @@ function Keys() {
 
   shiftKey.press = function() {
     //TODO ADD attacking code/attacking animation
+    player.attack();
+
   };
 
   shiftKey.release = function() {

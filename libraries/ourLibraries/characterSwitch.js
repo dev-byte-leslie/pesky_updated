@@ -8,7 +8,7 @@
  *Comments:
  *
  *********************************************************************/
-/* globals createButton, Raccoon, Skunk, Goose, WIDTH, HEIGHT, switchCharacterState,
+/* globals PIXI, createButton, Raccoon, Skunk, Goose, WIDTH, HEIGHT, switchCharacterState,
  */ //Tells EsLint that these things do exist
 
 /* exported switchCharacter, initCharacterSwitch */ //Makes ESLint shut up about the created and not used errors
