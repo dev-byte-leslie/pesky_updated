@@ -2,7 +2,7 @@
 function jump() {
   //start the player jump
   if (player.spacePush && player.sprite.vy == 0) {
-    player.sprite.vy = -10;
+    player.sprite.vy = -7;
   }
   if (player.sprite.y < player.lowestHeight) {
     player.sprite.vy += 0.3;
@@ -24,7 +24,6 @@ function enterHouse() {
   stage = house;
 }
 
-<<<<<<< Updated upstream
 function attack()
 {
   if(Raccoon.active)
@@ -91,9 +90,6 @@ function buildOutside() {
 
   stage = map;
 }
-
-=======
->>>>>>> Stashed changes
 //function to pick the correct animal object for player
 // TODO add functionality to this function. Different character sprites
 function pickAnimal(animal) {
