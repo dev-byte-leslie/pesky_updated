@@ -3,6 +3,7 @@ function jump() {
   //start the player jump
   if (player.spacePush && player.sprite.vy == 0) {
     player.sprite.vy = -10;
+    jump.play();
   }
   if (player.sprite.y < player.lowestHeight) {
     player.sprite.vy += 0.3;

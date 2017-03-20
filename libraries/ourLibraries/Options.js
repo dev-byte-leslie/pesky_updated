@@ -1,6 +1,7 @@
 //Load the music
 sounds.load([
-  "music/pinklife.mp3"
+  "music/arcade.wav",
+  "music/jump.wav"
 ]);
 
 sounds.whenLoaded = setup;
@@ -9,7 +10,8 @@ function setup() {
   console.log("sounds loaded");
 
 //Create the sounds
-  var music = sounds["music/pinklife.mp3"];
+  var music = sounds["music/arcade.wav"],
+      jump = sounds["music/jump.wav"];
 
   //Make the music loop
   music.loop = true;
@@ -44,27 +46,13 @@ function setup() {
     music.restart();
     console.log("music restarted");
   };
+
+  space.press = function() {
+    jump.play();
+    console.log("jump");
+  }
+
 }
-
-/*space.press = function(){ jumpSound() };
-
-function jumpSound() {
-  soundEffect(
-    523.25,       //frequency
-    0.05,         //attack
-    0.2,          //decay
-    "sine",       //waveform
-    3,            //volume
-    0.8,          //pan
-    0,            //wait before playing
-    600,          //pitch bend amount
-    true,         //reverse
-    100,          //random pitch range
-    0,            //dissonance
-    undefined,    //echo: [delay, feedback, filter]
-    undefined     //reverb: [duration, decay, reverse?]
-  );
-}*/
 
 var optionsGroup = new PIXI.Container();
 let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
