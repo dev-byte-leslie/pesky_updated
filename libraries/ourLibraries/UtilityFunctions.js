@@ -39,6 +39,13 @@ function attack()
     //TODO: do goose attack, fly, poop
   }
 
+//TODO:
+// create new instance of projectile for animal
+// add to an array of projectiles, limit the size so they can only do it so many times
+// once attack is done, remove projectile from screen and array
+// create an object for each type of projectile, poop, rabies, spray
+
+
 }
 
 
