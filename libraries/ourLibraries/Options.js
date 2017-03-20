@@ -21,6 +21,7 @@ function setup() {
   var b = keyboard(66),
       c = keyboard(67),
       d = keyboard(68);
+      space = keyboard(32);
 
   //Control the sounds based on which keys are pressed
 
@@ -44,6 +45,26 @@ function setup() {
     console.log("music restarted");
   };
 }
+
+/*space.press = function(){ jumpSound() };
+
+function jumpSound() {
+  soundEffect(
+    523.25,       //frequency
+    0.05,         //attack
+    0.2,          //decay
+    "sine",       //waveform
+    3,            //volume
+    0.8,          //pan
+    0,            //wait before playing
+    600,          //pitch bend amount
+    true,         //reverse
+    100,          //random pitch range
+    0,            //dissonance
+    undefined,    //echo: [delay, feedback, filter]
+    undefined     //reverb: [duration, decay, reverse?]
+  );
+}*/
 
 var optionsGroup = new PIXI.Container();
 let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
