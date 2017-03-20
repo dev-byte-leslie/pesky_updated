@@ -12,6 +12,7 @@ gameObjects.addChild(sewer);
 
 function initGame() {
   g.stage.addChild(gameObjects);
+  player = new Player();
   animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
   buildOutside();
 }
@@ -33,26 +34,6 @@ function buildOutside() {
   // with different background objects, or use tiling software
   // whichever is the easier of the two
 
-  //create the object that represents the player
-  player = {
-    sprite : animalObject,
-    jumping : false,
-    jumpHeight : 350,
-    spacePush : false,
-    lowestHeight : 610
-  };
-
-  //set the objects starting velocities
-  player.sprite.vx = 0;
-  player.sprite.vy = 0;
-
-  //set the objects starting point
-  player.sprite.x = 300;
-  player.sprite.y = 610;
-
-  player.sprite.anchor.set(0.5, 1);
-
-
   //position the example house
   houseOutside1.x = 500;
   houseOutside1.y = 400;
@@ -62,10 +43,4 @@ function buildOutside() {
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
   //map.addChild(houseOutside1);
-}
-
-//function to pick the correct animal object for player
-// TODO add functionality to this function. Different character sprites
-function pickAnimal(animal) {
-
 }

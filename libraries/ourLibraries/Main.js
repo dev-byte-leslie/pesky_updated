@@ -56,7 +56,7 @@ function setupGame() {
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floor;
+  houseOutsideTexture1, doorText, door, floor, cameraMain, player;
 
 function setup() {
   animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
@@ -88,16 +88,17 @@ function switchCharacterState() {
 function play() {
   g.scaleToWindow();
 
+  /*
   //add x velocity to player's x location
-  animalObject.x += animalObject.vx;
-  animalObject.y += animalObject.vy;
+  player.sprite.x += player.sprite.vx;
+  player.sprite.y += player.sprite.vy;*/
 
   //add x and y velocities to the animal control object
   animalCont1.aCObject.x += animalCont1.aCObject.vx;
   animalCont1.aCObject.y += animalCont1.aCObject.vy;
 
   //call functions for player and ai logic
-  camera();
+  player.update();
   jump();
   animalCont1.aiMovement();
   tinkPoint.update();

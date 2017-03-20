@@ -24,6 +24,7 @@ function enterHouse() {
   stage = house;
 }
 
+<<<<<<< Updated upstream
 function attack()
 {
   if(Raccoon.active)
@@ -91,6 +92,8 @@ function buildOutside() {
   stage = map;
 }
 
+=======
+>>>>>>> Stashed changes
 //function to pick the correct animal object for player
 // TODO add functionality to this function. Different character sprites
 function pickAnimal(animal) {
@@ -108,9 +111,12 @@ function camera() {
     //scale it
   g.stage.scale.x = 1.5;
   g.stage.scale.y = 1.5;
+
+  this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
-  g.stage.pivot.x = player.sprite.position.x;
-  g.stage.pivot.y = player.sprite.position.y;
+    g.stage.pivot.x = player.sprite.position.x;
+    g.stage.pivot.y = player.sprite.position.y;
+  };
 }
 
 function createGameWorld() {
