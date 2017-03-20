@@ -52,6 +52,7 @@ function buildOutside() {
 
   player.sprite.anchor.set(0.5, 1);
 
+
   //position the example house
   houseOutside1.x = 500;
   houseOutside1.y = 400;

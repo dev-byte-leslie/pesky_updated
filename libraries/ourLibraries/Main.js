@@ -97,6 +97,7 @@ function play() {
   animalCont1.aCObject.y += animalCont1.aCObject.vy;
 
   //call functions for player and ai logic
+  camera();
   jump();
   animalCont1.aiMovement();
   tinkPoint.update();
