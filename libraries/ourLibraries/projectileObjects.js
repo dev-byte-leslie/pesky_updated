@@ -11,28 +11,28 @@
 //TODO: add reference in HTML file
 
  var rabies = {
-   //name:"rabies",
-   //speed: The speed at which the projectile travels
-   //reloadTime: The number of animation cycles after firing before it can be done again
+   name:'rabies',
+   speed: 30, //the speed at which the projectile travels
+   reloadTime: 30,  //The number of animation cycles after firing before it can be done again
    //damage: The amount of damage to the target when the projectile explodes ?? MAYBE
-   //range: The maximum range that a projectile will fly
+   range: 50, //The maximum range that a projectile will fly
    // spriteImages:
  };
 
  var poop = {
-   //name:"poop",
-   //speed: The speed at which the projectile travels
-   //reloadTime: The number of animation cycles after firing before it can be done again
+   name:'poop',
+   speed: 30, //The speed at which the projectile travels
+   reloadTime: 30, //The number of animation cycles after firing before it can be done again
    //damage: The amount of damage to the target when the projectile explodes ?? MAYBE
-   //range: The maximum range that a projectile will fly
+   range: 50, //The maximum range that a projectile will fly
    // // spriteImages:
  };
 
  var spray = {
-   //name:"spray",
-   //speed: The speed at which the projectile travels
-   //reloadTime: The number of animation cycles after firing before it can be done again
+   name:'spray',
+   speed: 30, //The speed at which the projectile travels
+   reloadTime: 30, //The number of animation cycles after firing before it can be done again
    //damage: The amount of damage to the target when the projectile explodes ?? MAYBE
-   //range: The maximum range that a projectile will fly
+   range: 50, //The maximum range that a projectile will fly
    // // spriteImages:
  };
