@@ -110,9 +110,12 @@ function camera() {
     //scale it
   g.stage.scale.x = 1.5;
   g.stage.scale.y = 1.5;
+
+  this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
-  g.stage.pivot.x = player.sprite.position.x;
-  g.stage.pivot.y = player.sprite.position.y;
+    g.stage.pivot.x = player.sprite.position.x;
+    g.stage.pivot.y = player.sprite.position.y;
+  };
 }
 
 function createGameWorld() {

@@ -10,6 +10,7 @@ function initGame() {
   gameObjects.addChild(sewer);
   gameObjects.addChild(floor);
   g.stage.addChild(gameObjects);
+  player = new Player();
   animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
   buildOutside();
 }
@@ -61,10 +62,4 @@ function buildOutside() {
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
   //map.addChild(houseOutside1);
-}
-
-//function to pick the correct animal object for player
-// TODO add functionality to this function. Different character sprites
-function pickAnimal(animal) {
-
 }
