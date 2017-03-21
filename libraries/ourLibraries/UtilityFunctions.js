@@ -2,15 +2,20 @@
 function jump() {
   //start the player jump
   if (player.spacePush && player.sprite.vy == 0) {
+    player.jumping = true;
     player.sprite.vy = -10;
   }
-  if (player.sprite.y < player.lowestHeight) {
-    player.sprite.vy += 0.3;
+  if (player.sprite.vy == 0 && player.lastVy >= 0) {
+    player.jumping = false;
   }
-  if (player.sprite.y > player.lowestHeight) {
-    player.sprite.vy = 0;
-    player.sprite.y = player.lowestHeight;
+  if (player.jumping) {
+    player.sprite.vy += 0.4;
   }
+  player.lastVy = player.sprite.vy;
+  // if (player.sprite.y > player.lowestHeight) {
+  //   player.sprite.vy = 0;
+  //   player.sprite.y = player.lowestHeight;
+  // }
 }
 
 //build the inside of a house
@@ -60,6 +65,7 @@ function buildOutside() {
   //create the object that represents the player
   player = {
     sprite : animalObject,
+    lastVy : 0,
     jumping : false,
     jumpHeight : 350,
     spacePush : false,

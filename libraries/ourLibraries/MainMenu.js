@@ -1,13 +1,17 @@
-var mainMenuGroup = new PIXI.Container(); /// Parent container for ALL menu items
-var buttonGroup = new PIXI.Container(); // Container for all the menu buttons
-var tutorialGroup = new PIXI.Container(); // Container for objects on tutorial screen
+var mainMenuGroup, buttonGroup, tutorialGroup, buttonStart, buttonOptions, buttonCredits;
 
-var buttonStart = createButton(WIDTH / 2, HEIGHT * 0.25 - 90, startGame, buttonGroup, 'start');
-var buttonOptions = createButton(WIDTH / 2, HEIGHT * 0.5 - 90, showOptions, buttonGroup, 'options');
-var buttonTutorial = createButton(WIDTH / 2, HEIGHT * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
-var buttonCredits = createButton(WIDTH / 2, HEIGHT - 90, showCredits, buttonGroup, 'credits');
-mainMenuGroup.addChild(buttonGroup);
-g.stage.addChild(mainMenuGroup);
+function startMenu() {
+  mainMenuGroup = new PIXI.Container(); /// Parent container for ALL menu items
+  buttonGroup = new PIXI.Container(); // Container for all the menu buttons
+  tutorialGroup = new PIXI.Container(); // Container for objects on tutorial screen
+
+  buttonStart = createButton(WIDTH / 2, HEIGHT * 0.25 - 90, startGame, buttonGroup, 'start');
+  buttonOptions = createButton(WIDTH / 2, HEIGHT * 0.5 - 90, showOptions, buttonGroup, 'options');
+  buttonTutorial = createButton(WIDTH / 2, HEIGHT * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
+  buttonCredits = createButton(WIDTH / 2, HEIGHT - 90, showCredits, buttonGroup, 'credits');
+  mainMenuGroup.addChild(buttonGroup);
+  g.stage.addChild(mainMenuGroup);
+}
 // Button interaction functions
 function onButtonDown() {
   this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Click.png');
@@ -25,16 +29,19 @@ function startGame() {
   g.state = play;
 }
 function showCredits() {
+  initCredits();
   hideAll();
   creditsGroup.visible = true;
   g.state = creditsState;
 }
 function showTutorial() {
+  initTutorial();
   hideAll();
   tutorialGroup.visible = true;
   g.state = tutorialState;
 }
 function showOptions() {
+  initOptions();
   hideAll();
   optionsGroup.visible = true;
   g.state = optionsState;
