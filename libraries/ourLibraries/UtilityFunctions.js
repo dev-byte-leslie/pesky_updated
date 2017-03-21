@@ -12,10 +12,6 @@ function jump() {
     player.sprite.vy += 0.4;
   }
   player.lastVy = player.sprite.vy;
-  // if (player.sprite.y > player.lowestHeight) {
-  //   player.sprite.vy = 0;
-  //   player.sprite.y = player.lowestHeight;
-  // }
 }
 
 //build the inside of a house

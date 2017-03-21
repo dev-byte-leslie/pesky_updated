@@ -48,7 +48,7 @@ function buildOutside() {
 
   //set the objects starting point
   player.sprite.x = 300;
-  player.sprite.y = 610;
+  player.sprite.y = 700;
 
   player.sprite.anchor.set(0.5, 1);
 
