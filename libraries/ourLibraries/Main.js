@@ -66,7 +66,7 @@ function setupGame() {
 }
 
 function setup() {
-  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
+  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 22);
   whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
   houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
   houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
