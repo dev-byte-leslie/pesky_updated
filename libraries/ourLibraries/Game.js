@@ -5,6 +5,10 @@ function initGame() {
   sewer = new PIXI.Container();
   gameObjects = new PIXI.Container();
 
+  //calls function that designates what each key does when it is pressed
+  // only enable keyboard input (e.g. movement/spacebar) after game is started
+  Keys();
+
   gameObjects.addChild(map);
   gameObjects.addChild(house);
   gameObjects.addChild(sewer);

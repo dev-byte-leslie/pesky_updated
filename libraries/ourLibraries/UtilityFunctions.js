@@ -8,6 +8,21 @@ function jump() {
   if (player.sprite.vy == 0 && player.lastVy >= 0) {
     player.jumping = false;
   }
+  if (player.jumping) {
+    player.sprite.gotoAndStop(0);
+  } else {
+    if (left.isDown) {
+      player.sprite.vx = -5;
+      player.sprite.play();
+      player.sprite.animationSpeed = .1;
+    }
+    if (right.isDown) {
+      player.sprite.vx = 5;
+      player.sprite.play();
+      player.sprite.animationSpeed = .1;
+    }
+  }
+  // stop the player if they're not actually pressing anything
   player.lastVy = player.sprite.vy;
 }
 

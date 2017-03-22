@@ -43,9 +43,6 @@ function setupGame() {
     .add('../../images/animal_control.png')
     .add('../../images/floor.png')
     .load(setup);
-
-  //calls function that designates what each key does when it is pressed
-  Keys();
 }
 
 function setup() {
