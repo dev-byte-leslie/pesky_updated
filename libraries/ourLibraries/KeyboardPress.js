@@ -18,9 +18,11 @@ function Keys() {
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
     player.sprite.scale.x = 1;
-    animalObject.vx = -5;
-    player.sprite.play();
-    player.sprite.animationSpeed = .3;
+    if (!player.jumping) {
+      animalObject.vx = -5;
+      player.sprite.play();
+      player.sprite.animationSpeed = .1;
+    }
     moveMent = true;
   };
 
@@ -53,9 +55,11 @@ function Keys() {
   //Right
   right.press = function() {
     player.sprite.scale.x = -1;
-    player.sprite.play();
-    player.sprite.animationSpeed = .3;
-    animalObject.vx = 5;
+    if (!player.jumping) {
+      player.sprite.play();
+      player.sprite.animationSpeed = .1;
+      animalObject.vx = 5;
+    }
     moveMent = true;
   };
 

@@ -11,7 +11,7 @@ function Player() {
   //set the objects starting point
   //likely to change
   this.sprite.x = 300;
-  this.sprite.y = 700;
+  this.sprite.y = 690;
 
   //sets anchor of player sprite for animation flipping
   this.sprite.anchor.set(0.5, 1);
@@ -23,7 +23,7 @@ function Player() {
   this.sprite.vx = 0;
   this.sprite.vy = 0;
 
-  //updates player location and camera location 
+  //updates player location and camera location
   this.update = function() {
     //add x velocity to player's x location
     this.sprite.x += this.sprite.vx;

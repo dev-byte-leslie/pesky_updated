@@ -8,9 +8,6 @@ function jump() {
   if (player.sprite.vy == 0 && player.lastVy >= 0) {
     player.jumping = false;
   }
-  if (player.jumping) {
-    player.sprite.vy += 0.4;
-  }
   player.lastVy = player.sprite.vy;
 }
 
