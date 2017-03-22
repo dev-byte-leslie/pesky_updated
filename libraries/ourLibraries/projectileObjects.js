@@ -9,7 +9,7 @@
 ********************************************************************/
  var rabies = {
    name:'rabies',
-   xPos: 100, //position to draw the projectile
+   xPos: 100, //position to draw the projectile, will eventuall be changed
    yPos: 100,
    speed: 30, //the speed at which the projectile travels
    reloadTime: 30,  //The number of animation cycles after firing before it can be done again

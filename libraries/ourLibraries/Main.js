@@ -15,6 +15,8 @@ var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floor, platform;
 
+var BeigeHouse, RedHouse, BlueHouse, GreyHouse;
+
 $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
@@ -77,6 +79,13 @@ function setup() {
   door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
   //floor = new PIXI.Rectangle(WIDTH / 2, HEIGHT, WIDTH * 0.5, 200);
   floor = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+
+
+  //create house sprites
+  BeigeHouse = new spriteCreator('../../images/Beige_House.png', 400, 226);
+  BlueHouse = new spriteCreator('../../images/Blue_House.png', 400, 226);
+  RedHouse = new spriteCreator('../../images/Red_House.png', 400, 226);
+  GreyHouse = new spriteCreator('../../images/Grey_House.png', 400, 226);
 }
 // Game loops dependent on state
 function menuState() {
@@ -100,10 +109,13 @@ function switchCharacterState() {
 function play() {
   g.scaleToWindow();
 
-  if (b.hit(floor, player.sprite, true)) {
+  if (b.hit(floor, player.sprite)) {
     player.sprite.vy = 0;
+    player.sprite.y = floor.y;
     floor.y = 700;
-  }
+  } else {
+    player.sprite.vy += 0.4;
+  } 
 
   //call functions for player and ai logic
   player.update();
