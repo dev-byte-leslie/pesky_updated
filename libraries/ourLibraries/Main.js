@@ -80,26 +80,22 @@ function setup() {
 }
 // Game loops dependent on state
 function menuState() {
-  g.scaleToWindow();
   hideAll();
   mainMenuGroup.visible = true;
 }
 function optionsState() {
-  g.scaleToWindow();
+
 }
 function creditsState() {
-  g.scaleToWindow();
   credits.y -= 2;
 }
 function tutorialState() {
-  g.scaleToWindow();
+
 }
 function switchCharacterState() {
-  g.scaleToWindow();
+
 }
 function play() {
-  g.scaleToWindow();
-
   if (b.hit(floor, player.sprite)) {
     player.sprite.vy = 0;
     player.sprite.y = floor.y;
