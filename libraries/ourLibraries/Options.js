@@ -58,7 +58,9 @@ function initOptions() {
   optionsGroup = new PIXI.Container();
   let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
   var buttonMute = createButton(WIDTH / 2, HEIGHT * 0.5 - 90, muteAudio, optionsGroup, 'mute');
+  tutorial = new PIXI.Text('just press c to mute, ignore the button', {font: '50px Arial', fill: 'red'});
 
+  optionsGroup.addChild(tutorial);
   optionsGroup.addChild(buttonBack); // this button is reused for credits and tutorial
   optionsGroup.addChild(buttonMute);
   g.stage.addChild(optionsGroup);
