@@ -37,25 +37,6 @@ function enterHouse() {
   stage = house;
 }
 
-//builds the outside game map
-function buildOutside() {
-
-  floor.x = 0;
-  floor.y = 700;
-
-  //position the example house
-  houseOutside1.x = 500;
-  houseOutside1.y = 400;
-
-  //add both the background and the animal to the stage
-  map.addChild(whiteFloor);
-  map.addChild(player.sprite);
-  map.addChild(animalCont1.aCObject);
-  //map.addChild(houseOutside1);
-
-  stage = map;
-}
-
 function attack()
 {
   if(Raccoon.active)
@@ -78,6 +59,12 @@ function attack()
 // create an object for each type of projectile, poop, rabies, spray
 
 
+}
+
+
+
+//builds the outside game map
+function buildOutside() {
 }
 
 //function to pick the correct animal object for player
@@ -103,12 +90,4 @@ function camera() {
     g.stage.pivot.x = player.sprite.position.x;
     g.stage.pivot.y = player.sprite.position.y;
   };
-}
-
-function createGameWorld() {
-  //TODO:create two arrays: One is positive x direction, other is negative directions
-  // TODO:create a separate function that calculates player coordinates into the
-  //    correct location in either array
-  // TODO: Take converted player coordinates and draw to the screen the correct sprites
-  // TODO: Make sure the sprites/objects are deleted when arent onscreen
 }

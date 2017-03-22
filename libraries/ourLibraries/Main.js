@@ -27,6 +27,23 @@ function initEverything() {
   g = hexi(WIDTH, HEIGHT, setupGame);
   g.start();
 }
+function spriteCreator(stringTexture, width, height) {
+  //checks to see if the input is a string
+  // if it is not a string it converts it to a string
+  if (typeof stringTexture != 'string') {
+    this.stringTexture = String(stringTexture);
+  }
+  else {
+    //sets stringTexture to as the varible passed in
+    this.stringTexture = stringTexture;
+  }
+  //creates a filmstrip of the new texture
+  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
+
+  //makes the animated sprite object and returns it
+  this.sprite = new MovieClip(this.texture);
+  return this.sprite;
+}
 
 function setupGame() {
   g.scaleToWindow();
@@ -42,6 +59,13 @@ function setupGame() {
     .add('../../images/CarlosWalkCycle.png')
     .add('../../images/animal_control.png')
     .add('../../images/floor.png')
+
+    //house sprites/hedge sprite
+    .add('../../images/Beige_House.png')
+    .add('../../images/Blue_House.png')
+    .add('../../images/bush.png')
+    .add('../../images/Red_House.png')
+    .add('../../images/Grey_House.png')
     .load(setup);
 }
 
@@ -76,12 +100,9 @@ function switchCharacterState() {
 function play() {
   g.scaleToWindow();
 
-  if (b.hit(floor, player.sprite)) {
+  if (b.hit(floor, player.sprite, true)) {
     player.sprite.vy = 0;
-    player.sprite.y = floor.y;
     floor.y = 700;
-  } else {
-    player.sprite.vy += 0.4;
   }
 
   //call functions for player and ai logic

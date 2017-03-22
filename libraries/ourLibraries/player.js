@@ -4,14 +4,14 @@ function Player() {
   this.jumping = false;
   this.jumpHeight = 350;
   this.spacePush = false;
-  this.lowestHeight = 700;
+  this.lowestHeight = 600;
   this.active = true;
   this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR'];
 
   //set the objects starting point
   //likely to change
-  this.sprite.x = 300;
-  this.sprite.y = 690;
+  this.sprite.x = 500;
+  this.sprite.y = 610;
 
   //sets anchor of player sprite for animation flipping
   this.sprite.anchor.set(0.5, 1);
