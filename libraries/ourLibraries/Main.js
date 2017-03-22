@@ -100,10 +100,13 @@ function switchCharacterState() {
 function play() {
   g.scaleToWindow();
 
-  if (b.hit(floor, player.sprite, true)) {
+  if (b.hit(floor, player.sprite)) {
     player.sprite.vy = 0;
+    player.sprite.y = floor.y;
     floor.y = 700;
-  }
+  } else {
+    player.sprite.vy += 0.4;
+  } 
 
   //call functions for player and ai logic
   player.update();
