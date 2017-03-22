@@ -7,32 +7,35 @@
 *Date: 3-20-17
 *Comments:
 ********************************************************************/
-
-//TODO: add reference in HTML file
-
  var rabies = {
    name:'rabies',
+   xPos: 100, //position to draw the projectile
+   yPos: 100,
    speed: 30, //the speed at which the projectile travels
    reloadTime: 30,  //The number of animation cycles after firing before it can be done again
    //damage: The amount of damage to the target when the projectile explodes ?? MAYBE
    range: 50, //The maximum range that a projectile will fly
-   // spriteImages:
+   // spriteImages: TODO: Add sprite images, aniamtions here
  };
 
  var poop = {
    name:'poop',
-   speed: 30, //The speed at which the projectile travels
-   reloadTime: 30, //The number of animation cycles after firing before it can be done again
-   //damage: The amount of damage to the target when the projectile explodes ?? MAYBE
-   range: 50, //The maximum range that a projectile will fly
-   // // spriteImages:
+   xPos: 100,
+   yPos: 100,
+   speed: 30,
+   reloadTime: 30,
+   //damage:?? MAYBE
+   range: 50,
+   //spriteImages: TODO: Add sprite images, aniamtions here
  };
 
  var spray = {
    name:'spray',
-   speed: 30, //The speed at which the projectile travels
-   reloadTime: 30, //The number of animation cycles after firing before it can be done again
-   //damage: The amount of damage to the target when the projectile explodes ?? MAYBE
-   range: 50, //The maximum range that a projectile will fly
-   // // spriteImages:
+   xPos: 100,
+   yPos: 100,
+   speed: 30,
+   reloadTime: 30,
+   //damage: ?? MAYBE
+   range: 50,
+   //spriteImages: TODO: Add sprite images, aniamtions here
  };

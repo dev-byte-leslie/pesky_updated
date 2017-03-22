@@ -67,9 +67,6 @@ function setupGame() {
     .add('../../images/Red_House.png')
     .add('../../images/Grey_House.png')
     .load(setup);
-
-  //calls function that designates what each key does when it is pressed
-  Keys();
 }
 
 function setup() {

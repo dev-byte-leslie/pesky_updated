@@ -1,18 +1,17 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
 //variable to control if movement stops when landing during a jump
 var moveMent = false;
-
+var left, up, right, down, space, shiftKey, switchE;
 
 function Keys() {
   //Capture the keyboard arrow keys/other keys needed for controls
-  var left = keyboard(37),
-    up = keyboard(38),
-    right = keyboard(39),
-    down = keyboard(40),
-    space = keyboard(32),
-    shiftKey = keyboard(16),
-    switchE = keyboard(69);
-
+  left = keyboard(37);
+  up = keyboard(38);
+  right = keyboard(39);
+  down = keyboard(40);
+  space = keyboard(32);
+  shiftKey = keyboard(16);
+  switchE = keyboard(69);
 
   //Left arrow key `press` method
   left.press = function() {
@@ -22,6 +21,8 @@ function Keys() {
       animalObject.vx = -5;
       player.sprite.play();
       player.sprite.animationSpeed = .1;
+    } else {
+      player.sprite.gotoAndStop(0);
     }
     moveMent = true;
   };
@@ -59,6 +60,8 @@ function Keys() {
       player.sprite.play();
       player.sprite.animationSpeed = .1;
       animalObject.vx = 5;
+    } else {
+      player.sprite.gotoAndStop(0);
     }
     moveMent = true;
   };
@@ -99,7 +102,7 @@ function Keys() {
 
   shiftKey.press = function() {
     //TODO ADD attacking code/attacking animation
-    player.attack();
+    //attack();
 
   };
 

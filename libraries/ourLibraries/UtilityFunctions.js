@@ -10,8 +10,20 @@ function jump() {
     player.jumping = false;
   }
   if (player.jumping) {
-    player.sprite.vy += 0.4;
+    player.sprite.gotoAndStop(0);
+  } else {
+    if (left.isDown) {
+      player.sprite.vx = -5;
+      player.sprite.play();
+      player.sprite.animationSpeed = .1;
+    }
+    if (right.isDown) {
+      player.sprite.vx = 5;
+      player.sprite.play();
+      player.sprite.animationSpeed = .1;
+    }
   }
+  // stop the player if they're not actually pressing anything
   player.lastVy = player.sprite.vy;
 }
 
@@ -26,11 +38,11 @@ function enterHouse() {
   stage = house;
 }
 
-function attack()
+/*function attack()
 {
   if(Raccoon.active)
   {
-    //TODO: do raccoon attack, shoot rabies
+    //TODO: move the projectile, here or in object, or other funtion?
   }
   if(Skunk.active)
   {
@@ -38,7 +50,7 @@ function attack()
   }
   if(Goose.active)
   {
-    //TODO: do goose attack, fly, poop
+    //TODO: do goose attack, poop
   }
 
 //TODO:
@@ -48,7 +60,7 @@ function attack()
 // create an object for each type of projectile, poop, rabies, spray
 
 
-}
+}*/
 
 
 
