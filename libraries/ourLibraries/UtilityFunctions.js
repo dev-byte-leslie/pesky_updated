@@ -82,7 +82,7 @@ function randomInt(min, max) {
 function camera() {
   g.stage.position.x = renderer.width / 2;
   g.stage.position.y = renderer.height / 2;
-    //scale it
+  //scale it
   g.stage.scale.x = 1.5;
   g.stage.scale.y = 1.5;
 
@@ -94,14 +94,9 @@ function camera() {
 }
 
 function createGameWorld() {
-  var gameWorld =
-    {
-      x : 0,
-      y : 0,
-      width : 1000, //x size of background
-      height : 1000 // y size of background
-    };
-
-  camera.x = (gameWorld.x / 2) - camera.width / 2;
-  camera.y = (gameWorld.y / 2) - camera.height / 2;
+  //TODO:create two arrays: One is positive x direction, other is negative directions
+  // TODO:create a separate function that calculates player coordinates into the
+  //    correct location in either array
+  // TODO: Take converted player coordinates and draw to the screen the correct sprites
+  // TODO: Make sure the sprites/objects are deleted when arent onscreen
 }
