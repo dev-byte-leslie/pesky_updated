@@ -54,44 +54,6 @@ function attack()
 
 //builds the outside game map
 function buildOutside() {
-
-  //TODO create function that generates unlimited background
-  // with different background objects, or use tiling software
-  // whichever is the easier of the two
-
-  //create the object that represents the player
-  player = {
-    sprite : animalObject,
-    lastVy : 0,
-    jumping : false,
-    jumpHeight : 350,
-    spacePush : false,
-    lowestHeight : 600,
-    active : true,
-    moveStates : ['Left', 'Right', 'Jump', 'StopL', 'StopR']
-  };
-
-  player.sprite.anchor.set(0.5, 1);
-
-  //set the objects starting velocities
-  player.sprite.vx = 0;
-  player.sprite.vy = 0;
-
-  //set the objects starting point
-  player.sprite.x = 300;
-  player.sprite.y = 600;
-
-  //position the example house
-  houseOutside1.x = 500;
-  houseOutside1.y = 400;
-
-  //add both the background and the animal to the stage
-  map.addChild(whiteFloor);
-  map.addChild(animalCont1.aCObject);
-  map.addChild(player.sprite);
-  //map.addChild(houseOutside1);
-
-  stage = map;
 }
 
 //function to pick the correct animal object for player
@@ -108,7 +70,7 @@ function randomInt(min, max) {
 function camera() {
   g.stage.position.x = renderer.width / 2;
   g.stage.position.y = renderer.height / 2;
-    //scale it
+  //scale it
   g.stage.scale.x = 1.5;
   g.stage.scale.y = 1.5;
 
@@ -117,17 +79,4 @@ function camera() {
     g.stage.pivot.x = player.sprite.position.x;
     g.stage.pivot.y = player.sprite.position.y;
   };
-}
-
-function createGameWorld() {
-  var gameWorld =
-    {
-      x : 0,
-      y : 0,
-      width : 1000, //x size of background
-      height : 1000 // y size of background
-    };
-
-  camera.x = (gameWorld.x / 2) - camera.width / 2;
-  camera.y = (gameWorld.y / 2) - camera.height / 2;
 }
