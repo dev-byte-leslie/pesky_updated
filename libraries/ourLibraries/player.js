@@ -3,13 +3,13 @@ function Player() {
   this.jumping = false;
   this.jumpHeight = 350;
   this.spacePush = false;
-  this.lowestHeight = 600;
+  this.lowestHeight = 700;
   this.active = true;
   this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR'];
 
   //set the objects starting point
   this.sprite.x = 300;
-  this.sprite.y = 610;
+  this.sprite.y = 700;
 
   this.sprite.anchor.set(0.5, 1);
 

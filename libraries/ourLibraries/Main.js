@@ -27,23 +27,6 @@ function initEverything() {
   g = hexi(WIDTH, HEIGHT, setupGame);
   g.start();
 }
-function spriteCreator(stringTexture, width, height) {
-  //checks to see if the input is a string
-  // if it is not a string it converts it to a string
-  if (typeof stringTexture != 'string') {
-    this.stringTexture = String(stringTexture);
-  }
-  else {
-    //sets stringTexture to as the varible passed in
-    this.stringTexture = stringTexture;
-  }
-  //creates a filmstrip of the new texture
-  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
-
-  //makes the animated sprite object and returns it
-  this.sprite = new MovieClip(this.texture);
-  return this.sprite;
-}
 
 function setupGame() {
   g.scaleToWindow();
@@ -95,10 +78,6 @@ function switchCharacterState() {
 }
 function play() {
   g.scaleToWindow();
-
-  //add x velocity to player's x location
-  animalObject.x += animalObject.vx;
-  animalObject.y += animalObject.vy;
 
   //add x and y velocities to the animal control object
   animalCont1.aCObject.x += animalCont1.aCObject.vx;
