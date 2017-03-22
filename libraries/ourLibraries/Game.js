@@ -28,30 +28,9 @@ function enterHouse() {
 //builds the outside game map
 function buildOutside() {
 
-  //TODO create function that generates unlimited background
-  // with different background objects, or use tiling software
-  // whichever is the easier of the two
-
-  //create the object that represents the player
-  player = {
-    sprite : animalObject,
-    jumping : false,
-    jumpHeight : 350,
-    spacePush : false,
-    lowestHeight : 610
-  };
 
   floor.x = 0;
   floor.y = 700;
-  //set the objects starting velocities
-  player.sprite.vx = 0;
-  player.sprite.vy = 0;
-
-  //set the objects starting point
-  player.sprite.x = 300;
-  player.sprite.y = 700;
-
-  player.sprite.anchor.set(0.5, 1);
 
   //position the example house
   houseOutside1.x = 500;

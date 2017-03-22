@@ -96,20 +96,13 @@ function switchCharacterState() {
 function play() {
   g.scaleToWindow();
 
-  //add x velocity to player's x location
-  animalObject.x += animalObject.vx;
-  animalObject.y += animalObject.vy;
-
-  //add x and y velocities to the animal control object
-  animalCont1.aCObject.x += animalCont1.aCObject.vx;
-  animalCont1.aCObject.y += animalCont1.aCObject.vy;
-
   if (b.hit(floor, player.sprite, true)) {
     player.sprite.vy = 0;
     floor.y = 700;
   }
 
   //call functions for player and ai logic
+  player.update();
   jump();
   animalCont1.aiMovement();
   tinkPoint.update();
