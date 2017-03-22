@@ -15,11 +15,12 @@ function jump() {
       player.sprite.vx = -5;
       player.sprite.play();
       player.sprite.animationSpeed = .1;
-    }
-    if (right.isDown) {
+    } else if (right.isDown) {
       player.sprite.vx = 5;
       player.sprite.play();
       player.sprite.animationSpeed = .1;
+    } else {
+      player.sprite.vx = 0;
     }
   }
   // stop the player if they're not actually pressing anything
