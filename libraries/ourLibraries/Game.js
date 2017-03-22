@@ -1,17 +1,16 @@
-//instantiate variables for the different scenes
-// Liable to change depening on how many houses there are
-var map = new PIXI.Container(),
-  house = new PIXI.Container(),
-  sewer = new PIXI.Container(),
-  gameObjects = new PIXI.Container(),
-  animalCont1;
-
-gameObjects.addChild(map);
-gameObjects.addChild(house);
-gameObjects.addChild(sewer);
-
+var map, house, sewer, gameObjects, animalCont1;
 function initGame() {
+  map = new PIXI.Container();
+  house = new PIXI.Container();
+  sewer = new PIXI.Container();
+  gameObjects = new PIXI.Container();
+
+  gameObjects.addChild(map);
+  gameObjects.addChild(house);
+  gameObjects.addChild(sewer);
+  gameObjects.addChild(floor);
   g.stage.addChild(gameObjects);
+  player = new Player();
   animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
   buildOutside();
 }
@@ -42,16 +41,17 @@ function buildOutside() {
     lowestHeight : 610
   };
 
+  floor.x = 0;
+  floor.y = 700;
   //set the objects starting velocities
   player.sprite.vx = 0;
   player.sprite.vy = 0;
 
   //set the objects starting point
   player.sprite.x = 300;
-  player.sprite.y = 610;
+  player.sprite.y = 700;
 
   player.sprite.anchor.set(0.5, 1);
-
 
   //position the example house
   houseOutside1.x = 500;
@@ -62,10 +62,4 @@ function buildOutside() {
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
   //map.addChild(houseOutside1);
-}
-
-//function to pick the correct animal object for player
-// TODO add functionality to this function. Different character sprites
-function pickAnimal(animal) {
-
 }

@@ -1,7 +1,32 @@
+// Global variables
+const WIDTH = 1280, HEIGHT = 720;
+var Container = PIXI.Container,
+  autoDetectRenderer = PIXI.autoDetectRenderer,
+  loader = PIXI.loader,
+  resources = PIXI.loader.resources,
+  TextureCache = PIXI.utils.TextureCache,
+  Texture = PIXI.Texture,
+  Sprite = PIXI.Sprite,
+  MovieClip = PIXI.extras.MovieClip;
+
+var g, renderer, b, tinkPoint, animalAnimated;
+
+var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
+  animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
+  houseOutsideTexture1, doorText, door, floor, platform;
+
 $(document).ready(function() {
   //initCharacterSwap();
+  initEverything();
 });
-var animalAnimated = new SpriteUtilities(PIXI);
+function initEverything() {
+  renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
+  b = new Bump(PIXI);
+  tinkPoint = new Tink(PIXI, renderer.view);
+  animalAnimated = new SpriteUtilities(PIXI);
+  g = hexi(WIDTH, HEIGHT, setupGame);
+  g.start();
+}
 function spriteCreator(stringTexture, width, height) {
   //checks to see if the input is a string
   // if it is not a string it converts it to a string
@@ -19,24 +44,10 @@ function spriteCreator(stringTexture, width, height) {
   this.sprite = new MovieClip(this.texture);
   return this.sprite;
 }
-const WIDTH = 1280, HEIGHT = 720;
-var g = hexi(WIDTH, HEIGHT, setupGame);
-var Container = PIXI.Container,
-  autoDetectRenderer = PIXI.autoDetectRenderer,
-  loader = PIXI.loader,
-  resources = PIXI.loader.resources,
-  TextureCache = PIXI.utils.TextureCache,
-  Texture = PIXI.Texture,
-  Sprite = PIXI.Sprite,
-  MovieClip = PIXI.extras.MovieClip;
-var renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
-var b = new Bump(PIXI);
-//add the ability to add mouse/input events
-var tinkPoint = new Tink(PIXI, renderer.view);
-g.start();
 
 function setupGame() {
   g.scaleToWindow();
+  startMenu();
   g.state = menuState;
 
   loader
@@ -54,17 +65,14 @@ function setupGame() {
   Keys();
 }
 
-var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
-  animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floor;
-
 function setup() {
-  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 45);
+  animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 22);
   whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
   houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
   houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
   door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
-  floor = new spriteCreator('../../images/floor.png', 720, 1);
+  //floor = new PIXI.Rectangle(WIDTH / 2, HEIGHT, WIDTH * 0.5, 200);
+  floor = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
 }
 // Game loops dependent on state
 function menuState() {
@@ -96,8 +104,12 @@ function play() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx;
   animalCont1.aCObject.y += animalCont1.aCObject.vy;
 
+  if (b.hit(floor, player.sprite, true)) {
+    player.sprite.vy = 0;
+    floor.y = 700;
+  }
+
   //call functions for player and ai logic
-  camera();
   jump();
   animalCont1.aiMovement();
   tinkPoint.update();
