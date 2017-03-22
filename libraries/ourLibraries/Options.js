@@ -67,3 +67,7 @@ function initOptions() {
 function mainMenu() {
   g.state = menuState;
 }
+
+function muteAudio() {
+// add later
+}
