@@ -37,11 +37,11 @@ function enterHouse() {
   stage = house;
 }
 
-function attack()
+/*function attack()
 {
   if(Raccoon.active)
   {
-    //TODO: do raccoon attack, shoot rabies
+    //TODO: move the projectile, here or in object, or other funtion?
   }
   if(Skunk.active)
   {
@@ -49,7 +49,7 @@ function attack()
   }
   if(Goose.active)
   {
-    //TODO: do goose attack, fly, poop
+    //TODO: do goose attack, poop
   }
 
 //TODO:
@@ -59,7 +59,7 @@ function attack()
 // create an object for each type of projectile, poop, rabies, spray
 
 
-}
+}*/
 
 
 
