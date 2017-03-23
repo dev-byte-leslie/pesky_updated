@@ -12,7 +12,7 @@ function initGame() {
   gameObjects.addChild(map);
   gameObjects.addChild(house);
   gameObjects.addChild(sewer);
-  gameObjects.addChild(floor);
+  //gameObjects.addChild(floor);
   g.stage.addChild(gameObjects);
   createGameWorld();
   player = new Player();

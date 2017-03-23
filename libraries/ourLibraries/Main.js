@@ -15,6 +15,9 @@ var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floor, platform;
 
+//vars to hold sprites of houses
+var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
+
 $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
@@ -71,12 +74,20 @@ function setupGame() {
 
 function setup() {
   animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 22);
-  whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
-  houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
-  houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
-  door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
+  //whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
+  //houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+  //houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
+  //door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
   //floor = new PIXI.Rectangle(WIDTH / 2, HEIGHT, WIDTH * 0.5, 200);
   floor = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+
+  redHouse = '../../images/Red_House.png';
+  blueHouse = '../../images/Blue_House.png';
+  greyHouse = '../../images/Grey_House.png';
+  beigeHouse = '../../images/Beige_House.png';
+
+  hedge = '../../images/bush.png';
+
 }
 // Game loops dependent on state
 function menuState() {
@@ -101,12 +112,12 @@ function play() {
     player.sprite.y = floor.y;
     floor.y = 700;
   } else {
-    player.sprite.vy += 0.4;
+    //player.sprite.vy += 0.4;
   }
 
   //call functions for player and ai logic
   player.update();
-  jump();
+  //jump();
   animalCont1.aiMovement();
   tinkPoint.update();
 }
