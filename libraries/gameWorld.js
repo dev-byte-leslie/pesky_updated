@@ -1,12 +1,18 @@
 function createGameWorld() {
-  //TODO:create two arrays: One is positive x direction, other is negative directions
-
-  var negativeX = [10]; //will be bigger, 10 is just for testing
+  var gameX = 0;
+  var negativeX = new Array(10); //will be bigger, 10 is just for testing
 
   //positiveX has to be one bigger to accomodate 0
-  var positiveX = [11];
+  var positiveX = new Array(11);
   // TODO: Take converted player coordinates and draw to the screen the correct sprites
   // TODO: Make sure the sprites/objects are deleted when arent onscreen
+
+  //generate the numbers in the world arrays
+  generateWorldSprites(negativeX, positiveX);
+
+  for (i = 0; i < negativeX.length; i++) {
+
+  }
 }
 
 //takes x value of player to calculate where in the array it is
@@ -24,5 +30,12 @@ function generateWorldSprites(negVals, posVals) {
   var negLength = negVals.length;
   var posLength = posVals.length;
 
-  
+  for (var i = 0; i < negLength; i++) {
+    var curCell = randomInt(0, 4);
+    negVals[i] = curCell;
+  }
+  for (var i = 0; i < posLength; i++) {
+    var curCell = randomInt(0, 4);
+    posVals[i] = curCell;
+  }
 }
