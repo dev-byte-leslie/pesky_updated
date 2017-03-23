@@ -81,6 +81,7 @@ function setup() {
   //floor = new PIXI.Rectangle(WIDTH / 2, HEIGHT, WIDTH * 0.5, 200);
   floor = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
 
+  //strings that hold the image for the building on the map
   redHouse = '../../images/Red_House.png';
   blueHouse = '../../images/Blue_House.png';
   greyHouse = '../../images/Grey_House.png';
