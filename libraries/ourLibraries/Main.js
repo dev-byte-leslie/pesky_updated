@@ -13,7 +13,8 @@ var g, renderer, b, tinkPoint, animalAnimated;
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floor, platform, fpsDisplay;
+  houseOutsideTexture1, doorText, door, floor, platform, fps, frameTime = 0,
+  lastLoop = new Date, thisLoop, filterStrength = 20;
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
@@ -23,7 +24,7 @@ $(document).ready(function() {
   initEverything();
 });
 function initEverything() {
-  renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
+  renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT);
   b = new Bump(PIXI);
   tinkPoint = new Tink(PIXI, renderer.view);
   PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
@@ -51,7 +52,10 @@ function spriteCreator(stringTexture, width, height) {
 
 function setupGame() {
   g.scaleToWindow();
-  fpsDisplay = new PIXI.Text(fps.getFPS(), {font:"12px Arial", fill:"yellow"});
+  fpsDisplay = new PIXI.Text('', {font:'12px Arial', fill:'yellow'});
+  setInterval(function() {
+    fpsDisplay.text = fpsEnabled ? fps : '';
+  }, 1000);
   startMenu();
   g.state = menuState;
 
@@ -123,9 +127,7 @@ function play() {
   //jump();
   animalCont1.aiMovement();
   tinkPoint.update();
-  fpsDisplay.x = player.sprite.x - 160;
-  fpsDisplay.y = player.sprite.y - 180;
-  fpsDisplay.text = fpsEnabled ? fps.getFPS() : "";
+  updateFps();
 }
 
 // Hide all stage elements
