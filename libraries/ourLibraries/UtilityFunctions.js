@@ -70,11 +70,11 @@ function buildOutside() {
   floor.y = 700;
 
   //position the example house
-  houseOutside1.x = 500;
-  houseOutside1.y = 400;
+  //houseOutside1.x = 500;
+  //houseOutside1.y = 400;
 
   //add both the background and the animal to the stage
-  map.addChild(whiteFloor);
+  //map.addChild(whiteFloor);
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
   //map.addChild(houseOutside1);
@@ -95,10 +95,10 @@ function randomInt(min, max) {
 
 function camera() {
   g.stage.position.x = renderer.width / 2;
-  g.stage.position.y = renderer.height / 2;
+  g.stage.position.y = renderer.height;
   //scale it
-  g.stage.scale.x = 1.5;
-  g.stage.scale.y = 1.5;
+  g.stage.scale.x = 4;
+  g.stage.scale.y = 4;
 
   this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
@@ -106,3 +106,19 @@ function camera() {
     g.stage.pivot.y = player.sprite.position.y;
   };
 }
+
+var fps = {
+  startTime : 0,
+  frameNumber : 0,
+  getFPS : function() {
+    this.frameNumber++;
+    var d = new Date().getTime(),
+    currentTime = (d - this.startTime) / 1000,
+    result = Math.floor((this.frameNumber / currentTime));
+    if (currentTime > 1 ) {
+      this.startTime = new Date().getTime();
+      this.frameNumber = 0;
+    }
+    return result;
+  }
+};

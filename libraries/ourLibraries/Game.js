@@ -12,8 +12,10 @@ function initGame() {
   gameObjects.addChild(map);
   gameObjects.addChild(house);
   gameObjects.addChild(sewer);
-  gameObjects.addChild(floor);
+  //gameObjects.addChild(floor);
   g.stage.addChild(gameObjects);
+  gameObjects.addChild(fpsDisplay);
+  createGameWorld();
   player = new Player();
   animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
   buildOutside();

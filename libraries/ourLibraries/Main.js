@@ -13,7 +13,10 @@ var g, renderer, b, tinkPoint, animalAnimated;
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floor, platform;
+  houseOutsideTexture1, doorText, door, floor, platform, fpsDisplay;
+
+//vars to hold sprites of houses
+var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
 
 $(document).ready(function() {
   //initCharacterSwap();
@@ -23,6 +26,7 @@ function initEverything() {
   renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
   b = new Bump(PIXI);
   tinkPoint = new Tink(PIXI, renderer.view);
+  PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
   animalAnimated = new SpriteUtilities(PIXI);
   g = hexi(WIDTH, HEIGHT, setupGame);
   g.start();
@@ -47,6 +51,7 @@ function spriteCreator(stringTexture, width, height) {
 
 function setupGame() {
   g.scaleToWindow();
+  fpsDisplay = new PIXI.Text(fps.getFPS(), {font:"12px Arial", fill:"yellow"});
   startMenu();
   g.state = menuState;
 
@@ -71,48 +76,56 @@ function setupGame() {
 
 function setup() {
   animalObject = new spriteCreator('../../images/CarlosWalkCycle.png', 55, 22);
-  whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
-  houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
-  houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
-  door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
+  //whiteFloor = new spriteCreator('../../images/BackGround.png', 1280, 720);
+  //houseBackground1 = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+  //houseOutside1 = new spriteCreator('../../images/HouseOutside.png', 400, 400);
+  //door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
   //floor = new PIXI.Rectangle(WIDTH / 2, HEIGHT, WIDTH * 0.5, 200);
   floor = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+
+  //strings that hold the image for the building on the map
+  redHouse = '../../images/Red_House.png';
+  blueHouse = '../../images/Blue_House.png';
+  greyHouse = '../../images/Grey_House.png';
+  beigeHouse = '../../images/Beige_House.png';
+
+  hedge = '../../images/bush.png';
+
 }
 // Game loops dependent on state
 function menuState() {
-  g.scaleToWindow();
   hideAll();
   mainMenuGroup.visible = true;
 }
 function optionsState() {
-  g.scaleToWindow();
+
 }
 function creditsState() {
-  g.scaleToWindow();
   credits.y -= 2;
 }
 function tutorialState() {
-  g.scaleToWindow();
+
 }
 function switchCharacterState() {
-  g.scaleToWindow();
+
 }
 function play() {
-  g.scaleToWindow();
-
   if (b.hit(floor, player.sprite)) {
     player.sprite.vy = 0;
     player.sprite.y = floor.y;
     floor.y = 700;
   } else {
-    player.sprite.vy += 0.4;
+    //player.sprite.vy += 0.4;
   }
 
   //call functions for player and ai logic
   player.update();
-  jump();
+  //jump();
   animalCont1.aiMovement();
   tinkPoint.update();
+  fpsDisplay.x = player.sprite.x - 160;
+  fpsDisplay.y = player.sprite.y - 180;
+  fpsDisplay.text = fpsEnabled ? fps.getFPS() : "";
 }
 
 // Hide all stage elements
