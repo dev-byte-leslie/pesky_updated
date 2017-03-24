@@ -48,7 +48,7 @@ function loadSounds() {
   };
 
   space.press = function() {
-    if (!player.playing) {
+    if (!player.jumping) {
       jump.play();
     }
     console.log("jump");

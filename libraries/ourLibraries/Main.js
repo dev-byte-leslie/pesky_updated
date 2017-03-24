@@ -21,6 +21,12 @@ var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
 $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
+
+    if (!music.playing) {
+      music.play();
+    }
+    console.log('music playing');
+
 });
 function initEverything() {
   renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
@@ -82,6 +88,9 @@ function setup() {
   //door = new spriteCreator('../../images/AnimalPlaceHolder.png', 80, 80);
   //floor = new PIXI.Rectangle(WIDTH / 2, HEIGHT, WIDTH * 0.5, 200);
   floor = new spriteCreator('../../images/HouseBackground.png', 1000, 1000);
+
+
+
 
   //strings that hold the image for the building on the map
   redHouse = '../../images/Red_House.png';
