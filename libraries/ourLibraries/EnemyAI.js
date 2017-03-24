@@ -40,16 +40,6 @@ function spawnAnimalControl(x , y) {
         this.aCObject.scale.x = -1;
         this.aCObject.play();
       }
-    /*
-    //if player is below enemy
-        if (animalCont1.y < player.sprite.y) {
-          animalCont1.vy = 3.5;
-        }
-
-    //if player is above enemy
-        if (animalCont1.y > player.sprite.y) {
-          animalCont1.vy = -3.5;
-        }*/
 
       //if player is next to enemy
       if (b.hitTestRectangle(this.aCObject, player.sprite)) {
