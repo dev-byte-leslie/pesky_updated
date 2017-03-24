@@ -3,7 +3,7 @@ function jump() {
   //start the player jump
   if (player.spacePush && player.sprite.vy == 0) {
     player.jumping = true;
-    player.sprite.vy = -10;
+    player.sprite.vy = -10 * 60 / fps;
   }
   if (player.sprite.vy == 0 && player.lastVy >= 0) {
     player.jumping = false;
@@ -12,13 +12,13 @@ function jump() {
     player.sprite.gotoAndStop(0);
   } else {
     if (left.isDown) {
-      player.sprite.vx = -5;
+      player.sprite.vx = -5 * 60 / fps;
       player.sprite.play();
-      player.sprite.animationSpeed = .1;
+      player.sprite.animationSpeed = .1 * 60 / fps;
     } else if (right.isDown) {
-      player.sprite.vx = 5;
+      player.sprite.vx = 5 * 60 / fps;
       player.sprite.play();
-      player.sprite.animationSpeed = .1;
+      player.sprite.animationSpeed = .1 * 60 / fps;
     } else {
       player.sprite.vx = 0;
     }
@@ -104,5 +104,5 @@ function updateFps() {
   lastLoop = thisLoop;
   fps = Math.floor(1000 / frameTime);
   fpsDisplay.x = player.sprite.x - 160;
-  fpsDisplay.y = player.sprite.y - 180;
+  fpsDisplay.y = player.sprite.y - 181;
 }

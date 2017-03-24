@@ -14,13 +14,13 @@ function startMenu() {
 }
 // Button interaction functions
 function onButtonDown() {
-  this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Click.png');
+  this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Click.png');
 }
 function onButtonUp() {
-  this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Blank.png');
+  this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Blank.png');
 }
 function hoverOver() {
-  this.texture = PIXI.Texture.fromImage('../../images/btn/' + this.spriteName + 'Hover.png');
+  this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
   initGame();
@@ -49,7 +49,7 @@ function showOptions() {
 // Create a button with text given its x and y coords, click function, button group, and sprite name
 // Returns the button as a PIXI sprite
 function createButton(x, y, clickFunction, buttonGroup, spriteName) {
-  var buttonSprite = PIXI.Texture.fromImage('../../images/btn/' + spriteName + 'Blank.png');
+  var buttonSprite = PIXI.Texture.fromImage('../images/btn/' + spriteName + 'Blank.png');
   var button = new PIXI.Sprite(buttonSprite);
   button.anchor.x = 0.5;
   button.anchor.y = 0.5;
