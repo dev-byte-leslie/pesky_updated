@@ -15,6 +15,7 @@ function createGameWorld() {
   // 3 = grey house
   // 4 = Hedge
   var curObj;
+  gameX = -400;
   for (i = 0; i < negativeX.length; i++) {
     if (negativeX[i] == 0) {
       curObj = new spawnWorldObject(redHouse, gameX, 410);
@@ -29,6 +30,23 @@ function createGameWorld() {
     }
     map.addChild(curObj.obSprite);
     gameX -= 400;
+  }
+
+  gameX = 0;
+  for (i = 0; i < positiveX.length; i++) {
+    if (positiveX[i] == 0) {
+      curObj = new spawnWorldObject(redHouse, gameX, 410);
+    } else if (positiveX[i] == 1) {
+      curObj = new spawnWorldObject(blueHouse, gameX, 410);
+    } else if (positiveX[i] == 2) {
+      curObj = new spawnWorldObject(beigeHouse, gameX, 410);
+    } else if (positiveX[i] == 3) {
+      curObj = new spawnWorldObject(greyHouse, gameX, 410);
+    } else {
+      curObj = new spawnWorldObject(hedge, gameX, 410);
+    }
+    map.addChild(curObj.obSprite);
+    gameX += 400;
   }
 }
 
