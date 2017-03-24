@@ -51,7 +51,7 @@ function spriteCreator(stringTexture, width, height) {
 
 function setupGame() {
   g.scaleToWindow();
-  fpsDisplay = new PIXI.Text(fps.getFPS(), {font:"12px Arial", fill:"yellow"});
+  fpsDisplay = new PIXI.Text(fps.getFPS(), {font:'12px Arial', fill:'yellow'});
   startMenu();
   g.state = menuState;
 
@@ -68,7 +68,7 @@ function setupGame() {
     //house sprites/hedge sprite
     .add('../../images/Beige_House.png')
     .add('../../images/Blue_House.png')
-    .add('../../images/bush.png')
+    .add('../../images/LongHedge.png')
     .add('../../images/Red_House.png')
     .add('../../images/Grey_House.png')
     .load(setup);
@@ -89,7 +89,7 @@ function setup() {
   greyHouse = '../../images/Grey_House.png';
   beigeHouse = '../../images/Beige_House.png';
 
-  hedge = '../../images/bush.png';
+  hedge = '../../images/LongHedge.png';
 
 }
 // Game loops dependent on state
@@ -125,7 +125,7 @@ function play() {
   tinkPoint.update();
   fpsDisplay.x = player.sprite.x - 160;
   fpsDisplay.y = player.sprite.y - 180;
-  fpsDisplay.text = fpsEnabled ? fps.getFPS() : "";
+  fpsDisplay.text = fpsEnabled ? fps.getFPS() : '';
 }
 
 // Hide all stage elements
