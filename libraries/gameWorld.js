@@ -8,7 +8,7 @@ function createGameWorld() {
   //generate the numbers in the world arrays
   generateWorldSprites(negativeX, positiveX);
 
-  
+
   //0 = red house
   // 1 = blue house
   // 2 = beige house
@@ -47,17 +47,6 @@ function createGameWorld() {
     }
     map.addChild(curObj.obSprite);
     gameX += 400;
-  }
-}
-
-//takes x value of player to calculate where in the array it is
-function playerPosition(x_value) {
-  var tempx = x_value;
-
-  if (tempx < 0) {
-    tempx *= -1;
-
-    //TODO: Determine whether whole map can be generated at one time.
   }
 }
 
