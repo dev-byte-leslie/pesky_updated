@@ -9,7 +9,7 @@ sounds.whenLoaded = loadSounds;
 function loadSounds() {
   console.log('sounds loaded');
 
-//Create the sounds
+  //Create the sounds
   var music = sounds["music/arcade.wav"],
       jump = sounds["music/jump.wav"];
 
@@ -48,7 +48,9 @@ function loadSounds() {
   };
 
   space.press = function() {
-    jump.play();
+    if (!player.playing) {
+      jump.play();
+    }
     console.log("jump");
   }
 
