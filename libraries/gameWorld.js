@@ -1,14 +1,14 @@
 function createGameWorld() {
   var gameX = 0;
-  var negativeX = new Array(10); //will be bigger, 10 is just for testing
+  var negativeX = new Array(30); //will be bigger, 10 is just for testing
 
   //positiveX has to be one bigger to accomodate 0
-  var positiveX = new Array(11);
-  // TODO: Take converted player coordinates and draw to the screen the correct sprites
-  // TODO: Make sure the sprites/objects are deleted when arent onscreen
+  var positiveX = new Array(31);
 
   //generate the numbers in the world arrays
   generateWorldSprites(negativeX, positiveX);
+
+  
   //0 = red house
   // 1 = blue house
   // 2 = beige house
@@ -62,25 +62,41 @@ function playerPosition(x_value) {
 }
 
 function generateWorldSprites(negVals, posVals) {
+  //create protected lengths for the negative and positive x arrays
   var negLength = negVals.length;
   var posLength = posVals.length;
 
   //generates random number between 0 and 4 for negative x direction
+  var curCell;
   for (var i = 0; i < negLength; i++) {
-    var curCell = randomInt(0, 4);
+    curCell = randomInt(0, 3);
     negVals[i] = curCell;
   }
+
+  //assigns a random position for the hedge object
+  var randINT = randomInt(0, negLength - 1);
+  negVals[randINT] = 4;
+
+
   //generates random number between 0 and 4 for positive x direction
   for (var i = 0; i < posLength; i++) {
-    var curCell = randomInt(0, 4);
+    curCell = randomInt(0, 3);
     posVals[i] = curCell;
   }
+
+  randINT = randomInt(0, posLength - 1);
+  posVals[randINT] = 4;
 }
 
 function spawnWorldObject(sprite, xval, yval) {
+  //assigns the sprite to the object
   this.obSprite = new Sprite(TextureCache[sprite]);
+
+  //assings the x and y valuse to the world object
   this.x = xval;
   this.y = yval;
+
+  //assigns the sprite x and y values using the object x and y values.
   this.obSprite.x = this.x;
   this.obSprite.y = this.y;
 }
