@@ -1,7 +1,7 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
 function spawnAnimalControl(x , y) {
   //instantiate animal control sprite
-  this.aCObject = new spriteCreator('../../images/animal_control.png', 60, 75);
+  this.aCObject = new spriteCreator('../../images/AiSprites/animal_control.png', 60, 75);
 
   //change the anchor point of the sprite so when it flips it looks normal
   this.aCObject.anchor.set(0.5, 1);
