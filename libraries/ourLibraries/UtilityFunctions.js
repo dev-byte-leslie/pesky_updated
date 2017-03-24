@@ -69,15 +69,8 @@ function buildOutside() {
   floor.x = 0;
   floor.y = 700;
 
-  //position the example house
-  //houseOutside1.x = 500;
-  //houseOutside1.y = 400;
-
-  //add both the background and the animal to the stage
-  //map.addChild(whiteFloor);
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
-  //map.addChild(houseOutside1);
 
   stage = map;
 }
@@ -106,19 +99,11 @@ function camera() {
     g.stage.pivot.y = player.sprite.position.y;
   };
 }
-
-var fps = {
-  startTime : 0,
-  frameNumber : 0,
-  getFPS : function() {
-    this.frameNumber++;
-    var d = new Date().getTime(),
-    currentTime = (d - this.startTime) / 1000,
-    result = Math.floor((this.frameNumber / currentTime));
-    if (currentTime > 1 ) {
-      this.startTime = new Date().getTime();
-      this.frameNumber = 0;
-    }
-    return result;
-  }
-};
+function updateFps() {
+  var thisFrameTime = (thisLoop = new Date) - lastLoop;
+  frameTime += (thisFrameTime - frameTime) / filterStrength;
+  lastLoop = thisLoop;
+  fps = Math.floor(1000 / frameTime);
+  fpsDisplay.x = player.sprite.x - 160;
+  fpsDisplay.y = player.sprite.y - 180;
+}
