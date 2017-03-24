@@ -26,6 +26,7 @@ function initEverything() {
   renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
   b = new Bump(PIXI);
   tinkPoint = new Tink(PIXI, renderer.view);
+  PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
   animalAnimated = new SpriteUtilities(PIXI);
   g = hexi(WIDTH, HEIGHT, setupGame);
   g.start();
