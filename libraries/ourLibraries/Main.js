@@ -23,6 +23,7 @@ $(document).ready(function() {
   initEverything();
 
     if (!music.playing) {
+      music.loop = true;
       music.play();
     }
     console.log('music playing');
