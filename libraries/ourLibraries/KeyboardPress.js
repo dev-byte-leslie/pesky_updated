@@ -1,7 +1,8 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
 //variable to control if movement stops when landing during a jump
 var moveMent = false;
-var left, up, right, down, space, shiftKey, switchE;
+var left, up, right, down, space, shiftKey, switchE, f1;
+var fpsEnabled = false;
 
 function Keys() {
   //Capture the keyboard arrow keys/other keys needed for controls
@@ -12,6 +13,7 @@ function Keys() {
   space = keyboard(32);
   shiftKey = keyboard(16);
   switchE = keyboard(69);
+  f1 = keyboard(112);
 
   //Left arrow key `press` method
   left.press = function() {
@@ -131,4 +133,8 @@ function Keys() {
   switchE.release = function() {
     //TODO maybe use this for something
   };
+
+  f1.press = function() {
+    fpsEnabled = !fpsEnabled;
+  }
 }
