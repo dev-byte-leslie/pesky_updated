@@ -72,7 +72,7 @@ function setupGame() {
     //house sprites/hedge sprite
     .add('../../images/Beige_House.png')
     .add('../../images/Blue_House.png')
-    .add('../../images/bush.png')
+    .add('../../images/LongHedge.png')
     .add('../../images/Red_House.png')
     .add('../../images/Grey_House.png')
     .load(setup);
@@ -93,7 +93,7 @@ function setup() {
   greyHouse = '../../images/Grey_House.png';
   beigeHouse = '../../images/Beige_House.png';
 
-  hedge = '../../images/bush.png';
+  hedge = '../../images/LongHedge.png';
 
 }
 // Game loops dependent on state
