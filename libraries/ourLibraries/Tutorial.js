@@ -9,7 +9,7 @@ function initTutorial() {
   keysSprite.position.x = WIDTH * 0.45;
   keysSprite.position.y = HEIGHT * 0.01;
 
-  var animalcontrol = PIXI.Texture.fromImage('../../images/animal_control.png');
+  var animalcontrol = PIXI.Texture.fromImage('../../images/AiSprites/animal_control.png');
   var animalcontrolSprite = new PIXI.Sprite(animalcontrol);
   animalcontrolSprite.position.x = WIDTH * 0.45;
   animalcontrolSprite.position.y = HEIGHT * 0.4;
