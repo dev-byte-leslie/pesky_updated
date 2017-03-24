@@ -1,3 +1,4 @@
+//--------------------------------------------------------------Thomas Rosik-----------------------------------------------
 function createGameWorld() {
   var gameX = 0;
   var negativeX = new Array(30); //will be bigger, 10 is just for testing
@@ -73,6 +74,7 @@ function generateWorldSprites(negVals, posVals) {
     posVals[i] = curCell;
   }
 
+  //assigns a random position for the hedge object in the positive direction
   randINT = randomInt(0, posLength - 1);
   posVals[randINT] = 4;
 }
