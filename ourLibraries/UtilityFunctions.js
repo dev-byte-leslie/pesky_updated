@@ -117,5 +117,5 @@ function updateFps() {
   lastLoop = thisLoop;
   fps = Math.ceil(1000 / frameTime);
   fpsDisplay.x = player.sprite.x - 160;
-  fpsDisplay.y = player.sprite.y - 181;
+  fpsDisplay.y = player.sprite.y - 170;
 }
