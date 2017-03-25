@@ -27,6 +27,24 @@ function jump() {
   player.lastVy = player.sprite.vy;
 }
 
+function spriteCreator(stringTexture, width, height) {
+  //checks to see if the input is a string
+  // if it is not a string it converts it to a string
+  if (typeof stringTexture != 'string') {
+    this.stringTexture = String(stringTexture);
+  }
+  else {
+    //sets stringTexture to as the varible passed in
+    this.stringTexture = stringTexture;
+  }
+  //creates a filmstrip of the new texture
+  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
+
+  //makes the animated sprite object and returns it
+  this.sprite = new MovieClip(this.texture);
+  return this.sprite;
+}
+
 //build the inside of a house
 function enterHouse() {
   door.x = 800;
@@ -64,10 +82,6 @@ function enterHouse() {
 
 //builds the outside game map
 function buildOutside() {
-
-  floor.x = 0;
-  floor.y = 700;
-
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
 
@@ -95,7 +109,7 @@ function camera() {
   this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
     g.stage.pivot.x = player.sprite.position.x;
-    g.stage.pivot.y = player.sprite.position.y;
+    g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
   };
 }
 function updateFps() {

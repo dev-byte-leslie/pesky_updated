@@ -24,7 +24,7 @@ function Player() {
   //set the objects starting point
   //likely to change
   this.sprite.x = 500;
-  this.sprite.y = 610;
+  this.sprite.y = 600;
 
   //sets anchor of player sprite for animation flipping
   this.sprite.anchor.set(0.5, 1);
@@ -44,6 +44,19 @@ function Player() {
       this.sprite.vx = -5 * 60 / fps;
     } else if (this.sprite.vx > 0 && fps != 0) {
       this.sprite.vx = 5 * 60 / fps;
+    }
+    if (b.hit(
+      player.sprite,
+      floors,
+      true, false, false,
+      function(collision, floorHit) {
+      player.sprite.vy = 0;
+      player.sprite.y = floorHit.y;
+      floorHit.y = 600;
+    })) {} else {
+      if (fps >= 45) {
+        player.sprite.vy += 1.2 * 60 / fps;
+      }
     }
     this.sprite.y += this.sprite.vy;
     this.sprite.x += this.sprite.vx;

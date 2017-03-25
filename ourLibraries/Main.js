@@ -13,7 +13,7 @@ var g, renderer, b, tinkPoint, animalAnimated;
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floor, platform, fps = 60, lastLoop, thisLoop;
+  houseOutsideTexture1, doorText, door, floors = [], platform, fps = 60, lastLoop, thisLoop;
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
@@ -30,23 +30,6 @@ function initEverything() {
   animalAnimated = new SpriteUtilities(PIXI);
   g = hexi(WIDTH, HEIGHT, setupGame);
   g.start();
-}
-function spriteCreator(stringTexture, width, height) {
-  //checks to see if the input is a string
-  // if it is not a string it converts it to a string
-  if (typeof stringTexture != 'string') {
-    this.stringTexture = String(stringTexture);
-  }
-  else {
-    //sets stringTexture to as the varible passed in
-    this.stringTexture = stringTexture;
-  }
-  //creates a filmstrip of the new texture
-  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
-
-  //makes the animated sprite object and returns it
-  this.sprite = new MovieClip(this.texture);
-  return this.sprite;
 }
 
 function setupGame() {
@@ -79,13 +62,13 @@ function setupGame() {
 
 function setup() {
   animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
-  floor = new spriteCreator('../images/HouseBackground.png', 1000, 1000);
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
   blueHouse = '../images/WorldObjects/Blue_House.png';
   greyHouse = '../images/WorldObjects/Grey_House.png';
   beigeHouse = '../images/WorldObjects/Beige_House.png';
+  floorTexture = '../images/HouseBackground.png';
 
   hedge = '../images/WorldObjects/LongHedge.png';
 
@@ -108,17 +91,9 @@ function switchCharacterState() {
 
 }
 function play() {
-  if (b.hit(floor, player.sprite)) {
-    player.sprite.vy = 0;
-    player.sprite.y = floor.y;
-    floor.y = 700;
-  } else {
-    //player.sprite.vy += 0.4;
-  }
-
   //call functions for player and ai logic
   player.update();
-  //jump();
+  jump();
   animalCont1.aiMovement();
   tinkPoint.update();
   updateFps();
