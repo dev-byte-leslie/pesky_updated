@@ -45,17 +45,21 @@ function Player() {
     } else if (this.sprite.vx > 0 && fps != 0) {
       this.sprite.vx = 5 * 60 / fps;
     }
-    if (b.hit(
+    if (!b.hit(
       player.sprite,
       floors,
       true, false, false,
       function(collision, floorHit) {
-      player.sprite.vy = 0;
-      player.sprite.y = floorHit.y;
-      floorHit.y = 600;
-    })) {} else {
-      if (fps >= 45) {
-        player.sprite.vy += 1.2 * 60 / fps;
+        player.sprite.vy = 0;
+        player.sprite.y = floorHit.y;
+        floorHit.y = 600;
+    })) {
+      if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
+        if (player.jumping && player.sprite.vy != 0) {
+          player.sprite.vy += Math.round(600 / fps) / 10;
+        }
+
+        console.log(player.sprite.vy);
       }
     }
     this.sprite.y += this.sprite.vy;
