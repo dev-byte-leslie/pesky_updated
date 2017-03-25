@@ -13,8 +13,7 @@ var g, renderer, b, tinkPoint, animalAnimated;
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floor, platform, fps, frameTime = 0,
-  lastLoop = new Date, thisLoop, filterStrength = 20;
+  houseOutsideTexture1, doorText, door, floor, platform, fps = 60, lastLoop, thisLoop;
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
@@ -118,12 +117,11 @@ function play() {
   }
 
   //call functions for player and ai logic
-  updateFps();
   player.update();
   //jump();
   animalCont1.aiMovement();
   tinkPoint.update();
-
+  updateFps();
 }
 
 // Hide all stage elements

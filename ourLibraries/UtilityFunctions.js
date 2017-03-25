@@ -99,10 +99,9 @@ function camera() {
   };
 }
 function updateFps() {
-  var thisFrameTime = (thisLoop = new Date) - lastLoop;
-  frameTime += (thisFrameTime - frameTime) / filterStrength;
+  frameTime = (thisLoop = new Date) - lastLoop;
   lastLoop = thisLoop;
-  fps = Math.floor(1000 / frameTime);
+  fps = Math.ceil(1000 / frameTime);
   fpsDisplay.x = player.sprite.x - 160;
   fpsDisplay.y = player.sprite.y - 181;
 }

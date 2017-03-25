@@ -40,9 +40,9 @@ function Player() {
   this.update = function() {
     //add x velocity to player's x location
     this.camera.updateCamera();
-    if (this.sprite.vx < 0) {
+    if (this.sprite.vx < 0 && fps != 0) {
       this.sprite.vx = -5 * 60 / fps;
-    } else if (this.sprite.vx > 0) {
+    } else if (this.sprite.vx > 0 && fps != 0) {
       this.sprite.vx = 5 * 60 / fps;
     }
     this.sprite.y += this.sprite.vy;
