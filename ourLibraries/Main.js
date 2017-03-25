@@ -118,11 +118,12 @@ function play() {
   }
 
   //call functions for player and ai logic
+  updateFps();
   player.update();
   //jump();
   animalCont1.aiMovement();
   tinkPoint.update();
-  updateFps();
+
 }
 
 // Hide all stage elements

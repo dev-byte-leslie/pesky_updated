@@ -39,12 +39,15 @@ function Player() {
   //updates player location and camera location
   this.update = function() {
     //add x velocity to player's x location
-    // expected value is for 60 fps so scale it based on actual framerate
+    this.camera.updateCamera();
+    if (this.sprite.vx < 0) {
+      this.sprite.vx = -5 * 60 / fps;
+    } else if (this.sprite.vx > 0) {
+      this.sprite.vx = 5 * 60 / fps;
+    }
+    this.sprite.y += this.sprite.vy;
     this.sprite.x += this.sprite.vx;
     this.xValue += this.sprite.vx;
-
-    this.sprite.y += this.sprite.vy;
-
     this.camera.updateCamera();
   };
 }

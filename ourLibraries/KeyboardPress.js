@@ -21,8 +21,8 @@ function Keys() {
     player.sprite.scale.x = 1;
     if (!player.jumping) {
       animalObject.vx = -5 * 60 / fps;
+      player.sprite.animationSpeed = .1;
       player.sprite.play();
-      player.sprite.animationSpeed = .1 * 60 / fps;
     } else {
       player.sprite.gotoAndStop(0);
     }
@@ -59,8 +59,8 @@ function Keys() {
   right.press = function() {
     player.sprite.scale.x = -1;
     if (!player.jumping) {
+      player.sprite.animationSpeed = .1;
       player.sprite.play();
-      player.sprite.animationSpeed = .1 * 60 / fps;
       animalObject.vx = 5 * 60 / fps;
     } else {
       player.sprite.gotoAndStop(0);
