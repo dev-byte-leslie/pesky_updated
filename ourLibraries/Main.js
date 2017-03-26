@@ -13,10 +13,10 @@ var g, renderer, b, tinkPoint, animalAnimated;
 
 var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floors = [], platform, fps = 60, lastLoop, thisLoop;
+  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60, lastLoop, thisLoop;
 
 //vars to hold sprites of houses
-var redHouse, blueHouse, beigeHouse, greyHouse, hedge;
+var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor;
 
 $(document).ready(function() {
   //initCharacterSwap();
@@ -57,6 +57,7 @@ function setupGame() {
     .add('../images/WorldObjects/LongHedge.png')
     .add('../images/WorldObjects/Red_House.png')
     .add('../images/WorldObjects/Grey_House.png')
+    .add('../images/WorldObjects/Door_Invisible.png')
     .load(setup);
 }
 
@@ -71,6 +72,7 @@ function setup() {
   floorTexture = '../images/HouseBackground.png';
 
   hedge = '../images/WorldObjects/LongHedge.png';
+  iDoor = '../images/WorldObjects/Door_Invisible.png';
 
 }
 // Game loops dependent on state

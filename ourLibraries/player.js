@@ -1,6 +1,9 @@
 function Player() {
   //sets initial variables for player object
 
+  //sets whether the player is near a door
+  this.nearDoor = false;
+
   //sprite object of the player character
   this.sprite = animalObject;
 

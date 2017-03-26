@@ -15,7 +15,7 @@ function createGameWorld() {
   // 2 = beige house
   // 3 = grey house
   // 4 = Hedge
-  var curObj, floorObj;
+  var curObj, floorObj, doorObj; //TODO: Figure out positions for the doors for each house
   gameX = -400;
   for (i = 0; i < negativeX.length; i++) {
     if (negativeX[i] == 0) {
