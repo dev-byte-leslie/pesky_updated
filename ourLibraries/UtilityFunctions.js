@@ -3,7 +3,7 @@ function jump() {
   //start the player jump
   if (player.spacePush && player.sprite.vy == 0) {
     player.jumping = true;
-    player.sprite.vy = -10;
+    player.sprite.vy = -4;
   }
   if (player.sprite.vy == 0 && player.lastVy >= 0) {
     player.jumping = false;
@@ -110,7 +110,7 @@ function camera() {
     //now specify which point INSIDE stage must be (0,0)
     g.stage.pivot.x = player.sprite.position.x;
     //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
-    g.stage.pivot.y = 600; //This can change but doesnt allow the player to see outside of map
+    g.stage.pivot.y = 608; //This can change but doesnt allow the player to see outside of map
   };
 }
 function updateFps() {
