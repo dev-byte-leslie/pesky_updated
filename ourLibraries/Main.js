@@ -22,12 +22,6 @@ $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
 
-    if (!music.playing) {
-      music.loop = true;
-      music.play();
-    }
-    console.log('music playing');
-
 });
 function initEverything() {
   renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT);

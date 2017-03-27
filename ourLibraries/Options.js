@@ -2,7 +2,7 @@
 sounds.load([
   "../sound/music/GameMusic.wav",
   "../sound/music/MenuMusic.wav",
-  "../sound/music/jump.wav"
+  "../sound/music/Jump.wav"
 ]);
 
 sounds.whenLoaded = loadSounds;
@@ -12,7 +12,7 @@ function loadSounds() {
 //Create the sounds
 var gameMusic = sounds["../sound/music/GameMusic.wav"],
     menuMusic = sounds["../sound/music/MenuMusic.wav"],
-    jump = sounds["../sound/music/jump.wav"];
+    jumpSound = sounds["../sound/music/Jump.wav"];
 
   //Make the music loop
   gameMusic.loop = true;
@@ -32,31 +32,25 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
 
   //Play the loaded music sound
   b.press = function() {
-    if (!gameMusic.playing) {
+    if (!menuMusic.playing) {
       menuMusic.play();
     }
-    console.log('music playing');
+    console.log('menu music playing');
   };
 
   //Pause the music
   c.press = function() {
     menuMusic.pause();
+    gameMusic.pause();
     console.log('music paused');
   };
 
-  //Restart the music
-  d.press = function() {
-    menuMusic.restart();
-    console.log('music restarted');
-  };
-
-  // jump sound
+  // Jump sound
   space.press = function() {
     if (!player.jumping) {
-        jump.play();
-    }
-    console.log("jump");
-  }
+        jumpSound.play();
+      }
+    };
 }
 
 var optionsGroup;
