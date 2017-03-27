@@ -22,6 +22,19 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
   gameMusic.volume = 0.7;
   menuMusic.volume = 0.7;
 
+  // menu music plays automatically when menu is active
+  /*
+  if (g.state = menuState){
+    menuMusic.play();
+  }
+
+  if (g.state = play){
+    menuMusic.pause();
+    gameMusic.play();
+  }
+  */
+
+
   //Capture the keyboard events
   var b = keyboard(66),
       c = keyboard(67),
