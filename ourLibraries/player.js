@@ -58,11 +58,19 @@ function Player() {
         player.jumping = false;
         floorHit.y = 600;
         if (left.isDown) {
-          player.sprite.vx = -5 * 60 / fps;
+          if (fps >= 30) {
+            player.sprite.vx = -5 * 60 / fps;
+          } else {
+            player.sprite.vx = -5;
+          }
           player.sprite.play();
           player.sprite.animationSpeed = .1;
         } else if (right.isDown) {
-          player.sprite.vx = 5 * 60 / fps;
+          if (fps >= 30) {
+            player.sprite.vx = 5 * 60 / fps;
+          } else {
+            player.sprite.vx = 5;
+          }
           player.sprite.play();
           player.sprite.animationSpeed = .1;
         } else {
