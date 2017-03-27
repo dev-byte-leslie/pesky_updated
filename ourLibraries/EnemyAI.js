@@ -1,13 +1,13 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
 function spawnAnimalControl(x , y) {
   //instantiate animal control sprite
-  this.aCObject = new spriteCreator('../../images/AiSprites/animal_control.png', 60, 75);
+  this.aCObject = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
 
   //change the anchor point of the sprite so when it flips it looks normal
   this.aCObject.anchor.set(0.5, 1);
 
   //set sprite animation speed to not be too fast
-  this.aCObject.animationSpeed = .3;
+  this.aCObject.animationSpeed = .2;
 
   //set x and y values of sprite
   this.aCObject.x = x;  //900;
@@ -29,14 +29,14 @@ function spawnAnimalControl(x , y) {
     if (Math.abs(this.aCObject.x - player.sprite.x) <=  300 && Math.abs(this.aCObject.y - player.sprite.y) <= 300) {
       //if player is to the right of enemy
       if (this.aCObject.x < player.sprite.x) {
-        this.aCObject.vx = 3.5;
+        this.aCObject.vx = 3.5 * 60 / fps;
         this.aCObject.scale.x = 1;
         this.aCObject.play();
       }
 
     //if player is to the left of enemy
       if (this.aCObject.x > player.sprite.x) {
-        this.aCObject.vx = -3.5;
+        this.aCObject.vx = -3.5 * 60 / fps;
         this.aCObject.scale.x = -1;
         this.aCObject.play();
       }

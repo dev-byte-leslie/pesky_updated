@@ -15,7 +15,7 @@ function createGameWorld() {
   // 2 = beige house
   // 3 = grey house
   // 4 = Hedge
-  var curObj;
+  var curObj, floorObj, doorObj; //TODO: Figure out positions for the doors for each house
   gameX = -400;
   for (i = 0; i < negativeX.length; i++) {
     if (negativeX[i] == 0) {
@@ -29,6 +29,9 @@ function createGameWorld() {
     } else {
       curObj = new spawnWorldObject(hedge, gameX, 407);
     }
+    floorObj = new spawnWorldObject(floorTexture, gameX, 600);
+    floors.push(floorObj.obSprite);
+    map.addChildAt(floorObj.obSprite, 0);
     map.addChild(curObj.obSprite);
     gameX -= 400;
   }
@@ -46,6 +49,9 @@ function createGameWorld() {
     } else {
       curObj = new spawnWorldObject(hedge, gameX, 407);
     }
+    floorObj = new spawnWorldObject(floorTexture, gameX, 600);
+    floors.push(floorObj.obSprite);
+    map.addChildAt(floorObj.obSprite, 0);
     map.addChild(curObj.obSprite);
     gameX += 400;
   }
