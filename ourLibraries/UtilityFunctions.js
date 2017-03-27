@@ -77,15 +77,17 @@ function attack()
   if(Raccoon.active)
   {
     player.sprite = rabies;
+    player.sprite.play();
   }
   if(Skunk.active)
   {
     player.sprite = stink;
+    player.sprite.play();
   }
-  if(Goose.active)
+  /*if(Goose.active)
   {
 
-  }
+  }*/
 }
 
 //builds the outside game map
