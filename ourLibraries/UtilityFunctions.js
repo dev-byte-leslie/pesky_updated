@@ -4,11 +4,7 @@ function jump() {
   if (player.spacePush && player.sprite.vy == 0) {
     player.jumping = true;
     // Check fps so player doesn't go too high if fps lags when the player jumps
-    if (fps >= 30) {
-      player.sprite.vy = -5 * 60 / fps;
-    } else {
-      player.sprite.vy = -5;
-    }
+    player.sprite.vy = -5.01;
   }
   if (player.jumping) {
     player.sprite.gotoAndStop(0); // stop animation if the player is in the air
@@ -51,15 +47,12 @@ function enterHouse() {
   player.sprite.x = player.inHouseX;
   player.sprite.y = player.inHouseY;
 
-
   door.x = player.sprite.x + 70;
   door.y = player.sprite.y - 60;
 
   house.addChild(houseBackground1);
   house.addChild(door);
   house.addChild(player.sprite);
-
-
 }
 
 /*function attack()
@@ -137,5 +130,4 @@ function updateFps() {
     fpsDisplay.x = player.sprite.x - 160;
     fpsDisplay.y = 426;
   }
-  //console.log(player.sprite.y);
 }
