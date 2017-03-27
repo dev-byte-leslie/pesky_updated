@@ -19,18 +19,31 @@ function createGameWorld() {
   gameX = -400;
   for (i = 0; i < negativeX.length; i++) {
     if (negativeX[i] == 0) {
+      //create correct house object and door object
       curObj = new spawnWorldObject(redHouse, gameX, 410);
+      doorObj = new spawnWorldObject(iDoor, gameX + 190, 410 + 100); //shows the test so I remember original height
     } else if (negativeX[i] == 1) {
+      //create correct house object and door object
       curObj = new spawnWorldObject(blueHouse, gameX, 410);
+      doorObj = new spawnWorldObject(iDoor, gameX + 90, 510);
     } else if (negativeX[i] == 2) {
+      //create correct house object and door object
       curObj = new spawnWorldObject(beigeHouse, gameX, 410);
+      doorObj = new spawnWorldObject(iDoor, gameX + 70, 510);
     } else if (negativeX[i] == 3) {
+      //create correct house object and door object
       curObj = new spawnWorldObject(greyHouse, gameX, 410);
+      doorObj = new spawnWorldObject(iDoor, gameX + 320, 510);
     } else {
+      //creates the hedge object at the correct position
       curObj = new spawnWorldObject(hedge, gameX, 407);
     }
+    houseDoors.push(doorObj.obSprite);
+
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
+
+    map.addChildAt(doorObj.obSprite, 0);
     map.addChildAt(floorObj.obSprite, 0);
     map.addChild(curObj.obSprite);
     gameX -= 400;
