@@ -97,7 +97,7 @@ function buildOutside() {
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
 
-  stage = map;
+  g.stage.gameObjects = map;
 }
 
 //function to pick the correct animal object for player
