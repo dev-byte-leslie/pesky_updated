@@ -1,7 +1,8 @@
 //Load the music
 sounds.load([
   "../sound/music/GameMusic.wav",
-  "../sound/music/MenuMusic.wav"
+  "../sound/music/MenuMusic.wav",
+  "../sound/music/jump.wav"
 ]);
 
 sounds.whenLoaded = loadSounds;
@@ -23,29 +24,29 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
 
   //Capture the keyboard events
   var b = keyboard(66),
-    c = keyboard(67),
-    d = keyboard(68),
-    space = keyboard(32);
+      c = keyboard(67),
+      d = keyboard(68),
+      space = keyboard(32);
 
   //Control the sounds based on which keys are pressed
 
   //Play the loaded music sound
   b.press = function() {
     if (!gameMusic.playing) {
-      gameMusic.play();
+      menuMusic.play();
     }
     console.log('music playing');
   };
 
   //Pause the music
   c.press = function() {
-    gameMusic.pause();
+    menuMusic.pause();
     console.log('music paused');
   };
 
   //Restart the music
   d.press = function() {
-    gameMusic.restart();
+    menuMusic.restart();
     console.log('music restarted');
   };
 
@@ -57,6 +58,7 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
     console.log("jump");
   }
 }
+
 var optionsGroup;
 function initOptions() {
   optionsGroup = new PIXI.Container();
