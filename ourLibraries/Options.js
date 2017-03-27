@@ -30,12 +30,22 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
 
   //Control the sounds based on which keys are pressed
 
-  //Play the loaded music sound
+  //Play the menu music
   b.press = function() {
     if (!menuMusic.playing) {
       menuMusic.play();
+      gameMusic.pause();
     }
     console.log('menu music playing');
+  };
+
+  //Play the game music
+  d.press = function() {
+    if (!gameMusic.playing) {
+      gameMusic.play();
+      menuMusic.pause();
+    }
+    console.log('game music playing');
   };
 
   //Pause the music
