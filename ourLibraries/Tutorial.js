@@ -2,7 +2,7 @@ var tutorialGroup, tutorial;
 function initTutorial() {
   tutorialGroup = new PIXI.Container();
   buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, tutorialGroup, 'back');
-  tutorial = new PIXI.Text('use arrow keys to move\n\n\n\navoid animal control\n\n\nwreak havoc\n\n\n', {font: '50px Arial', fill: 'red'});
+  tutorial = new PIXI.Text('use arrow keys to move\nb-play music\nc-pause music\n\n\navoid animal control\n\n\nwreak havoc\n\n\n', {font: '50px Arial', fill: 'red'});
 
   var keys = PIXI.Texture.fromImage('../images/keys.png');
   var keysSprite = new PIXI.Sprite(keys);
