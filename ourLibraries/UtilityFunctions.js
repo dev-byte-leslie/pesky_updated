@@ -133,7 +133,9 @@ function updateFps() {
   frameTime = (thisLoop = new Date) - lastLoop;
   lastLoop = thisLoop;
   fps = Math.ceil(1000 / frameTime);
-  fpsDisplay.x = player.sprite.x - 160;
-  fpsDisplay.y = 426;
+  if (player) {
+    fpsDisplay.x = player.sprite.x - 160;
+    fpsDisplay.y = 426;
+  }
   //console.log(player.sprite.y);
 }

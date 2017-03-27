@@ -97,19 +97,21 @@ function setup() {
 // Game loops dependent on state
 function menuState() {
   hideAll();
+  updateFps();
   mainMenuGroup.visible = true;
 }
 function optionsState() {
-
+  updateFps();
 }
 function creditsState() {
-  credits.y -= 3;
+  updateFps();
+  credits.y -= 3 * 60 / fps;
 }
 function tutorialState() {
-
+  updateFps();
 }
 function switchCharacterState() {
-
+  updateFps();
 }
 function play() {
   //call functions for player and ai logic
