@@ -21,6 +21,13 @@ var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor;
 $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
+
+    if (!music.playing) {
+      music.loop = true;
+      music.play();
+    }
+    console.log('music playing');
+
 });
 function initEverything() {
   renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT);
@@ -63,6 +70,9 @@ function setupGame() {
 
 function setup() {
   animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+
+
+
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
