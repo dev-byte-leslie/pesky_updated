@@ -115,11 +115,14 @@ function Keys() {
   switchE.press = function() {
     // location
 
-    if (b.hit(player.sprite, houseDoors, false, false, false)) {
-      enterHouse();
-      player.nearDoor = true;
-    } else {
-      player.nearDoor = false;
+    if (b.hit(player.sprite, houseDoors, false, false, false,
+        function(collision, doorHit) {
+          enterHouse();
+        })) {
+    }
+
+    if (b.hit(player.sprite, door, false, false, false)) {
+      buildOutside();
     }
     /*if (b.hitTestRectangle(player.sprite, hedge))
     {

@@ -13,7 +13,7 @@ var g, renderer, b, tinkPoint, animalAnimated;
 
 var animalObject, rabies, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60, lastLoop, thisLoop;
+  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60, lastLoop, thisLoop, doorObj;
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor;

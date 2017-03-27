@@ -24,6 +24,13 @@ function Player() {
   //starts at 0 when the player is instantiated
   this.xValue = 0;
 
+  //variables to hold world coordinates when in house.
+  this.holdX = 0;
+  this.holdY = 0;
+
+  this.inHouseX = 500;
+  this.inHouseY = 600;
+
   //set the objects starting point
   //likely to change
   this.sprite.x = 500;
@@ -41,7 +48,7 @@ function Player() {
 
   //updates player location and camera location
   this.update = function() {
-    console.log(player.nearDoor);
+    console.log(player.sprite.y);
 
     //add x velocity to player's x location
     this.camera.updateCamera();
