@@ -5,10 +5,6 @@ function Player() {
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.inHouse = false;
-
-  //sets whether the player is near a door
-  this.inHouse = false;
-
   //sprite object of the player character
   this.sprite = animalObject;
   //movement flags for player movement.
