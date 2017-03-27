@@ -101,9 +101,9 @@ function Keys() {
   };
 
   shiftKey.press = function() {
-    //TODO ADD attacking code/attacking animation
     //attack();
-
+    player.sprite = rabies;
+    player.sprite.play();
   };
 
   shiftKey.release = function() {
@@ -111,20 +111,20 @@ function Keys() {
   };
 
   switchE.press = function() {
-    //TODO add changes whether it is house, sewer, or character changes
     // location
-    if (b.hitTestRectangle(player.sprite, houseOutside1)) {
+
+    if (b.hit(player.sprite, houseDoors, false, false, false)) {
       enterHouse();
+      player.nearDoor = true;
+    } else {
+      player.nearDoor = false;
     }
-    if (b.hitTestRectangle(player.sprite, door)) {
-      buildOutside();
-    }
-    if (b.hitTestRectangle(player.sprite, hedge))
+    /*if (b.hitTestRectangle(player.sprite, hedge))
     {
       hideAll();
       switchCharacterGroup.visible = true;
       switchCharacter();
-    }
+    }*/
   };
 
   switchE.release = function() {
