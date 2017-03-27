@@ -68,10 +68,12 @@ function enterHouse() {
   stage = house;
 }
 
-function attack()
+/*function attack()
 {
-  var rabies = '../images/PlayerAnimals/Carlos_attack.png';
+  var rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
   var stink = '../images/PlayerAnimals/Stanky_attack.png';
+
+
   //var poop
 
   if(Raccoon.active)
@@ -87,8 +89,8 @@ function attack()
   /*if(Goose.active)
   {
 
-  }*/
-}
+  }
+}*/
 
 //builds the outside game map
 function buildOutside() {

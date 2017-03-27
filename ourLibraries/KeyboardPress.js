@@ -103,7 +103,10 @@ function Keys() {
   };
 
   shiftKey.press = function() {
-    attack();
+    //attack();
+    var rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
+    player.sprite = rabies;
+    player.sprite.play();
   };
 
   shiftKey.release = function() {
