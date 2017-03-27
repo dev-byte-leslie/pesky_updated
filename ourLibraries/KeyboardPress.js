@@ -113,7 +113,7 @@ function Keys() {
   switchE.press = function() {
     // location
 
-    if (b.hit(player.sprite, houseDoors, false, false, false,
+    if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           enterHouse();
         })) {

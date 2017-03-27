@@ -10,8 +10,8 @@ function initGame() {
   Keys();
 
   gameObjects.addChild(map);
-  gameObjects.addChild(house);
-  gameObjects.addChild(sewer);
+  //gameObjects.addChild(house);
+  //gameObjects.addChild(sewer);
   g.stage.addChild(gameObjects);
   gameObjects.addChild(fpsDisplay);
   createGameWorld();

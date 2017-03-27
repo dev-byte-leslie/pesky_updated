@@ -4,6 +4,10 @@ function Player() {
   this.sprite = animalObject; //sprite object of the player character
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
+  this.inHouse = false;
+  //sprite object of the player character
+  this.sprite = animalObject;
+  //movement flags for player movement.
   this.active = true;
   this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR'];
 
@@ -30,7 +34,6 @@ function Player() {
 
   //updates player location and camera location
   this.update = function() {
-    console.log(player.sprite.y);
 
     //add x velocity to player's x location
     this.camera.updateCamera();

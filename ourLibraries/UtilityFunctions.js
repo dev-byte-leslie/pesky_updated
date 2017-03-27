@@ -36,7 +36,13 @@ function spriteCreator(stringTexture, width, height) {
 
 //build the inside of a house
 function enterHouse() {
-  map.visible = false;
+  player.inHouse = true;
+
+  gameObjects.removeChild(map);
+  g.stage.removeChild(gameObjects);
+
+  gameObjects.addChild(house);
+  g.stage.addChild(gameObjects);
 
   //keep track of world coordinates
   player.holdX = player.sprite.x;
@@ -52,7 +58,7 @@ function enterHouse() {
   house.addChild(houseBackground1);
   house.addChild(door);
   house.addChild(player.sprite);
-  house.visible = true;
+
 
 }
 
@@ -82,14 +88,19 @@ function enterHouse() {
 
 //builds the outside game map
 function buildOutside() {
-  house.visible = false;
+  player.inHouse = false;
+
+  gameObjects.removeChild(house);
+  g.stage.removeChild(gameObjects);
 
   player.sprite.x = player.holdX;
   player.sprite.y = 600;
 
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
-  map.visible = true;
+
+  gameObjects.addChild(map);
+  g.stage.addChild(gameObjects);
 }
 
 //function to pick the correct animal object for player

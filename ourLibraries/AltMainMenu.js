@@ -1,7 +1,7 @@
 //Create the renderer
 var renderer = PIXI.autoDetectRenderer(1920, 1080);
-renderer.view.style.position = "absolute";
-renderer.view.style.display = "block";
+renderer.view.style.position = 'absolute';
+renderer.view.style.display = 'block';
 renderer.autoResize = true;
 renderer.resize(window.innerWidth, window.innerHeight);
 
@@ -15,13 +15,13 @@ var creditsGroup = new PIXI.DisplayObjectContainer(); // Container for objects o
 creditsGroup.visible = false;  // Initialize credits to be invisible at first
 
 // Buttons
-var buttonStart = createButton(renderer.width / 2, renderer.height / 16, startGame, buttonGroup, "start");
-var buttonOptions = createButton(renderer.width / 2, renderer.height / 4, showOptions, buttonGroup, "options");
-var buttonTutorial = createButton(renderer.width / 2, renderer.height / 2, showTutorial, buttonGroup, "tutorial");
-var buttonCredits = createButton(renderer.width / 4, renderer.height / 2, showCredits, buttonGroup, "credits");
+var buttonStart = createButton(renderer.width / 2, renderer.height / 16, startGame, buttonGroup, 'start');
+var buttonOptions = createButton(renderer.width / 2, renderer.height / 4, showOptions, buttonGroup, 'options');
+var buttonTutorial = createButton(renderer.width / 2, renderer.height / 2, showTutorial, buttonGroup, 'tutorial');
+var buttonCredits = createButton(renderer.width / 4, renderer.height / 2, showCredits, buttonGroup, 'credits');
 
 
-var buttonBack = createButton(renderer.width / 2, renderer.height / 2, showMainMenu, creditsGroup, "back");
+var buttonBack = createButton(renderer.width / 2, renderer.height / 2, showMainMenu, creditsGroup, 'back');
 
 // Add button container to the stage for display
 stage.addChild(buttonGroup);
@@ -31,9 +31,9 @@ animate();
 
 function animate() {
     // Render the stage
-    renderer.resize(window.innerWidth, window.innerHeight);
-    renderer.render(stage);
-    requestAnimationFrame(animate);
+  renderer.resize(window.innerWidth, window.innerHeight);
+  renderer.render(stage);
+  requestAnimationFrame(animate);
 }
 
 // Button interaction functions
@@ -48,7 +48,7 @@ function hoverOver() {
 }
 function startGame() {
   buttonGroup.visible = false;
-  var gameText = new PIXI.Text("THIS IS THE GAME", {font:"100px Georgia", fill:"red"});
+  var gameText = new PIXI.Text('THIS IS THE GAME', {font:'100px Georgia', fill:'red'});
   stage.addChild(gameText);
   // TODO make game element container visible
 }
@@ -85,7 +85,7 @@ function createButton(x, y, clickFunction, buttonGroup, spriteName) {
     .on('click', clickFunction)
     .on('mouseupoutside', onButtonUp)
     .on('mouseover', hoverOver)
-    .on('mouseout', onButtonUp)
+    .on('mouseout', onButtonUp);
 
   buttonGroup.addChild(button);
 
