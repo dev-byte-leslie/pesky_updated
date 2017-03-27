@@ -68,29 +68,25 @@ function enterHouse() {
   stage = house;
 }
 
-/*function attack()
+function attack()
 {
+  var rabies = '../images/PlayerAnimals/Carlos_attack.png';
+  var stink = '../images/PlayerAnimals/Stanky_attack.png';
+  //var poop
+
   if(Raccoon.active)
   {
-    //TODO: move the projectile, here or in object, or other funtion?
+    player.sprite = rabies;
   }
   if(Skunk.active)
   {
-      //TODO: do skunk attack, spray smells
+    player.sprite = stink;
   }
   if(Goose.active)
   {
-    //TODO: do goose attack, poop
+
   }
-
-//TODO:
-// create new instance of projectile for animal
-// add to an array of projectiles, limit the size so they can only do it so many times
-// once attack is done, remove projectile from screen and array
-// create an object for each type of projectile, poop, rabies, spray
-
-
-}*/
+}
 
 //builds the outside game map
 function buildOutside() {

@@ -103,9 +103,7 @@ function Keys() {
   };
 
   shiftKey.press = function() {
-    //TODO ADD attacking code/attacking animation
-    //attack();
-
+    attack();
   };
 
   shiftKey.release = function() {
@@ -113,7 +111,6 @@ function Keys() {
   };
 
   switchE.press = function() {
-    //TODO add changes whether it is house, sewer, or character changes
     // location
     if (b.hitTestRectangle(player.sprite, houseOutside1)) {
       enterHouse();
