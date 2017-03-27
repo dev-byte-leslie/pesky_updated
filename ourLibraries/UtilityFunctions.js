@@ -1,42 +1,19 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
-  //start the player jump
+  //start the player jump if space is pressed and player isn't moving vertically
   if (player.spacePush && player.sprite.vy == 0) {
     player.jumping = true;
+    // Check fps so player doesn't go too high if fps lags when the player jumps
     if (fps >= 30) {
       player.sprite.vy = -5 * 60 / fps;
     } else {
       player.sprite.vy = -5;
     }
   }
-  // if (player.sprite.vy == 0 && player.lastVy >= 0) {
-  //   player.jumping = false;
-  // }
   if (player.jumping) {
-    player.sprite.gotoAndStop(0);
-  } else {
-    if (left.isDown) {
-      if (fps >= 30) {
-        player.sprite.vx = -5 * 60 / fps;
-      } else {
-        player.sprite.vx = -5;
-      }
-      player.sprite.play();
-      player.sprite.animationSpeed = .1;
-    } else if (right.isDown) {
-      if (fps >= 30) {
-        player.sprite.vx = 5 * 60 / fps;
-      } else {
-        player.sprite.vx = 5;
-      }
-      player.sprite.play();
-      player.sprite.animationSpeed = .1;
-    } else {
-      player.sprite.vx = 0;
-    }
+    player.sprite.gotoAndStop(0); // stop animation if the player is in the air
   }
-  // stop the player if they're not actually pressing anything
-  player.lastVy = player.sprite.vy;
+  player.lastVy = player.sprite.vy; // track what the player's vy was last frame
 }
 
 function spriteCreator(stringTexture, width, height) {
@@ -96,7 +73,6 @@ function enterHouse() {
 function buildOutside() {
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
-
   stage = map;
 }
 
@@ -125,11 +101,11 @@ function camera() {
     g.stage.pivot.y = 608; //This can change but doesnt allow the player to see outside of map
   };
 }
+// Monitor framerate using Date in ms between last frame and this frame
 function updateFps() {
   frameTime = (thisLoop = new Date) - lastLoop;
   lastLoop = thisLoop;
   fps = Math.ceil(1000 / frameTime);
   fpsDisplay.x = player.sprite.x - 160;
   fpsDisplay.y = 426;
-  console.log(player.sprite.y);
 }

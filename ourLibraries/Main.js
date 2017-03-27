@@ -17,18 +17,12 @@ var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor;
-
+// Called when everything is loaded
 $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
-
-    if (!music.playing) {
-      music.loop = true;
-      music.play();
-    }
-    console.log('music playing');
-
 });
+// Initialize global variables
 function initEverything() {
   renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT);
   b = new Bump(PIXI);
@@ -38,7 +32,7 @@ function initEverything() {
   g = hexi(WIDTH, HEIGHT, setupGame);
   g.start();
 }
-
+// First of 2 setup functions, this one loads resources
 function setupGame() {
   g.scaleToWindow();
   fpsDisplay = new PIXI.Text('', {font:'12px Arial', fill:'yellow'});
@@ -67,13 +61,9 @@ function setupGame() {
     .add('../images/WorldObjects/Door_Invisible.png')
     .load(setup);
 }
-
+// Second setup function for assigning assets to variables
 function setup() {
   animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
-
-
-
-
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
   blueHouse = '../images/WorldObjects/Blue_House.png';
@@ -94,7 +84,7 @@ function optionsState() {
 
 }
 function creditsState() {
-  credits.y -= 2;
+  credits.y -= 3;
 }
 function tutorialState() {
 
