@@ -16,7 +16,7 @@ function jump() {
       player.sprite.play();
       player.sprite.animationSpeed = .1;
     } else if (right.isDown) {
-      player.sprite.vx = 5* 60 / fps;
+      player.sprite.vx = 5 * 60 / fps;
       player.sprite.play();
       player.sprite.animationSpeed = .1;
     } else {

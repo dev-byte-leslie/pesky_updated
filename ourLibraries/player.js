@@ -57,6 +57,17 @@ function Player() {
         player.sprite.y = floorHit.y;
         player.jumping = false;
         floorHit.y = 600;
+        if (left.isDown) {
+          player.sprite.vx = -5 * 60 / fps;
+          player.sprite.play();
+          player.sprite.animationSpeed = .1;
+        } else if (right.isDown) {
+          player.sprite.vx = 5 * 60 / fps;
+          player.sprite.play();
+          player.sprite.animationSpeed = .1;
+        } else {
+          player.sprite.vx = 0;
+        }
       })) {
       if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
         if (player.jumping && player.sprite.vy != 0) {
