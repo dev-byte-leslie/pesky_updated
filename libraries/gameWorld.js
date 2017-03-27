@@ -21,31 +21,37 @@ function createGameWorld() {
     if (negativeX[i] == 0) {
       //create correct house object and door object
       curObj = new spawnWorldObject(redHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 190, 410 + 100); //shows the test so I remember original height
+      doorObj = new spawnWorldObject(sDoor, gameX + 190, 500); //shows the test so I remember original height
+      houseDoors.push(doorObj.obSprite);
+      map.addChild(doorObj.obSprite);
     } else if (negativeX[i] == 1) {
       //create correct house object and door object
       curObj = new spawnWorldObject(blueHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 90, 510);
+      doorObj = new spawnWorldObject(sDoor, gameX + 90, 510);
+      houseDoors.push(doorObj.obSprite);
+      map.addChild(doorObj.obSprite);
     } else if (negativeX[i] == 2) {
       //create correct house object and door object
       curObj = new spawnWorldObject(beigeHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 70, 510);
+      doorObj = new spawnWorldObject(sDoor, gameX + 70, 510);
+      houseDoors.push(doorObj.obSprite);
+      map.addChild(doorObj.obSprite);
     } else if (negativeX[i] == 3) {
       //create correct house object and door object
       curObj = new spawnWorldObject(greyHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 320, 510);
+      doorObj = new spawnWorldObject(sDoor, gameX + 320, 510);
+      houseDoors.push(doorObj.obSprite);
+      map.addChild(doorObj.obSprite);
     } else {
       //creates the hedge object at the correct position
       curObj = new spawnWorldObject(hedge, gameX, 407);
     }
-    houseDoors.push(doorObj.obSprite);
 
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
 
-    map.addChildAt(doorObj.obSprite, 0);
     map.addChildAt(floorObj.obSprite, 0);
-    map.addChild(curObj.obSprite);
+    //map.addChild(curObj.obSprite);
     gameX -= 400;
   }
 

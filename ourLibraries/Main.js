@@ -11,7 +11,7 @@ var Container = PIXI.Container,
 
 var g, renderer, b, tinkPoint, animalAnimated;
 
-var animalObject, wTexture, whiteFloor, animalTextures, animalAnimated,
+var animalObject, rabies, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60, lastLoop, thisLoop;
 
@@ -22,11 +22,11 @@ $(document).ready(function() {
   //initCharacterSwap();
   initEverything();
 
-    if (!music.playing) {
+    /*if (!music.playing) {
       music.loop = true;
       music.play();
     }
-    console.log('music playing');
+    console.log('music playing');*/
 
 });
 function initEverything() {
@@ -54,7 +54,10 @@ function setupGame() {
     .add('../images/HouseBackground.png')
     .add('../images/HouseOutside.png')
     .add('../images/ACPH.png')
+
     .add('../images/PlayerAnimals/CarlosWalkCycle.png')
+    .add('../images/PlayerAnimals/Carlos_attack.png')
+
     .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')
 
@@ -70,6 +73,7 @@ function setupGame() {
 
 function setup() {
   animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
 
 
 
@@ -83,6 +87,10 @@ function setup() {
 
   hedge = '../images/WorldObjects/LongHedge.png';
   iDoor = '../images/WorldObjects/Door_Invisible.png';
+  sDoor = '../images/AnimalPlaceHolder.png';
+
+  door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
+  houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
 
 }
 // Game loops dependent on state

@@ -104,7 +104,6 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    var rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
     player.sprite = rabies;
     player.sprite.play();
   };
@@ -115,19 +114,19 @@ function Keys() {
 
   switchE.press = function() {
     // location
-    if (b.hitTestRectangle(player.sprite, houseOutside1)) {
-      enterHouse();
-    }
 
-    if (b.hitTestRectangle(player.sprite, door)) {
-      buildOutside();
+    if (b.hit(player.sprite, houseDoors, false, false, false)) {
+      enterHouse();
+      player.nearDoor = true;
+    } else {
+      player.nearDoor = false;
     }
-    if (b.hitTestRectangle(player.sprite, hedge))
+    /*if (b.hitTestRectangle(player.sprite, hedge))
     {
       hideAll();
       switchCharacterGroup.visible = true;
       switchCharacter();
-    }
+    }*/
   };
 
   switchE.release = function() {

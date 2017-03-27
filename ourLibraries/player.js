@@ -41,6 +41,8 @@ function Player() {
 
   //updates player location and camera location
   this.update = function() {
+    console.log(player.nearDoor);
+
     //add x velocity to player's x location
     this.camera.updateCamera();
     if (this.sprite.vx < 0 && fps != 0) {

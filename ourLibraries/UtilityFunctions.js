@@ -59,13 +59,15 @@ function spriteCreator(stringTexture, width, height) {
 
 //build the inside of a house
 function enterHouse() {
-  door.x = 800;
-  door.y = 700;
+  map.visible = false;
+  door.x = player.sprite.x;
+  door.y = player.sprite.y;
 
   house.addChild(houseBackground1);
   house.addChild(door);
   house.addChild(player.sprite);
-  stage = house;
+  house.visible = true;
+
 }
 
 /*function attack()
@@ -131,5 +133,5 @@ function updateFps() {
   fps = Math.ceil(1000 / frameTime);
   fpsDisplay.x = player.sprite.x - 160;
   fpsDisplay.y = 426;
-  console.log(player.sprite.y);
+  //console.log(player.sprite.y);
 }
