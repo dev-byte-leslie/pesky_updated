@@ -1,4 +1,5 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
+//TODO: Determine is AI needs to be stoped when inside house
 function spawnAnimalControl(x , y) {
   //instantiate animal control sprite
   this.aCObject = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);

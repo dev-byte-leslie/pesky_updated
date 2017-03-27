@@ -5,9 +5,22 @@ function Player() {
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.active = true;
-  this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR']; //movement flags for player movement.
-  this.xValue = 0; //the World Coordinate x-value of the player, starts at 0 when the player is instantiated
-  this.sprite.x = 500; //set the objects starting point
+  this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR'];
+
+  //the World Coordinate x-value of the player
+  //starts at 0 when the player is instantiated
+  this.xValue = 0;
+
+  //variables to hold world coordinates when in house.
+  this.holdX = 0;
+  this.holdY = 0;
+
+  this.inHouseX = 500;
+  this.inHouseY = 600;
+
+  //set the objects starting point
+  //likely to change
+  this.sprite.x = 500;
   this.sprite.y = 600;
   this.sprite.anchor.set(0.5, 1); //sets anchor of player sprite for animation flipping
   this.camera = new camera(); //instantiates the camera for the main character
@@ -17,6 +30,9 @@ function Player() {
 
   //updates player location and camera location
   this.update = function() {
+    console.log(player.sprite.y);
+
+    //add x velocity to player's x location
     this.camera.updateCamera();
     if (this.sprite.vx < 0 && fps != 0) {
       this.sprite.vx = -5 * 60 / fps;
