@@ -1,14 +1,13 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
   //start the player jump if space is pressed and player isn't moving vertically
-  if (player.spacePush && player.sprite.vy == 0) {
+  if (player.spacePush && player.sprite.vy == 0 && !disableMovement) {
     player.jumping = true;
-    // Check fps so player doesn't go too high if fps lags when the player jumps
     player.sprite.vy = -2.51;
     player.sprite._texture = carlosJump._texture;
     player.sprite._textures = carlosJump._textures;
     player.sprite.gotoAndStop(0);
-    player.sprite.animationSpeed = 0.11;
+    player.sprite.animationSpeed = 0.1;
     player.sprite.play();
   }
   player.lastVy = player.sprite.vy; // track what the player's vy was last frame

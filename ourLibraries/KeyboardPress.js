@@ -3,6 +3,7 @@
 var moveMent = false;
 var left, up, right, down, space, shiftKey, switchE, f1;
 var fpsEnabled = false;
+var isAttacking = false;
 
 function Keys() {
   //Capture the keyboard arrow keys/other keys needed for controls
@@ -18,9 +19,12 @@ function Keys() {
   //Left arrow key `press` method
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
-    player.sprite.scale.x = 1;
-    if (!player.jumping) {
-      animalObject.vx = -5 * 60 / fps;
+    if (!player.jumping && !disableMovement && !shiftKey.isDown) {
+      player.sprite.scale.x = 1;
+      player.sprite.vx = -5 * 60 / fps;
+      player.sprite._texture = carlosWalk2._texture;
+      player.sprite._textures = carlosWalk2._textures;
+      this.doingIdle = false;
       player.sprite.play();
     }
     moveMent = true;
@@ -35,7 +39,7 @@ function Keys() {
     if (!right.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
-        animalObject.vx = 0;
+        player.sprite.vx = 0;
       }
       moveMent = false;
     }
@@ -47,17 +51,18 @@ function Keys() {
   //TODO Make sure only works in certain spots
   };
 
-
   up.release = function() {
   };
 
-
   //Right
   right.press = function() {
-    player.sprite.scale.x = -1;
-    if (!player.jumping) {
+    if (!player.jumping && !disableMovement && !shiftKey.isDown) {
+      player.sprite.scale.x = -1;
+      player.sprite._texture = carlosWalk2._texture;
+      player.sprite._textures = carlosWalk2._textures;
+      this.doingIdle = false;
       player.sprite.play();
-      animalObject.vx = 5 * 60 / fps;
+      player.sprite.vx = 5 * 60 / fps;
     }
     moveMent = true;
   };
@@ -67,7 +72,7 @@ function Keys() {
     if (!left.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
-        animalObject.vx = 0;
+        player.sprite.vx = 0;
       }
       moveMent = false;
     }
@@ -98,17 +103,39 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    player.sprite = rabies;
-    player.sprite.play();
+    if (!player.jumping && !disableMovement) {
+      disableMovement = true;
+      player.sprite._texture = carlosRabies._texture;
+      player.sprite._textures = carlosRabies._textures;
+      player.sprite.gotoAndStop(0);
+      player.sprite.animationSpeed = 0.2;
+      this.doingIdle = false;
+      player.sprite.play();
+    }
   };
 
   shiftKey.release = function() {
-    //TODO stop the attacking code/animation
+    if (!isAttacking) {
+      isAttacking = true;
+      if (!(left.isDown || right.isDown)) {
+        setTimeout(function() {
+          player.doCarlosIdle();
+          isAttacking = false;
+          disableMovement = false;
+        }, 750);
+      } else {
+        setTimeout(function() {
+          player.sprite._texture = carlosWalk2._texture;
+          player.sprite._textures = carlosWalk2._textures;
+          disableMovement = false;
+          isAttacking = false;
+        }, 750);
+      }
+    }
   };
 
   switchE.press = function() {
     // location
-
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           enterHouse();

@@ -10,14 +10,18 @@ var Container = PIXI.Container,
   MovieClip = PIXI.extras.MovieClip;
 
 var g, renderer, b, tinkPoint, animalAnimated;
-
-var animalObject, jumpSprite, rabies, wTexture, whiteFloor, animalTextures, animalAnimated,
+// TODO clean this up a little
+// Sprite variables for carlos
+var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosWalk2, carlosJump2,
+  carlosIdle2, carlosRabies2;
+var wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60,
-  carlosDefault, carlosJump, lastLoop, thisLoop, doorObj;
-
+  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
+  doorObj, floorTexture;
+// General game variables
+var lastLoop, thisLoop, fps = 60, disableMovement = false;
 //vars to hold sprites of houses
-var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor;
+var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 // Called when everything is loaded
 $(document).ready(function() {
   //initCharacterSwap();
@@ -54,6 +58,7 @@ function setupGame() {
     .add('../images/PlayerAnimals/CarlosWalkCycle.png')
     .add('../images/PlayerAnimals/Carlos_attack.png')
     .add('../images/PlayerAnimals/carlos_jump.png')
+    .add('../images/PlayerAnimals/carlos_idle1.png')
 
     .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')
@@ -69,14 +74,16 @@ function setupGame() {
 }
 // Second setup function for assigning assets to variables
 function setup() {
-  animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
-  jumpSprite = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
-  carlosDefault = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  // I don't know why but sprites can only be switched if there's a second copy that doesn't change
+  // Carlos sprites
+  carlosIdle = new spriteCreator('../images/PlayerAnimals/carlos_idle1.png', 55, 20);
+  carlosIdle2 = new spriteCreator('../images/PlayerAnimals/carlos_idle1.png', 55, 20);
+  carlosWalk = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  carlosWalk2 = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
   carlosJump = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
-  rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
-
-
-
+  carlosJump2 = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
+  carlosRabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
+  carlosRabies2 = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
