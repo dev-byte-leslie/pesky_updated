@@ -18,9 +18,9 @@ function Keys() {
   //Left arrow key `press` method
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
-    player.sprite.scale.x = 1;
     if (!player.jumping) {
-      animalObject.vx = -5 * 60 / fps;
+      player.sprite.scale.x = 1;
+      player.sprite.vx = -5 * 60 / fps;
       player.sprite.play();
     }
     moveMent = true;
@@ -35,7 +35,7 @@ function Keys() {
     if (!right.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
-        animalObject.vx = 0;
+        player.sprite.vx = 0;
       }
       moveMent = false;
     }
@@ -54,10 +54,10 @@ function Keys() {
 
   //Right
   right.press = function() {
-    player.sprite.scale.x = -1;
     if (!player.jumping) {
+      player.sprite.scale.x = -1;
       player.sprite.play();
-      animalObject.vx = 5 * 60 / fps;
+      player.sprite.vx = 5 * 60 / fps;
     }
     moveMent = true;
   };
@@ -67,7 +67,7 @@ function Keys() {
     if (!left.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
-        animalObject.vx = 0;
+        player.sprite.vx = 0;
       }
       moveMent = false;
     }
@@ -98,12 +98,25 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    player.sprite = rabies;
+    disableMovement = true;
+    player.sprite._texture = carlosRabies._texture;
+    player.sprite._textures = carlosRabies._textures;
+    player.sprite.y += 0;
+    player.sprite.gotoAndStop(0);
+    player.sprite.animationSpeed = 0.2;
     player.sprite.play();
   };
 
   shiftKey.release = function() {
-    //TODO stop the attacking code/animation
+    setTimeout(function() {
+      disableMovement = false;
+      player.sprite.gotoAndStop(0);
+      player.sprite._texture = carlosDefault2._texture;
+      player.sprite._textures = carlosDefault2._textures;
+      if (left.isDown || right.isDown) {
+        player.sprite.play();
+      }
+    }, 750);
   };
 
   switchE.press = function() {

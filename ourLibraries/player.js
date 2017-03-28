@@ -1,7 +1,7 @@
 function Player() {
   //sets initial variables for player object
   this.nearDoor = false; //sets whether the player is near a door
-  this.sprite = animalObject; //sprite object of the player character
+  this.sprite = carlosDefault; //sprite object of the player character
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.inHouse = false;
@@ -52,8 +52,8 @@ function Player() {
         player.sprite.y = floorHit.y;
         player.jumping = false;
         player.sprite.gotoAndStop(0);
-        player.sprite._texture = carlosDefault._texture;
-        player.sprite._textures = carlosDefault._textures;
+        player.sprite._texture = carlosDefault2._texture;
+        player.sprite._textures = carlosDefault2._textures;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
         if (left.isDown) {
@@ -82,9 +82,11 @@ function Player() {
         }
       }
     }
-    this.sprite.y += this.sprite.vy; //add y velocity to player's y location
-    this.sprite.x += this.sprite.vx; //add x velocity to player's x location
-    this.xValue += this.sprite.vx;
+    if (!disableMovement) {
+      this.sprite.y += this.sprite.vy; //add y velocity to player's y location
+      this.sprite.x += this.sprite.vx; //add x velocity to player's x location
+      this.xValue += this.sprite.vx;
+    }
     this.camera.updateCamera();
   };
 }
