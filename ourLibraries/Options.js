@@ -1,4 +1,4 @@
-//Load the music and sounds
+// load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
   "../sound/music/MenuMusic.wav",
@@ -9,21 +9,22 @@ sounds.whenLoaded = loadSounds;
 
 function loadSounds() {
 
-//Create the sounds
+// create the sounds
 var gameMusic = sounds["../sound/music/GameMusic.wav"],
     menuMusic = sounds["../sound/music/MenuMusic.wav"],
     jumpSound = sounds["../sound/music/Jump.wav"];
 
-    menuMusic.volume = 0.7; // menu music volume
-    menuMusic.loop = true;  // menu music loops
+    menuMusic.volume = 0.7;   // menu music volume
+    menuMusic.loop = true;    // menu music loops
 
-    gameMusic.volume = 0.7; // game music volume
-    gameMusic.loop = true; // game music loops
+    gameMusic.volume = 0.7;   // game music volume
+    gameMusic.loop = true;    // game music loops
 
   // menu music plays automatically when menu is active
   // needs more work
   if (g.state = optionsState){
     menuMusic.play();
+    console.log('menu music playing');
   }
 
   // game music plays automatically when game is active
@@ -33,20 +34,17 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
       menuMusic.pause();
       gameMusic.play();
   }
-  */
+*/
 
-
-
-
-  //Capture the keyboard events
+  // capture the keyboard events
   var b = keyboard(66),
       c = keyboard(67),
       d = keyboard(68),
       space = keyboard(32);
 
-  //Control the sounds based on which keys are pressed
+  // control the sounds based on which keys are pressed
 
-  //Play the menu music
+  // play the menu music
   b.press = function() {
     if (!menuMusic.playing) {
       menuMusic.play();
@@ -55,7 +53,7 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
     console.log('menu music playing');
   };
 
-  //Play the game music
+  // play the game music
   d.press = function() {
     if (!gameMusic.playing) {
       gameMusic.play();
@@ -64,14 +62,14 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
     console.log('game music playing');
   };
 
-  //Pause the music
+  // pause the music
   c.press = function() {
     menuMusic.pause();
     gameMusic.pause();
     console.log('music paused');
   };
 
-  // Jump sound
+  // jump sound
   space.press = function() {
     if (!player.jumping) {
         jumpSound.play();
@@ -97,5 +95,5 @@ function mainMenu() {
 }
 
 function muteAudio() {
-// add later
+// add later maybe
 }
