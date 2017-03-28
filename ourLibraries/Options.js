@@ -3,6 +3,7 @@ sounds.load([
   "../sound/music/GameMusic.wav",
   "../sound/music/MenuMusic.wav",
   "../sound/music/Jump.wav"
+  // add more sounds (attack, character switch, entering/exiting houses, etc)
 ]);
 
 sounds.whenLoaded = loadSounds;
@@ -22,7 +23,7 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
 
   // menu music plays automatically when menu is active
   // needs more work
-  if (g.state = optionsState){
+  if (g.state = menuState){
     menuMusic.play();
     console.log('menu music playing');
   }
