@@ -78,7 +78,7 @@ function setup() {
   animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
   jumpSprite = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
   carlosDefault = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
-  carlosJump = jumpSprite;
+  carlosJump = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
   rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
 
 

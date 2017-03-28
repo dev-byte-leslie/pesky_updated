@@ -78,7 +78,7 @@ function Player() {
       })) {
       if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
         if (player.jumping && player.sprite.vy != 0) {
-          player.sprite.vy += 0.05; // add gravity
+          player.sprite.vy += 0.05 * 144 / fps; // add gravity
         }
       }
     }
