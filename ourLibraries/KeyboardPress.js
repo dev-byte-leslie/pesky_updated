@@ -22,8 +22,6 @@ function Keys() {
     if (!player.jumping) {
       animalObject.vx = -5 * 60 / fps;
       player.sprite.play();
-    } else {
-      player.sprite.gotoAndStop(0);
     }
     moveMent = true;
   };
@@ -34,7 +32,7 @@ function Keys() {
   //If the left arrow has been released, and the right arrow isn't down,
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
-    if (!right.isDown) {
+    if (!right.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         animalObject.vx = 0;
@@ -60,15 +58,13 @@ function Keys() {
     if (!player.jumping) {
       player.sprite.play();
       animalObject.vx = 5 * 60 / fps;
-    } else {
-      player.sprite.gotoAndStop(0);
     }
     moveMent = true;
   };
 
 
   right.release = function() {
-    if (!left.isDown) {
+    if (!left.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         animalObject.vx = 0;
