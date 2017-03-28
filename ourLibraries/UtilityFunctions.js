@@ -4,10 +4,12 @@ function jump() {
   if (player.spacePush && player.sprite.vy == 0) {
     player.jumping = true;
     // Check fps so player doesn't go too high if fps lags when the player jumps
-    player.sprite.vy = -5.01;
-  }
-  if (player.jumping) {
-    player.sprite.gotoAndStop(0); // stop animation if the player is in the air
+    player.sprite.vy = -2.51;
+    player.sprite._texture = carlosJump._texture;
+    player.sprite._textures = carlosJump._textures;
+    player.sprite.gotoAndStop(0);
+    player.sprite.animationSpeed = 0.1;
+    player.sprite.play();
   }
   player.lastVy = player.sprite.vy; // track what the player's vy was last frame
 }

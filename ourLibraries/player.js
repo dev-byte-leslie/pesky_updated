@@ -5,8 +5,6 @@ function Player() {
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.inHouse = false;
-  //sprite object of the player character
-  this.sprite = animalObject;
   //movement flags for player movement.
   this.active = true;
   this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR'];
@@ -53,6 +51,10 @@ function Player() {
         player.sprite.vy = 0;
         player.sprite.y = floorHit.y;
         player.jumping = false;
+        player.sprite.gotoAndStop(0);
+        player.sprite._texture = carlosDefault._texture;
+        player.sprite._textures = carlosDefault._textures;
+        player.sprite.gotoAndStop(0);
         floorHit.y = 600;
         if (left.isDown) {
           if (fps >= 30) {
@@ -76,7 +78,7 @@ function Player() {
       })) {
       if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
         if (player.jumping && player.sprite.vy != 0) {
-          player.sprite.vy += 0.25; // add gravity
+          player.sprite.vy += 0.05; // add gravity
         }
       }
     }

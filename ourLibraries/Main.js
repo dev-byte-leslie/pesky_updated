@@ -11,9 +11,10 @@ var Container = PIXI.Container,
 
 var g, renderer, b, tinkPoint, animalAnimated;
 
-var animalObject, rabies, wTexture, whiteFloor, animalTextures, animalAnimated,
+var animalObject, jumpSprite, rabies, wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
-  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60, lastLoop, thisLoop, doorObj;
+  houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform, fps = 60,
+  carlosDefault, carlosJump, lastLoop, thisLoop, doorObj;
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor;
@@ -58,6 +59,7 @@ function setupGame() {
 
     .add('../images/PlayerAnimals/CarlosWalkCycle.png')
     .add('../images/PlayerAnimals/Carlos_attack.png')
+    .add('../images/PlayerAnimals/carlos_jump.png')
 
     .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')
@@ -74,6 +76,9 @@ function setupGame() {
 // Second setup function for assigning assets to variables
 function setup() {
   animalObject = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  jumpSprite = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
+  carlosDefault = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  carlosJump = jumpSprite;
   rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
 
 
