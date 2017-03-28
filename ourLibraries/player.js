@@ -57,27 +57,6 @@ function Player() {
         this.doingIdle = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
-        if (left.isDown) {
-          if (fps >= 30) {
-            player.sprite.vx = -5 * 60 / fps;
-          } else {
-            player.sprite.vx = -5;
-          }
-          player.sprite.scale.x = 1;
-          player.sprite.animationSpeed = 0.1;
-          player.sprite.play();
-        } else if (right.isDown) {
-          if (fps >= 30) {
-            player.sprite.vx = 5 * 60 / fps;
-          } else {
-            player.sprite.vx = 5;
-          }
-          player.sprite.play();
-          player.sprite.scale.x = -1;
-          player.sprite.animationSpeed = 0.1;
-        } else {
-          player.sprite.vx = 0;
-        }
       })) {
       if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
         if (player.jumping && player.sprite.vy != 0) {
@@ -89,6 +68,27 @@ function Player() {
       this.sprite.y += this.sprite.vy; //add y velocity to player's y location
       this.sprite.x += this.sprite.vx; //add x velocity to player's x location
       this.xValue += this.sprite.vx;
+      if (left.isDown) {
+        if (fps >= 30) {
+          player.sprite.vx = -5 * 60 / fps;
+        } else {
+          player.sprite.vx = -5;
+        }
+        player.sprite.scale.x = 1;
+        player.sprite.animationSpeed = 0.1;
+        player.sprite.play();
+      } else if (right.isDown) {
+        if (fps >= 30) {
+          player.sprite.vx = 5 * 60 / fps;
+        } else {
+          player.sprite.vx = 5;
+        }
+        player.sprite.play();
+        player.sprite.scale.x = -1;
+        player.sprite.animationSpeed = 0.1;
+      } else {
+        player.sprite.vx = 0;
+      }
     }
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
       !shiftKey.isDown && !disableMovement) {
