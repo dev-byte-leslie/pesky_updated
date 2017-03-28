@@ -21,10 +21,7 @@ function Keys() {
     player.sprite.scale.x = 1;
     if (!player.jumping) {
       animalObject.vx = -5 * 60 / fps;
-      player.sprite.animationSpeed = .1;
       player.sprite.play();
-    } else {
-      player.sprite.gotoAndStop(0);
     }
     moveMent = true;
   };
@@ -35,7 +32,7 @@ function Keys() {
   //If the left arrow has been released, and the right arrow isn't down,
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
-    if (!right.isDown) {
+    if (!right.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         animalObject.vx = 0;
@@ -59,18 +56,15 @@ function Keys() {
   right.press = function() {
     player.sprite.scale.x = -1;
     if (!player.jumping) {
-      player.sprite.animationSpeed = .1;
       player.sprite.play();
       animalObject.vx = 5 * 60 / fps;
-    } else {
-      player.sprite.gotoAndStop(0);
     }
     moveMent = true;
   };
 
 
   right.release = function() {
-    if (!left.isDown) {
+    if (!left.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         animalObject.vx = 0;
@@ -104,7 +98,6 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    var rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
     player.sprite = rabies;
     player.sprite.play();
   };
@@ -115,19 +108,22 @@ function Keys() {
 
   switchE.press = function() {
     // location
-    if (b.hitTestRectangle(player.sprite, houseOutside1)) {
-      enterHouse();
+
+    if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
+        function(collision, doorHit) {
+          enterHouse();
+        })) {
     }
 
-    if (b.hitTestRectangle(player.sprite, door)) {
+    if (b.hit(player.sprite, door, false, false, false)) {
       buildOutside();
     }
-    if (b.hitTestRectangle(player.sprite, hedge))
+    /*if (b.hitTestRectangle(player.sprite, hedge))
     {
       hideAll();
       switchCharacterGroup.visible = true;
       switchCharacter();
-    }
+    }*/
   };
 
   switchE.release = function() {

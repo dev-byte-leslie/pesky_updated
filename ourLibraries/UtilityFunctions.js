@@ -1,42 +1,17 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
-  //start the player jump
+  //start the player jump if space is pressed and player isn't moving vertically
   if (player.spacePush && player.sprite.vy == 0) {
     player.jumping = true;
-    if (fps >= 30) {
-      player.sprite.vy = -5 * 60 / fps;
-    } else {
-      player.sprite.vy = -5;
-    }
-  }
-  // if (player.sprite.vy == 0 && player.lastVy >= 0) {
-  //   player.jumping = false;
-  // }
-  if (player.jumping) {
+    // Check fps so player doesn't go too high if fps lags when the player jumps
+    player.sprite.vy = -2.51;
+    player.sprite._texture = carlosJump._texture;
+    player.sprite._textures = carlosJump._textures;
     player.sprite.gotoAndStop(0);
-  } else {
-    if (left.isDown) {
-      if (fps >= 30) {
-        player.sprite.vx = -5 * 60 / fps;
-      } else {
-        player.sprite.vx = -5;
-      }
-      player.sprite.play();
-      player.sprite.animationSpeed = .1;
-    } else if (right.isDown) {
-      if (fps >= 30) {
-        player.sprite.vx = 5 * 60 / fps;
-      } else {
-        player.sprite.vx = 5;
-      }
-      player.sprite.play();
-      player.sprite.animationSpeed = .1;
-    } else {
-      player.sprite.vx = 0;
-    }
+    player.sprite.animationSpeed = 0.11;
+    player.sprite.play();
   }
-  // stop the player if they're not actually pressing anything
-  player.lastVy = player.sprite.vy;
+  player.lastVy = player.sprite.vy; // track what the player's vy was last frame
 }
 
 function spriteCreator(stringTexture, width, height) {
@@ -59,13 +34,27 @@ function spriteCreator(stringTexture, width, height) {
 
 //build the inside of a house
 function enterHouse() {
-  door.x = 800;
-  door.y = 700;
+  player.inHouse = true;
+
+  gameObjects.removeChild(map);
+  g.stage.removeChild(gameObjects);
+
+  gameObjects.addChild(house);
+  g.stage.addChild(gameObjects);
+
+  //keep track of world coordinates
+  player.holdX = player.sprite.x;
+  player.holdY = player.sprite.y;
+
+  player.sprite.x = player.inHouseX;
+  player.sprite.y = player.inHouseY;
+
+  door.x = player.sprite.x + 70;
+  door.y = player.sprite.y - 60;
 
   house.addChild(houseBackground1);
   house.addChild(door);
   house.addChild(player.sprite);
-  stage = house;
 }
 
 /*function attack()
@@ -94,10 +83,19 @@ function enterHouse() {
 
 //builds the outside game map
 function buildOutside() {
+  player.inHouse = false;
+
+  gameObjects.removeChild(house);
+  g.stage.removeChild(gameObjects);
+
+  player.sprite.x = player.holdX;
+  player.sprite.y = 600;
+
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
 
-  g.stage.gameObjects = map;
+  gameObjects.addChild(map);
+  g.stage.addChild(gameObjects);
 }
 
 //function to pick the correct animal object for player
@@ -125,11 +123,13 @@ function camera() {
     g.stage.pivot.y = 608; //This can change but doesnt allow the player to see outside of map
   };
 }
+// Monitor framerate using Date in ms between last frame and this frame
 function updateFps() {
   frameTime = (thisLoop = new Date) - lastLoop;
   lastLoop = thisLoop;
   fps = Math.ceil(1000 / frameTime);
-  fpsDisplay.x = player.sprite.x - 160;
-  fpsDisplay.y = 426;
-  console.log(player.sprite.y);
+  if (player) {
+    fpsDisplay.x = player.sprite.x - 160;
+    fpsDisplay.y = 426;
+  }
 }
