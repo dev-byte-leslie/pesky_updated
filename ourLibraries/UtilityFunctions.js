@@ -8,7 +8,7 @@ function jump() {
     player.sprite._texture = carlosJump._texture;
     player.sprite._textures = carlosJump._textures;
     player.sprite.gotoAndStop(0);
-    player.sprite.animationSpeed = 0.1;
+    player.sprite.animationSpeed = 0.11;
     player.sprite.play();
   }
   player.lastVy = player.sprite.vy; // track what the player's vy was last frame
