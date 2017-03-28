@@ -12,7 +12,7 @@ var Container = PIXI.Container,
 var g, renderer, b, tinkPoint, animalAnimated;
 // TODO clean this up a little
 // Sprite variables for carlos
-var carlosDefault, carlosJump, carlosIdle, carlosRabies, carlosDefault2, carlosJump2,
+var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosWalk2, carlosJump2,
   carlosIdle2, carlosRabies2;
 var wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
@@ -84,8 +84,8 @@ function setup() {
   // Carlos sprites
   carlosIdle = new spriteCreator('../images/PlayerAnimals/carlos_idle1.png', 55, 20);
   carlosIdle2 = new spriteCreator('../images/PlayerAnimals/carlos_idle1.png', 55, 20);
-  carlosDefault = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
-  carlosDefault2 = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  carlosWalk = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
+  carlosWalk2 = new spriteCreator('../images/PlayerAnimals/CarlosWalkCycle.png', 55, 22);
   carlosJump = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
   carlosJump2 = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
   carlosRabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);

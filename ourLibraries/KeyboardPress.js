@@ -21,6 +21,9 @@ function Keys() {
     if (!player.jumping) {
       player.sprite.scale.x = 1;
       player.sprite.vx = -5 * 60 / fps;
+      player.sprite._texture = carlosWalk2._texture;
+      player.sprite._textures = carlosWalk2._textures;
+      this.doingIdle = false;
       player.sprite.play();
     }
     moveMent = true;
@@ -56,6 +59,9 @@ function Keys() {
   right.press = function() {
     if (!player.jumping) {
       player.sprite.scale.x = -1;
+      player.sprite._texture = carlosWalk2._texture;
+      player.sprite._textures = carlosWalk2._textures;
+      this.doingIdle = false;
       player.sprite.play();
       player.sprite.vx = 5 * 60 / fps;
     }
@@ -98,24 +104,21 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    disableMovement = true;
-    player.sprite._texture = carlosRabies._texture;
-    player.sprite._textures = carlosRabies._textures;
-    player.sprite.y += 0;
-    player.sprite.gotoAndStop(0);
-    player.sprite.animationSpeed = 0.2;
-    player.sprite.play();
+    if (!player.jumping) {
+      disableMovement = true;
+      player.sprite._texture = carlosRabies._texture;
+      player.sprite._textures = carlosRabies._textures;
+      player.sprite.gotoAndStop(0);
+      player.sprite.animationSpeed = 0.2;
+      this.doingIdle = false;
+      player.sprite.play();
+    }
   };
 
   shiftKey.release = function() {
     setTimeout(function() {
+      player.doCarlosIdle();
       disableMovement = false;
-      player.sprite.gotoAndStop(0);
-      player.sprite._texture = carlosDefault2._texture;
-      player.sprite._textures = carlosDefault2._textures;
-      if (left.isDown || right.isDown) {
-        player.sprite.play();
-      }
     }, 750);
   };
 
