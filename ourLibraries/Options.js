@@ -1,4 +1,4 @@
-//Load the music
+//Load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
   "../sound/music/MenuMusic.wav",
@@ -14,25 +14,28 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
     menuMusic = sounds["../sound/music/MenuMusic.wav"],
     jumpSound = sounds["../sound/music/Jump.wav"];
 
-  //Make the music loop
-  gameMusic.loop = true;
-  menuMusic.loop = true;
+    menuMusic.volume = 0.7; // menu music volume
+    menuMusic.loop = true;  // menu music loops
 
-  //Set the music volume
-  gameMusic.volume = 0.7;
-  menuMusic.volume = 0.7;
+    gameMusic.volume = 0.7; // game music volume
+    gameMusic.loop = true; // game music loops
 
   // menu music plays automatically when menu is active
-  /*
-  if (g.state = menuState){
+  // needs more work
+  if (g.state = optionsState){
     menuMusic.play();
   }
 
-  if (g.state = play){
-    menuMusic.pause();
-    gameMusic.play();
+  // game music plays automatically when game is active
+  // needs more work
+/*
+  if (g.state = play && !menuMusic.playing){
+      menuMusic.pause();
+      gameMusic.play();
   }
   */
+
+
 
 
   //Capture the keyboard events
