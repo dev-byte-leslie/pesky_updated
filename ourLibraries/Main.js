@@ -22,6 +22,7 @@ var wTexture, whiteFloor, animalTextures, animalAnimated,
 var lastLoop, thisLoop, fps = 60, disableMovement = false;
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
+
 // Called when everything is loaded
 $(document).ready(function() {
   //initCharacterSwap();
@@ -61,10 +62,23 @@ function setupGame() {
     .add('../images/HouseOutside.png')
     .add('../images/ACPH.png')
 
+    //Carlos Textures
     .add('../images/PlayerAnimals/CarlosWalkCycle.png')
     .add('../images/PlayerAnimals/Carlos_attack.png')
     .add('../images/PlayerAnimals/carlos_jump.png')
     .add('../images/PlayerAnimals/carlos_idle1.png')
+
+    //Stanky Textures
+    .add('../images/PlayerAnimals/Skanky_attack.png')
+    .add('../images/PlayerAnimals/Skanky_idle.png')
+    .add('../images/PlayerAnimals/Skanky_jump.png')
+    .add('../images/PlayerAnimals/Skanky.png')
+
+    //Walter Textures
+    .add('../images/PlayerAnimals/FLY.gif')
+    .add('../images/PlayerAnimals/Peck.gif')
+    .add('../images/PlayerAnimals/Walter_idle.gif')
+    .add('../images/PlayerAnimals/Walter.gif')
 
     .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')

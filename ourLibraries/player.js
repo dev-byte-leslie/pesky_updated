@@ -105,5 +105,5 @@ function Player() {
       player.sprite.animationSpeed = 0.05;
       player.sprite.play();
     }
-  }
+  };
 }
