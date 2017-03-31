@@ -78,8 +78,13 @@ function comeFromBush() {
   g.stage.position.y = renderer.height;
   g.stage.scale.x = 4;
   g.stage.scale.y = 4;
-  player.sprite._texture = player.spriteArray[8]._texture;
-  player.sprite._textures = player.spriteArray[8]._textures;
+  if (player.spriteArray[8]) {
+    player.sprite._texture = player.spriteArray[8]._texture;
+    player.sprite._textures = player.spriteArray[8]._textures;
+  } else {
+    player.sprite._texture = player.spriteArray[4]._texture;
+    player.sprite._textures = player.spriteArray[4]._textures;
+  }
   player.sprite.x = player.holdX;
   player.sprite.y = hedgeLocY1 + 150;
   gameObjects.visible = true;
