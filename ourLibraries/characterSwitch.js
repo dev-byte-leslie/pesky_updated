@@ -78,8 +78,10 @@ function comeFromBush() {
   g.stage.position.y = renderer.height;
   g.stage.scale.x = 4;
   g.stage.scale.y = 4;
+  player.sprite._texture = player.spriteArray[8]._texture;
+  player.sprite._textures = player.spriteArray[8]._textures;
   player.sprite.x = player.holdX;
-  player.sprite.y = 600;//hedgeLocY1 + 150; // implement after we have down animations
+  player.sprite.y = hedgeLocY1 + 150;
   gameObjects.visible = true;
-  g.state = play;
+  g.state = moveFromHedgeState;
 }

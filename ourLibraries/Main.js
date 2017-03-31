@@ -188,6 +188,16 @@ function moveIntoHedgeState() { // freeze the game and move player into hedge
     g.state = switchCharacterState;
   }
 }
+function moveFromHedgeState() {
+  updateFps();
+  if (player.sprite.y < 600) {
+    player.sprite.y += 60 / fps;
+  } else {
+    player.sprite._texture = player.spriteArray[4]._texture;
+    player.sprite._textures = player.spriteArray[4]._textures;
+    g.state = play;
+  }
+}
 function play() {
   //call functions for player and ai logic
   player.update();
