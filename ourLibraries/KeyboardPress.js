@@ -117,7 +117,7 @@ function Keys() {
       isAttacking = true;
       if (!(left.isDown || right.isDown)) {
         setTimeout(function() {
-          player.doCarlosIdle();
+          player.doIdle();
           isAttacking = false;
           disableMovement = false;
         }, 750);

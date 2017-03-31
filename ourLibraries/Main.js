@@ -117,14 +117,14 @@ function setup() {
   carlosRabies2 = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
 
   //Stanky sprites
-  stankyIdle = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 45);
-  stankyIdle2 = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 45);
-  stankyWalk = new spriteCreator('../images/PlayerAnimals/Skanky.png', 55, 45);
-  stankyWalk2 = new spriteCreator('../images/PlayerAnimals/Skanky.png', 55, 45);
-  stankyJump = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 65);
-  stankyJump2 = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 65);
-  stankyAttack = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 55);
-  stankyAttack2 = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 55);
+  stankyIdle = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 29);
+  stankyIdle2 = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 29);
+  stankyWalk = new spriteCreator('../images/PlayerAnimals/Skanky.png', 55, 30);
+  stankyWalk2 = new spriteCreator('../images/PlayerAnimals/Skanky.png', 55, 30);
+  stankyJump = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 36);
+  stankyJump2 = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 36);
+  stankyAttack = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 39);
+  stankyAttack2 = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 39);
 
   //Walter sprites
   walterIdle = new spriteCreator('../images/PlayerAnimals/WalterIdle.png', 45, 55);

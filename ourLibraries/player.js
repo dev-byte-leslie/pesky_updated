@@ -117,17 +117,21 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     }
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
       !shiftKey.isDown && !disableMovement) {
-      this.doCarlosIdle();
+      this.doIdle();
     }
     this.camera.updateCamera();
   };
-  this.doCarlosIdle = function () {
+  this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
     player.sprite._textures != player.spriteArray[7]._textures) {
       this.doingIdle = true;
       player.sprite._texture = player.spriteArray[7]._texture;
       player.sprite._textures = player.spriteArray[7]._textures;
-      player.sprite.animationSpeed = 0.05;
+      if (stringAnimal == 'goose') {
+        this.sprite.animationSpeed = .2;
+      } else {
+        this.sprite.animationSpeed = 0.05;
+      }
       player.sprite.play();
     }
   };
