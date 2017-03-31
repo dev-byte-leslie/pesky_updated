@@ -140,7 +140,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.doingIdle = true;
       player.sprite._texture = player.spriteArray[7]._texture;
       player.sprite._textures = player.spriteArray[7]._textures;
-      if (stringAnimal == 'goose') {
+      if (player.canFly) {
         this.sprite.animationSpeed = .2;
       } else {
         this.sprite.animationSpeed = 0.05;
