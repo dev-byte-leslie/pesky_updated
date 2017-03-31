@@ -114,7 +114,7 @@ function Keys() {
   };
 
   shiftKey.release = function() {
-    if (!isAttacking) {
+    if (!isAttacking && !disableAttacking) {
       isAttacking = true;
       if (!(left.isDown || right.isDown)) {
         setTimeout(function() {
@@ -126,7 +126,7 @@ function Keys() {
         setTimeout(function() {
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
-          disableAttacking = false;
+          disableMovement = false;
           isAttacking = false;
         }, 750);
       }

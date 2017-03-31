@@ -6,7 +6,7 @@ function jump() {
     player.sprite.vy = -2.51;
     player.sprite._texture = player.spriteArray[2]._texture;
     player.sprite._textures = player.spriteArray[2]._textures;
-    if (!Goose.active) {
+    if (!player.canFly) {
       player.sprite.gotoAndStop(0);
     }
     player.sprite.animationSpeed = 0.1;
