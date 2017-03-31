@@ -18,13 +18,22 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
   this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
     stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
 
-  if (stringAnimal == 'raccoon') {
-    this.spriteArray = this.raccoonSprites; //sprite object of the player character
-  } else if (stringAnimal == 'goose') {
-    this.spriteArray = this.gooseSprites;
-  } else {
-    this.spriteArray = this.skunkSprites;
+  this.canFly = (stringAnimal == 'goose');
+
+  this.setCharacter = function(stringAnimal) {
+    if (stringAnimal == 'raccoon') {
+      this.spriteArray = this.raccoonSprites;
+      this.canFly = false;
+    } else if (stringAnimal == 'goose') {
+      this.spriteArray = this.gooseSprites;
+      this.canFly = true;
+    } else {
+      this.spriteArray = this.skunkSprites;
+      this.canFly = false;
+    }
   }
+
+  this.setCharacter(stringAnimal);
 
   //assign to the walk sprite of the designated array
   this.sprite = this.spriteArray[4];
@@ -85,9 +94,10 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         this.doingIdle = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
+        disableAttacking = false;
       })) {
       if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
-        if (player.jumping && player.sprite.vy != 0) {
+        if (player.jumping && (player.sprite.vy != 0 || player.canFly)) {
           player.sprite.vy += 0.05 * 144 / fps; // add gravity
         }
       }

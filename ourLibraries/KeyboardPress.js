@@ -4,6 +4,7 @@ var moveMent = false;
 var left, up, right, down, space, shiftKey, switchE, f1;
 var fpsEnabled = false;
 var isAttacking = false;
+var disableAttacking = false;
 
 function Keys() {
   //Capture the keyboard arrow keys/other keys needed for controls
@@ -101,7 +102,7 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    if (!player.jumping && !disableMovement) {
+    if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
       player.sprite._texture = player.spriteArray[0]._texture;
       player.sprite._textures = player.spriteArray[0]._textures;
@@ -125,7 +126,7 @@ function Keys() {
         setTimeout(function() {
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
-          disableMovement = false;
+          disableAttacking = false;
           isAttacking = false;
         }, 750);
       }
@@ -148,8 +149,12 @@ function Keys() {
         new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY1, 1, 300),
         false, false, false) || b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY2, 1, 300))) {
-          player.sprite._texture = player.spriteArray[11]._texture;
-          player.sprite._textures = player.spriteArray[11]._textures;
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.holdX = player.sprite.x;
+          disableAttacking = true;
           g.state = moveIntoHedgeState;
       }
     }

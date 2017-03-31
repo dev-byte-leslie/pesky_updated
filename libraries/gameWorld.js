@@ -124,7 +124,7 @@ function generateWorldSprites(negVals, posVals) {
 
   //assigns a random position for the hedge object in the positive direction
   randINT = randomInt(0, posLength - 1);
-  posVals[randINT] = 4;
+  posVals[1] = 4;
 }
 
 function spawnWorldObject(sprite, xval, yval) {

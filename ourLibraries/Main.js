@@ -157,7 +157,6 @@ function setup() {
 
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
-
 }
 // Game loops dependent on state
 function menuState() {
@@ -176,20 +175,17 @@ function tutorialState() {
   updateFps();
 }
 function switchCharacterState() {
-  hideAll();
   updateFps();
-  switchCharacterGroup.visible = true;
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
   updateFps();
   if (player.sprite.y > hedgeLocY1 + 150) {
     player.sprite.y += -1 * 60 / fps;
   } else {
-    hideAll();
     initCharacterSwitch();
+    hideAll();
     switchCharacterGroup.visible = true;
-    switchCharacter();
-    g.state = switchCharacterState();
+    g.state = switchCharacterState;
   }
 }
 function play() {

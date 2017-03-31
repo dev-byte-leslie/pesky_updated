@@ -16,72 +16,70 @@
 var buttonRaccoon;
 var buttonSkunk;
 var buttonGoose;
-var switchCharacterGroup;
+var switchCharacterGroup; //Container for objects on switch character menu;
 
 function initCharacterSwitch()
 {
+  switchCharacterGroup = new PIXI.Container();
   if (raccoonAlive) {
-    buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, raccoonInput, switchCharacterGroup, 'carlos');
+    buttonRaccoon = createButton(0, 0, raccoonInput, switchCharacterGroup, 'carlos');
   } else {
-    buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, function(){}, switchCharacterGroup, 'carlos');
+    buttonRaccoon = createButton(0, 0, raccoonInput, switchCharacterGroup, 'carlos');
   }
-  if (raccoonAlive) {
-    buttonSkunk = createButton(WIDTH/2, HEIGHT/2, skunkInput, switchCharacterGroup, 'stanky');
+  if (skunkAlive) {
+    buttonSkunk = createButton(WIDTH/2, HEIGHT/16, skunkInput, switchCharacterGroup, 'stanky');
   } else {
-    buttonSkunk = createButton(WIDTH/2, HEIGHT/2, function(){}, switchCharacterGroup, 'stanky');
+    buttonSkunk = createButton(WIDTH/2, HEIGHT/16, skunkInput, switchCharacterGroup, 'stanky');
   }
-  if (raccoonAlive) {
+  if (gooseAlive) {
     buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
   } else {
-    buttonGoose = createButton(WIDTH/2, HEIGHT/2, function(){}, switchCharacterGroup, 'walter');
+    buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
   }
   //TODO figure out how to assign different button sprites
-}
-
-switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
-switchCharacterGroup.addChild(buttonRaccoon);
-switchCharacterGroup.addChild(buttonSkunk);
-switchCharacterGroup.addChild(buttonGoose);
-
-function switchCharacter() {
-
-  // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
-  if (Raccoon.active)
-  {
-    Raccoon.active = false;
-  }
-  else if (Skunk.active)
-  {
-    Skunk.active = false;
-  }
-  else if (Goose.active)
-  {
-    Goose.active = false;
-  }
-
-  g.state = switchCharacterState; // -- Displays Menu -- //
+  switchCharacterGroup.addChild(houseBackground1);
+  switchCharacterGroup.addChild(buttonRaccoon);
+  switchCharacterGroup.addChild(buttonSkunk);
+  switchCharacterGroup.addChild(buttonGoose);
+  g.stage.scale.x = 1;
+  g.stage.scale.y = 1;
+  g.stage.addChild(switchCharacterGroup);
 }
 
 // -- Handes Raccoon Button Press -- //
 function raccoonInput()
 {
-  Raccoon.active = true;
-  player = new Player('raccoon');
-  g.state = gameState;
+  player.setCharacter('raccoon');
+  comeFromBush();
 }
 
 // -- Handles Skunk Button Press -- //
 function skunkInput()
 {
-  Skunk.active = true;
-  player = new Player('anything else');
-  g.state = gameState;
+  player.setCharacter('skunk');
+  comeFromBush();
 }
 
 // -- Handles Goose Button Press -- //
 function gooseInput()
 {
-  Goose.active = true;
-  player = new Player('goose');
-  g.state = gameState;
+  player.setCharacter('goose');
+  comeFromBush();
+}
+
+function comeFromBush() {
+  switchCharacterGroup.removeChild(houseBackground1);
+  switchCharacterGroup.removeChild(buttonRaccoon);
+  switchCharacterGroup.removeChild(buttonSkunk);
+  switchCharacterGroup.removeChild(buttonGoose);
+  g.stage.removeChild(switchCharacterGroup);
+  disableAttacking = false;
+  g.stage.position.x = renderer.width / 2;
+  g.stage.position.y = renderer.height;
+  g.stage.scale.x = 4;
+  g.stage.scale.y = 4;
+  player.sprite.x = player.holdX;
+  player.sprite.y = 600;//hedgeLocY1 + 150; // implement after we have down animations
+  gameObjects.visible = true;
+  g.state = play;
 }
