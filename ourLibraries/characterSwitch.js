@@ -20,32 +20,42 @@ var switchCharacterGroup;
 
 function initCharacterSwitch()
 {
-  buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, raccoonInput, switchCharacterGroup, 'carlos');
-  buttonSkunk = createButton(WIDTH/2, HEIGHT/2, skunkInput, switchCharacterGroup, 'stanky');
-  buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
+  if (raccoonAlive) {
+    buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, raccoonInput, switchCharacterGroup, 'carlos');
+  } else {
+    buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, function(){}, switchCharacterGroup, 'carlos');
+  }
+  if (raccoonAlive) {
+    buttonSkunk = createButton(WIDTH/2, HEIGHT/2, skunkInput, switchCharacterGroup, 'stanky');
+  } else {
+    buttonSkunk = createButton(WIDTH/2, HEIGHT/2, function(){}, switchCharacterGroup, 'stanky');
+  }
+  if (raccoonAlive) {
+    buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
+  } else {
+    buttonGoose = createButton(WIDTH/2, HEIGHT/2, function(){}, switchCharacterGroup, 'walter');
+  }
+  //TODO figure out how to assign different button sprites
 }
 
 switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
 switchCharacterGroup.addChild(buttonRaccoon);
 switchCharacterGroup.addChild(buttonSkunk);
-switchCharacterGroup.addChaild(buttonGoose);
+switchCharacterGroup.addChild(buttonGoose);
 
 function switchCharacter() {
 
   // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
   if (Raccoon.active)
   {
-    //TODO: animate the player up
     Raccoon.active = false;
   }
   else if (Skunk.active)
   {
-    //TODO: animate the player up
     Skunk.active = false;
   }
   else if (Goose.active)
   {
-    //TODO: animate the player up
     Goose.active = false;
   }
 
@@ -56,7 +66,7 @@ function switchCharacter() {
 function raccoonInput()
 {
   Raccoon.active = true;
-  player.sprite = Raccoon;
+  player = new Player('raccoon');
   g.state = gameState;
 }
 
@@ -64,7 +74,7 @@ function raccoonInput()
 function skunkInput()
 {
   Skunk.active = true;
-  player.sprite = Skunk;
+  player = new Player('anything else');
   g.state = gameState;
 }
 
@@ -72,6 +82,6 @@ function skunkInput()
 function gooseInput()
 {
   Goose.active = true;
-  player.sprite = Goose;
+  player = new Player('goose');
   g.state = gameState;
 }

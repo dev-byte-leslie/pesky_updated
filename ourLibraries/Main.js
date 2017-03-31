@@ -12,8 +12,8 @@ var Container = PIXI.Container,
 var g, renderer, b, tinkPoint, animalAnimated;
 // TODO clean this up a little
 // Sprite variables for carlos
-var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosWalk2, carlosJump2,
-  carlosIdle2, carlosRabies2;
+var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
+  carlosWalk2, carlosJump2, carlosIdle2, carlosRabies2, carlosDown2, carlosUp2;
 
 //Sprite variables for stanky
 var stankyWalk, stankyJump, stankyIdle, stankyAttack, stankyWalk2, stankyJump2,
@@ -27,16 +27,17 @@ var walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
 var wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
-  doorObj, floorTexture;
+  doorObj, floorTexture, hedgeLocX1, hedgeLocY1, hedgeLocX2, hedgeLocY2;
 
 // General game variables
 var lastLoop, thisLoop, fps = 60, disableMovement = false;
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 
+var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
+
 // Called when everything is loaded
 $(document).ready(function() {
-  //initCharacterSwap();
   initEverything();
 
     /*if (!music.playing) {
@@ -78,6 +79,8 @@ function setupGame() {
     .add('../images/PlayerAnimals/Carlos_attack.png')
     .add('../images/PlayerAnimals/carlos_jump.png')
     .add('../images/PlayerAnimals/carlos_idle1.png')
+    .add('../images/PlayerAnimals/carlos_down.png')
+    .add('../images/PlayerAnimals/carlos_up.png')
 
     //Stanky Textures
     .add('../images/PlayerAnimals/Skanky_attack.png')
@@ -115,6 +118,10 @@ function setup() {
   carlosJump2 = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
   carlosRabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
   carlosRabies2 = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
+  carlosDown = new spriteCreator('../images/PlayerAnimals/carlos_down.png', 45, 45);
+  carlosDown2 = new spriteCreator('../images/PlayerAnimals/carlos_down.png', 45, 45);
+  carlosUp = new spriteCreator('../images/PlayerAnimals/carlos_up.png', 45, 45);
+  carlosUp2 = new spriteCreator('../images/PlayerAnimals/carlos_up.png', 45, 45);
 
   //Stanky sprites
   stankyIdle = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 29);
@@ -169,7 +176,21 @@ function tutorialState() {
   updateFps();
 }
 function switchCharacterState() {
+  hideAll();
   updateFps();
+  switchCharacterGroup.visible = true;
+}
+function moveIntoHedgeState() { // freeze the game and move player into hedge
+  updateFps();
+  if (player.sprite.y > hedgeLocY1 + 150) {
+    player.sprite.y += -1 * 60 / fps;
+  } else {
+    hideAll();
+    initCharacterSwitch();
+    switchCharacterGroup.visible = true;
+    switchCharacter();
+    g.state = switchCharacterState();
+  }
 }
 function play() {
   //call functions for player and ai logic

@@ -6,11 +6,14 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
   // 2,3 = Fly/jump 1 and 2
   // 4,5 = Walk 1 and 2
   // 6,7 = Idle 1 and 2
+  // 8,9 = Down 1 and 2
+  //10,11 = Up 1 and 2
   this.gooseSprites = [walterAttack, walterAttack2, walterFly, walterFly2, walterWalk,
     walterWalk2, walterIdle, walterIdle2];
 
   this.raccoonSprites = [carlosRabies, carlosRabies2, carlosJump, carlosJump2,
-    carlosWalk, carlosWalk2, carlosIdle, carlosIdle2];
+    carlosWalk, carlosWalk2, carlosIdle, carlosIdle2, carlosDown, carlosDown2,
+    carlosUp, carlosUp2];
 
   this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
     stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];

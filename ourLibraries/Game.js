@@ -15,7 +15,7 @@ function initGame() {
   g.stage.addChild(gameObjects);
   gameObjects.addChild(fpsDisplay);
   createGameWorld();
-  player = new Player('goose');
+  player = new Player('raccoon');
   player.sprite.x = 500;
   player.sprite.y = 600;
   map.addChild(player.sprite);

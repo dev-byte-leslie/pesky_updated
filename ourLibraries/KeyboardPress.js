@@ -143,12 +143,16 @@ function Keys() {
     if (b.hit(player.sprite, door, false, false, false)) {
       buildOutside();
     }
-    /*if (b.hitTestRectangle(player.sprite, hedge))
-    {
-      hideAll();
-      switchCharacterGroup.visible = true;
-      switchCharacter();
-    }*/
+    if (!player.jumping) {
+      if (b.hitTestRectangle(player.sprite,
+        new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY1, 1, 300),
+        false, false, false) || b.hitTestRectangle(player.sprite,
+        new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY2, 1, 300))) {
+          player.sprite._texture = player.spriteArray[11]._texture;
+          player.sprite._textures = player.spriteArray[11]._textures;
+          g.state = moveIntoHedgeState;
+      }
+    }
   };
 
   switchE.release = function() {

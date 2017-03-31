@@ -49,6 +49,8 @@ function createGameWorld() {
     } else {
       //creates the hedge object at the correct position
       curObj = new spawnWorldObject(hedge, gameX, 407);
+      hedgeLocX1 = gameX;
+      hedgeLocY1 = 407;
     }
 
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
@@ -86,7 +88,8 @@ function createGameWorld() {
 
     } else {
       curObj = new spawnWorldObject(hedge, gameX, 407);
-
+      hedgeLocX2 = gameX;
+      hedgeLocY2 = 407;
     }
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
