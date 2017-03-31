@@ -22,8 +22,8 @@ function Keys() {
     if (!player.jumping && !disableMovement && !shiftKey.isDown) {
       player.sprite.scale.x = 1;
       player.sprite.vx = -5 * 60 / fps;
-      player.sprite._texture = carlosWalk2._texture;
-      player.sprite._textures = carlosWalk2._textures;
+      player.sprite._texture = player.spriteArray[5]._texture;
+      player.sprite._textures = player.spriteArray[5]._textures;
       this.doingIdle = false;
       player.sprite.play();
     }
@@ -58,8 +58,8 @@ function Keys() {
   right.press = function() {
     if (!player.jumping && !disableMovement && !shiftKey.isDown) {
       player.sprite.scale.x = -1;
-      player.sprite._texture = carlosWalk2._texture;
-      player.sprite._textures = carlosWalk2._textures;
+      player.sprite._texture = player.spriteArray[5]._texture;
+      player.sprite._textures = player.spriteArray[5]._textures;
       this.doingIdle = false;
       player.sprite.play();
       player.sprite.vx = 5 * 60 / fps;
@@ -90,13 +90,11 @@ function Keys() {
 
 
   space.press = function() {
-    //animalObject.animationSpeed = 0.55;
     player.spacePush = true;
   };
 
 
   space.release = function() {
-    //animalObject.gotoAndStop(0);
     player.spacePush = false;
 
   };
@@ -105,8 +103,8 @@ function Keys() {
     //attack();
     if (!player.jumping && !disableMovement) {
       disableMovement = true;
-      player.sprite._texture = carlosRabies._texture;
-      player.sprite._textures = carlosRabies._textures;
+      player.sprite._texture = player.spriteArray[0]._texture;
+      player.sprite._textures = player.spriteArray[0]._textures;
       player.sprite.gotoAndStop(0);
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
@@ -125,8 +123,8 @@ function Keys() {
         }, 750);
       } else {
         setTimeout(function() {
-          player.sprite._texture = carlosWalk2._texture;
-          player.sprite._textures = carlosWalk2._textures;
+          player.sprite._texture = player.spriteArray[5]._texture;
+          player.sprite._textures = player.spriteArray[5]._textures;
           disableMovement = false;
           isAttacking = false;
         }, 750);

@@ -1,7 +1,32 @@
-function Player() {
+//TODO: SPEED UP GOOSE IDLE ANIMATION
+function Player(stringAnimal) { //Temporary way to change animal sprites
   //sets initial variables for player object
+  //Arrays to hold all the sprites
+  // 0,1 = Attack 1 and 2
+  // 2,3 = Fly/jump 1 and 2
+  // 4,5 = Walk 1 and 2
+  // 6,7 = Idle 1 and 2
+  this.gooseSprites = [walterAttack, walterAttack2, walterFly, walterFly2, walterWalk,
+    walterWalk2, walterIdle, walterIdle2];
+
+  this.raccoonSprites = [carlosRabies, carlosRabies2, carlosJump, carlosJump2,
+    carlosWalk, carlosWalk2, carlosIdle, carlosIdle2];
+
+  this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
+    stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
+
+  if (stringAnimal == 'raccoon') {
+    this.spriteArray = this.raccoonSprites; //sprite object of the player character
+  } else if (stringAnimal == 'goose') {
+    this.spriteArray = this.gooseSprites;
+  } else {
+    this.spriteArray = this.skunkSprites;
+  }
+
+  //assign to the walk sprite of the designated array
+  this.sprite = this.spriteArray[4];
+
   this.nearDoor = false; //sets whether the player is near a door
-  this.sprite = carlosWalk; //sprite object of the player character
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.inHouse = false;
@@ -52,8 +77,8 @@ function Player() {
         player.sprite.y = floorHit.y;
         player.jumping = false;
         player.sprite.gotoAndStop(0);
-        player.sprite._texture = carlosWalk2._texture;
-        player.sprite._textures = carlosWalk2._textures;
+        player.sprite._texture = player.spriteArray[5]._texture;
+        player.sprite._textures = player.spriteArray[5]._textures;
         this.doingIdle = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
@@ -97,13 +122,13 @@ function Player() {
     this.camera.updateCamera();
   };
   this.doCarlosIdle = function () {
-    if (player.sprite._texture != carlosIdle2._texture &&
-    player.sprite._textures != carlosIdle2._textures) {
+    if (player.sprite._texture != player.spriteArray[7]._texture &&
+    player.sprite._textures != player.spriteArray[7]._textures) {
       this.doingIdle = true;
-      player.sprite._texture = carlosIdle2._texture;
-      player.sprite._textures = carlosIdle2._textures;
+      player.sprite._texture = player.spriteArray[7]._texture;
+      player.sprite._textures = player.spriteArray[7]._textures;
       player.sprite.animationSpeed = 0.05;
       player.sprite.play();
     }
-  }
+  };
 }

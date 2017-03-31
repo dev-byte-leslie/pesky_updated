@@ -14,14 +14,26 @@ var g, renderer, b, tinkPoint, animalAnimated;
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosWalk2, carlosJump2,
   carlosIdle2, carlosRabies2;
+
+//Sprite variables for stanky
+var stankyWalk, stankyJump, stankyIdle, stankyAttack, stankyWalk2, stankyJump2,
+  stankyIdle2, stankyAttack2;
+
+//Sprite variables for Walter
+var walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
+  walterIdle2, walterAttack2;
+
+//General variables for different objects
 var wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
   doorObj, floorTexture;
+
 // General game variables
 var lastLoop, thisLoop, fps = 60, disableMovement = false;
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
+
 // Called when everything is loaded
 $(document).ready(function() {
   //initCharacterSwap();
@@ -55,10 +67,23 @@ function setupGame() {
     .add('../images/HouseOutside.png')
     .add('../images/ACPH.png')
 
+    //Carlos Textures
     .add('../images/PlayerAnimals/CarlosWalkCycle.png')
     .add('../images/PlayerAnimals/Carlos_attack.png')
     .add('../images/PlayerAnimals/carlos_jump.png')
     .add('../images/PlayerAnimals/carlos_idle1.png')
+
+    //Stanky Textures
+    .add('../images/PlayerAnimals/Skanky_attack.png')
+    .add('../images/PlayerAnimals/Skanky_idle.png')
+    .add('../images/PlayerAnimals/Skanky_jump.png')
+    .add('../images/PlayerAnimals/Skanky.png')
+
+    //Walter Textures
+    .add('../images/PlayerAnimals/WalterFly.png')
+    .add('../images/PlayerAnimals/WalterPeck.png')
+    .add('../images/PlayerAnimals/WalterWalk.png')
+    .add('../images/PlayerAnimals/WalterIdle.png')
 
     .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')
@@ -84,6 +109,27 @@ function setup() {
   carlosJump2 = new spriteCreator('../images/PlayerAnimals/carlos_jump.png', 55, 28);
   carlosRabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
   carlosRabies2 = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 27);
+
+  //Stanky sprites
+  stankyIdle = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 45);
+  stankyIdle2 = new spriteCreator('../images/PlayerAnimals/Skanky_idle.png', 55, 45);
+  stankyWalk = new spriteCreator('../images/PlayerAnimals/Skanky.png', 55, 45);
+  stankyWalk2 = new spriteCreator('../images/PlayerAnimals/Skanky.png', 55, 45);
+  stankyJump = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 65);
+  stankyJump2 = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 65);
+  stankyAttack = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 55);
+  stankyAttack2 = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 55);
+
+  //Walter sprites
+  walterIdle = new spriteCreator('../images/PlayerAnimals/WalterIdle.png', 45, 55);
+  walterIdle2 = new spriteCreator('../images/PlayerAnimals/WalterIdle.png', 45, 55);
+  walterWalk = new spriteCreator('../images/PlayerAnimals/WalterWalk.png', 45, 55);
+  walterWalk2 = new spriteCreator('../images/PlayerAnimals/WalterWalk.png', 45, 55);
+  walterFly = new spriteCreator('../images/PlayerAnimals/WalterFly.png', 70, 70);
+  walterFly2 = new spriteCreator('../images/PlayerAnimals/WalterFly.png', 70, 70);
+  walterAttack = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
+  walterAttack2 = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
+
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';

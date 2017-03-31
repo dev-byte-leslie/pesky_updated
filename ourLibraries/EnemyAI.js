@@ -50,7 +50,7 @@ function spawnAnimalControl(x , y) {
       }
     }
 
-      //stops enemy movement if player is too far away
+    //stops enemy movement if player is too far away
     if (Math.abs(this.aCObject.x - player.sprite.x) >  300 || Math.abs(this.aCObject.y - player.sprite.y) > 300) {
       this.aCObject.gotoAndStop(0);
       this.aCObject.vx = 0;
