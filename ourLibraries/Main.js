@@ -175,6 +175,7 @@ function setup() {
 function menuState() {
   hideAll();
   backgroundGroup.visible = true;
+  title.position.x = 20;
   updateFps();
   mainMenuGroup.visible = true;
 }

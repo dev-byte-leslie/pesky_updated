@@ -11,19 +11,21 @@ function initCredits() {
     '<name>\n\n\n\nInstructor</name>\n\n' +
     '<name>Seth Berrier</name>',
   {
-    'title' : { font: '144px Arial' },
-    'title2' : { font: '96px Arial' },
-    'name' : { font: '72px Arial' }
+    'title' : { font: '144px Road_Rage', fill: '#ffffff' },
+    'title2' : { font: '96px Road_Rage', fill: '#ffffff' },
+    'name' : { font: '72px Road_Rage', fill: '#ffffff' }
   },
   {
     lineJoin: 'round', // Set the lineJoin to round instead of 'miter'
-    align: "center"
+    align: 'center',
   }
 );
   credits.anchor.x = 0.5;
   credits.anchor.y = 0.5;
   credits.y = HEIGHT + credits.height / 2 + 10;
   credits.x = WIDTH / 2;
+  buttonBack.scale.x = 0.5;
+  buttonBack.scale.y = 0.5;
   creditsGroup.addChild(credits);
   creditsGroup.addChild(buttonBack);
   g.stage.addChild(creditsGroup);

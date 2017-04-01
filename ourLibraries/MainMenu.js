@@ -7,10 +7,14 @@ function startMenu() {
   tutorialGroup = new PIXI.Container(); // Container for objects on tutorial screen
   backgroundGroup = new PIXI.Container();
 
-  buttonStart = createButton(WIDTH * .85, HEIGHT * 0.25 - 90, startGame, buttonGroup, 'start');
-  buttonOptions = createButton(WIDTH * .85, HEIGHT * 0.5 - 90, showOptions, buttonGroup, 'options');
-  buttonTutorial = createButton(WIDTH * .85, HEIGHT * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
-  buttonCredits = createButton(WIDTH * .85, HEIGHT - 90, showCredits, buttonGroup, 'credits');
+  buttonStart = createButton(WIDTH * .8, HEIGHT * 0.25 - 90, startGame, buttonGroup, 'start');
+  buttonOptions = createButton(WIDTH * .8, HEIGHT * 0.5 - 90, showOptions, buttonGroup, 'options');
+  buttonTutorial = createButton(WIDTH * .8, HEIGHT * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
+  buttonCredits = createButton(WIDTH * .8, HEIGHT - 90, showCredits, buttonGroup, 'credits');
+  for (let i = 0; i < buttonGroup.children.length; i++) {
+    buttonGroup.getChildAt(i).scale.x = 0.5;
+    buttonGroup.getChildAt(i).scale.y = 0.5;
+  }
   titleBackground.width = 1280;
   titleBackground.height = 720;
   titleBackground.position.x = 0;

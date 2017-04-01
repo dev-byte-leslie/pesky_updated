@@ -47,6 +47,8 @@ var optionsGroup;
 function initOptions() {
   optionsGroup = new PIXI.Container();
   let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
+  buttonBack.scale.x = 0.5;
+  buttonBack.scale.y = 0.5;
   var buttonMute = createButton(WIDTH / 2, HEIGHT * 0.5 - 90, muteAudio, optionsGroup, 'mute');
 
   optionsGroup.addChild(buttonBack); // this button is reused for credits and tutorial
