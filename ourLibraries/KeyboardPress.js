@@ -147,13 +147,23 @@ function Keys() {
     if (!player.jumping) {
       if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY1, 1, 300),
-        false, false, false) || b.hitTestRectangle(player.sprite,
+        false, false, false)) {
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.sprite.x = hedgeLocX2 + 157;
+          player.holdX = hedgeLocX1 + 157;
+          disableAttacking = true;
+          g.state = moveIntoHedgeState;
+        } else if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY2, 1, 300))) {
           if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
             player.sprite._texture = player.spriteArray[11]._texture;
             player.sprite._textures = player.spriteArray[11]._textures;
           }
-          player.holdX = player.sprite.x;
+          player.sprite.x = hedgeLocX2 + 157;
+          player.holdX = hedgeLocX2 + 157;
           disableAttacking = true;
           g.state = moveIntoHedgeState;
       }
