@@ -34,6 +34,9 @@ var lastLoop, thisLoop, fps = 60, disableMovement = false;
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 
+//Background textures
+var titleBackground, hedgeBackground;
+
 var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
 
 // Called when everything is loaded
@@ -64,8 +67,6 @@ function setupGame() {
   setInterval(function() {
     fpsDisplay.text = fpsEnabled ? fps : '';
   }, 1000);
-  startMenu();
-  g.state = menuState;
 
   loader
     .add('../images/AnimalPlaceHolder.png')
@@ -96,6 +97,11 @@ function setupGame() {
 
     .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')
+
+    // Backgrounds
+    .add('../images/Backgrounds/CharSelectBackground.png')
+    .add('../images/Backgrounds/Title.png')
+    .add('../images/Backgrounds/TitleBackground.png')
 
     //house sprites/hedge sprite
     .add('../images/WorldObjects/Beige_House.png')
@@ -155,12 +161,20 @@ function setup() {
   iDoor = '../images/WorldObjects/Door_Invisible.png';
   sDoor = '../images/AnimalPlaceHolder.png';
 
+  hedgeBackground = new Sprite(TextureCache['../images/Backgrounds/CharSelectBackground.png']);
+  titleBackground = new Sprite(TextureCache['../images/Backgrounds/TitleBackground.png']);
+  title = new Sprite(TextureCache['../images/Backgrounds/Title.png']);
+
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
+
+  startMenu();
+  g.state = menuState;
 }
 // Game loops dependent on state
 function menuState() {
   hideAll();
+  backgroundGroup.visible = true;
   updateFps();
   mainMenuGroup.visible = true;
 }

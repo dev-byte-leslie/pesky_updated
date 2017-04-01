@@ -22,27 +22,33 @@ function initCharacterSwitch()
 {
   switchCharacterGroup = new PIXI.Container();
   if (raccoonAlive) {
-    buttonRaccoon = createButton(0, 0, raccoonInput, switchCharacterGroup, 'carlos');
+    buttonRaccoon = createButton(80, 85, raccoonInput, switchCharacterGroup, 'carlos');
   } else {
-    buttonRaccoon = createButton(0, 0, raccoonInput, switchCharacterGroup, 'carlos');
+    buttonRaccoon = createButton(80, 85, raccoonInput, switchCharacterGroup, 'carlos');
   }
   if (skunkAlive) {
-    buttonSkunk = createButton(WIDTH/2, HEIGHT/16, skunkInput, switchCharacterGroup, 'stanky');
+    buttonSkunk = createButton(160, 85, skunkInput, switchCharacterGroup, 'stanky');
   } else {
-    buttonSkunk = createButton(WIDTH/2, HEIGHT/16, skunkInput, switchCharacterGroup, 'stanky');
+    buttonSkunk = createButton(160, 85, skunkInput, switchCharacterGroup, 'stanky');
   }
   if (gooseAlive) {
-    buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
+    buttonGoose = createButton(240, 85, gooseInput, switchCharacterGroup, 'walter');
   } else {
-    buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
+    buttonGoose = createButton(240, 85, gooseInput, switchCharacterGroup, 'walter');
   }
   //TODO figure out how to assign different button sprites
-  switchCharacterGroup.addChild(houseBackground1);
+  hedgeBackground.width = 320;
+  hedgeBackground.height = 180;
+  switchCharacterGroup.addChild(hedgeBackground);
   switchCharacterGroup.addChild(buttonRaccoon);
   switchCharacterGroup.addChild(buttonSkunk);
   switchCharacterGroup.addChild(buttonGoose);
-  g.stage.scale.x = 1;
-  g.stage.scale.y = 1;
+  g.stage.position.x = 0;
+  g.stage.position.y = 0;
+  g.stage.scale.x = 4;
+  g.stage.scale.y = 4;
+  g.stage.pivot.x = 0.5;
+  g.stage.pivot.y = 0;
   g.stage.addChild(switchCharacterGroup);
 }
 
@@ -68,7 +74,7 @@ function gooseInput()
 }
 
 function comeFromBush() {
-  switchCharacterGroup.removeChild(houseBackground1);
+  switchCharacterGroup.removeChild(hedgeBackground);
   switchCharacterGroup.removeChild(buttonRaccoon);
   switchCharacterGroup.removeChild(buttonSkunk);
   switchCharacterGroup.removeChild(buttonGoose);
@@ -78,6 +84,8 @@ function comeFromBush() {
   g.stage.position.y = renderer.height;
   g.stage.scale.x = 4;
   g.stage.scale.y = 4;
+  g.stage.pivot.x = player.sprite.position.x;
+  g.stage.pivot.y = 607;
   if (player.spriteArray[8]) {
     player.sprite._texture = player.spriteArray[8]._texture;
     player.sprite._textures = player.spriteArray[8]._textures;
