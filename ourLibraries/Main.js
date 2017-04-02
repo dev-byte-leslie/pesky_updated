@@ -208,6 +208,12 @@ function setup() {
 }
 // Game loops dependent on state
 function menuState() {
+  g.stage.position.x = 0;
+  g.stage.position.y = 0;
+  g.stage.scale.x = 1;
+  g.stage.scale.y = 1;
+  g.stage.pivot.x = 0.5;
+  g.stage.pivot.y = 0;
   hideAll();
   backgroundGroup.visible = true;
   title.position.x = 20;
