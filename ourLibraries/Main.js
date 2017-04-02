@@ -11,6 +11,9 @@ var Container = PIXI.Container,
 
 var g, renderer, b, tinkPoint, animalAnimated;
 // TODO clean this up a little
+// Sprite variables for people
+var person1, person2, person3, person1_sick, person2_sick, person3_sick;
+
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
   carlosWalk2, carlosJump2, carlosIdle2, carlosRabies2, carlosDown2, carlosUp2;
@@ -31,6 +34,7 @@ var wTexture, whiteFloor, animalTextures, animalAnimated,
 
 // General game variables
 var lastLoop, thisLoop, fps = 60, disableMovement = false;
+
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 
@@ -68,12 +72,37 @@ function setupGame() {
     fpsDisplay.text = fpsEnabled ? fps : '';
   }, 1000);
 
+  //Capture the keyboard arrow keys/other keys needed for controls
+  left = keyboard(37);
+  up = keyboard(38);
+  right = keyboard(39);
+  down = keyboard(40);
+  space = keyboard(32);
+  shiftKey = keyboard(16);
+  switchE = keyboard(69);
+  f1 = keyboard(112);
+  esc = keyboard(27);
+
   loader
     .add('../images/AnimalPlaceHolder.png')
     .add('../images/BackGround.png')
     .add('../images/HouseBackground.png')
     .add('../images/HouseOutside.png')
     .add('../images/ACPH.png')
+
+    //Animal Control Textures
+    .add('../images/AiSprites/animal_control_attack.png')
+    .add('../images/AiSprites/carlos_caught.png')
+    .add('../images/AiSprites/stanky_caught.png')
+    .add('../images/AiSprites/animal_control.png')
+
+    //People sprites
+    .add('../images/AiSprites/person_1.png')
+    .add('../images/AiSprites/person_1_sick.png')
+    .add('../images/AiSprites/person_2.png')
+    .add('../images/AiSprites/person_2_sick.png')
+    .add('../images/AiSprites/person_3.png')
+    .add('../images/AiSprites/person_3_sick.png')
 
     //Carlos Textures
     .add('../images/PlayerAnimals/CarlosWalkCycle.png')
@@ -95,7 +124,6 @@ function setupGame() {
     .add('../images/PlayerAnimals/WalterWalk.png')
     .add('../images/PlayerAnimals/WalterIdle.png')
 
-    .add('../images/AiSprites/animal_control.png')
     .add('../images/floor.png')
 
     // Backgrounds
@@ -149,6 +177,13 @@ function setup() {
   walterAttack = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
   walterAttack2 = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
 
+  //People sprites
+  person1 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
+  person2 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
+  person3 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
+  person1_sick = new spriteCreator('../images/AiSprites/person_1_sick.png', 50, 75);
+  person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
+  person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';

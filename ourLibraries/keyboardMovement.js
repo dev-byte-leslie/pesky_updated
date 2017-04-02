@@ -6,6 +6,7 @@ function keyboard(keyCode) {
   key.isUp = true;
   key.press = undefined;
   key.release = undefined;
+  keyCodes.push(keyCode);
 
   //The `downHandler`
   key.downHandler = function(event) {
@@ -14,7 +15,9 @@ function keyboard(keyCode) {
       key.isDown = true;
       key.isUp = false;
     }
-    event.preventDefault();
+    if (keyCodes.includes(event.keyCode)) {
+      event.preventDefault();
+    }
   };
 
   //The `upHandler`
@@ -24,8 +27,6 @@ function keyboard(keyCode) {
       key.isDown = false;
       key.isUp = true;
     }
-    //event.preventDefault();
-    event.preventDefault();
   };
 
   //Attach event listeners
