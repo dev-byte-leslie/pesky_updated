@@ -184,6 +184,11 @@ function setup() {
   person1_sick = new spriteCreator('../images/AiSprites/person_1_sick.png', 50, 75);
   person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
   person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
+  animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
+
+  // Animal control sprites
+  carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);
+  stankyCaught = new spriteCreator('../images/AiSprites/stanky_caught.png', 100, 100);
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
@@ -252,6 +257,19 @@ function moveFromHedgeState() {
     player.sprite._texture = player.spriteArray[4]._texture;
     player.sprite._textures = player.spriteArray[4]._textures;
     g.state = play;
+  }
+}
+function caughtState() {
+  updateFps();
+  if (animalCont1.aCObject.x >= player.holdX + 250) {
+    animalCont1.aCObject._texture = animalControlSprite._texture;
+    animalCont1.aCObject._textures = animalControlSprite._textures;
+    initCharacterSwitch();
+    hideAll();
+    switchCharacterGroup.visible = true;
+    g.state = switchCharacterState;
+  } else {
+    animalCont1.aCObject.x += 60 / fps;
   }
 }
 function play() {

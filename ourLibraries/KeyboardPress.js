@@ -143,7 +143,7 @@ function Keys() {
             player.sprite._texture = player.spriteArray[11]._texture;
             player.sprite._textures = player.spriteArray[11]._textures;
           }
-          player.sprite.x = hedgeLocX2 + 157;
+          player.sprite.x = hedgeLocX1 + 157;
           player.holdX = hedgeLocX1 + 157;
           disableAttacking = true;
           g.state = moveIntoHedgeState;

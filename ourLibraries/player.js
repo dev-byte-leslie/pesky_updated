@@ -19,6 +19,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
 
   this.canFly = (stringAnimal == 'goose');
+  this.animal = stringAnimal;
 
   this.setCharacter = function(stringAnimal) {
     if (stringAnimal == 'raccoon') {
@@ -31,6 +32,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.spriteArray = this.skunkSprites;
       this.canFly = false;
     }
+    this.animal = stringAnimal;
   }
 
   this.setCharacter(stringAnimal);

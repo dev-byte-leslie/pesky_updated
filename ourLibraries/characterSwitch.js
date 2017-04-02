@@ -24,17 +24,17 @@ function initCharacterSwitch()
   if (raccoonAlive) {
     buttonRaccoon = createButton(80, 85, raccoonInput, switchCharacterGroup, 'carlos');
   } else {
-    buttonRaccoon = createButton(80, 85, raccoonInput, switchCharacterGroup, 'carlos');
+    buttonRaccoon = createButton(80, 85, function() {}, switchCharacterGroup, 'carlos', 'Click', false);
   }
   if (skunkAlive) {
     buttonSkunk = createButton(160, 85, skunkInput, switchCharacterGroup, 'stanky');
   } else {
-    buttonSkunk = createButton(160, 85, skunkInput, switchCharacterGroup, 'stanky');
+    buttonSkunk = createButton(160, 85, function() {}, switchCharacterGroup, 'stanky', 'Click', false);
   }
   if (gooseAlive) {
     buttonGoose = createButton(240, 85, gooseInput, switchCharacterGroup, 'walter');
   } else {
-    buttonGoose = createButton(240, 85, gooseInput, switchCharacterGroup, 'walter');
+    buttonGoose = createButton(240, 85, function() {}, switchCharacterGroup, 'walter', 'Click', false);
   }
   //TODO figure out how to assign different button sprites
   hedgeBackground.width = 320;
@@ -93,8 +93,14 @@ function comeFromBush() {
     player.sprite._texture = player.spriteArray[4]._texture;
     player.sprite._textures = player.spriteArray[4]._textures;
   }
-  player.sprite.x = player.holdX;
+  if (!player.sprite.visible) {
+    player.sprite.x = hedgeLocX1 + 157;
+  } else {
+    player.sprite.x = player.holdX;
+  }
+  player.camera.updateCamera();
   player.sprite.y = hedgeLocY1 + 150;
+  player.sprite.visible = true;
   gameObjects.visible = true;
   g.state = moveFromHedgeState;
 }

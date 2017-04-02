@@ -68,8 +68,10 @@ function showOptions() {
 }
 // Create a button with text given its x and y coords, click function, button group, and sprite name
 // Returns the button as a PIXI sprite
-function createButton(x, y, clickFunction, buttonGroup, spriteName) {
-  var buttonSprite = PIXI.Texture.fromImage('../images/btn/' + spriteName + 'Blank.png');
+function createButton(x, y, clickFunction, buttonGroup, spriteName,
+  spriteState = 'Blank', hasStates = true) {
+  var buttonSprite = PIXI.Texture.fromImage('../images/btn/' + spriteName +
+    spriteState + '.png');
   var button = new PIXI.Sprite(buttonSprite);
   button.anchor.x = 0.5;
   button.anchor.y = 0.5;
@@ -78,12 +80,14 @@ function createButton(x, y, clickFunction, buttonGroup, spriteName) {
   button.interactive = true;
   button.spriteName = spriteName;
 
-  button
-    .on('mousedown', onButtonDown)
-    .on('click', clickFunction)
-    .on('mouseupoutside', onButtonUp)
-    .on('mouseover', hoverOver)
-    .on('mouseout', onButtonUp);
+  if (hasStates) {
+    button
+      .on('mousedown', onButtonDown)
+      .on('click', clickFunction)
+      .on('mouseupoutside', onButtonUp)
+      .on('mouseover', hoverOver)
+      .on('mouseout', onButtonUp);
+  }
 
   buttonGroup.addChild(button);
 
