@@ -46,6 +46,7 @@ function spawnAnimalControl(x , y) {
       if (b.hitTestRectangle(this.aCObject, player.sprite)) {
         this.aCObject.gotoAndStop(0);
         this.aCObject.vy = 0;
+        this.aCObject.scale.x = -1;
         if (player.animal == 'raccoon') {
           this.aCObject._texture = carlosCaught._texture;
           this.aCObject._textures = carlosCaught._textures;

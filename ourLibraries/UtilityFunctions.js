@@ -46,7 +46,6 @@ function enterHouse() {
 
   gameObjects.removeChild(map);
   g.stage.removeChild(gameObjects);
-
   gameObjects.addChild(house);
   g.stage.addChild(gameObjects);
 
@@ -59,8 +58,10 @@ function enterHouse() {
 
   door.x = player.sprite.x + 70;
   door.y = player.sprite.y - 60;
-
-  house.addChild(houseBackground1);
+  interior1.x = player.sprite.x - 200;
+  interior1.y = player.sprite.y - 200;
+  house.addChild(interior1);
+  //house.addChild(houseBackground1);
   house.addChild(door);
   house.addChild(player.sprite);
 }
@@ -120,7 +121,17 @@ function camera() {
 
   this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
-    g.stage.pivot.x = player.sprite.position.x;
+    if (player.sprite.position.x > minX + 200) {
+      g.stage.pivot.x = player.sprite.position.x;
+    } else {
+      g.stave.pivot.x = minX;
+    }
+    if (player.sprite.position.x < maxX - 200) {
+      g.stage.pivot.x = player.sprite.position.x;
+    } else {
+      g.stage.pivot.x = maxX - 400;
+    }
+
     //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
     g.stage.pivot.y = 607; //This can change but doesnt allow the player to see outside of map
   };
@@ -134,4 +145,15 @@ function updateFps() {
     fpsDisplay.x = player.sprite.x - 160;
     fpsDisplay.y = 426;
   }
+}
+function updateAI() {
+  people1.forEach(function(person) {
+    person.x += person.vx;
+  });
+  people2.forEach(function(person) {
+    person.x += person.vx;
+  });
+  people3.forEach(function(person) {
+    person.x += person.vx;
+  });
 }
