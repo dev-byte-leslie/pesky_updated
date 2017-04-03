@@ -47,12 +47,6 @@ var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
 $(document).ready(function() {
   initEverything();
 
-    /*if (!music.playing) {
-      music.loop = true;
-      music.play();
-    }
-    console.log('music playing');*/
-
 });
 // Initialize global variables
 function initEverything() {

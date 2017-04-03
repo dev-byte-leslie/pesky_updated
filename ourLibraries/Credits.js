@@ -9,16 +9,18 @@ function initCredits() {
     '<title2>Programming\n\n\n\n\n\n\n</title2>\n' +
     '<name>Alex Hill\n\nDan Hying\n\nLeslie Murphy\n\nThomas Rosik\n</name>' +
     '<name>\n\n\n\nInstructor</name>\n\n' +
-    '<name>Seth Berrier</name>',
-  {
-    'title' : { font: '144px Road_Rage', fill: '#ffffff' },
-    'title2' : { font: '96px Road_Rage', fill: '#ffffff' },
-    'name' : { font: '72px Road_Rage', fill: '#ffffff' }
-  },
-  {
-    lineJoin: 'round', // Set the lineJoin to round instead of 'miter'
-    align: 'center',
-  }
+    '<name>Seth Berrier</name>'+
+    '<name>\n\n\n\nMusic</name>\n\n' +
+    '<name>Tristan Lohengrin</name>',
+    {
+      'title' : { font: '144px Road_Rage', fill: '#ffffff' },
+      'title2' : { font: '96px Road_Rage', fill: '#ffffff' },
+      'name' : { font: '72px Road_Rage', fill: '#ffffff' }
+    },
+    {
+      lineJoin: 'round', // Set the lineJoin to round instead of 'miter'
+      align: 'center',
+    }
 );
   credits.anchor.x = 0.5;
   credits.anchor.y = 0.5;
