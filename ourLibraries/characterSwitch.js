@@ -16,62 +16,91 @@
 var buttonRaccoon;
 var buttonSkunk;
 var buttonGoose;
-var switchCharacterGroup;
+var switchCharacterGroup; //Container for objects on switch character menu;
 
 function initCharacterSwitch()
 {
-  buttonRaccoon = createButton(WIDTH/2, HEIGHT/2, raccoonInput, switchCharacterGroup, 'carlos');
-  buttonSkunk = createButton(WIDTH/2, HEIGHT/2, skunkInput, switchCharacterGroup, 'stanky');
-  buttonGoose = createButton(WIDTH/2, HEIGHT/2, gooseInput, switchCharacterGroup, 'walter');
-}
-
-switchCharacterGroup = new PIXI.Container(); //Container for objects on switch character menu
-switchCharacterGroup.addChild(buttonRaccoon);
-switchCharacterGroup.addChild(buttonSkunk);
-switchCharacterGroup.addChaild(buttonGoose);
-
-function switchCharacter() {
-
-  // -- Determines Which Char Is Active, Animates Up/Sets Inactive-- //
-  if (Raccoon.active)
-  {
-    //TODO: animate the player up
-    Raccoon.active = false;
+  switchCharacterGroup = new PIXI.Container();
+  if (raccoonAlive) {
+    buttonRaccoon = createButton(80, 85, raccoonInput, switchCharacterGroup, 'carlos');
+  } else {
+    buttonRaccoon = createButton(80, 85, function() {}, switchCharacterGroup, 'carlos', 'Click', false);
   }
-  else if (Skunk.active)
-  {
-    //TODO: animate the player up
-    Skunk.active = false;
+  if (skunkAlive) {
+    buttonSkunk = createButton(160, 85, skunkInput, switchCharacterGroup, 'stanky');
+  } else {
+    buttonSkunk = createButton(160, 85, function() {}, switchCharacterGroup, 'stanky', 'Click', false);
   }
-  else if (Goose.active)
-  {
-    //TODO: animate the player up
-    Goose.active = false;
+  if (gooseAlive) {
+    buttonGoose = createButton(240, 85, gooseInput, switchCharacterGroup, 'walter');
+  } else {
+    buttonGoose = createButton(240, 85, function() {}, switchCharacterGroup, 'walter', 'Click', false);
   }
-
-  g.state = switchCharacterState; // -- Displays Menu -- //
+  //TODO figure out how to assign different button sprites
+  hedgeBackground.width = 320;
+  hedgeBackground.height = 180;
+  switchCharacterGroup.addChild(hedgeBackground);
+  switchCharacterGroup.addChild(buttonRaccoon);
+  switchCharacterGroup.addChild(buttonSkunk);
+  switchCharacterGroup.addChild(buttonGoose);
+  g.stage.position.x = 0;
+  g.stage.position.y = 0;
+  g.stage.scale.x = 4;
+  g.stage.scale.y = 4;
+  g.stage.pivot.x = 0.5;
+  g.stage.pivot.y = 0;
+  g.stage.addChild(switchCharacterGroup);
 }
 
 // -- Handes Raccoon Button Press -- //
 function raccoonInput()
 {
-  Raccoon.active = true;
-  player.sprite = Raccoon;
-  g.state = gameState;
+  player.setCharacter('raccoon');
+  comeFromBush();
 }
 
 // -- Handles Skunk Button Press -- //
 function skunkInput()
 {
-  Skunk.active = true;
-  player.sprite = Skunk;
-  g.state = gameState;
+  player.setCharacter('skunk');
+  comeFromBush();
 }
 
 // -- Handles Goose Button Press -- //
 function gooseInput()
 {
-  Goose.active = true;
-  player.sprite = Goose;
-  g.state = gameState;
+  player.setCharacter('goose');
+  comeFromBush();
+}
+
+function comeFromBush() {
+  switchCharacterGroup.removeChild(hedgeBackground);
+  switchCharacterGroup.removeChild(buttonRaccoon);
+  switchCharacterGroup.removeChild(buttonSkunk);
+  switchCharacterGroup.removeChild(buttonGoose);
+  g.stage.removeChild(switchCharacterGroup);
+  disableAttacking = false;
+  g.stage.position.x = renderer.width / 2;
+  g.stage.position.y = renderer.height;
+  g.stage.scale.x = 4;
+  g.stage.scale.y = 4;
+  g.stage.pivot.x = player.sprite.position.x;
+  g.stage.pivot.y = 607;
+  if (player.spriteArray[8]) {
+    player.sprite._texture = player.spriteArray[8]._texture;
+    player.sprite._textures = player.spriteArray[8]._textures;
+  } else {
+    player.sprite._texture = player.spriteArray[4]._texture;
+    player.sprite._textures = player.spriteArray[4]._textures;
+  }
+  if (!player.sprite.visible) {
+    player.sprite.x = hedgeLocX1 + 157;
+  } else {
+    player.sprite.x = player.holdX;
+  }
+  player.camera.updateCamera();
+  player.sprite.y = hedgeLocY1 + 150;
+  player.sprite.visible = true;
+  gameObjects.visible = true;
+  g.state = moveFromHedgeState;
 }

@@ -46,7 +46,24 @@ function spawnAnimalControl(x , y) {
       if (b.hitTestRectangle(this.aCObject, player.sprite)) {
         this.aCObject.gotoAndStop(0);
         this.aCObject.vy = 0;
-        this.aCObject.vx = 0;
+        if (player.animal == 'raccoon') {
+          this.aCObject._texture = carlosCaught._texture;
+          this.aCObject._textures = carlosCaught._textures;
+          raccoonAlive = false;
+        } else if (player.animal == 'skunk') {
+          this.aCObject._texture = stankyCaught._texture;
+          this.aCObject._textures = stankyCaught._textures;
+          skunkAlive = false;
+        } else {
+          //TODO replace with goose textures
+          this.aCObject._texture = stankyCaught._texture;
+          this.aCObject._textures = stankyCaught._textures;
+          gooseAlive = false;
+        }
+        player.holdX = player.sprite.x;
+        player.sprite.visible = false;
+        this.aCObject.play();
+        g.state = caughtState;
       }
     }
 

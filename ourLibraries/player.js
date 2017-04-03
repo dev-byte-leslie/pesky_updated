@@ -6,22 +6,36 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
   // 2,3 = Fly/jump 1 and 2
   // 4,5 = Walk 1 and 2
   // 6,7 = Idle 1 and 2
+  // 8,9 = Down 1 and 2
+  //10,11 = Up 1 and 2
   this.gooseSprites = [walterAttack, walterAttack2, walterFly, walterFly2, walterWalk,
     walterWalk2, walterIdle, walterIdle2];
 
   this.raccoonSprites = [carlosRabies, carlosRabies2, carlosJump, carlosJump2,
-    carlosWalk, carlosWalk2, carlosIdle, carlosIdle2];
+    carlosWalk, carlosWalk2, carlosIdle, carlosIdle2, carlosDown, carlosDown2,
+    carlosUp, carlosUp2];
 
   this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
     stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
 
-  if (stringAnimal == 'raccoon') {
-    this.spriteArray = this.raccoonSprites; //sprite object of the player character
-  } else if (stringAnimal == 'goose') {
-    this.spriteArray = this.gooseSprites;
-  } else {
-    this.spriteArray = this.skunkSprites;
+  this.canFly = (stringAnimal == 'goose');
+  this.animal = stringAnimal;
+
+  this.setCharacter = function(stringAnimal) {
+    if (stringAnimal == 'raccoon') {
+      this.spriteArray = this.raccoonSprites;
+      this.canFly = false;
+    } else if (stringAnimal == 'goose') {
+      this.spriteArray = this.gooseSprites;
+      this.canFly = true;
+    } else {
+      this.spriteArray = this.skunkSprites;
+      this.canFly = false;
+    }
+    this.animal = stringAnimal;
   }
+
+  this.setCharacter(stringAnimal);
 
   //assign to the walk sprite of the designated array
   this.sprite = this.spriteArray[4];
@@ -82,9 +96,10 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         this.doingIdle = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
+        disableAttacking = false;
       })) {
       if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
-        if (player.jumping && player.sprite.vy != 0) {
+        if (player.jumping && (player.sprite.vy != 0 || player.canFly)) {
           player.sprite.vy += 0.05 * 144 / fps; // add gravity
         }
       }
@@ -117,17 +132,21 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     }
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
       !shiftKey.isDown && !disableMovement) {
-      this.doCarlosIdle();
+      this.doIdle();
     }
     this.camera.updateCamera();
   };
-  this.doCarlosIdle = function () {
+  this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
     player.sprite._textures != player.spriteArray[7]._textures) {
       this.doingIdle = true;
       player.sprite._texture = player.spriteArray[7]._texture;
       player.sprite._textures = player.spriteArray[7]._textures;
-      player.sprite.animationSpeed = 0.05;
+      if (player.canFly) {
+        this.sprite.animationSpeed = .2;
+      } else {
+        this.sprite.animationSpeed = 0.05;
+      }
       player.sprite.play();
     }
   };

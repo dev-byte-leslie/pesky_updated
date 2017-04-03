@@ -1,21 +1,13 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
 //variable to control if movement stops when landing during a jump
 var moveMent = false;
-var left, up, right, down, space, shiftKey, switchE, f1;
+var left, up, right, down, space, shiftKey, switchE, f1, esc;
 var fpsEnabled = false;
 var isAttacking = false;
+var disableAttacking = false;
+var keyCodes = [];
 
 function Keys() {
-  //Capture the keyboard arrow keys/other keys needed for controls
-  left = keyboard(37);
-  up = keyboard(38);
-  right = keyboard(39);
-  down = keyboard(40);
-  space = keyboard(32);
-  shiftKey = keyboard(16);
-  switchE = keyboard(69);
-  f1 = keyboard(112);
-
   //Left arrow key `press` method
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
@@ -101,7 +93,7 @@ function Keys() {
 
   shiftKey.press = function() {
     //attack();
-    if (!player.jumping && !disableMovement) {
+    if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
       player.sprite._texture = player.spriteArray[0]._texture;
       player.sprite._textures = player.spriteArray[0]._textures;
@@ -113,11 +105,11 @@ function Keys() {
   };
 
   shiftKey.release = function() {
-    if (!isAttacking) {
+    if (!isAttacking && !disableAttacking) {
       isAttacking = true;
       if (!(left.isDown || right.isDown)) {
         setTimeout(function() {
-          player.doCarlosIdle();
+          player.doIdle();
           isAttacking = false;
           disableMovement = false;
         }, 750);
@@ -143,12 +135,30 @@ function Keys() {
     if (b.hit(player.sprite, door, false, false, false)) {
       buildOutside();
     }
-    /*if (b.hitTestRectangle(player.sprite, hedge))
-    {
-      hideAll();
-      switchCharacterGroup.visible = true;
-      switchCharacter();
-    }*/
+    if (!player.jumping) {
+      if (b.hitTestRectangle(player.sprite,
+        new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY1, 1, 300),
+        false, false, false)) {
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.sprite.x = hedgeLocX1 + 157;
+          player.holdX = hedgeLocX1 + 157;
+          disableAttacking = true;
+          g.state = moveIntoHedgeState;
+        } else if (b.hitTestRectangle(player.sprite,
+        new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY2, 1, 300))) {
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.sprite.x = hedgeLocX2 + 157;
+          player.holdX = hedgeLocX2 + 157;
+          disableAttacking = true;
+          g.state = moveIntoHedgeState;
+      }
+    }
   };
 
   switchE.release = function() {
@@ -157,5 +167,9 @@ function Keys() {
 
   f1.press = function() {
     fpsEnabled = !fpsEnabled;
+  };
+
+  esc.release = function() {
+    g.state = menuState;
   };
 }

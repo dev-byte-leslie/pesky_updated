@@ -1,14 +1,24 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
   //start the player jump if space is pressed and player isn't moving vertically
-  if (player.spacePush && player.sprite.vy == 0 && !disableMovement) {
+  if (player.spacePush && (player.sprite.vy == 0 || !player.jumping) && !disableMovement) {
     player.jumping = true;
     player.sprite.vy = -2.51;
     player.sprite._texture = player.spriteArray[2]._texture;
     player.sprite._textures = player.spriteArray[2]._textures;
-    player.sprite.gotoAndStop(0);
+    if (!player.canFly) {
+      player.sprite.gotoAndStop(0);
+    }
     player.sprite.animationSpeed = 0.1;
     player.sprite.play();
+  }
+  if (player.jumping && player.spacePush && player.canFly && player.sprite.y > 500) {
+    player.sprite.vy = -2.51;
+    disableAttacking = true;
+  } else if (player.canFly && player.spacePush) {
+    player.jumping = true;
+    player.sprite.vy = 0;
+    disableAttacking = true;
   }
   player.lastVy = player.sprite.vy; // track what the player's vy was last frame
 }
@@ -18,8 +28,7 @@ function spriteCreator(stringTexture, width, height) {
   // if it is not a string it converts it to a string
   if (typeof stringTexture != 'string') {
     this.stringTexture = String(stringTexture);
-  }
-  else {
+  } else {
     //sets stringTexture to as the varible passed in
     this.stringTexture = stringTexture;
   }
@@ -97,12 +106,6 @@ function buildOutside() {
   g.stage.addChild(gameObjects);
 }
 
-//function to pick the correct animal object for player
-// TODO add functionality to this function. Different character sprites
-function pickAnimal(animal) {
-
-}
-
 //generates a random integer between the min and max values
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -119,7 +122,7 @@ function camera() {
     //now specify which point INSIDE stage must be (0,0)
     g.stage.pivot.x = player.sprite.position.x;
     //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
-    g.stage.pivot.y = 608; //This can change but doesnt allow the player to see outside of map
+    g.stage.pivot.y = 607; //This can change but doesnt allow the player to see outside of map
   };
 }
 // Monitor framerate using Date in ms between last frame and this frame
