@@ -12,7 +12,7 @@ var Container = PIXI.Container,
 var g, renderer, b, tinkPoint, animalAnimated;
 // TODO clean this up a little
 // Sprite variables for people
-var person1, person2, person3, person1_sick, person2_sick, person3_sick;
+var people1 = [], people2 = [], people3 = [];
 
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
@@ -30,10 +30,10 @@ var walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
 var wTexture, whiteFloor, animalTextures, animalAnimated,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
-  doorObj, floorTexture, hedgeLocX1, hedgeLocY1, hedgeLocX2, hedgeLocY2;
+  doorObj, floorTexture, hedgeLocX1, hedgeLocY1, hedgeLocX2, hedgeLocY2, interior1;
 
 // General game variables
-var lastLoop, thisLoop, fps = 60, disableMovement = false;
+var lastLoop, thisLoop, fps = 60, disableMovement = false, maxX, minX;
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
@@ -132,6 +132,7 @@ function setupGame() {
     .add('../images/WorldObjects/Red_House.png')
     .add('../images/WorldObjects/Grey_House.png')
     .add('../images/WorldObjects/Door_Invisible.png')
+    .add('../images/WorldObjects/Interior_1.png')
     .load(setup);
 }
 // Second setup function for assigning assets to variables
@@ -172,12 +173,24 @@ function setup() {
   walterAttack2 = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
 
   //People sprites
-  person1 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
-  person2 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
-  person3 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
-  person1_sick = new spriteCreator('../images/AiSprites/person_1_sick.png', 50, 75);
-  person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
-  person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
+  person1_1 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
+  person1_2 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
+  person1_3 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
+  person2_1 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
+  person2_2 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
+  person2_3 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
+  person3_1 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
+  person3_2 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
+  person3_3 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
+  people1.push(person1_1);
+  people1.push(person1_2);
+  people1.push(person1_3);
+  people2.push(person2_1);
+  people2.push(person2_2);
+  people2.push(person2_3);
+  people3.push(person3_1);
+  people3.push(person3_2);
+  people3.push(person3_3);
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
 
   // Animal control sprites
@@ -201,6 +214,7 @@ function setup() {
 
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
+  interior1 = new Sprite(TextureCache['../images/WorldObjects/Interior_1.png']);
 
   startMenu();
   g.state = menuState;
@@ -234,6 +248,7 @@ function switchCharacterState() {
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
   updateFps();
+  updateAI();
   if (player.sprite.y > hedgeLocY1 + 150) {
     player.sprite.y += -1 * 60 / fps;
   } else {
@@ -245,6 +260,7 @@ function moveIntoHedgeState() { // freeze the game and move player into hedge
 }
 function moveFromHedgeState() {
   updateFps();
+  updateAI();
   if (player.sprite.y < 600) {
     player.sprite.y += 60 / fps;
   } else {
@@ -255,6 +271,7 @@ function moveFromHedgeState() {
 }
 function caughtState() {
   updateFps();
+  updateAI();
   if (animalCont1.aCObject.x >= player.holdX + 250) {
     animalCont1.aCObject._texture = animalControlSprite._texture;
     animalCont1.aCObject._textures = animalControlSprite._textures;
@@ -268,9 +285,12 @@ function caughtState() {
 }
 function play() {
   //call functions for player and ai logic
+  updateAI();
   player.update();
   jump();
-  animalCont1.aiMovement();
+  if (!player.inHouse) { // prevent being captured by invisible animal control
+    animalCont1.aiMovement();
+  }
   tinkPoint.update();
   updateFps();
 }
