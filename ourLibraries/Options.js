@@ -1,3 +1,4 @@
+var gameMusic, menuMusic, jumpSound;
 // load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
@@ -11,9 +12,9 @@ sounds.whenLoaded = loadSounds;
 function loadSounds() {
 
 // create the sounds
-var gameMusic = sounds["../sound/music/GameMusic.wav"],
-    menuMusic = sounds["../sound/music/MenuMusic.wav"],
-    jumpSound = sounds["../sound/music/Jump.wav"];
+gameMusic = sounds["../sound/music/GameMusic.wav"];
+menuMusic = sounds["../sound/music/MenuMusic.wav"];
+jumpSound = sounds["../sound/music/Jump.wav"];
 
     menuMusic.volume = 0.7;   // menu music volume
     menuMusic.loop = true;    // menu music loops
@@ -69,15 +70,7 @@ var gameMusic = sounds["../sound/music/GameMusic.wav"],
     gameMusic.pause();
     console.log('music paused');
   };
-
-  // jump sound
-  space.press = function() {
-    if (!player.jumping) {
-        jumpSound.play();
-      }
-    };
 }
-
 var optionsGroup;
 function initOptions() {
   optionsGroup = new PIXI.Container();
