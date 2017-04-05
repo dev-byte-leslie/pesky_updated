@@ -194,6 +194,7 @@ function setup() {
   person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
   person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
+  animalControlAttackSprite = new spriteCreator('../images/AiSprites/animal_control_attack.png', 100, 100);
 
   // Animal control sprites
   carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);
