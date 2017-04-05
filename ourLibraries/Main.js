@@ -12,7 +12,7 @@ var Container = PIXI.Container,
 var g, renderer, b, tinkPoint, animalAnimated;
 // TODO clean this up a little
 // Sprite variables for people
-var people1 = [], people2 = [], people3 = [];
+var people1 = [], people2 = [], people3 = [], person1_sick, person2_sick, person3_sick;
 
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
@@ -46,7 +46,6 @@ var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
 // Called when everything is loaded
 $(document).ready(function() {
   initEverything();
-
 });
 // Initialize global variables
 function initEverything() {
@@ -191,6 +190,9 @@ function setup() {
   people3.push(person3_1);
   people3.push(person3_2);
   people3.push(person3_3);
+  person1_sick = new spriteCreator('../images/AiSprites/person_1_sick.png', 50, 75);
+  person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
+  person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
 
   // Animal control sprites

@@ -98,7 +98,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         floorHit.y = 600;
         disableAttacking = false;
       })) {
-      if (fps >= 45) {  // lower than around 45, the player falls too quickly and through the floor
+      if (fps >= 20) {  // lower than around 20, the player falls too quickly and through the floor
         if (player.jumping && (player.sprite.vy != 0 || player.canFly)) {
           player.sprite.vy += 0.05 * 144 / fps; // add gravity
         }
