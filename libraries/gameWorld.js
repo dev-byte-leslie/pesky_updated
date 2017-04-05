@@ -5,7 +5,6 @@ function createGameWorld() {
 
   //positiveX has to be one bigger to accomodate 0
   var positiveX = new Array(31);
-
   //generate the numbers in the world arrays
   generateWorldSprites(negativeX, positiveX);
 

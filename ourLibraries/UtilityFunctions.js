@@ -121,15 +121,14 @@ function camera() {
 
   this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
-    if (player.sprite.position.x > minX + 200) {
-      g.stage.pivot.x = player.sprite.position.x;
+    if (player.sprite.position.x > 12200 || player.sprite.position.x < -11800) {
+      if (player.sprite.position.x > 12000) {
+        g.stage.pivot.x = 12200;
+      } else {
+        g.stage.pivot.x = -11800;
+      }
     } else {
-      g.stave.pivot.x = minX;
-    }
-    if (player.sprite.position.x < maxX - 200) {
       g.stage.pivot.x = player.sprite.position.x;
-    } else {
-      g.stage.pivot.x = maxX - 400;
     }
 
     //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player

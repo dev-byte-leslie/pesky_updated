@@ -33,7 +33,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.canFly = false;
     }
     this.animal = stringAnimal;
-  }
+  };
 
   this.setCharacter(stringAnimal);
 
