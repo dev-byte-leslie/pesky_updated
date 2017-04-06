@@ -101,6 +101,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         if (player.jumping && (player.sprite.vy != 0 || player.canFly)) {
           player.sprite.vy += 0.05 * 144 / fps; // add gravity
         }
+      } else {
+        player.sprite.vy += 0.2;
       }
     }
     if (!disableMovement) {
@@ -108,6 +110,11 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.sprite.x += this.sprite.vx; //add x velocity to player's x location
       this.xValue += this.sprite.vx;
       if (left.isDown) {
+        if (player.sprite._texture != player.spriteArray[5]._texture &&
+          player.sprite._textures != player.spriteArray[5]._textures) {
+            player.sprite._texture = player.spriteArray[5]._texture;
+            player.sprite._textures = player.spriteArray[5]._textures;
+        }
         if (fps >= 30) {
           player.sprite.vx = -5 * 60 / fps;
         } else {
@@ -117,6 +124,11 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         player.sprite.animationSpeed = 0.1;
         player.sprite.play();
       } else if (right.isDown) {
+        if (player.sprite._texture != player.spriteArray[5]._texture &&
+          player.sprite._textures != player.spriteArray[5]._textures) {
+            player.sprite._texture = player.spriteArray[5]._texture;
+            player.sprite._textures = player.spriteArray[5]._textures;
+        }
         if (fps >= 30) {
           player.sprite.vx = 5 * 60 / fps;
         } else {
@@ -141,7 +153,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.doingIdle = true;
       player.sprite._texture = player.spriteArray[7]._texture;
       player.sprite._textures = player.spriteArray[7]._textures;
-      if (player.canFly) {
+      if (player.animal == 'goose') {
         this.sprite.animationSpeed = .2;
       } else {
         this.sprite.animationSpeed = 0.05;

@@ -75,8 +75,70 @@ function caughtState() {
   }
 }
 function gameOverState() {
+  updateFps();
   if (gameOverText.alpha < 1) {
     gameOverText.alpha += 0.005 * 60 / fps;
+  }
+}
+function fadeIntoWorld() {
+  animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
+  updateFps();
+  updateAI();
+  player.camera.updateCamera();
+  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.y = 0;
+  if (blackOverlay.alpha > 0) {
+    blackOverlay.alpha -= 0.01 * 60 / fps;
+  } else {
+    disableMovement = false;
+    g.state = play;
+  }
+}
+function fadeIntoHouse() {
+  updateFps();
+  updateAI();
+  player.camera.updateCamera();
+  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.y = 0;
+  if (blackOverlay.alpha > 0) {
+    blackOverlay.alpha -= 0.01 * 60 / fps;
+  } else {
+    player.doIdle();
+    disableMovement = false;
+    g.state = play;
+  }
+}
+function fadeOutOfWorld() {
+  animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
+  updateFps();
+  updateAI();
+  if (player.sprite.y > 580) {
+    player.sprite.y += -0.2 * 60 / fps;
+  }
+  player.camera.updateCamera();
+  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.y = 0;
+  if (blackOverlay.alpha < 1) {
+    blackOverlay.alpha += 0.01 * 60 / fps;
+  } else {
+    player.doIdle();
+    g.state = fadeIntoHouse;
+  }
+}
+function fadeOutOfHouse() {
+  updateFps();
+  updateAI();
+  if (player.sprite.y > 580) {
+    player.sprite.y += -0.2 * 60 / fps;
+  }
+  player.camera.updateCamera();
+  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.y = 0;
+  if (blackOverlay.alpha < 1) {
+    blackOverlay.alpha += 0.01 * 60 / fps;
+  } else {
+    player.doIdle();
+    g.state = fadeIntoWorld;
   }
 }
 function play() {

@@ -113,11 +113,13 @@ function Keys() {
     // location
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
-          enterHouse();
+          if (!player.jumping) {
+            enterHouse();
+          }
         })) {
     }
 
-    if (b.hit(player.sprite, door, false, false, false)) {
+    if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
       buildOutside();
     }
     if (!player.jumping) {

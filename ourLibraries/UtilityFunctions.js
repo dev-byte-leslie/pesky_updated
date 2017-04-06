@@ -27,49 +27,81 @@ function jump() {
 //build the inside of a house
 function enterHouse() {
   player.inHouse = true;
+  disableMovement = true;
+  player.doIdle();
+  setTimeout(function() {
+    gameObjects.removeChild(map);
+    g.stage.removeChild(gameObjects);
+    gameObjects.addChild(house);
+    g.stage.addChild(gameObjects);
 
-  gameObjects.removeChild(map);
-  g.stage.removeChild(gameObjects);
-  gameObjects.addChild(house);
-  g.stage.addChild(gameObjects);
+    //keep track of world coordinates
+    player.holdX = player.sprite.x;
+    player.holdY = player.sprite.y;
 
-  //keep track of world coordinates
-  player.holdX = player.sprite.x;
-  player.holdY = player.sprite.y;
+    player.sprite.x = player.inHouseX;
+    player.sprite.y = player.inHouseY;
 
-  player.sprite.x = player.inHouseX;
-  player.sprite.y = player.inHouseY;
+    door.x = player.sprite.x + 70;
+    door.y = player.sprite.y - 60;
+    interior1.x = player.sprite.x - 200;
+    interior1.y = player.sprite.y - 200;
+    house.addChild(interior1);
+    //house.addChild(houseBackground1);
+    house.addChild(door);
+    house.addChild(player.sprite);
+    house.addChild(blackOverlay);
+  }, 1667);
 
-  door.x = player.sprite.x + 70;
-  door.y = player.sprite.y - 60;
-  interior1.x = player.sprite.x - 200;
-  interior1.y = player.sprite.y - 200;
-  house.addChild(interior1);
-  //house.addChild(houseBackground1);
-  house.addChild(door);
-  house.addChild(player.sprite);
+  if (player.spriteArray[10]) {
+    player.sprite._texture = player.spriteArray[10]._texture;
+    player.sprite._textures = player.spriteArray[10]._textures;
+  } else {
+    player.sprite._texture = player.spriteArray[4]._texture;
+    player.sprite._textures = player.spriteArray[4]._textures;
+  }
+  g.state = fadeOutOfWorld;
 }
 
 //builds the outside game map
 function buildOutside() {
   player.inHouse = false;
+  disableMovement = true;
+  player.doIdle();
+  setTimeout(function() {
+    gameObjects.removeChild(blackOverlay);
+    gameObjects.removeChild(gameOverText);
+    gameObjects.removeChild(house);
+    g.stage.removeChild(gameObjects);
 
-  gameObjects.removeChild(blackOverlay);
-  gameObjects.removeChild(gameOverText);
-  gameObjects.removeChild(house);
-  g.stage.removeChild(gameObjects);
+    player.sprite.x = player.holdX;
+    player.sprite.y = 600;
 
-  player.sprite.x = player.holdX;
-  player.sprite.y = 600;
+    map.addChild(player.sprite);
+    map.addChild(animalCont1.aCObject);
+    animalCont1.aCObject.vx = 0;
+    animalCont1.aCObject.vy = 0;
 
-  map.addChild(player.sprite);
-  map.addChild(animalCont1.aCObject);
+    // Teleport AC away from player so they don't get killed right outside the door
+    if (animalCont1.aCObject.x >= player.sprite.x - 300) {
+      animalCont1.aCObject.x -= 600;
+    } else if (animalCont1.aCObject.x < player.sprite.x + 300) {
+      animalCont1.aCObject.x += 600;
+    }
 
-
-  gameObjects.addChild(map);
-  g.stage.addChild(gameObjects);
-  gameObjects.addChild(blackOverlay);
-  gameObjects.addChild(gameOverText);
+    gameObjects.addChild(map);
+    g.stage.addChild(gameObjects);
+    gameObjects.addChild(blackOverlay);
+    gameObjects.addChild(gameOverText);
+  }, 1667);
+  if (player.spriteArray[10]) {
+    player.sprite._texture = player.spriteArray[10]._texture;
+    player.sprite._textures = player.spriteArray[10]._textures;
+  } else {
+    player.sprite._texture = player.spriteArray[4]._texture;
+    player.sprite._textures = player.spriteArray[4]._textures;
+  }
+  g.state = fadeOutOfHouse;
 }
 
 function camera() {

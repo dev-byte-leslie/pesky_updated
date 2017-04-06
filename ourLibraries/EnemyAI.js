@@ -8,7 +8,7 @@ function spawnAnimalControl(x , y) {
   this.aCObject.anchor.set(0.5, 1);
 
   //set sprite animation speed to not be too fast
-  this.aCObject.animationSpeed = .2;
+  this.aCObject.animationSpeed = .15;
 
   //set x and y values of sprite
   this.aCObject.x = x;  //900;
@@ -32,7 +32,7 @@ function spawnAnimalControl(x , y) {
       //if player is to the right of enemy
       if (this.aCObject.x < player.sprite.x) {
         if (!this.aCObject.doingAttack) {
-          this.aCObject.vx = 3.5 * 60 / fps;
+          this.aCObject.vx = 3;
           this.aCObject.scale.x = 1;
           this.aCObject.play();
         }
@@ -41,7 +41,7 @@ function spawnAnimalControl(x , y) {
     //if player is to the left of enemy
       if (this.aCObject.x > player.sprite.x) {
         if (!this.aCObject.doingAttack) {
-          this.aCObject.vx = -3.5 * 60 / fps;
+          this.aCObject.vx = -3;
           this.aCObject.scale.x = -1;
           this.aCObject.play();
         }
@@ -72,8 +72,8 @@ function spawnAnimalControl(x , y) {
     }
 
     //add x and y velocities to the animal control object
-    this.aCObject.x += this.aCObject.vx;
-    this.aCObject.y += this.aCObject.vy;
+    this.aCObject.x += this.aCObject.vx * 60 / fps;
+    this.aCObject.y += this.aCObject.vy * 60 / fps;
   };
 
   this.catchPlayer = function() {
