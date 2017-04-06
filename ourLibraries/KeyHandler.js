@@ -86,6 +86,9 @@ function Keys() {
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
       player.sprite.play();
+      b.hit(player.sprite, garbages, false, false, false, function(collision, garbageHit) {
+        garbageHit.play();
+      });
     }
   };
 

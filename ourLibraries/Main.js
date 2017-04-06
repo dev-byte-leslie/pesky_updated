@@ -21,6 +21,8 @@ var wTexture, whiteFloor, animalTextures,
 
 var hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY;
 
+var garbageSprite, garbages = [];
+
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 
@@ -120,6 +122,9 @@ function setupGame() {
     .add('../images/WorldObjects/Grey_House.png')
     .add('../images/WorldObjects/Door_Invisible.png')
     .add('../images/WorldObjects/Interior_1.png')
+
+    // Object sprites
+    .add('../images/WorldObjects/garbage.png')
     .load(setup);
 }
 // Second setup function for assigning assets to variables
@@ -182,6 +187,12 @@ function setup() {
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
   animalControlAttackSprite = new spriteCreator('../images/AiSprites/animal_control_attack.png', 100, 100);
   animalControlAttackSprite.anchor.set(0.5, 1);
+
+  // Objects like garbage
+  for (let i = 1; i <= 50; i++) { // 25 garbages in the world
+    eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage.png\', 80, 42);');
+    eval('garbages.push(garbage' + i + ');');
+  }
 
   // Animal control sprites
   carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);

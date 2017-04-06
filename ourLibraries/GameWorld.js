@@ -50,7 +50,6 @@ function createGameWorld() {
       hedgeLocX1 = gameX;
       hedgeLocY = 407;
     }
-
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
     map.addChildAt(floorObj.obSprite, 0);
@@ -131,6 +130,14 @@ function createGameWorld() {
     person.scale.x = direction;
     person.play();
     map.addChild(person);
+  });
+  garbages.forEach(function(garbage) {
+    garbage.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
+    garbage.y = 600;
+    garbage.anchor.set(0.5, 1);
+    garbage.animationSpeed = 0.1;
+    garbage.loop = false;
+    map.addChild(garbage);
   });
 
 }
