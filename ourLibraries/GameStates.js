@@ -4,13 +4,19 @@ function menuState() {
   g.stage.position.y = 0;
   g.stage.scale.x = 1;
   g.stage.scale.y = 1;
-  g.stage.pivot.x = 0.5;
+  g.stage.pivot.x = 0;
   g.stage.pivot.y = 0;
   hideAll();
   backgroundGroup.visible = true;
   title.position.x = 20;
   updateFps();
   mainMenuGroup.visible = true;
+  if (menuMusic) {
+    if (!menuMusic.playing) {
+      gameMusic.pause();
+      menuMusic.play();
+    }
+  }
 }
 function optionsState() {
   updateFps();
@@ -152,6 +158,12 @@ function fadeOutOfHouse() {
   }
 }
 function play() {
+  if (gameMusic) {
+    if (!gameMusic.playing) {
+      menuMusic.pause();
+      gameMusic.play();
+    }
+  }
   //call functions for player and ai logic
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
