@@ -51,10 +51,12 @@ function moveFromHedgeState() {
 function caughtState() {
   updateFps();
   updateAI();
+  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.y = 0;
   if (animalCont1.aCObject.x >= player.holdX + 250) {
     animalCont1.aCObject._texture = animalControlSprite._texture;
     animalCont1.aCObject._textures = animalControlSprite._textures;
-    if (skunkAlive || raccoonAlive || gooseAlive) {
+    if (!(skunkAlive || raccoonAlive || gooseAlive)) {
       initCharacterSwitch();
       hideAll();
       switchCharacterGroup.visible = true;
@@ -62,11 +64,13 @@ function caughtState() {
     } else { // all animals are captured
       blackOverlay.x = player.sprite.x - 200;
       blackOverlay.y = 0;
-      if (blackOverlay.alpha < 1) {
+      if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
         blackOverlay.alpha += 0.01 * 60 / fps;
       } else {
+        blackOverlay.alpha = 1;
         gameOverText.x = player.sprite.x - 100;
         gameOverText.y = 470;
+        g.stage.add(gameOverText);
         g.state = gameOverState;
       }
     }
@@ -76,33 +80,37 @@ function caughtState() {
 }
 function gameOverState() {
   updateFps();
-  if (gameOverText.alpha < 1) {
+  if (gameOverText.alpha + 0.005 * 60 / fps < 1) {
     gameOverText.alpha += 0.005 * 60 / fps;
+  } else {
+    gameOverText.alpha = 1;
   }
 }
 function fadeIntoWorld() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
-  updateAI();
+  updateAIMovement();
   player.camera.updateCamera();
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
-  if (blackOverlay.alpha > 0) {
+  if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
+    blackOverlay.alpha = 0;
     disableMovement = false;
     g.state = play;
   }
 }
 function fadeIntoHouse() {
   updateFps();
-  updateAI();
+  updateAIMovement();
   player.camera.updateCamera();
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
-  if (blackOverlay.alpha > 0) {
+  if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
+    blackOverlay.alpha = 0;
     player.doIdle();
     disableMovement = false;
     g.state = play;
@@ -111,38 +119,42 @@ function fadeIntoHouse() {
 function fadeOutOfWorld() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
-  updateAI();
+  updateAIMovement();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
   }
   player.camera.updateCamera();
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
-  if (blackOverlay.alpha < 1) {
+  if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
     blackOverlay.alpha += 0.01 * 60 / fps;
   } else {
+    blackOverlay.alpha = 1;
     player.doIdle();
     g.state = fadeIntoHouse;
   }
 }
 function fadeOutOfHouse() {
   updateFps();
-  updateAI();
+  updateAIMovement();;
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
   }
   player.camera.updateCamera();
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
-  if (blackOverlay.alpha < 1) {
+  if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
     blackOverlay.alpha += 0.01 * 60 / fps;
   } else {
+    blackOverlay.alpha = 1;
     player.doIdle();
     g.state = fadeIntoWorld;
   }
 }
 function play() {
   //call functions for player and ai logic
+  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.y = 0;
   updateAI();
   player.update();
   jump();

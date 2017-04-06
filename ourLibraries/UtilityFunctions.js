@@ -69,9 +69,8 @@ function buildOutside() {
   disableMovement = true;
   player.doIdle();
   setTimeout(function() {
-    gameObjects.removeChild(blackOverlay);
-    gameObjects.removeChild(gameOverText);
     gameObjects.removeChild(house);
+    g.stage.removeChild(blackOverlay);
     g.stage.removeChild(gameObjects);
 
     player.sprite.x = player.holdX;
@@ -83,16 +82,15 @@ function buildOutside() {
     animalCont1.aCObject.vy = 0;
 
     // Teleport AC away from player so they don't get killed right outside the door
-    if (animalCont1.aCObject.x >= player.sprite.x - 300) {
+    if (animalCont1.aCObject.x >= player.holdX - 400) {
       animalCont1.aCObject.x -= 600;
-    } else if (animalCont1.aCObject.x < player.sprite.x + 300) {
+    } else if (animalCont1.aCObject.x < player.holdX + 400) {
       animalCont1.aCObject.x += 600;
     }
 
     gameObjects.addChild(map);
     g.stage.addChild(gameObjects);
-    gameObjects.addChild(blackOverlay);
-    gameObjects.addChild(gameOverText);
+    g.stage.addChild(blackOverlay);
   }, 1667);
   if (player.spriteArray[10]) {
     player.sprite._texture = player.spriteArray[10]._texture;

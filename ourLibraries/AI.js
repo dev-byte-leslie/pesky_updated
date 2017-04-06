@@ -32,6 +32,10 @@ function updateAI() {
       }
     }
   });
+  updateAIMovement();
+}
+
+function updateAIMovement() {
   people1.forEach(function(person) {
     person.x += person.vx * 60 / fps;
   });

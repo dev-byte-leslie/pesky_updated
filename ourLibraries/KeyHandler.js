@@ -113,7 +113,7 @@ function Keys() {
     // location
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
-          if (!player.jumping) {
+          if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
             enterHouse();
           }
         })) {

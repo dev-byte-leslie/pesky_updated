@@ -16,7 +16,9 @@ var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
 // Hide all stage elements
 function hideAll() {
   for (var i = 0; i < g.stage.children.length; i++) {
-    g.stage.getChildAt(i).visible = false;
+    if (g.stage.getChildAt(i) != blackOverlay) {
+      g.stage.getChildAt(i).visible = false;
+    }
   }
 }
 

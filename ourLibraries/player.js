@@ -111,7 +111,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.xValue += this.sprite.vx;
       if (left.isDown) {
         if (player.sprite._texture != player.spriteArray[5]._texture &&
-          player.sprite._textures != player.spriteArray[5]._textures) {
+          player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
             player.sprite._texture = player.spriteArray[5]._texture;
             player.sprite._textures = player.spriteArray[5]._textures;
         }
@@ -125,7 +125,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         player.sprite.play();
       } else if (right.isDown) {
         if (player.sprite._texture != player.spriteArray[5]._texture &&
-          player.sprite._textures != player.spriteArray[5]._textures) {
+          player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
             player.sprite._texture = player.spriteArray[5]._texture;
             player.sprite._textures = player.spriteArray[5]._textures;
         }
