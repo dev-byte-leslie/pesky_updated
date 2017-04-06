@@ -11,7 +11,7 @@ var stankyWalk, stankyJump, stankyIdle, stankyAttack, stankyWalk2, stankyJump2,
 
 //Sprite variables for Walter
 var walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
-  walterIdle2, walterAttack2;
+  walterIdle2, walterAttack2, walterJump, walterJump2;
 
 //General variables for different objects
 var wTexture, whiteFloor, animalTextures,
@@ -100,6 +100,9 @@ function setupGame() {
     .add('../images/PlayerAnimals/WalterPeck.png')
     .add('../images/PlayerAnimals/WalterWalk.png')
     .add('../images/PlayerAnimals/WalterIdle.png')
+    .add('../images/PlayerAnimals/walter_jump.png')
+    .add('../images/PlayerAnimals/walter_up.png')
+    .add('../images/PlayerAnimals/walter_down.png')
 
     // Backgrounds
     .add('../images/Backgrounds/CharSelectBackground.png')
@@ -155,6 +158,12 @@ function setup() {
   walterFly2 = new spriteCreator('../images/PlayerAnimals/WalterFly.png', 70, 70);
   walterAttack = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
   walterAttack2 = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
+  walterJump = new spriteCreator('../images/PlayerAnimals/walter_jump.png', 43, 53);
+  walterJump2 = new spriteCreator('../images/PlayerAnimals/walter_jump.png', 43, 53);
+  walterUp = new spriteCreator('../images/PlayerAnimals/walter_up.png', 43, 48);
+  walterUp2 = new spriteCreator('../images/PlayerAnimals/walter_up.png', 43, 48);
+  walterDown = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
+  walterDown2 = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
 
   //People sprites
   let numPeople = 8; // Total number of people PER SPRITE TYPE

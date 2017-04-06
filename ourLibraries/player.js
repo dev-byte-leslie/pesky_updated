@@ -2,13 +2,15 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
   // sets initial variables for player object
   // Arrays to hold all the sprites
   // 0,1 = Attack 1 and 2
-  // 2,3 = Fly/jump 1 and 2
+  // 2,3 = Jump 1 and 2
   // 4,5 = Walk 1 and 2
   // 6,7 = Idle 1 and 2
   // 8,9 = Down 1 and 2
   // 10,11 = Up 1 and 2
-  this.gooseSprites = [walterAttack, walterAttack2, walterFly, walterFly2, walterWalk,
-    walterWalk2, walterIdle, walterIdle2];
+  // 12,13 = Walter fly
+  this.gooseSprites = [walterAttack, walterAttack2, walterJump, walterJump2, walterWalk,
+    walterWalk2, walterIdle, walterIdle2, walterDown, walterDown2, walterUp, walterUp2,
+    walterFly, walterFly2];
 
   this.raccoonSprites = [carlosRabies, carlosRabies2, carlosJump, carlosJump2,
     carlosWalk, carlosWalk2, carlosIdle, carlosIdle2, carlosDown, carlosDown2,
@@ -18,6 +20,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
 
   this.canFly = (stringAnimal == 'goose');
+  this.isFlying = false;
   this.animal = stringAnimal;
 
   this.setCharacter = function(stringAnimal) {
@@ -89,6 +92,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         player.sprite.vy = 0;
         player.sprite.y = floorHit.y;
         player.jumping = false;
+        player.isFlying = false;
         player.sprite.gotoAndStop(0);
         player.sprite._texture = player.spriteArray[5]._texture;
         player.sprite._textures = player.spriteArray[5]._textures;

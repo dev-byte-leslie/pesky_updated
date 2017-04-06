@@ -1,27 +1,37 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
   //start the player jump if space is pressed and player isn't moving vertically
-  if (player.spacePush && (player.sprite.vy == 0 || !player.jumping) && !disableMovement) {
+  if (player.spacePush && !player.jumping && !disableMovement) {
     player.jumping = true;
     player.sprite.vy = -2.51;
     player.sprite._texture = player.spriteArray[2]._texture;
     player.sprite._textures = player.spriteArray[2]._textures;
     jumpSound.play();
-    if (!player.canFly) {
-      player.sprite.gotoAndStop(0);
-    }
+    player.sprite.gotoAndStop(0);
     player.sprite.animationSpeed = 0.1;
     player.sprite.play();
   }
-  if (player.jumping && player.spacePush && player.canFly && player.sprite.y > 500) {
-    player.sprite.vy = -2.51;
-    disableAttacking = true;
-  } else if (player.canFly && player.spacePush) {
-    player.jumping = true;
-    player.sprite.vy = 0;
-    disableAttacking = true;
+  let timeoutID;
+  if (!player.isFlying && player.jumping && player.canFly) {
+    timeoutID = setTimeout(function() {
+      if (player.jumping && player.spacePush) {
+        player.isFlying = true;
+        player.sprite._texture = player.spriteArray[12]._texture;
+        player.sprite._textures = player.spriteArray[12]._textures;
+        player.sprite.vy = player.sprite.y > 500 ? -2.51 : 0;
+        disableAttacking = true;
+      }
+    }, 500);
+  } else if (player.isFlying) {
+    if (player.spacePush && player.sprite.y > 500) {
+      player.sprite.vy = -2.51;
+    } else if (player.spacePush) {
+      player.sprite.vy = 0;
+    }
   }
-  player.lastVy = player.sprite.vy; // track what the player's vy was last frame
+  if (!player.spacePush) {
+    clearTimeout(timeoutID);
+  }
 }
 
 //build the inside of a house
