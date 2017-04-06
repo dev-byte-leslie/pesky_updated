@@ -56,7 +56,7 @@ function caughtState() {
   if (animalCont1.aCObject.x >= player.holdX + 250) {
     animalCont1.aCObject._texture = animalControlSprite._texture;
     animalCont1.aCObject._textures = animalControlSprite._textures;
-    if (!(skunkAlive || raccoonAlive || gooseAlive)) {
+    if (skunkAlive || raccoonAlive || gooseAlive) {
       initCharacterSwitch();
       hideAll();
       switchCharacterGroup.visible = true;
