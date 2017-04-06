@@ -95,6 +95,8 @@ function enterHouse() {
 function buildOutside() {
   player.inHouse = false;
 
+  gameObjects.removeChild(blackOverlay);
+  gameObjects.removeChild(gameOverText);
   gameObjects.removeChild(house);
   g.stage.removeChild(gameObjects);
 
@@ -104,8 +106,11 @@ function buildOutside() {
   map.addChild(player.sprite);
   map.addChild(animalCont1.aCObject);
 
+
   gameObjects.addChild(map);
   g.stage.addChild(gameObjects);
+  gameObjects.addChild(blackOverlay);
+  gameObjects.addChild(gameOverText);
 }
 
 //generates a random integer between the min and max values
