@@ -39,7 +39,7 @@ var lastLoop, thisLoop, fps = 60, disableMovement = false, maxX, minX;
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 
 //Background textures
-var titleBackground, hedgeBackground;
+var titleBackground, hedgeBackground, blackOverlay, gameOverText;
 
 var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
 
@@ -123,6 +123,8 @@ function setupGame() {
     .add('../images/Backgrounds/CharSelectBackground.png')
     .add('../images/Backgrounds/Title.png')
     .add('../images/Backgrounds/TitleBackground.png')
+    .add('../images/Backgrounds/BlackOverlay.png')
+    .add('../images/Backgrounds/GameOver.png')
 
     //house sprites/hedge sprite
     .add('../images/WorldObjects/Beige_House.png')
@@ -195,6 +197,7 @@ function setup() {
   person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
   animalControlAttackSprite = new spriteCreator('../images/AiSprites/animal_control_attack.png', 100, 100);
+  animalControlAttackSprite.anchor.set(0.5, 1);
 
   // Animal control sprites
   carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);
@@ -214,6 +217,8 @@ function setup() {
   hedgeBackground = new Sprite(TextureCache['../images/Backgrounds/CharSelectBackground.png']);
   titleBackground = new Sprite(TextureCache['../images/Backgrounds/TitleBackground.png']);
   title = new Sprite(TextureCache['../images/Backgrounds/Title.png']);
+  blackOverlay = new Sprite(TextureCache['../images/Backgrounds/BlackOverlay.png']);
+  gameOverText = new Sprite(TextureCache['../images/Backgrounds/GameOver.png']);
 
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
@@ -278,12 +283,29 @@ function caughtState() {
   if (animalCont1.aCObject.x >= player.holdX + 250) {
     animalCont1.aCObject._texture = animalControlSprite._texture;
     animalCont1.aCObject._textures = animalControlSprite._textures;
-    initCharacterSwitch();
-    hideAll();
-    switchCharacterGroup.visible = true;
-    g.state = switchCharacterState;
+    if (skunkAlive || raccoonAlive || gooseAlive) {
+      initCharacterSwitch();
+      hideAll();
+      switchCharacterGroup.visible = true;
+      g.state = switchCharacterState;
+    } else { // all animals are captured
+      blackOverlay.x = player.sprite.x - 200;
+      blackOverlay.y = 0;
+      if (blackOverlay.alpha < 1) {
+        blackOverlay.alpha += 0.01 * 60 / fps;
+      } else {
+        gameOverText.x = player.sprite.x - 100;
+        gameOverText.y = 470;
+        g.state = gameOverState;
+      }
+    }
   } else {
     animalCont1.aCObject.x += 60 / fps;
+  }
+}
+function gameOverState() {
+  if (gameOverText.alpha < 1) {
+    gameOverText.alpha += 0.005 * 60 / fps;
   }
 }
 function play() {
