@@ -48,37 +48,10 @@ function createGameWorld() {
       //creates the hedge object at the correct position
       curObj = new spawnWorldObject(hedge, gameX, 407);
       hedgeLocX1 = gameX;
-      hedgeLocY1 = 407;
+      hedgeLocY = 407;
     }
 
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
-    if(people1[i % 3] && randomInt(0, 6) == 1) {
-      people1[i % 3].x = gameX;
-      people1[i % 3].y = 525;
-      people1[i % 3].animationSpeed = 0.08;
-      let direction = Math.random() < 0.5 ? 1 : -1;
-      people1[i % 3].vx = direction;
-      people1[i % 3].scale.x = direction;
-      people1[i % 3].play();
-    }
-    if(people2[i % 3] && randomInt(0, 6) == 1) {
-      people2[i % 3].x = gameX;
-      people2[i % 3].y = 525;
-      people2[i % 3].animationSpeed = 0.08;
-      let direction = Math.random() < 0.5 ? 1 : -1;
-      people2[i % 3].vx = direction;
-      people2[i % 3].scale.x = direction;
-      people2[i % 3].play();
-    }
-    if(people3[i % 3] && randomInt(0, 6) == 1) {
-      people3[i % 3].x = gameX;
-      people3[i % 3].y = 525;
-      people3[i % 3].animationSpeed = 0.08;
-      let direction = Math.random() < 0.5 ? 1 : -1;
-      people3[i % 3].vx = direction;
-      people3[i % 3].scale.x = direction;
-      people3[i % 3].play();
-    }
     floors.push(floorObj.obSprite);
     map.addChildAt(floorObj.obSprite, 0);
     map.addChild(curObj.obSprite);
@@ -114,8 +87,12 @@ function createGameWorld() {
 
     } else {
       curObj = new spawnWorldObject(hedge, gameX, 407);
-      hedgeLocX2 = gameX;
-      hedgeLocY2 = 407;
+      if (hedgeLocX1 && hedgeLocX2) {
+        hedgeLocX3 = gameX;
+      } else {
+        hedgeLocX2 = gameX;
+      }
+      hedgeLocY = 407;
     }
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
@@ -124,41 +101,35 @@ function createGameWorld() {
     gameX += 400;
   }
   maxX = gameX;
-  if(people1[i % 3] && randomInt(0, 6) == 1) {
-    people1[i % 3].x = gameX;
-    people1[i % 3].y = 525;
-    people1[i % 3].animationSpeed = 0.08;
-    let direction = Math.random() < 0.5 ? 1 : -1;
-    people1[i % 3].vx = direction;
-    people1[i % 3].scale.x = direction;
-    people1[i % 3].play();
-  }
-  if(people2[i % 3] && randomInt(0, 6) == 1) {
-    people2[i % 3].x = gameX;
-    people2[i % 3].y = 525;
-    people2[i % 3].animationSpeed = 0.08;
-    let direction = Math.random() < 0.5 ? 1 : -1;
-    people2[i % 3].vx = direction;
-    people2[i % 3].scale.x = direction;
-    people2[i % 3].play();
-  }
-  if(people3[i % 3] && randomInt(0, 6) == 1) {
-    people3[i % 3].x = gameX;
-    people3[i % 3].y = 525;
-    people3[i % 3].animationSpeed = 0.08;
-    let direction = Math.random() < 0.5 ? 1 : -1;
-    people3[i % 3].vx = direction;
-    people3[i % 3].scale.x = direction;
-    people3[i % 3].play();
-  }
 
   people1.forEach(function(person) {
+    person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
+    person.y = 525;
+    person.animationSpeed = 0.08;
+    let direction = Math.random() < 0.5 ? 1 : -1;
+    person.vx = direction;
+    person.scale.x = direction;
+    person.play();
     map.addChild(person);
   });
   people2.forEach(function(person) {
+    person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
+    person.y = 525;
+    person.animationSpeed = 0.08;
+    let direction = Math.random() < 0.5 ? 1 : -1;
+    person.vx = direction;
+    person.scale.x = direction;
+    person.play();
     map.addChild(person);
   });
   people3.forEach(function(person) {
+    person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
+    person.y = 525;
+    person.animationSpeed = 0.08;
+    let direction = Math.random() < 0.5 ? 1 : -1;
+    person.vx = direction;
+    person.scale.x = direction;
+    person.play();
     map.addChild(person);
   });
 
@@ -190,6 +161,7 @@ function generateWorldSprites(negVals, posVals) {
   //assigns a random position for the hedge object in the positive direction
   randINT = randomInt(0, posLength - 1);
   posVals[1] = 4;
+  posVals[randINT] = 4;
 }
 
 function spawnWorldObject(sprite, xval, yval) {

@@ -94,12 +94,12 @@ function comeFromBush() {
     player.sprite._textures = player.spriteArray[4]._textures;
   }
   if (!player.sprite.visible) {
-    player.sprite.x = hedgeLocX1 + 157;
+    player.sprite.x = eval('hedgeLocX' + randomInt(1, 3)) + 157;
   } else {
     player.sprite.x = player.holdX;
   }
   player.camera.updateCamera();
-  player.sprite.y = hedgeLocY1 + 150;
+  player.sprite.y = hedgeLocY + 150;
   player.sprite.visible = true;
   gameObjects.visible = true;
   g.state = moveFromHedgeState;

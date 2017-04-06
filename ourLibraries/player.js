@@ -1,13 +1,12 @@
-//TODO: SPEED UP GOOSE IDLE ANIMATION
 function Player(stringAnimal) { //Temporary way to change animal sprites
-  //sets initial variables for player object
-  //Arrays to hold all the sprites
+  // sets initial variables for player object
+  // Arrays to hold all the sprites
   // 0,1 = Attack 1 and 2
   // 2,3 = Fly/jump 1 and 2
   // 4,5 = Walk 1 and 2
   // 6,7 = Idle 1 and 2
   // 8,9 = Down 1 and 2
-  //10,11 = Up 1 and 2
+  // 10,11 = Up 1 and 2
   this.gooseSprites = [walterAttack, walterAttack2, walterFly, walterFly2, walterWalk,
     walterWalk2, walterIdle, walterIdle2];
 
@@ -131,7 +130,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       }
     }
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
-      !shiftKey.isDown && !disableMovement) {
+      !shiftKey.isDown && !disableMovement && !left.isDown && !right.isDown) {
       this.doIdle();
     }
     this.camera.updateCamera();

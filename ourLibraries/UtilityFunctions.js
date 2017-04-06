@@ -24,23 +24,6 @@ function jump() {
   player.lastVy = player.sprite.vy; // track what the player's vy was last frame
 }
 
-function spriteCreator(stringTexture, width, height) {
-  //checks to see if the input is a string
-  // if it is not a string it converts it to a string
-  if (typeof stringTexture != 'string') {
-    this.stringTexture = String(stringTexture);
-  } else {
-    //sets stringTexture to as the varible passed in
-    this.stringTexture = stringTexture;
-  }
-  //creates a filmstrip of the new texture
-  this.texture = animalAnimated.filmstrip(stringTexture, width, height);
-
-  //makes the animated sprite object and returns it
-  this.sprite = new MovieClip(this.texture);
-  return this.sprite;
-}
-
 //build the inside of a house
 function enterHouse() {
   player.inHouse = true;
@@ -67,30 +50,6 @@ function enterHouse() {
   house.addChild(player.sprite);
 }
 
-/*function attack()
-{
-  var rabies = new spriteCreator('../images/PlayerAnimals/Carlos_attack.png', 55, 45);
-  var stink = '../images/PlayerAnimals/Stanky_attack.png';
-
-
-  //var poop
-
-  if(Raccoon.active)
-  {
-    player.sprite = rabies;
-    player.sprite.play();
-  }
-  if(Skunk.active)
-  {
-    player.sprite = stink;
-    player.sprite.play();
-  }
-  /*if(Goose.active)
-  {
-
-  }
-}*/
-
 //builds the outside game map
 function buildOutside() {
   player.inHouse = false;
@@ -111,11 +70,6 @@ function buildOutside() {
   g.stage.addChild(gameObjects);
   gameObjects.addChild(blackOverlay);
   gameObjects.addChild(gameOverText);
-}
-
-//generates a random integer between the min and max values
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function camera() {
@@ -140,58 +94,4 @@ function camera() {
     //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
     g.stage.pivot.y = 607; //This can change but doesnt allow the player to see outside of map
   };
-}
-// Monitor framerate using Date in ms between last frame and this frame
-function updateFps() {
-  frameTime = (thisLoop = new Date) - lastLoop;
-  lastLoop = thisLoop;
-  fps = Math.ceil(1000 / frameTime);
-  if (player) {
-    fpsDisplay.x = player.sprite.x - 160;
-    fpsDisplay.y = 426;
-  }
-}
-function updateAI() {
-  b.hit(player.sprite, people1, false, false, false,
-    function(collision, personHit) {
-    if (disableMovement) { // if player is attacking
-      if (personHit._texture != person1_sick._texture
-      && personHit._textures != person1_sick._textures) {
-        personHit._texture = person1_sick._texture;
-        personHit._textures = person1_sick._textures;
-        personHit.vx *= 0.3;
-      }
-    }
-  });
-  b.hit(player.sprite, people2, false, false, false,
-    function(collision, personHit) {
-    if (disableMovement) { // if player is attacking
-      if (personHit._texture != person2_sick._texture
-      && personHit._textures != person2_sick._textures) {
-        personHit._texture = person2_sick._texture;
-        personHit._textures = person2_sick._textures;
-        personHit.vx *= 0.3;
-      }
-    }
-  });
-  b.hit(player.sprite, people3, false, false, false,
-    function(collision, personHit) {
-    if (disableMovement) { // if player is attacking
-      if (personHit._texture != person3_sick._texture
-      && personHit._textures != person3_sick._textures) {
-        personHit._texture = person3_sick._texture;
-        personHit._textures = person3_sick._textures;
-        personHit.vx *= 0.3;
-      }
-    }
-  });
-  people1.forEach(function(person) {
-    person.x += person.vx;
-  });
-  people2.forEach(function(person) {
-    person.x += person.vx;
-  });
-  people3.forEach(function(person) {
-    person.x += person.vx;
-  });
 }
