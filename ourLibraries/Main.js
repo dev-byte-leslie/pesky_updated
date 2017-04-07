@@ -1,18 +1,5 @@
-// Global variables
-const WIDTH = 1280, HEIGHT = 720;
-var Container = PIXI.Container,
-  autoDetectRenderer = PIXI.autoDetectRenderer,
-  loader = PIXI.loader,
-  resources = PIXI.loader.resources,
-  TextureCache = PIXI.utils.TextureCache,
-  Texture = PIXI.Texture,
-  Sprite = PIXI.Sprite,
-  MovieClip = PIXI.extras.MovieClip;
-
-var g, renderer, b, tinkPoint, animalAnimated;
-// TODO clean this up a little
 // Sprite variables for people
-var people1 = [], people2 = [], people3 = [];
+var people1 = [], people2 = [], people3 = [], person1_sick, person2_sick, person3_sick;
 
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
@@ -24,29 +11,27 @@ var stankyWalk, stankyJump, stankyIdle, stankyAttack, stankyWalk2, stankyJump2,
 
 //Sprite variables for Walter
 var walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
-  walterIdle2, walterAttack2;
+  walterIdle2, walterAttack2, walterJump, walterJump2;
 
 //General variables for different objects
-var wTexture, whiteFloor, animalTextures, animalAnimated,
+var wTexture, whiteFloor, animalTextures,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
-  doorObj, floorTexture, hedgeLocX1, hedgeLocY1, hedgeLocX2, hedgeLocY2, interior1;
+  doorObj, floorTexture, interior1;
 
-// General game variables
-var lastLoop, thisLoop, fps = 60, disableMovement = false, maxX, minX;
+var hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY;
+
+var garbageSprite, garbages = [];
 
 //vars to hold sprites of houses
 var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 
 //Background textures
-var titleBackground, hedgeBackground;
-
-var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
+var titleBackground, hedgeBackground, blackOverlay, gameOverText;
 
 // Called when everything is loaded
 $(document).ready(function() {
   initEverything();
-
 });
 // Initialize global variables
 function initEverything() {
@@ -117,13 +102,17 @@ function setupGame() {
     .add('../images/PlayerAnimals/WalterPeck.png')
     .add('../images/PlayerAnimals/WalterWalk.png')
     .add('../images/PlayerAnimals/WalterIdle.png')
-
-    .add('../images/floor.png')
+    .add('../images/PlayerAnimals/walter_jump.png')
+    .add('../images/PlayerAnimals/walter_up.png')
+    .add('../images/PlayerAnimals/walter_down.png')
 
     // Backgrounds
     .add('../images/Backgrounds/CharSelectBackground.png')
     .add('../images/Backgrounds/Title.png')
     .add('../images/Backgrounds/TitleBackground.png')
+    .add('../images/Backgrounds/BlackOverlay.png')
+    .add('../images/Backgrounds/GameOver.png')
+    .add('../images/floor.png')
 
     //house sprites/hedge sprite
     .add('../images/WorldObjects/Beige_House.png')
@@ -133,6 +122,9 @@ function setupGame() {
     .add('../images/WorldObjects/Grey_House.png')
     .add('../images/WorldObjects/Door_Invisible.png')
     .add('../images/WorldObjects/Interior_1.png')
+
+    // Object sprites
+    .add('../images/WorldObjects/garbage.png')
     .load(setup);
 }
 // Second setup function for assigning assets to variables
@@ -171,27 +163,36 @@ function setup() {
   walterFly2 = new spriteCreator('../images/PlayerAnimals/WalterFly.png', 70, 70);
   walterAttack = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
   walterAttack2 = new spriteCreator('../images/PlayerAnimals/WalterPeck.png', 60, 55);
+  walterJump = new spriteCreator('../images/PlayerAnimals/walter_jump.png', 43, 53);
+  walterJump2 = new spriteCreator('../images/PlayerAnimals/walter_jump.png', 43, 53);
+  walterUp = new spriteCreator('../images/PlayerAnimals/walter_up.png', 43, 48);
+  walterUp2 = new spriteCreator('../images/PlayerAnimals/walter_up.png', 43, 48);
+  walterDown = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
+  walterDown2 = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
 
   //People sprites
-  person1_1 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
-  person1_2 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
-  person1_3 = new spriteCreator('../images/AiSprites/person_1.png', 50, 75);
-  person2_1 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
-  person2_2 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
-  person2_3 = new spriteCreator('../images/AiSprites/person_2.png', 50, 75);
-  person3_1 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
-  person3_2 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
-  person3_3 = new spriteCreator('../images/AiSprites/person_3.png', 50, 75);
-  people1.push(person1_1);
-  people1.push(person1_2);
-  people1.push(person1_3);
-  people2.push(person2_1);
-  people2.push(person2_2);
-  people2.push(person2_3);
-  people3.push(person3_1);
-  people3.push(person3_2);
-  people3.push(person3_3);
+  let numPeople = 8; // Total number of people PER SPRITE TYPE
+  let peopleTypes = 3; // Number of sprite types for people
+  // eval() takes a string and turns it into code which makes it
+  // much easier to generate and assign repetitive variables
+  for (let i = 1; i <= numPeople; i++) { // it is assumed all 3 people arrays have equal length
+    for (let j = 1; j <= peopleTypes; j++) {
+      eval('person' + j + '_' + i + ' = new spriteCreator(' + '\'../images/AiSprites/person_' + j + '.png\', 50, 75);');
+      eval('people' + j).push(eval('person' + j + '_' + i));
+    }
+  }
+  person1_sick = new spriteCreator('../images/AiSprites/person_1_sick.png', 50, 75);
+  person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
+  person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
+  animalControlAttackSprite = new spriteCreator('../images/AiSprites/animal_control_attack.png', 100, 100);
+  animalControlAttackSprite.anchor.set(0.5, 1);
+
+  // Objects like garbage
+  for (let i = 1; i <= 50; i++) { // 25 garbages in the world
+    eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage.png\', 80, 42);');
+    eval('garbages.push(garbage' + i + ');');
+  }
 
   // Animal control sprites
   carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);
@@ -211,6 +212,8 @@ function setup() {
   hedgeBackground = new Sprite(TextureCache['../images/Backgrounds/CharSelectBackground.png']);
   titleBackground = new Sprite(TextureCache['../images/Backgrounds/TitleBackground.png']);
   title = new Sprite(TextureCache['../images/Backgrounds/Title.png']);
+  blackOverlay = new Sprite(TextureCache['../images/Backgrounds/BlackOverlay.png']);
+  gameOverText = new Sprite(TextureCache['../images/Backgrounds/GameOver.png']);
 
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
@@ -218,86 +221,4 @@ function setup() {
 
   startMenu();
   g.state = menuState;
-}
-// Game loops dependent on state
-function menuState() {
-  g.stage.position.x = 0;
-  g.stage.position.y = 0;
-  g.stage.scale.x = 1;
-  g.stage.scale.y = 1;
-  g.stage.pivot.x = 0.5;
-  g.stage.pivot.y = 0;
-  hideAll();
-  backgroundGroup.visible = true;
-  title.position.x = 20;
-  updateFps();
-  mainMenuGroup.visible = true;
-}
-function optionsState() {
-  updateFps();
-}
-function creditsState() {
-  updateFps();
-  credits.y -= 3 * 60 / fps;
-}
-function tutorialState() {
-  updateFps();
-}
-function switchCharacterState() {
-  updateFps();
-}
-function moveIntoHedgeState() { // freeze the game and move player into hedge
-  updateFps();
-  updateAI();
-  if (player.sprite.y > hedgeLocY1 + 150) {
-    player.sprite.y += -1 * 60 / fps;
-  } else {
-    initCharacterSwitch();
-    hideAll();
-    switchCharacterGroup.visible = true;
-    g.state = switchCharacterState;
-  }
-}
-function moveFromHedgeState() {
-  updateFps();
-  updateAI();
-  if (player.sprite.y < 600) {
-    player.sprite.y += 60 / fps;
-  } else {
-    player.sprite._texture = player.spriteArray[4]._texture;
-    player.sprite._textures = player.spriteArray[4]._textures;
-    g.state = play;
-  }
-}
-function caughtState() {
-  updateFps();
-  updateAI();
-  if (animalCont1.aCObject.x >= player.holdX + 250) {
-    animalCont1.aCObject._texture = animalControlSprite._texture;
-    animalCont1.aCObject._textures = animalControlSprite._textures;
-    initCharacterSwitch();
-    hideAll();
-    switchCharacterGroup.visible = true;
-    g.state = switchCharacterState;
-  } else {
-    animalCont1.aCObject.x += 60 / fps;
-  }
-}
-function play() {
-  //call functions for player and ai logic
-  updateAI();
-  player.update();
-  jump();
-  if (!player.inHouse) { // prevent being captured by invisible animal control
-    animalCont1.aiMovement();
-  }
-  tinkPoint.update();
-  updateFps();
-}
-
-// Hide all stage elements
-function hideAll() {
-  for (var i = 0; i < g.stage.children.length; i++) {
-    g.stage.getChildAt(i).visible = false;
-  }
 }

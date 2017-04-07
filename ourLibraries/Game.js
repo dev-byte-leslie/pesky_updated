@@ -11,7 +11,10 @@ function initGame() {
   //calls function that designates what each key does when it is pressed
   // only enable keyboard input (e.g. movement/spacebar) after game is started
   Keys();
-
+  blackOverlay.alpha = 0;
+  gameOverText.alpha = 0;
+  gameOverText.scale.x = 0.25;
+  gameOverText.scale.y = 0.25;
   gameObjects.addChild(map);
   //gameObjects.addChild(house);
   //gameObjects.addChild(sewer);
@@ -26,4 +29,5 @@ function initGame() {
 
   animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
   map.addChild(animalCont1.aCObject);
+  g.stage.addChild(blackOverlay);
 }
