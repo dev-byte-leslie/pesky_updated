@@ -23,7 +23,9 @@ function optionsState() {
 }
 function creditsState() {
   updateFps();
-  credits.y -= 3 * 60 / fps;
+  credits.y -= 4 * 60 / fps;
+  credits2.y -= 4 * 60 / fps;
+  credits3.y -= 4 * 60 / fps;
 }
 function tutorialState() {
   updateFps();
