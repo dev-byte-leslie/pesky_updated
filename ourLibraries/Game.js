@@ -12,6 +12,7 @@ function initGame() {
   gameObjects.addChild(map);
   //gameObjects.addChild(house);
   //gameObjects.addChild(sewer);
+  gameObjects.addChild(chaosMeter);
   g.stage.addChild(gameObjects);
   gameObjects.addChild(fpsDisplay);
   createGameWorld();
