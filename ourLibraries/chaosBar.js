@@ -1,30 +1,38 @@
-box = g.rectangle(
-  widthInPixels,
-  heightInPixels,
-  "fillColor",
-  "strokeColor",
-  lineWidth,
-  xPosition,
-  yPosition
-);
+var widthInPixels, heightInPixels, fillColor, strokeColor, lineWidth, xPosition, yPosition
 
-//Create Chaos Bar Containier
-chaosBar = new Container();
-chaosBar.position.set(200, 200);
+function initChaosBar()
+{
+  let box = g.rectangle(
+    widthInPixels,
+    heightInPixels,
+    'fillColor',
+    'strokeColor',
+    lineWidth,
+    xPosition,
+    yPosition
+  );
 
-//Create Background Rectangle
-let backBar = g.rectangle(100, 20, "black");
-backBar.x = player.sprite.x -160;
-backBar.y = 426;
-chaosBar.addChild(backBar);
+  //Create Chaos Bar Containier
+  chaosBar.position.set(0 , 0);
+  var frontBar, backBar
 
-//Create Front Rectangle
-let frontBar = g.rectangle(100, 20, "red");
-frontBar.x = player.sprite.x -160;
-frontBar.y = 426;
-chaosBar.addChild(frontBar);
+  //Create Back Rectangle
+  if(player)
+  {
+    backBar = g.rectangle(100, 20, 'white', 'white', 5, player.sprite.x -160, 426 );
+    chaosBar.addChild(backBar);
+  }
 
-chaosBar.outer = frontBar; //so we can change length as necesary
+  //Create Front Rectangle
+  if(player)
+  {
+    frontBar = g.rectangle(100, 20, 'red', 'red', 5, player.sprite.x -160, 426 );
+    chaosBar.addChild(frontBar);
+  }
 
-chaosBar.outer.width = 30;
-// //Exmaple on how to change the bar
+  chaosBar.outer = frontBar; //so we can change length as necesary
+
+  //chaosBar.outer.width = 30;
+  // //Exmaple on how to change the bar
+
+}
