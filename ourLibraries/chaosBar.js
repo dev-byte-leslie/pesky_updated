@@ -12,6 +12,8 @@ function initChaosBar()
     yPosition
   );
 
+
+
   //Create Chaos Bar Containier
   chaosBar.position.set(0 , 0);
   var frontBar, backBar
@@ -26,7 +28,7 @@ function initChaosBar()
   //Create Front Rectangle
   if(player)
   {
-    frontBar = g.rectangle(100, 20, 'red', 'red', 5, player.sprite.x -160, 426 );
+    frontBar = g.rectangle(80, 20, 'red', 'red', 5, player.sprite.x -160, 426 );
     chaosBar.addChild(frontBar);
   }
 
