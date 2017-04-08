@@ -12,8 +12,6 @@ function initChaosBar()
     yPosition
   );
 
-
-
   //Create Chaos Bar Containier
   chaosBar.position.set(0 , 0);
   var frontBar, backBar

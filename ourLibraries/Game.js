@@ -6,6 +6,7 @@ function initGame() {
   gameObjects = new PIXI.Container();
   chaosBar = new PIXI.Container();
 
+  //create the chaos bar
   initChaosBar();
 
   //calls function that designates what each key does when it is pressed
