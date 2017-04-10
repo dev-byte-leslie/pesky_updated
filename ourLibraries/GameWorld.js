@@ -100,7 +100,7 @@ function createGameWorld() {
     gameX += 400;
   }
   maxX = gameX;
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= peopleTypes; i++) {
     eval("people" + i).forEach(function(person) {
       person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
       person.y = 525;
