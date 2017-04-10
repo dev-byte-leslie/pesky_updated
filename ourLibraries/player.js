@@ -41,7 +41,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
 
   //assign to the walk sprite of the designated array
   this.sprite = this.spriteArray[4];
-
+  this.chaos = false;
   this.nearDoor = false; //sets whether the player is near a door
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
@@ -152,11 +152,11 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     this.camera.updateCamera();
 
     if (player.sprite.position.x > 12340) {
-      player.sprite.vx = 12330;
+      player.sprite.position.x = 12340;
     }
 
     if (player.sprite.position.x < -11940) {
-      player.sprite.position.x = -11930;
+      player.sprite.position.x = -11940;
     }
   };
   this.doIdle = function () {

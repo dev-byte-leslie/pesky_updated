@@ -6,7 +6,14 @@ module.exports = {
     "ecmaVersion": 6
   },
   "globals": {
-    "PIXI": false
+    "PIXI": false,
+    "createButton": false,
+    "Raccoon": false,
+    "Skunk": false,
+    "Goose": false,
+    "WIDTH": false,
+    "HEIGHT": false,
+    "switchCharacterState": false
   },
   "rules": {
     "indent": ["error", 2],
