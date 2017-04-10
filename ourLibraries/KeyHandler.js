@@ -86,11 +86,25 @@ function Keys() {
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
       player.sprite.play();
-      b.hit(player.sprite, garbages, false, false, false, function(collision, garbageHit) {
-        garbageHit.play();
+      b.hit(player.sprite, garbages, false, false, false,
+        function(collision, garbageHit) {
+        if (!garbageHit.knockedOver) {
+          if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
+            garbageHit.y - 100, 35, 100))) {
+            if (player.sprite.scale.x == -1) {
+              garbageHit.scale.x = 1;
+            } else {
+              garbageHit.x -= 60;
+              garbageHit.scale.x = -1;
+            }
+            garbageHit.y += 2;
+            garbageHit.knockedOver = true;
+            garbageHit.play();
+          }
+        }
       });
     }
-  };
+  }
 
   shiftKey.release = function() {
     if (!isAttacking && !disableAttacking) {
@@ -153,7 +167,7 @@ function Keys() {
             player.sprite._texture = player.spriteArray[11]._texture;
             player.sprite._textures = player.spriteArray[11]._textures;
           }
-          player.sprite.x = hedgeLoc32 + 157;
+          player.sprite.x = hedgeLocX3 + 157;
           player.holdX = hedgeLocX3 + 157;
           disableAttacking = true;
           g.state = moveIntoHedgeState;
