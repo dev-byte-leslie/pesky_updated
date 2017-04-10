@@ -135,6 +135,15 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       this.doIdle();
     }
     this.camera.updateCamera();
+
+    if (player.sprite.position.x > 12340) {
+      player.sprite.vx = 12330;
+    }
+
+    if (player.sprite.position.x < -11940) {
+      player.sprite.position.x = -11930;
+    }
+    console.log(player.sprite.position.x);
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
