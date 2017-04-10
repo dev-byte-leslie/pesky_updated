@@ -161,8 +161,16 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       player.sprite.position.x = -11940;
     }
 
+    if (player.inHouse && player.sprite.position.x >= 679) {
+      player.sprite.position.x = 679;
+    }
+
+    if (player.inHouse && player.sprite.position.x <= 329) {
+      player.sprite.position.x = 329;
+    }
+
     console.log(player.sprite.position.x);
-    console.log(player.inHouse);    
+    console.log(player.inHouse);
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
