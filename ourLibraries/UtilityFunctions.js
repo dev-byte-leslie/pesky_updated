@@ -36,7 +36,6 @@ function jump() {
 
 //build the inside of a house
 function enterHouse() {
-  player.inHouse = true;
   disableMovement = true;
   player.doIdle();
   setTimeout(function() {
@@ -127,7 +126,17 @@ function camera() {
         g.stage.pivot.x = -11800;
       }
     } else {
-      g.stage.pivot.x = player.sprite.position.x;
+      if (player.inHouse) {
+        if (player.sprite.position.x >= 539) {
+          g.stage.pivot.x = player.sprite.position.x - (player.sprite.position.x - 539);
+        } else if (player.sprite.position.x <= 470) {
+          g.stage.pivot.x = player.sprite.position.x + (470 - player.sprite.position.x);
+        } else {
+          g.stage.pivot.x = player.sprite.position.x;
+        }
+      } else {
+        g.stage.pivot.x = player.sprite.position.x;
+      }
     }
 
     //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player

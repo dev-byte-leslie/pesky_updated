@@ -15,8 +15,6 @@ function initGame() {
   gameOverText.scale.x = 0.25;
   gameOverText.scale.y = 0.25;
   gameObjects.addChild(map);
-  //gameObjects.addChild(house);
-  //gameObjects.addChild(sewer);
   gameObjects.addChild(chaosBar);
   g.stage.addChild(gameObjects);
   gameObjects.addChild(fpsDisplay);

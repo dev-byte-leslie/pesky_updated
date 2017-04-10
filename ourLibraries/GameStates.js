@@ -122,6 +122,7 @@ function fadeIntoHouse() {
     player.doIdle();
     disableMovement = false;
     g.state = play;
+    player.inHouse = true;
   }
 }
 function fadeOutOfWorld() {
