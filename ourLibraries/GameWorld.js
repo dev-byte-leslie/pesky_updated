@@ -137,6 +137,7 @@ function createGameWorld() {
     garbage.anchor.set(0.5, 1);
     garbage.animationSpeed = 0.1;
     garbage.loop = false;
+    garbage.knockedOver = false;
     map.addChild(garbage);
   });
 
