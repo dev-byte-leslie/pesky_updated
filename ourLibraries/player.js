@@ -151,14 +151,15 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     }
     this.camera.updateCamera();
 
+
+    //controls the player being able to leave the bounds of the world
     if (player.sprite.position.x > 12340) {
       player.sprite.position.x = 12340;
     }
 
     if (player.sprite.position.x < -11940) {
       player.sprite.position.x = -11940;
-    }
-    console.log(player.sprite.position.x);
+    }    
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&

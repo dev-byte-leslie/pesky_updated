@@ -20,8 +20,7 @@ function initChaosBar()
   if(player.chaos == false)
   {
     backBar = g.rectangle(100, 20, 'white', 'white', 5, player.sprite.position.x -160, 426 );
-    chaosBar.addChild(backBar);
-    print("in back bar")
+    chaosBar.addChild(backBar);    
   }
 
   //Create Front Rectangle
@@ -29,7 +28,6 @@ function initChaosBar()
   {
     frontBar = g.rectangle(80, 20, 'red', 'red', 5, player.sprite.position.x -160, 426 );
     chaosBar.addChild(frontBar);
-    print("in front bar")
   }
 
   chaosBar.outer = frontBar; //so we can change length as necesary
