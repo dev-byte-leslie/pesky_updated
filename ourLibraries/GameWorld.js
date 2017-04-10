@@ -100,37 +100,19 @@ function createGameWorld() {
     gameX += 400;
   }
   maxX = gameX;
-
-  people1.forEach(function(person) {
-    person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
-    person.y = 525;
-    person.animationSpeed = 0.08;
-    let direction = Math.random() < 0.5 ? 1 : -1;
-    person.vx = direction;
-    person.scale.x = direction;
-    person.play();
-    map.addChild(person);
-  });
-  people2.forEach(function(person) {
-    person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
-    person.y = 525;
-    person.animationSpeed = 0.08;
-    let direction = Math.random() < 0.5 ? 1 : -1;
-    person.vx = direction;
-    person.scale.x = direction;
-    person.play();
-    map.addChild(person);
-  });
-  people3.forEach(function(person) {
-    person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
-    person.y = 525;
-    person.animationSpeed = 0.08;
-    let direction = Math.random() < 0.5 ? 1 : -1;
-    person.vx = direction;
-    person.scale.x = direction;
-    person.play();
-    map.addChild(person);
-  });
+  for (let i = 1; i <= 3; i++) {
+    eval("people" + i).forEach(function(person) {
+      person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
+      person.y = 525;
+      person.isRunning = false;
+      person.animationSpeed = 0.08;
+      let direction = Math.random() < 0.5 ? 1 : -1;
+      person.vx = direction;
+      person.scale.x = direction;
+      person.play();
+      map.addChild(person);
+    });
+  }
   garbages.forEach(function(garbage) {
     garbage.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
     garbage.y = 600;

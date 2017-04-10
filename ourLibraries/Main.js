@@ -1,5 +1,6 @@
 // Sprite variables for people
-var people1 = [], people2 = [], people3 = [], person1_sick, person2_sick, person3_sick;
+var people1 = [], people2 = [], people3 = [], person1_sick,
+person2_sick, person3_sick, peopleTypes, numPeople;
 
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
@@ -172,8 +173,8 @@ function setup() {
   walterDown2 = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
 
   //People sprites
-  let numPeople = 8; // Total number of people PER SPRITE TYPE
-  let peopleTypes = 3; // Number of sprite types for people
+  numPeople = 8; // Total number of people PER SPRITE TYPE
+  peopleTypes = 3; // Number of sprite types for people
   // eval() takes a string and turns it into code which makes it
   // much easier to generate and assign repetitive variables
   for (let i = 1; i <= numPeople; i++) { // it is assumed all 3 people arrays have equal length
