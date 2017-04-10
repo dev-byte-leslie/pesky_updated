@@ -16,15 +16,15 @@ gameMusic = sounds["../sound/music/GameMusic.wav"];
 menuMusic = sounds["../sound/music/MenuMusic.wav"];
 jumpSound = sounds["../sound/music/Jump.wav"];
 
-    menuMusic.volume = 0.7;   // menu music volume
+    menuMusic.volume = 0.5;   // menu music volume
     menuMusic.loop = true;    // menu music loops
 
-    gameMusic.volume = 0.7;   // game music volume
+    gameMusic.volume = 0.5;   // game music volume
     gameMusic.loop = true;    // game music loops
 
   // menu music plays automatically when menu is active
   // needs more work
-  if (g.state = menuState){
+  if (g.state = menuState) {
     menuMusic.play();
     console.log('menu music playing');
   }
@@ -75,11 +75,13 @@ var optionsGroup;
 function initOptions() {
   optionsGroup = new PIXI.Container();
   let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
+  buttonBack.scale.x = 0.5;
+  buttonBack.scale.y = 0.5;
   var buttonMute = createButton(WIDTH / 2, HEIGHT * 0.5 - 90, muteAudio, optionsGroup, 'mute');
-  tutorial = new PIXI.Text('just press c to pause music, ignore the button', {font: '50px Arial', fill: 'red'});
+  buttonMute.scale.x = 0.5;
+  buttonMute.scale.y = 0.5;
 
   optionsGroup.addChild(buttonBack); // this button is reused for credits and tutorial
-  optionsGroup.addChild(tutorial);
   optionsGroup.addChild(buttonMute);
   g.stage.addChild(optionsGroup);
 }
@@ -89,5 +91,6 @@ function mainMenu() {
 }
 
 function muteAudio() {
-// add later maybe
+  menuMusic.volume = (menuMusic.volume == 0) ? 0.5 : 0;
+  gameMusic.volume = (gameMusic.volume == 0) ? 0.5 : 0;
 }

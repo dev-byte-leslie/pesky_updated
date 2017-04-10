@@ -22,7 +22,6 @@ function Keys() {
     moveMent = true;
   };
 
-
   //Left arrow key `release` method
   left.release = function() {
   //If the left arrow has been released, and the right arrow isn't down,
@@ -36,7 +35,6 @@ function Keys() {
       moveMent = false;
     }
   };
-
 
   //Up
   up.press = function() {
@@ -59,7 +57,6 @@ function Keys() {
     moveMent = true;
   };
 
-
   right.release = function() {
     if (!left.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
@@ -70,21 +67,9 @@ function Keys() {
     }
   };
 
-
-  //Down
-  //TODO Make sure only works in certain spots
-  down.press = function() {
-  };
-
-
-  down.release = function() {
-  };
-
-
   space.press = function() {
     player.spacePush = true;
   };
-
 
   space.release = function() {
     player.spacePush = false;
@@ -101,6 +86,9 @@ function Keys() {
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
       player.sprite.play();
+      b.hit(player.sprite, garbages, false, false, false, function(collision, garbageHit) {
+        garbageHit.play();
+      });
     }
   };
 
@@ -128,16 +116,18 @@ function Keys() {
     // location
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
-          enterHouse();
+          if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+            enterHouse();
+          }
         })) {
     }
 
-    if (b.hit(player.sprite, door, false, false, false)) {
+    if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
       buildOutside();
     }
     if (!player.jumping) {
       if (b.hitTestRectangle(player.sprite,
-        new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY1, 1, 300),
+        new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY, 1, 300),
         false, false, false)) {
           if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
             player.sprite._texture = player.spriteArray[11]._texture;
@@ -148,7 +138,7 @@ function Keys() {
           disableAttacking = true;
           g.state = moveIntoHedgeState;
         } else if (b.hitTestRectangle(player.sprite,
-        new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY2, 1, 300))) {
+        new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY, 1, 300))) {
           if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
             player.sprite._texture = player.spriteArray[11]._texture;
             player.sprite._textures = player.spriteArray[11]._textures;
@@ -157,12 +147,18 @@ function Keys() {
           player.holdX = hedgeLocX2 + 157;
           disableAttacking = true;
           g.state = moveIntoHedgeState;
+        } else if (b.hitTestRectangle(player.sprite,
+        new PIXI.Rectangle(hedgeLocX3+157, hedgeLocY, 1, 300))) {
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.sprite.x = hedgeLoc32 + 157;
+          player.holdX = hedgeLocX3 + 157;
+          disableAttacking = true;
+          g.state = moveIntoHedgeState;
       }
     }
-  };
-
-  switchE.release = function() {
-    //TODO maybe use this for something
   };
 
   f1.press = function() {
