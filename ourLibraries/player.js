@@ -116,8 +116,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       if (left.isDown) {
         if (player.sprite._texture != player.spriteArray[5]._texture &&
           player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
-            player.sprite._texture = player.spriteArray[5]._texture;
-            player.sprite._textures = player.spriteArray[5]._textures;
+          player.sprite._texture = player.spriteArray[5]._texture;
+          player.sprite._textures = player.spriteArray[5]._textures;
         }
         if (fps >= 30) {
           player.sprite.vx = -5 * 60 / fps;
@@ -130,8 +130,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       } else if (right.isDown) {
         if (player.sprite._texture != player.spriteArray[5]._texture &&
           player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
-            player.sprite._texture = player.spriteArray[5]._texture;
-            player.sprite._textures = player.spriteArray[5]._textures;
+          player.sprite._texture = player.spriteArray[5]._texture;
+          player.sprite._textures = player.spriteArray[5]._textures;
         }
         if (fps >= 30) {
           player.sprite.vx = 5 * 60 / fps;
@@ -158,7 +158,17 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.sprite.position.x < -11940) {
       player.sprite.position.x = -11940;
     }
-    console.log(player.sprite.position.x);
+    //console.log(player.sprite.position.x);
+
+    //updates position of chaos bar
+    if (player) {
+      chaosBar.inner.x =  player.sprite.position.x -157;
+      chaosBar.inner.y =  430;
+
+      chaosBar.outer.x =  player.sprite.position.x -157;
+      chaosBar.outer.y =  430;
+    }
+
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&

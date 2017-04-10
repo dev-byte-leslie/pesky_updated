@@ -19,20 +19,21 @@ function initChaosBar()
   //Create Back Rectangle
   if(player.chaos == false)
   {
-    backBar = g.rectangle(100, 20, 'white', 'white', 5, player.sprite.position.x -160, 426 );
+    backBar = g.rectangle(100, 10, 'white', 'white', 2, player.sprite.position.x -157, 430 );
     chaosBar.addChild(backBar);
-    //print("in back bar");
+    console.log("in back bar");
   }
 
   //Create Front Rectangle
   if(player.chaos == false)
   {
-    frontBar = g.rectangle(80, 20, 'red', 'red', 5, player.sprite.position.x -160, 426 );
+    frontBar = g.rectangle(1, 10, 'red', 'red', 2, player.sprite.position.x -157, 430 );
     chaosBar.addChild(frontBar);
-    //print("in front bar");
+    console.log("in front bar");
   }
 
   chaosBar.outer = frontBar; //so we can change length as necesary
+  chaosBar.inner = backBar;
 
   //chaosBar.outer.width = 30;
   // //Exmaple on how to change the bar

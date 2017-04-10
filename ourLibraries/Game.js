@@ -5,8 +5,6 @@ function initGame() {
   gameObjects = new PIXI.Container();
   chaosBar = new PIXI.Container();
 
-
-
   //calls function that designates what each key does when it is pressed
   // only enable keyboard input (e.g. movement/spacebar) after game is started
   Keys();
