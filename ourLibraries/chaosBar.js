@@ -1,4 +1,4 @@
-var widthInPixels, heightInPixels, fillColor, strokeColor, lineWidth, xPosition, yPosition
+var widthInPixels, heightInPixels, fillColor, strokeColor, lineWidth, xPosition, yPosition;
 
 function initChaosBar()
 {
@@ -14,17 +14,17 @@ function initChaosBar()
 
   //Create Chaos Bar Containier
   chaosBar.position.set(0 , 0);
-  var frontBar, backBar
+  var frontBar, backBar;
 
   //Create Back Rectangle
-  if(player)
+  if(player.chaos == false)
   {
     backBar = g.rectangle(100, 20, 'white', 'white', 5, player.sprite.x -160, 426 );
     chaosBar.addChild(backBar);
   }
 
   //Create Front Rectangle
-  if(player)
+  if(player.chaos == false)
   {
     frontBar = g.rectangle(80, 20, 'red', 'red', 5, player.sprite.x -160, 426 );
     chaosBar.addChild(frontBar);
