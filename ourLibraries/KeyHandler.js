@@ -118,14 +118,14 @@ function Keys() {
           player.doIdle();
           isAttacking = false;
           disableMovement = false;
-        }, 750);
+        }, 800);
       } else {
         setTimeout(function() {
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
           disableMovement = false;
           isAttacking = false;
-        }, 750);
+        }, 800);
       }
     }
   };

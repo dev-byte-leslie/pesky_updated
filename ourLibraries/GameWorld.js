@@ -104,6 +104,7 @@ function createGameWorld() {
     eval("people" + i).forEach(function(person) {
       person.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
       person.y = 525;
+      person.anchor.set(0.5, 0);
       person.isRunning = false;
       person.animationSpeed = 0.08;
       let direction = Math.random() < 0.5 ? 1 : -1;
