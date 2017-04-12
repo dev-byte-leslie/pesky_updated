@@ -30,6 +30,10 @@ var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 //Background textures
 var titleBackground, hedgeBackground, blackOverlay, gameOverText;
 
+//Global var for points
+var points = 0;
+var pointsToAdd = 0;
+
 // Called when everything is loaded
 $(document).ready(function() {
   initEverything();

@@ -116,8 +116,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       if (left.isDown) {
         if (player.sprite._texture != player.spriteArray[5]._texture &&
           player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
-            player.sprite._texture = player.spriteArray[5]._texture;
-            player.sprite._textures = player.spriteArray[5]._textures;
+          player.sprite._texture = player.spriteArray[5]._texture;
+          player.sprite._textures = player.spriteArray[5]._textures;
         }
         if (fps >= 30) {
           player.sprite.vx = -5 * 60 / fps;
@@ -130,8 +130,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       } else if (right.isDown) {
         if (player.sprite._texture != player.spriteArray[5]._texture &&
           player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
-            player.sprite._texture = player.spriteArray[5]._texture;
-            player.sprite._textures = player.spriteArray[5]._textures;
+          player.sprite._texture = player.spriteArray[5]._texture;
+          player.sprite._textures = player.spriteArray[5]._textures;
         }
         if (fps >= 30) {
           player.sprite.vx = 5 * 60 / fps;
@@ -160,6 +160,29 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.sprite.position.x < -11940) {
       player.sprite.position.x = -11940;
     }
+    //console.log(player.sprite.position.x);
+
+    //updates position of chaos bar
+    if (player) {
+      //white bar
+      chaosBar.inner.x =  player.sprite.position.x -157;
+      chaosBar.inner.y =  430;
+
+      //red bar
+      if(pointsToAdd > 0)
+      {
+        chaosBar.outer.width += pointsToAdd;
+        points += pointsToAdd;
+        pointsToAdd = 0;
+
+      }
+      chaosBar.outer.x =  player.sprite.position.x -157;
+      chaosBar.outer.y =  430;
+
+    }
+
+    console.log(points);
+    console.log(chaosBar.outer.width);
 
     if (player.inHouse && player.sprite.position.x >= 679) {
       player.sprite.position.x = 679;
