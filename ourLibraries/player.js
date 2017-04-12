@@ -169,8 +169,15 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       chaosBar.inner.y =  430;
 
       //red bar
-      if(pointsToAdd > 0)
+      if(pointsToAdd > 0 && points < 97)
       {
+        //doesnt let points bar get longer than its supposed to be
+        if(points<97 && points>92 && pointsToAdd>5)
+        {
+          chaosBar.outer.width += 5;
+          points += 5;
+          pointsToAdd = 0;
+        }
         chaosBar.outer.width += pointsToAdd;
         points += pointsToAdd;
         pointsToAdd = 0;
