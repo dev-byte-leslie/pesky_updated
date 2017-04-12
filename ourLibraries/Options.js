@@ -1,9 +1,10 @@
-var gameMusic, menuMusic, jumpSound;
+var gameMusic, menuMusic, jumpSound, aiCloseSound;
 // load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
   "../sound/music/MenuMusic.wav",
-  "../sound/music/Jump.wav"
+  "../sound/music/Jump.wav",
+  "../sound/music/PoliceScanner.wav"
   // add more sounds (attack, character switch, entering/exiting houses, etc)
 ]);
 
@@ -15,6 +16,8 @@ function loadSounds() {
 gameMusic = sounds["../sound/music/GameMusic.wav"];
 menuMusic = sounds["../sound/music/MenuMusic.wav"];
 jumpSound = sounds["../sound/music/Jump.wav"];
+aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
+
 
     menuMusic.volume = 0.5;   // menu music volume
     menuMusic.loop = true;    // menu music loops

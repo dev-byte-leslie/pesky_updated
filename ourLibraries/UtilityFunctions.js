@@ -56,7 +56,6 @@ function enterHouse() {
     interior1.x = player.sprite.x - 200;
     interior1.y = player.sprite.y - 200;
     house.addChild(interior1);
-    //house.addChild(houseBackground1);
     house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(blackOverlay);

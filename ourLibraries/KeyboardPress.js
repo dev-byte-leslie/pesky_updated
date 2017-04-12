@@ -1,7 +1,7 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
 //variable to control if movement stops when landing during a jump
 var moveMent = false;
-var left, up, right, down, space, shiftKey, switchE, f1, esc, nVal;
+var left, up, right, down, space, shiftKey, switchE, f1, esc;
 var fpsEnabled = false;
 var isAttacking = false;
 var disableAttacking = false;
@@ -22,6 +22,7 @@ function Keys() {
     moveMent = true;
   };
 
+
   //Left arrow key `release` method
   left.release = function() {
   //If the left arrow has been released, and the right arrow isn't down,
@@ -35,6 +36,7 @@ function Keys() {
       moveMent = false;
     }
   };
+
 
   //Up
   up.press = function() {
@@ -57,6 +59,7 @@ function Keys() {
     moveMent = true;
   };
 
+
   right.release = function() {
     if (!left.isDown && !player.jumping) {
       player.sprite.gotoAndStop(0);
@@ -67,9 +70,21 @@ function Keys() {
     }
   };
 
+
+  //Down
+  //TODO Make sure only works in certain spots
+  down.press = function() {
+  };
+
+
+  down.release = function() {
+  };
+
+
   space.press = function() {
     player.spacePush = true;
   };
+
 
   space.release = function() {
     player.spacePush = false;
@@ -86,24 +101,6 @@ function Keys() {
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
       player.sprite.play();
-      b.hit(player.sprite, garbages, false, false, false,
-        function(collision, garbageHit) {
-          if (!garbageHit.knockedOver) {
-            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
-            garbageHit.y - 100, 35, 100))) {
-              if (player.sprite.scale.x == -1) {
-                garbageHit.scale.x = 1;
-              } else {
-                garbageHit.x -= 60;
-                garbageHit.scale.x = -1;
-              }
-              garbageHit.y += 2;
-              garbageHit.knockedOver = true;
-              garbageHit.play();
-              pointsToAdd =+ 5;
-            }
-          }
-        });
     }
   };
 
@@ -115,14 +112,14 @@ function Keys() {
           player.doIdle();
           isAttacking = false;
           disableMovement = false;
-        }, 800);
+        }, 750);
       } else {
         setTimeout(function() {
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
           disableMovement = false;
           isAttacking = false;
-        }, 800);
+        }, 750);
       }
     }
   };
@@ -131,49 +128,41 @@ function Keys() {
     // location
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
-          if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
-            enterHouse();
-          }
+          enterHouse();
         })) {
     }
 
-    if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
+    if (b.hit(player.sprite, door, false, false, false)) {
       buildOutside();
     }
     if (!player.jumping) {
       if (b.hitTestRectangle(player.sprite,
-        new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY, 1, 300),
+        new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY1, 1, 300),
         false, false, false)) {
-        if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
-          player.sprite._texture = player.spriteArray[11]._texture;
-          player.sprite._textures = player.spriteArray[11]._textures;
-        }
-        player.sprite.x = hedgeLocX1 + 157;
-        player.holdX = hedgeLocX1 + 157;
-        disableAttacking = true;
-        g.state = moveIntoHedgeState;
-      } else if (b.hitTestRectangle(player.sprite,
-        new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY, 1, 300))) {
-        if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
-          player.sprite._texture = player.spriteArray[11]._texture;
-          player.sprite._textures = player.spriteArray[11]._textures;
-        }
-        player.sprite.x = hedgeLocX2 + 157;
-        player.holdX = hedgeLocX2 + 157;
-        disableAttacking = true;
-        g.state = moveIntoHedgeState;
-      } else if (b.hitTestRectangle(player.sprite,
-        new PIXI.Rectangle(hedgeLocX3+157, hedgeLocY, 1, 300))) {
-        if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
-          player.sprite._texture = player.spriteArray[11]._texture;
-          player.sprite._textures = player.spriteArray[11]._textures;
-        }
-        player.sprite.x = hedgeLocX3 + 157;
-        player.holdX = hedgeLocX3 + 157;
-        disableAttacking = true;
-        g.state = moveIntoHedgeState;
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.sprite.x = hedgeLocX1 + 157;
+          player.holdX = hedgeLocX1 + 157;
+          disableAttacking = true;
+          g.state = moveIntoHedgeState;
+        } else if (b.hitTestRectangle(player.sprite,
+        new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY2, 1, 300))) {
+          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+          }
+          player.sprite.x = hedgeLocX2 + 157;
+          player.holdX = hedgeLocX2 + 157;
+          disableAttacking = true;
+          g.state = moveIntoHedgeState;
       }
     }
+  };
+
+  switchE.release = function() {
+    //TODO maybe use this for something
   };
 
   f1.press = function() {
@@ -182,11 +171,5 @@ function Keys() {
 
   esc.release = function() {
     g.state = menuState;
-  };
-
-  nVal.press = function() {
-    if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
-      initGame();
-    }
   };
 }
