@@ -14,6 +14,7 @@ function updateAI() {
         }
         if (personHit._texture != eval("person"+i+"_sick._texture")
         && personHit._textures != eval("person"+i+"_sick._textures")) {
+          personHit.x += Math.sign(personHit.scale.x) * 20;
           personHit.scale.x *= -1;
           personHit.vx *= -3;
           personHit.isRunning = true;
