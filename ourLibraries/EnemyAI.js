@@ -19,6 +19,8 @@ function spawnAnimalControl(x , y) {
   this.aCObject.vy = 0;
   this.aCObject.doingAttack = false;
 
+  this.playCloseSound = false;
+
 
   //method that will be called every time "play" is called to deal with
   // ai movement
@@ -26,6 +28,16 @@ function spawnAnimalControl(x , y) {
       //doesnt let ai fall below the "floor"
     if (this.aCObject.y > 700) {
       this.aCObject.y = 700;
+    }
+
+    if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
+      this.playCloseSound = true;
+      aiCloseSound.playFrom(0);
+    }
+
+    if (Math.abs(this.aCObject.x - player.sprite.x) > 500 || Math.abs(this.aCObject.x - player.sprite.x) < 300) {
+      this.playCloseSound = false;
+      aiCloseSound.pause();
     }
 
     if (Math.abs(this.aCObject.x - player.sprite.x) <=  300 && Math.abs(this.aCObject.y - player.sprite.y) <= 300) {
