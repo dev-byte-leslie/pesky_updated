@@ -165,7 +165,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     //updates position of chaos bar
     if (player) {
       //white bar
-      chaosBar.inner.x =  player.sprite.position.x -157;
+      chaosBar.inner.x =  g.stage.pivot.x -157;
       chaosBar.inner.y =  430;
 
       //red bar
@@ -183,7 +183,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         pointsToAdd = 0;
 
       }
-      chaosBar.outer.x =  player.sprite.position.x -157;
+      chaosBar.outer.x =  g.stage.pivot.x -157;
       chaosBar.outer.y =  430;
 
     }

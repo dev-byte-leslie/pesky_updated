@@ -59,6 +59,7 @@ function enterHouse() {
     house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(blackOverlay);
+    house.addChild(chaosBar);
   }, 1667);
 
   if (player.spriteArray[10]) {
@@ -92,6 +93,7 @@ function buildOutside() {
 
     map.addChild(player.sprite);
     map.addChild(animalCont1.aCObject);
+    map.addChild(chaosBar);
     animalCont1.aCObject.vx = 0;
     animalCont1.aCObject.vy = 0;
 
