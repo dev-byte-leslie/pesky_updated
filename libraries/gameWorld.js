@@ -204,3 +204,8 @@ function spawnWorldObject(sprite, xval, yval) {
   this.obSprite.x = this.x;
   this.obSprite.y = this.y;
 }
+
+
+function newLevel() {
+  gameObjects.removeChild(map);
+}

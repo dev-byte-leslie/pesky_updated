@@ -151,6 +151,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     }
     this.camera.updateCamera();
 
+
+    //controls the player being able to leave the bounds of the world
     if (player.sprite.position.x > 12340) {
       player.sprite.position.x = 12340;
     }
@@ -169,6 +171,16 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       chaosBar.outer.y =  430;
     }
 
+    if (player.inHouse && player.sprite.position.x >= 679) {
+      player.sprite.position.x = 679;
+    }
+
+    if (player.inHouse && player.sprite.position.x <= 329) {
+      player.sprite.position.x = 329;
+    }
+
+    console.log(player.sprite.position.x);
+    console.log(player.inHouse);
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
