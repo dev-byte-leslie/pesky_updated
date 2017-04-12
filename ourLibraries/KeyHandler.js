@@ -88,23 +88,24 @@ function Keys() {
       player.sprite.play();
       b.hit(player.sprite, garbages, false, false, false,
         function(collision, garbageHit) {
-        if (!garbageHit.knockedOver) {
-          if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
+          if (!garbageHit.knockedOver) {
+            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
             garbageHit.y - 100, 35, 100))) {
-            if (player.sprite.scale.x == -1) {
-              garbageHit.scale.x = 1;
-            } else {
-              garbageHit.x -= 60;
-              garbageHit.scale.x = -1;
+              if (player.sprite.scale.x == -1) {
+                garbageHit.scale.x = 1;
+              } else {
+                garbageHit.x -= 60;
+                garbageHit.scale.x = -1;
+              }
+              garbageHit.y += 2;
+              garbageHit.knockedOver = true;
+              garbageHit.play();
+              pointsToAdd =+ 5;
             }
-            garbageHit.y += 2;
-            garbageHit.knockedOver = true;
-            garbageHit.play();
           }
-        }
-      });
+        });
     }
-  }
+  };
 
   shiftKey.release = function() {
     if (!isAttacking && !disableAttacking) {
@@ -143,34 +144,34 @@ function Keys() {
       if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY, 1, 300),
         false, false, false)) {
-          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
-            player.sprite._texture = player.spriteArray[11]._texture;
-            player.sprite._textures = player.spriteArray[11]._textures;
-          }
-          player.sprite.x = hedgeLocX1 + 157;
-          player.holdX = hedgeLocX1 + 157;
-          disableAttacking = true;
-          g.state = moveIntoHedgeState;
-        } else if (b.hitTestRectangle(player.sprite,
+        if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+          player.sprite._texture = player.spriteArray[11]._texture;
+          player.sprite._textures = player.spriteArray[11]._textures;
+        }
+        player.sprite.x = hedgeLocX1 + 157;
+        player.holdX = hedgeLocX1 + 157;
+        disableAttacking = true;
+        g.state = moveIntoHedgeState;
+      } else if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX2+157, hedgeLocY, 1, 300))) {
-          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
-            player.sprite._texture = player.spriteArray[11]._texture;
-            player.sprite._textures = player.spriteArray[11]._textures;
-          }
-          player.sprite.x = hedgeLocX2 + 157;
-          player.holdX = hedgeLocX2 + 157;
-          disableAttacking = true;
-          g.state = moveIntoHedgeState;
-        } else if (b.hitTestRectangle(player.sprite,
+        if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+          player.sprite._texture = player.spriteArray[11]._texture;
+          player.sprite._textures = player.spriteArray[11]._textures;
+        }
+        player.sprite.x = hedgeLocX2 + 157;
+        player.holdX = hedgeLocX2 + 157;
+        disableAttacking = true;
+        g.state = moveIntoHedgeState;
+      } else if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX3+157, hedgeLocY, 1, 300))) {
-          if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
-            player.sprite._texture = player.spriteArray[11]._texture;
-            player.sprite._textures = player.spriteArray[11]._textures;
-          }
-          player.sprite.x = hedgeLocX3 + 157;
-          player.holdX = hedgeLocX3 + 157;
-          disableAttacking = true;
-          g.state = moveIntoHedgeState;
+        if (player.spriteArray[11] && player.spriteArray[11]) {//TODO TEMPORARY CHECK
+          player.sprite._texture = player.spriteArray[11]._texture;
+          player.sprite._textures = player.spriteArray[11]._textures;
+        }
+        player.sprite.x = hedgeLocX3 + 157;
+        player.holdX = hedgeLocX3 + 157;
+        disableAttacking = true;
+        g.state = moveIntoHedgeState;
       }
     }
   };
