@@ -97,6 +97,10 @@ function Keys() {
               garbageHit.x -= 60;
               garbageHit.scale.x = -1;
             }
+            if (player.animal == 'skunk') { // reverse garbage can for skunk
+              garbageHit.scale.x *= -1;
+              garbageHit.x += 60;
+            }
             garbageHit.y += 2;
             garbageHit.knockedOver = true;
             garbageHit.play();
