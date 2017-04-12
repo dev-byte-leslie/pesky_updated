@@ -1,5 +1,6 @@
 // Sprite variables for people
-var people1 = [], people2 = [], people3 = [], person1_sick, person2_sick, person3_sick;
+var people1 = [], people2 = [], people3 = [], person1_sick,
+person2_sick, person3_sick, peopleTypes, numPeople;
 
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
@@ -171,26 +172,24 @@ function setup() {
   walterDown = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
   walterDown2 = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
 
-  //People sprites
-  let numPeople = 8; // Total number of people PER SPRITE TYPE
-  let peopleTypes = 3; // Number of sprite types for people
+  // People sprites
+  numPeople = 8; // Total number of people PER SPRITE TYPE
+  peopleTypes = 3; // Number of sprite types for people
   // eval() takes a string and turns it into code which makes it
   // much easier to generate and assign repetitive variables
-  for (let i = 1; i <= numPeople; i++) { // it is assumed all 3 people arrays have equal length
-    for (let j = 1; j <= peopleTypes; j++) {
-      eval('person' + j + '_' + i + ' = new spriteCreator(' + '\'../images/AiSprites/person_' + j + '.png\', 50, 75);');
-      eval('people' + j).push(eval('person' + j + '_' + i));
+  for (let i = 1; i <= peopleTypes; i++) {
+    for (let j = 1; j <= numPeople; j++) { // it is assumed all 3 people arrays have equal length
+      eval('person'+i+'_'+j+' = new spriteCreator('+'\'../images/AiSprites/person_'+i+'.png\', 50, 75);');
+      eval('people'+i).push(eval('person'+i+'_'+j));
     }
+    eval('person'+i+'_sick = new spriteCreator(\'../images/AiSprites/person_'+i+'_sick.png\', 50, 75);');
   }
-  person1_sick = new spriteCreator('../images/AiSprites/person_1_sick.png', 50, 75);
-  person2_sick = new spriteCreator('../images/AiSprites/person_2_sick.png', 50, 75);
-  person3_sick = new spriteCreator('../images/AiSprites/person_3_sick.png', 50, 75);
   animalControlSprite = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
   animalControlAttackSprite = new spriteCreator('../images/AiSprites/animal_control_attack.png', 100, 100);
   animalControlAttackSprite.anchor.set(0.5, 1);
 
   // Objects like garbage
-  for (let i = 1; i <= 50; i++) { // 25 garbages in the world
+  for (let i = 1; i <= 50; i++) { // 50 garbages in the world
     eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage.png\', 80, 42);');
     eval('garbages.push(garbage' + i + ');');
   }

@@ -1,48 +1,46 @@
 function updateAI() {
-  b.hit(player.sprite, people1, false, false, false,
-    function(collision, personHit) {
-    if (disableMovement) { // if player is attacking
-      if (personHit._texture != person1_sick._texture
-      && personHit._textures != person1_sick._textures) {
-        personHit._texture = person1_sick._texture;
-        personHit._textures = person1_sick._textures;
-        personHit.vx *= 0.3;
+  for (let i = 1; i <= peopleTypes; i++) {
+    b.hit(player.sprite, eval("people"+i), false, false, false,
+      function(collision, personHit) {
+      if (!personHit.isRunning) {
+        if (disableMovement) { // if player is attacking
+          if (personHit._texture != eval("person"+i+"_sick._texture")
+          && personHit._textures != eval("person"+i+"_sick._textures")) {
+            personHit._texture = eval("person"+i+"_sick._texture");
+            personHit._textures = eval("person"+i+"_sick._textures");
+            personHit.vx = personHit.scale.x * 0.3;
+            personHit.animationSpeed = 0.08;
+          }
+        }
+        if (personHit._texture != eval("person"+i+"_sick._texture")
+        && personHit._textures != eval("person"+i+"_sick._textures")) {
+          personHit.scale.x *= -1;
+          personHit.vx *= -3;
+          personHit.isRunning = true;
+          personHit.animationSpeed *= 2;
+          setTimeout(function() {
+            personHit.isRunning = false;
+            if (personHit._texture != eval("person"+i+"_sick._texture")
+            && personHit._textures != eval("person"+i+"_sick._textures")) {
+              personHit.vx = personHit.scale.x;
+              personHit.animationSpeed = 0.08;
+            }
+          }, 2000);
+        }
       }
-    }
-  });
-  b.hit(player.sprite, people2, false, false, false,
-    function(collision, personHit) {
-    if (disableMovement) { // if player is attacking
-      if (personHit._texture != person2_sick._texture
-      && personHit._textures != person2_sick._textures) {
-        personHit._texture = person2_sick._texture;
-        personHit._textures = person2_sick._textures;
-        personHit.vx *= 0.3;
-      }
-    }
-  });
-  b.hit(player.sprite, people3, false, false, false,
-    function(collision, personHit) {
-    if (disableMovement) { // if player is attacking
-      if (personHit._texture != person3_sick._texture
-      && personHit._textures != person3_sick._textures) {
-        personHit._texture = person3_sick._texture;
-        personHit._textures = person3_sick._textures;
-        personHit.vx *= 0.3;
-      }
-    }
-  });
+    });
+  }
   updateAIMovement();
 }
 
 function updateAIMovement() {
-  people1.forEach(function(person) {
-    person.x += person.vx * 60 / fps;
-  });
-  people2.forEach(function(person) {
-    person.x += person.vx * 60 / fps;
-  });
-  people3.forEach(function(person) {
-    person.x += person.vx * 60 / fps;
-  });
+  for (let i = 1; i <= peopleTypes; i++) {
+    eval("people" + i).forEach(function(person) {
+      person.x += person.vx * 60 / fps;
+      if (person.x + person.vx > 12000 || person.x + person.vx < -11800) {
+        person.vx *= -1;
+        person.scale.x *= -1;
+      }
+    });
+  }
 }
