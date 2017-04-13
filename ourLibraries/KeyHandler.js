@@ -77,7 +77,6 @@ function Keys() {
   };
 
   f.press = function() {
-    //attack();
     if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
       player.sprite._texture = player.spriteArray[0]._texture;
@@ -177,9 +176,12 @@ function Keys() {
   };
 
   f1.press = function() {
-    //fpsEnabled = !fpsEnabled;
-    pointsToAdd += 5;
+    fpsEnabled = !fpsEnabled;
   };
+
+  f2.press = function() {
+    pointsToAdd += 5;
+  }
 
   esc.release = function() {
     g.state = menuState;

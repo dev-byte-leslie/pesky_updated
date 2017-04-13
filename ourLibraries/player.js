@@ -151,7 +151,6 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     }
     this.camera.updateCamera();
 
-
     //controls the player being able to leave the bounds of the world
     if (player.sprite.position.x > 12340) {
       player.sprite.position.x = 12340;
@@ -160,9 +159,6 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.sprite.position.x < -11940) {
       player.sprite.position.x = -11940;
     }
-    //console.log(player.sprite.position.x);
-    console.log(points);
-    //console.log(chaosBar.outer.width);
 
     if (player.inHouse && player.sprite.position.x >= 679) {
       player.sprite.position.x = 679;
@@ -171,8 +167,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.inHouse && player.sprite.position.x <= 329) {
       player.sprite.position.x = 329;
     }
-    // console.log(player.sprite.position.x);
-    // console.log(player.inHouse);
+
+    shiftKey.isDown = f.isDown; // replace shift key completely
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
