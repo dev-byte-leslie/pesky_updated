@@ -74,7 +74,6 @@ function enterHouse() {
 
 //builds the outside game map
 function buildOutside() {
-  player.inHouse = false;
   disableMovement = true;
   player.doIdle();
   // Teleport AC away from player so they don't get killed right outside the door
@@ -90,6 +89,8 @@ function buildOutside() {
 
     player.sprite.x = player.holdX;
     player.sprite.y = 600;
+
+    player.inHouse = false;
 
     map.addChild(player.sprite);
     map.addChild(animalCont1.aCObject);
@@ -155,7 +156,7 @@ function updatePoints() {
     if(points < 97)
     {
       //doesnt let points bar get longer than its supposed to be
-      if(points<97 && points>92 && pointsToAdd>5)
+      if(points<100 && points>95 && pointsToAdd>=5)
       {
         chaosBar.outer.width += 5;
         topBar.width += 5;
@@ -185,7 +186,7 @@ function updatePoints() {
     chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
     triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
     triangleRight.x = topBar.position.x + topBar.width;
-    if (animalAnimated.shakingSprites.length == 0) {
+    if (animalAnimated.shakingSprites.length === 0) {
       animalAnimated.shake(chaosBar, .0025 * .01 * points * fps / 144, true);
     }
     animalAnimated.update();

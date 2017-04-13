@@ -79,6 +79,11 @@ function Keys() {
   f.press = function() {
     if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
+      if (player.animal == 'raccoon') {
+        setTimeout(function() {
+          player.sprite.vxa = player.sprite.scale.x * -1;
+        }, 250);
+      }
       player.sprite._texture = player.spriteArray[0]._texture;
       player.sprite._textures = player.spriteArray[0]._textures;
       player.sprite.gotoAndStop(0);
@@ -111,17 +116,19 @@ function Keys() {
       isAttacking = true;
       if (!(left.isDown || right.isDown)) {
         setTimeout(function() {
+          player.sprite.vxa = 0;
           player.doIdle();
           isAttacking = false;
           disableMovement = false;
-        }, 800);
+        }, 550);
       } else {
         setTimeout(function() {
+          player.sprite.vxa = 0;
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
           disableMovement = false;
           isAttacking = false;
-        }, 800);
+        }, 550);
       }
     }
   };
@@ -139,7 +146,8 @@ function Keys() {
     if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
       buildOutside();
     }
-    if (!player.jumping) {
+    if (!player.jumping && !player.inHouse) {
+      console.log("asdf");
       if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY, 1, 300),
         false, false, false)) {

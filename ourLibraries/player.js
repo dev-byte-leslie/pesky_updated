@@ -41,6 +41,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
 
   //assign to the walk sprite of the designated array
   this.sprite = this.spriteArray[4];
+  this.sprite.vxa = 0; // attacking horizontal velocity
   this.chaos = false;
   this.nearDoor = false; //sets whether the player is near a door
   this.jumping = false; //whether the player is jumping
@@ -144,6 +145,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       } else {
         player.sprite.vx = 0;
       }
+    } else {
+      player.sprite.x += player.sprite.vxa * 144 / fps;
     }
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
       !shiftKey.isDown && !disableMovement && !left.isDown && !right.isDown) {
