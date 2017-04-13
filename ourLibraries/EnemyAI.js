@@ -20,6 +20,7 @@ function spawnAnimalControl(x , y) {
   this.aCObject.vy = 0;
   this.aCObject.doingAttack = false;
 
+  //Sound to be played when player is close to the AI
   this.playCloseSound = false;
 
 
