@@ -161,35 +161,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       player.sprite.position.x = -11940;
     }
     //console.log(player.sprite.position.x);
-
-    //updates position of chaos bar
-    if (player) {
-      //white bar
-      chaosBar.inner.x =  g.stage.pivot.x -157;
-      chaosBar.inner.y =  430;
-
-      //red bar
-      if(pointsToAdd > 0 && points < 97)
-      {
-        //doesnt let points bar get longer than its supposed to be
-        if(points<97 && points>92 && pointsToAdd>5)
-        {
-          chaosBar.outer.width += 5;
-          points += 5;
-          pointsToAdd = 0;
-        }
-        chaosBar.outer.width += pointsToAdd;
-        points += pointsToAdd;
-        pointsToAdd = 0;
-
-      }
-      chaosBar.outer.x =  g.stage.pivot.x -157;
-      chaosBar.outer.y =  430;
-
-    }
-
     console.log(points);
-    console.log(chaosBar.outer.width);
+    //console.log(chaosBar.outer.width);
 
     if (player.inHouse && player.sprite.position.x >= 679) {
       player.sprite.position.x = 679;

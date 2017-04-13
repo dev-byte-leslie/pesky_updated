@@ -35,6 +35,7 @@ function switchCharacterState() {
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
   updateFps();
+  updatePoints();
   updateAI();
   if (player.sprite.y > hedgeLocY + 150) {
     player.sprite.y += -1 * 60 / fps;
@@ -48,6 +49,7 @@ function moveIntoHedgeState() { // freeze the game and move player into hedge
 function moveFromHedgeState() {
   updateFps();
   updateAI();
+  updatePoints();
   if (player.sprite.y < 600) {
     player.sprite.y += 60 / fps;
   } else {
@@ -59,6 +61,7 @@ function moveFromHedgeState() {
 function caughtState() {
   updateFps();
   updateAI();
+  updatePoints();
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
   if (animalCont1.aCObject.x >= player.holdX + 250) {
@@ -97,6 +100,7 @@ function gameOverState() {
 function fadeIntoWorld() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
+  updatePoints();
   updateAIMovement();
   player.camera.updateCamera();
   blackOverlay.x = player.sprite.x - 200;
@@ -111,6 +115,7 @@ function fadeIntoWorld() {
 }
 function fadeIntoHouse() {
   updateFps();
+  updatePoints();
   updateAIMovement();
   player.camera.updateCamera();
   blackOverlay.x = player.sprite.x - 200;
@@ -129,6 +134,7 @@ function fadeOutOfWorld() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
   updateAIMovement();
+  updatePoints();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
   }
@@ -145,7 +151,8 @@ function fadeOutOfWorld() {
 }
 function fadeOutOfHouse() {
   updateFps();
-  updateAIMovement();;
+  updateAIMovement();
+  updatePoints();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
   }
@@ -177,4 +184,5 @@ function play() {
     animalCont1.aiMovement();
   }
   updateFps();
+  updatePoints();
 }

@@ -31,8 +31,7 @@ var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 var titleBackground, hedgeBackground, blackOverlay, gameOverText;
 
 //Global var for points
-var points = 0;
-var pointsToAdd = 0;
+var points = 0, pointsToAdd = 0;
 
 // Called when everything is loaded
 $(document).ready(function() {
@@ -119,6 +118,7 @@ function setupGame() {
     .add('../images/Backgrounds/BlackOverlay.png')
     .add('../images/Backgrounds/GameOver.png')
     .add('../images/floor.png')
+    .add('../images/HUD/chaosText.png')
 
     //house sprites/hedge sprite
     .add('../images/WorldObjects/Beige_House.png')

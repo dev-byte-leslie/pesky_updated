@@ -177,7 +177,8 @@ function Keys() {
   };
 
   f1.press = function() {
-    fpsEnabled = !fpsEnabled;
+    //fpsEnabled = !fpsEnabled;
+    pointsToAdd += 5;
   };
 
   esc.release = function() {
@@ -186,7 +187,7 @@ function Keys() {
 
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
-      initGame();
+      initGame(player.animal);
     }
   };
 }
