@@ -41,6 +41,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
 
   //assign to the walk sprite of the designated array
   this.sprite = this.spriteArray[4];
+  this.sprite.vxa = 0; // attacking horizontal velocity
   this.chaos = false;
   this.nearDoor = false; //sets whether the player is near a door
   this.jumping = false; //whether the player is jumping
@@ -144,13 +145,32 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       } else {
         player.sprite.vx = 0;
       }
+    } else {
+      player.sprite.x += player.sprite.vxa * 144 / fps;
+      b.hit(player.sprite, garbages, false, false, false,
+        function(collision, garbageHit) {
+        if (!garbageHit.knockedOver) {
+          if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
+          garbageHit.y - 100, 35, 100))) {
+            if (player.sprite.scale.x == -1) {
+              garbageHit.scale.x = 1;
+            } else {
+              garbageHit.x -= 60;
+              garbageHit.scale.x = -1;
+            }
+            garbageHit.y += 2;
+            garbageHit.knockedOver = true;
+            garbageHit.play();
+            pointsToAdd += 5;
+          }
+        }
+      });
     }
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
       !shiftKey.isDown && !disableMovement && !left.isDown && !right.isDown) {
       this.doIdle();
     }
     this.camera.updateCamera();
-
 
     //controls the player being able to leave the bounds of the world
     if (player.sprite.position.x > 12340) {
@@ -160,9 +180,6 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.sprite.position.x < -11940) {
       player.sprite.position.x = -11940;
     }
-    //console.log(player.sprite.position.x);
-    console.log(points);
-    //console.log(chaosBar.outer.width);
 
     if (player.inHouse && player.sprite.position.x >= 679) {
       player.sprite.position.x = 679;
@@ -171,8 +188,8 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.inHouse && player.sprite.position.x <= 329) {
       player.sprite.position.x = 329;
     }
-    // console.log(player.sprite.position.x);
-    // console.log(player.inHouse);
+
+    shiftKey.isDown = f.isDown; // replace shift key completely
   };
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&

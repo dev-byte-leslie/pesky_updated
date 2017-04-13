@@ -6,6 +6,7 @@ var fpsEnabled = false;
 var isAttacking = false;
 var disableAttacking = false;
 var keyCodes = [];
+var attackInterval;
 
 function Keys() {
   //Left arrow key `press` method
@@ -28,7 +29,7 @@ function Keys() {
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
     if (!right.isDown && !player.jumping) {
-      player.sprite.gotoAndStop(0);
+      if (!disableMovement) player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         player.sprite.vx = 0;
       }
@@ -59,7 +60,7 @@ function Keys() {
 
   right.release = function() {
     if (!left.isDown && !player.jumping) {
-      player.sprite.gotoAndStop(0);
+      if (!disableMovement) player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         player.sprite.vx = 0;
       }
@@ -77,33 +78,19 @@ function Keys() {
   };
 
   f.press = function() {
-    //attack();
     if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
+      if (player.animal == 'raccoon') {
+        setTimeout(function() {
+          player.sprite.vxa = player.sprite.scale.x * -1;
+        }, 250);
+      }
       player.sprite._texture = player.spriteArray[0]._texture;
       player.sprite._textures = player.spriteArray[0]._textures;
       player.sprite.gotoAndStop(0);
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
       player.sprite.play();
-      b.hit(player.sprite, garbages, false, false, false,
-        function(collision, garbageHit) {
-          if (!garbageHit.knockedOver) {
-            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
-            garbageHit.y - 100, 35, 100))) {
-              if (player.sprite.scale.x == -1) {
-                garbageHit.scale.x = 1;
-              } else {
-                garbageHit.x -= 60;
-                garbageHit.scale.x = -1;
-              }
-              garbageHit.y += 2;
-              garbageHit.knockedOver = true;
-              garbageHit.play();
-              pointsToAdd += 5;
-            }
-          }
-        });
     }
   };
 
@@ -112,17 +99,19 @@ function Keys() {
       isAttacking = true;
       if (!(left.isDown || right.isDown)) {
         setTimeout(function() {
+          player.sprite.vxa = 0;
           player.doIdle();
           isAttacking = false;
           disableMovement = false;
-        }, 800);
+        }, 550);
       } else {
         setTimeout(function() {
+          player.sprite.vxa = 0;
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
           disableMovement = false;
           isAttacking = false;
-        }, 800);
+        }, 550);
       }
     }
   };
@@ -130,17 +119,17 @@ function Keys() {
   switchE.press = function() {
     // location
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
-        function(collision, doorHit) {
-          if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
-            enterHouse();
-          }
-        })) {
+      function(collision, doorHit) {
+        if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+          enterHouse();
+        }
+      })) {
     }
 
     if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
       buildOutside();
     }
-    if (!player.jumping) {
+    if (!player.jumping && !player.inHouse) {
       if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY, 1, 300),
         false, false, false)) {
@@ -177,9 +166,12 @@ function Keys() {
   };
 
   f1.press = function() {
-    //fpsEnabled = !fpsEnabled;
-    pointsToAdd += 5;
+    fpsEnabled = !fpsEnabled;
   };
+
+  f2.press = function() {
+    pointsToAdd += 5;
+  }
 
   esc.release = function() {
     g.state = menuState;

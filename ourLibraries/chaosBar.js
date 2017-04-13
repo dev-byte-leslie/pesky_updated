@@ -47,7 +47,7 @@ function initChaosBar()
   //Create Back Rectangle
   if(player.chaos == false)
   {
-    backBar = g.rectangle(100, 8, '0x282828', '0x282828', 2, player.sprite.position.x-157, 431);
+    backBar = g.rectangle(98, 8, '0x282828', '0x282828', 2, player.sprite.position.x-157, 431);
     backBar.alpha = 0.5;
     chaosBar.addChild(backBar);
   }

@@ -42,37 +42,37 @@ aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
 */
 
   // capture the keyboard events
-  var b = keyboard(66),
-      c = keyboard(67),
-      d = keyboard(68),
-      space = keyboard(32);
-
-  // control the sounds based on which keys are pressed
-
-  // play the menu music
-  b.press = function() {
-    if (!menuMusic.playing) {
-      menuMusic.play();
-      gameMusic.pause();
-    }
-    console.log('menu music playing');
-  };
-
-  // play the game music
-  d.press = function() {
-    if (!gameMusic.playing) {
-      gameMusic.play();
-      menuMusic.pause();
-    }
-    console.log('game music playing');
-  };
-
-  // pause the music
-  c.press = function() {
-    menuMusic.pause();
-    gameMusic.pause();
-    console.log('music paused');
-  };
+  // var b = keyboard(66),
+  //     c = keyboard(67),
+  //     d = keyboard(68),
+  //     space = keyboard(32);
+  //
+  // // control the sounds based on which keys are pressed
+  //
+  // // play the menu music
+  // b.press = function() {
+  //   if (!menuMusic.playing) {
+  //     menuMusic.play();
+  //     gameMusic.pause();
+  //   }
+  //   console.log('menu music playing');
+  // };
+  //
+  // // play the game music
+  // d.press = function() {
+  //   if (!gameMusic.playing) {
+  //     gameMusic.play();
+  //     menuMusic.pause();
+  //   }
+  //   console.log('game music playing');
+  // };
+  //
+  // // pause the music
+  // c.press = function() {
+  //   menuMusic.pause();
+  //   gameMusic.pause();
+  //   console.log('music paused');
+  // };
 }
 var optionsGroup;
 function initOptions() {

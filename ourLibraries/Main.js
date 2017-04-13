@@ -56,17 +56,18 @@ function setupGame() {
   }, 1000);
 
   //Capture the keyboard arrow keys/other keys needed for controls
-  left = keyboard(37);
-  up = keyboard(38);
-  right = keyboard(39);
-  down = keyboard(40);
   space = keyboard(32);
   shiftKey = keyboard(16);
   switchE = keyboard(69);
-  f1 = keyboard(112);
+  f1 = keyboard(112); // fps toggle
+  f2 = keyboard(113); // cheat key
   esc = keyboard(27);
-  nVal = keyboard(78);
-  f = keyboard(70);
+  nVal = keyboard(78); // go to next street
+  f = keyboard(70); // attack
+  up = keyboard(87);
+  left = keyboard(65);
+  down = keyboard(83);
+  right = keyboard(68);
 
   loader
     .add('../images/AnimalPlaceHolder.png')
