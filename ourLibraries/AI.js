@@ -16,7 +16,7 @@ function updateAI() {
         if (personHit._texture != eval("person"+i+"_sick._texture")
         && personHit._textures != eval("person"+i+"_sick._textures")) {
           personHit.scale.x *= -1;
-          personHit.vx *= -3;
+          personHit.vx *= -1.5;
           personHit.isRunning = true;
           personHit.animationSpeed *= 2;
           setTimeout(function() {

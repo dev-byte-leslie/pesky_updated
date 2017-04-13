@@ -15,6 +15,7 @@ function spawnAnimalControl(x , y) {
   this.aCObject.y = y;  //700;
 
   //instantiate the velocities to be 0 in both directions
+  this.speed = 3;
   this.aCObject.vx = 0;
   this.aCObject.vy = 0;
   this.aCObject.doingAttack = false;
@@ -30,11 +31,19 @@ function spawnAnimalControl(x , y) {
       this.aCObject.y = 700;
     }
 
+    //makes the ai go faster the more chaos that is caused. Change
+    // the number that points is divided by to tweak the rate of increase
+    if (points) {
+      this.speed = 3 + (Math.floor(points / 10) * 0.3);
+    }
+
+    //Plays the sound when player is too close
     if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
       this.playCloseSound = true;
       aiCloseSound.playFrom(0);
     }
 
+    //stops the sound from playing if player is too far or too close to ai
     if (Math.abs(this.aCObject.x - player.sprite.x) > 500 || Math.abs(this.aCObject.x - player.sprite.x) < 300) {
       this.playCloseSound = false;
       aiCloseSound.pause();
@@ -44,7 +53,7 @@ function spawnAnimalControl(x , y) {
       //if player is to the right of enemy
       if (this.aCObject.x < player.sprite.x) {
         if (!this.aCObject.doingAttack) {
-          this.aCObject.vx = 3;
+          this.aCObject.vx = this.speed;
           this.aCObject.scale.x = 1;
           this.aCObject.play();
         }
@@ -53,7 +62,7 @@ function spawnAnimalControl(x , y) {
     //if player is to the left of enemy
       if (this.aCObject.x > player.sprite.x) {
         if (!this.aCObject.doingAttack) {
-          this.aCObject.vx = -3;
+          this.aCObject.vx = -this.speed;
           this.aCObject.scale.x = -1;
           this.aCObject.play();
         }
@@ -119,5 +128,5 @@ function spawnAnimalControl(x , y) {
       this.aCObject._textures = animalControlSprite._textures;
       this.aCObject.gotoAndStop(0);
     }
-  }
+  };
 }

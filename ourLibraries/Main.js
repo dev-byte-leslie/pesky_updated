@@ -66,6 +66,7 @@ function setupGame() {
   f1 = keyboard(112);
   esc = keyboard(27);
   nVal = keyboard(78);
+  f = keyboard(70);
 
   loader
     .add('../images/AnimalPlaceHolder.png')

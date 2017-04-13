@@ -1,7 +1,7 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
 //variable to control if movement stops when landing during a jump
 var moveMent = false;
-var left, up, right, down, space, shiftKey, switchE, f1, esc, nVal;
+var left, up, right, down, space, shiftKey, switchE, f1, esc, nVal, f;
 var fpsEnabled = false;
 var isAttacking = false;
 var disableAttacking = false;
@@ -76,7 +76,7 @@ function Keys() {
 
   };
 
-  shiftKey.press = function() {
+  f.press = function() {
     //attack();
     if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
@@ -107,7 +107,7 @@ function Keys() {
     }
   };
 
-  shiftKey.release = function() {
+  f.release = function() {
     if (!isAttacking && !disableAttacking) {
       isAttacking = true;
       if (!(left.isDown || right.isDown)) {
