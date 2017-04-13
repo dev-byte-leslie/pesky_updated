@@ -145,7 +145,7 @@ function camera() {
     g.stage.pivot.y = 607; //This can change but doesnt allow the player to see outside of map
   };
 }
-
+let counter = 0;
 function updatePoints() {
   //updates position of chaos bar
   if (player) {
@@ -186,8 +186,11 @@ function updatePoints() {
     chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
     triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
     triangleRight.x = topBar.position.x + topBar.width;
-    if (animalAnimated.shakingSprites.length === 0) {
+    if (counter == 9) {
       animalAnimated.shake(chaosBar, .0025 * .01 * points * fps / 144, true);
+      counter = 0;
+    } else {
+      counter++;
     }
     animalAnimated.update();
   }
