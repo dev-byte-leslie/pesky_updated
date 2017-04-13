@@ -186,7 +186,7 @@ function updatePoints() {
     triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
     triangleRight.x = topBar.position.x + topBar.width;
     if (animalAnimated.shakingSprites.length == 0) {
-      animalAnimated.shake(chaosBar, .0025 * .01 * points, true);
+      animalAnimated.shake(chaosBar, .0025 * .01 * points * fps / 144, true);
     }
     animalAnimated.update();
   }
