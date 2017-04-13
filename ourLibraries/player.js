@@ -1,4 +1,4 @@
-function Player(stringAnimal) { //Temporary way to change animal sprites
+function Player(stringAnimal) {
   // sets initial variables for player object
   // Arrays to hold all the sprites
   // 0,1 = Attack 1 and 2
@@ -11,11 +11,9 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
   this.gooseSprites = [walterAttack, walterAttack2, walterJump, walterJump2, walterWalk,
     walterWalk2, walterIdle, walterIdle2, walterDown, walterDown2, walterUp, walterUp2,
     walterFly, walterFly2];
-
   this.raccoonSprites = [carlosRabies, carlosRabies2, carlosJump, carlosJump2,
     carlosWalk, carlosWalk2, carlosIdle, carlosIdle2, carlosDown, carlosDown2,
     carlosUp, carlosUp2];
-
   this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
     stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
 
@@ -145,8 +143,9 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
       } else {
         player.sprite.vx = 0;
       }
-    } else {
+    } else { // disableMovement = true, i.e. player is attacking
       player.sprite.x += player.sprite.vxa * 144 / fps;
+      // Test hit for garbages every frame to knock them down appropriately
       b.hit(player.sprite, garbages, false, false, false,
         function(collision, garbageHit) {
         if (!garbageHit.knockedOver) {
@@ -166,6 +165,7 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
         }
       });
     }
+    // Check list of conditions to make sure player is actually idle
     if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
       !shiftKey.isDown && !disableMovement && !left.isDown && !right.isDown) {
       this.doIdle();
@@ -176,21 +176,19 @@ function Player(stringAnimal) { //Temporary way to change animal sprites
     if (player.sprite.position.x > 12340) {
       player.sprite.position.x = 12340;
     }
-
     if (player.sprite.position.x < -11940) {
       player.sprite.position.x = -11940;
     }
-
     if (player.inHouse && player.sprite.position.x >= 679) {
       player.sprite.position.x = 679;
     }
-
     if (player.inHouse && player.sprite.position.x <= 329) {
       player.sprite.position.x = 329;
     }
 
     shiftKey.isDown = f.isDown; // replace shift key completely
   };
+  // Function called to make the player idle
   this.doIdle = function () {
     if (player.sprite._texture != player.spriteArray[7]._texture &&
     player.sprite._textures != player.spriteArray[7]._textures) {

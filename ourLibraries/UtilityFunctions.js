@@ -140,12 +140,10 @@ function camera() {
         g.stage.pivot.x = player.sprite.position.x;
       }
     }
-
-    //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
-    g.stage.pivot.y = 607; //This can change but doesnt allow the player to see outside of map
+    g.stage.pivot.y = 607;
   };
 }
-let counter = 0;
+let counter = 0; // used to control shaking which lasts 10 frames
 function updatePoints() {
   //updates position of chaos bar
   if (player) {
