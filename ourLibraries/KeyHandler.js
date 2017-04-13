@@ -6,6 +6,7 @@ var fpsEnabled = false;
 var isAttacking = false;
 var disableAttacking = false;
 var keyCodes = [];
+var attackInterval;
 
 function Keys() {
   //Left arrow key `press` method
@@ -90,24 +91,6 @@ function Keys() {
       player.sprite.animationSpeed = 0.2;
       this.doingIdle = false;
       player.sprite.play();
-      b.hit(player.sprite, garbages, false, false, false,
-        function(collision, garbageHit) {
-          if (!garbageHit.knockedOver) {
-            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
-            garbageHit.y - 100, 35, 100))) {
-              if (player.sprite.scale.x == -1) {
-                garbageHit.scale.x = 1;
-              } else {
-                garbageHit.x -= 60;
-                garbageHit.scale.x = -1;
-              }
-              garbageHit.y += 2;
-              garbageHit.knockedOver = true;
-              garbageHit.play();
-              pointsToAdd += 5;
-            }
-          }
-        });
     }
   };
 
@@ -136,18 +119,17 @@ function Keys() {
   switchE.press = function() {
     // location
     if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
-        function(collision, doorHit) {
-          if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
-            enterHouse();
-          }
-        })) {
+      function(collision, doorHit) {
+        if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+          enterHouse();
+        }
+      })) {
     }
 
     if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
       buildOutside();
     }
     if (!player.jumping && !player.inHouse) {
-      console.log("asdf");
       if (b.hitTestRectangle(player.sprite,
         new PIXI.Rectangle(hedgeLocX1+157, hedgeLocY, 1, 300),
         false, false, false)) {
