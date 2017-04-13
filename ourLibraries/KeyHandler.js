@@ -100,7 +100,7 @@ function Keys() {
               garbageHit.y += 2;
               garbageHit.knockedOver = true;
               garbageHit.play();
-              pointsToAdd =+ 5;
+              pointsToAdd += 5;
             }
           }
         });
@@ -115,14 +115,14 @@ function Keys() {
           player.doIdle();
           isAttacking = false;
           disableMovement = false;
-        }, 750);
+        }, 800);
       } else {
         setTimeout(function() {
           player.sprite._texture = player.spriteArray[5]._texture;
           player.sprite._textures = player.spriteArray[5]._textures;
           disableMovement = false;
           isAttacking = false;
-        }, 750);
+        }, 800);
       }
     }
   };
@@ -177,7 +177,8 @@ function Keys() {
   };
 
   f1.press = function() {
-    fpsEnabled = !fpsEnabled;
+    //fpsEnabled = !fpsEnabled;
+    pointsToAdd += 5;
   };
 
   esc.release = function() {
@@ -186,7 +187,7 @@ function Keys() {
 
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
-      initGame();
+      initGame(player.animal);
     }
   };
 }

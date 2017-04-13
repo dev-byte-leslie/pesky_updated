@@ -1,5 +1,5 @@
 var map, house, sewer, gameObjects, animalCont1, player, chaosBar;
-function initGame() {
+function initGame(animalType = 'raccoon') {
   map = new PIXI.Container();
   house = new PIXI.Container();
   gameObjects = new PIXI.Container();
@@ -17,7 +17,7 @@ function initGame() {
   g.stage.addChild(gameObjects);
   gameObjects.addChild(fpsDisplay);
   createGameWorld();
-  player = new Player('raccoon');
+  player = new Player(animalType);
   player.sprite.x = 500;
   player.sprite.y = 600;
   map.addChild(player.sprite);
