@@ -106,6 +106,7 @@ function createGameWorld() {
       person.y = 525;
       person.isRunning = false;
       person.animationSpeed = 0.08;
+      person.anchor.set(0.5, 0);
       let direction = Math.random() < 0.5 ? 1 : -1;
       person.vx = direction;
       person.scale.x = direction;
