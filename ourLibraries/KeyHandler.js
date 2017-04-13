@@ -29,7 +29,7 @@ function Keys() {
   //and the pixie isn't moving vertically, stop the sprite from moving
   //by setting its velocity to zero
     if (!right.isDown && !player.jumping) {
-      player.sprite.gotoAndStop(0);
+      if (!disableMovement) player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         player.sprite.vx = 0;
       }
@@ -60,7 +60,7 @@ function Keys() {
 
   right.release = function() {
     if (!left.isDown && !player.jumping) {
-      player.sprite.gotoAndStop(0);
+      if (!disableMovement) player.sprite.gotoAndStop(0);
       if (!player.jumping) {
         player.sprite.vx = 0;
       }
