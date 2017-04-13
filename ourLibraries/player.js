@@ -160,7 +160,7 @@ function Player(stringAnimal) {
             garbageHit.y += 2;
             garbageHit.knockedOver = true;
             garbageHit.play();
-            pointsToAdd += 5;
+            pointsToAdd = 5;
           }
         }
       });

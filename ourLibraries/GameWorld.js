@@ -107,7 +107,6 @@ function createGameWorld() {
       person.anchor.set(0.5, 0);
       person.isRunning = false;
       person.animationSpeed = 0.08;
-      person.anchor.set(0.5, 0);
       let direction = Math.random() < 0.5 ? 1 : -1;
       person.vx = direction;
       person.scale.x = direction;
@@ -116,7 +115,7 @@ function createGameWorld() {
     });
   }
   garbages.forEach(function(garbage) {
-    garbage.x = Math.random() < 0.5 ? maxX * Math.random() : minX * Math.random();
+    garbage.x = randomInt(minX, maxX);
     garbage.y = 600;
     garbage.anchor.set(0.5, 1);
     garbage.animationSpeed = 0.1;
@@ -136,6 +135,10 @@ function generateWorldSprites(negVals, posVals) {
   var curCell;
   for (var i = 0; i < negLength; i++) {
     curCell = randomInt(0, 3);
+    // Prevent repeat houses right next to each other
+    while (negVals[i-1] == curCell || negVals[i+1] == curCell) {
+      curCell = randomInt(0, 3);
+    }
     negVals[i] = curCell;
   }
 
@@ -147,6 +150,9 @@ function generateWorldSprites(negVals, posVals) {
   //generates random number between 0 and 4 for positive x direction
   for (var i = 0; i < posLength; i++) {
     curCell = randomInt(0, 3);
+    while (posVals[i-1] == curCell || posVals[i+1] == curCell) {
+      curCell = randomInt(0, 3);
+    }
     posVals[i] = curCell;
   }
 

@@ -10,7 +10,7 @@ function updateAI() {
             personHit._textures = eval("person"+i+"_sick._textures");
             personHit.vx = personHit.scale.x * 0.3;
             personHit.animationSpeed = 0.08;
-            pointsToAdd += 5;
+            pointsToAdd = 5;
           }
         }
         if (personHit._texture != eval("person"+i+"_sick._texture")

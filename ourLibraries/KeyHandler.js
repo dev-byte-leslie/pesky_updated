@@ -170,7 +170,7 @@ function Keys() {
   };
 
   f2.press = function() {
-    pointsToAdd += 5;
+    pointsToAdd = 5;
   }
 
   esc.release = function() {
