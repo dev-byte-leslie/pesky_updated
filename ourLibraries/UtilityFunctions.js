@@ -58,8 +58,8 @@ function enterHouse() {
     house.addChild(interior1);
     house.addChild(door);
     house.addChild(player.sprite);
-    house.addChild(blackOverlay);
     house.addChild(chaosBar);
+    house.addChild(blackOverlay);
   }, 1667);
 
   if (player.spriteArray[10]) {

@@ -62,7 +62,7 @@ function caughtState() {
   updateFps();
   updateAI();
   updatePoints();
-  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
   if (animalCont1.aCObject.x >= player.holdX + 250) {
     animalCont1.aCObject._texture = animalControlSprite._texture;
@@ -73,13 +73,13 @@ function caughtState() {
       switchCharacterGroup.visible = true;
       g.state = switchCharacterState;
     } else { // all animals are captured
-      blackOverlay.x = player.sprite.x - 200;
+      blackOverlay.x = g.stage.pivot.x - 200;
       blackOverlay.y = 0;
       if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
         blackOverlay.alpha += 0.01 * 60 / fps;
       } else {
         blackOverlay.alpha = 1;
-        gameOverText.x = player.sprite.x - 100;
+        gameOverText.x = g.stage.pivot.x - 100;
         gameOverText.y = 470;
         g.stage.add(gameOverText);
         g.state = gameOverState;
@@ -103,7 +103,7 @@ function fadeIntoWorld() {
   updatePoints();
   updateAIMovement();
   player.camera.updateCamera();
-  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
   if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
@@ -118,7 +118,7 @@ function fadeIntoHouse() {
   updatePoints();
   updateAIMovement();
   player.camera.updateCamera();
-  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
   if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
@@ -139,7 +139,7 @@ function fadeOutOfWorld() {
     player.sprite.y += -0.2 * 60 / fps;
   }
   player.camera.updateCamera();
-  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
   if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
     blackOverlay.alpha += 0.01 * 60 / fps;
@@ -157,7 +157,7 @@ function fadeOutOfHouse() {
     player.sprite.y += -0.2 * 60 / fps;
   }
   player.camera.updateCamera();
-  blackOverlay.x = player.sprite.x - 200;
+  blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
   if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
     blackOverlay.alpha += 0.01 * 60 / fps;
