@@ -140,55 +140,27 @@ function camera() {
         g.stage.pivot.x = player.sprite.position.x;
       }
     }
-
-    //g.stage.pivot.y = player.sprite.position.y + 7; // view should include a bit of ground under player
-    g.stage.pivot.y = 607; //This can change but doesnt allow the player to see outside of map
+    g.stage.pivot.y = 607;
   };
 }
-
 function updatePoints() {
-  //updates position of chaos bar
-  if (player) {
-    //white bar
-    chaosBar.inner.x =  g.stage.pivot.x -157;
-
-    //red bar
-    if(points < 97)
-    {
-      //doesnt let points bar get longer than its supposed to be
-      if(points<100 && points>95 && pointsToAdd>=5)
-      {
-        chaosBar.outer.width += 5;
-        topBar.width += 5;
-        bottomBar.width += 5;
-        points += 5;
-        pointsToAdd = 0;
-      }
-      if (points + pointsToAdd > 0) {
-        points += pointsToAdd;
-        chaosBar.outer.width += pointsToAdd;
-        topBar.width += pointsToAdd;
-        bottomBar.width += pointsToAdd;
-        triangleLeft.width += pointsToAdd / 10;
-        triangleRight.width += pointsToAdd / 10;
-      } else {
-        points = 0;
-        chaosBar.outer.width = 0;
-        topBar.width = 0;
-        bottomBar.width = 0;
-        triangleLeft.width = 0;
-        triangleRight.width = 0;
-      }
-
-      pointsToAdd = 0;
-    }
-    chaosBar.outer.x =  g.stage.pivot.x - 157;
-    chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
-    triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
-    triangleRight.x = topBar.position.x + topBar.width;
-    if (animalAnimated.shakingSprites.length === 0) {
-      animalAnimated.shake(chaosBar, .0025 * .01 * points * fps / 144, true);
-    }
-    animalAnimated.update();
+  chaosBar.inner.x =  g.stage.pivot.x -157;
+  // doesn't let points bar get longer than it's supposed to be
+  points += pointsToAdd;
+  if (points > 100) {
+    points = 100;
+  } else if (points < 0) {
+    points = 0;
   }
+  chaosBar.outer.width = topBar.width = bottomBar.width = points;
+  triangleLeft.width = triangleRight.width = points / 10;
+  pointsToAdd = 0;
+
+  chaosBar.outer.x =  g.stage.pivot.x - 157;
+  chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
+  triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
+  triangleRight.x = topBar.position.x + topBar.width;
+  let shakeAmt = 0.000025 * points;
+  animalAnimated.update();
+  animalAnimated.shake(chaosBar, shakeAmt, true);
 }
