@@ -12,7 +12,7 @@ function Keys() {
   //Left arrow key `press` method
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
-    if (!player.jumping && !disableMovement && !shiftKey.isDown) {
+    if (!player.jumping && !disableMovement && !f.isDown) {
       player.sprite.scale.x = 1;
       player.sprite.vx = -5 * 60 / fps;
       player.sprite._texture = player.spriteArray[5]._texture;
@@ -47,7 +47,7 @@ function Keys() {
 
   //Right
   right.press = function() {
-    if (!player.jumping && !disableMovement && !shiftKey.isDown) {
+    if (!player.jumping && !disableMovement && !f.isDown) {
       player.sprite.scale.x = -1;
       player.sprite._texture = player.spriteArray[5]._texture;
       player.sprite._textures = player.spriteArray[5]._textures;
@@ -76,45 +76,56 @@ function Keys() {
     player.spacePush = false;
 
   };
-
   f.press = function() {
     if (!player.jumping && !disableMovement && !disableAttacking) {
       disableMovement = true;
+      isAttacking = true;
       if (player.animal == 'raccoon') {
         setTimeout(function() {
           player.sprite.vxa = player.sprite.scale.x * -1;
         }, 250);
       }
-      player.sprite._texture = player.spriteArray[0]._texture;
-      player.sprite._textures = player.spriteArray[0]._textures;
+      setTimeout(function() {
+        if (disableMovement && isAttacking) {
+          player.sprite.vxa = 0;
+          player.doIdle();
+          disableMovement = false;
+          isAttacking = false;
+        }
+      }, 550);
+      if (player.sprite._texture != player.spriteArray[0]._texture &&
+        player.sprite._textures != player.spriteArray[0]._textures) {
+          player.sprite._texture = player.spriteArray[0]._texture;
+          player.sprite._textures = player.spriteArray[0]._textures;
+      }
       player.sprite.gotoAndStop(0);
-      player.sprite.animationSpeed = 0.2;
-      this.doingIdle = false;
       player.sprite.play();
+      player.sprite.animationSpeed = 0.2;
+      player.doingIdle = false;
     }
   };
 
-  f.release = function() {
-    if (!isAttacking && !disableAttacking) {
-      isAttacking = true;
-      if (!(left.isDown || right.isDown)) {
-        setTimeout(function() {
-          player.sprite.vxa = 0;
-          player.doIdle();
-          isAttacking = false;
-          disableMovement = false;
-        }, 550);
-      } else {
-        setTimeout(function() {
-          player.sprite.vxa = 0;
-          player.sprite._texture = player.spriteArray[5]._texture;
-          player.sprite._textures = player.spriteArray[5]._textures;
-          disableMovement = false;
-          isAttacking = false;
-        }, 550);
-      }
-    }
-  };
+  // f.release = function() {
+  //   if (!isAttacking && !disableAttacking) {
+  //     isAttacking = true;
+  //     if (!(left.isDown || right.isDown)) {
+  //       setTimeout(function() {
+  //         player.sprite.vxa = 0;
+  //         player.doIdle();
+  //         isAttacking = false;
+  //         disableMovement = false;
+  //       }, 550);
+  //     } else {
+  //       setTimeout(function() {
+  //         player.sprite.vxa = 0;
+  //         player.sprite._texture = player.spriteArray[5]._texture;
+  //         player.sprite._textures = player.spriteArray[5]._textures;
+  //         disableMovement = false;
+  //         isAttacking = false;
+  //       }, 550);
+  //     }
+  //   }
+  // };
 
   switchE.press = function() {
     // location

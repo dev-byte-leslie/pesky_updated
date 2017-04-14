@@ -151,11 +151,20 @@ function Player(stringAnimal) {
         if (!garbageHit.knockedOver) {
           if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
           garbageHit.y - 100, 35, 100))) {
-            if (player.sprite.scale.x == -1) {
-              garbageHit.scale.x = 1;
+            if (player.animal != 'skunk') {
+              if (player.sprite.scale.x == -1) {
+                garbageHit.scale.x = 1;
+              } else {
+                garbageHit.x -= 60;
+                garbageHit.scale.x = -1;
+              }
             } else {
-              garbageHit.x -= 60;
-              garbageHit.scale.x = -1;
+              if (player.sprite.scale.x == -1) {
+                garbageHit.scale.x = -1;
+                garbageHit.x -= 60;
+              } else {
+                garbageHit.scale.x = 1;
+              }
             }
             garbageHit.y += 2;
             garbageHit.knockedOver = true;
@@ -166,8 +175,8 @@ function Player(stringAnimal) {
       });
     }
     // Check list of conditions to make sure player is actually idle
-    if (!space.isDown && !player.jumping && player.sprite.vx == 0 &&
-      !shiftKey.isDown && !disableMovement && !left.isDown && !right.isDown) {
+    if (!space.isDown && !player.jumping && player.sprite.vx == 0
+       && !disableMovement && !left.isDown && !right.isDown) {
       this.doIdle();
     }
     this.camera.updateCamera();
@@ -185,8 +194,6 @@ function Player(stringAnimal) {
     if (player.inHouse && player.sprite.position.x <= 329) {
       player.sprite.position.x = 329;
     }
-
-    shiftKey.isDown = f.isDown; // replace shift key completely
   };
   // Function called to make the player idle
   this.doIdle = function () {
