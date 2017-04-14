@@ -20,6 +20,9 @@ function spawnAnimalControl(x , y) {
   this.aCObject.vy = 0;
   this.aCObject.doingAttack = false;
 
+  //detection distrance
+  this.detection = 300;
+
   //Sound to be played when player is close to the AI
   this.playCloseSound = false;
 
@@ -38,6 +41,10 @@ function spawnAnimalControl(x , y) {
       this.speed = 3 + (Math.floor(points / 10) * 0.3);
     }
 
+    if (points) {
+      this.detection = 300 + (points * 124);
+    }
+
     //Plays the sound when player is too close
     if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
       this.playCloseSound = true;
@@ -50,7 +57,7 @@ function spawnAnimalControl(x , y) {
       aiCloseSound.pause();
     }
 
-    if (Math.abs(this.aCObject.x - player.sprite.x) <=  300 && Math.abs(this.aCObject.y - player.sprite.y) <= 300) {
+    if (Math.abs(this.aCObject.x - player.sprite.x) <=  this.detection && Math.abs(this.aCObject.y - player.sprite.y) <= this.detection) {
       //if player is to the right of enemy
       if (this.aCObject.x < player.sprite.x) {
         if (!this.aCObject.doingAttack) {
