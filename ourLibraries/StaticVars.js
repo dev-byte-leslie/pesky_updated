@@ -69,10 +69,8 @@ function updateFps() {
   frameTime = (thisLoop = new Date) - lastLoop;
   lastLoop = thisLoop;
   fps = Math.ceil(1000 / frameTime);
-  if (player) {
-    fpsDisplay.x = player.sprite.x - 160;
-    fpsDisplay.y = 426;
-  }
+  fpsDisplay.x = g.stage.pivot.x - 160;
+  fpsDisplay.y = 426;
 }
 
 function spriteCreator(stringTexture, width, height) {
