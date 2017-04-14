@@ -171,7 +171,7 @@ function Keys() {
 
   f2.press = function() {
     pointsToAdd += 5;
-  }
+  };
 
   esc.release = function() {
     g.state = menuState;
@@ -179,6 +179,30 @@ function Keys() {
 
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
+      gameObjects.removeChild(chaosBar);
+      points = 0;
+      people1 = [];
+      people2 = [];
+      people3 = [];
+      garbages = [];
+      // People sprites
+      numPeople = 8; // Total number of people PER SPRITE TYPE
+      peopleTypes = 3; // Number of sprite types for people
+      // eval() takes a string and turns it into code which makes it
+      // much easier to generate and assign repetitive variables
+      for (let i = 1; i <= peopleTypes; i++) {
+        for (let j = 1; j <= numPeople; j++) { // it is assumed all 3 people arrays have equal length
+          eval('person'+i+'_'+j+' = new spriteCreator('+'\'../images/AiSprites/person_'+i+'.png\', 50, 75);');
+          eval('people'+i).push(eval('person'+i+'_'+j));
+        }
+        eval('person'+i+'_sick = new spriteCreator(\'../images/AiSprites/person_'+i+'_sick.png\', 50, 75);');
+      }
+
+      // Objects like garbage
+      for (let i = 1; i <= 50; i++) { // 50 garbages in the world
+        eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage.png\', 80, 42);');
+        eval('garbages.push(garbage' + i + ');');
+      }
       initGame(player.animal);
     }
   };
