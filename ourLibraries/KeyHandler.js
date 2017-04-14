@@ -173,10 +173,6 @@ function Keys() {
     pointsToAdd = 5;
   }
 
-  esc.release = function() {
-    g.state = menuState;
-  };
-
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
       initGame(player.animal);
