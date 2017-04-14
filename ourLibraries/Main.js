@@ -39,7 +39,7 @@ $(document).ready(function() {
 });
 // Initialize global variables
 function initEverything() {
-  renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT);
+  renderer = new PIXI.autoDetectRenderer(WIDTH, HEIGHT);
   b = new Bump(PIXI);
   tinkPoint = new Tink(PIXI, renderer.view);
   PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
