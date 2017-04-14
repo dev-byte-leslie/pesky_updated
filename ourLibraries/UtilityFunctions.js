@@ -143,7 +143,6 @@ function camera() {
     g.stage.pivot.y = 607;
   };
 }
-let counter = 0;
 function updatePoints() {
   chaosBar.inner.x =  g.stage.pivot.x -157;
   // doesn't let points bar get longer than it's supposed to be
@@ -161,13 +160,7 @@ function updatePoints() {
   chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
   triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
   triangleRight.x = topBar.position.x + topBar.width;
-
-
-  if (counter == 0) {
-    animalAnimated.shake(chaosBar, .000025 * points * fps / 144, true);
-    counter = 9;
-  } else {
-    counter--;
-  }
+  let shakeAmt = 0.000025 * points;
   animalAnimated.update();
+  animalAnimated.shake(chaosBar, shakeAmt, true);
 }
