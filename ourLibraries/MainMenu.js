@@ -43,7 +43,18 @@ function startGame() {
   initGame();
   hideAll();
   gameObjects.visible = true;
-  g.state = play;
+  player.sprite.y = hedgeLocY + 150;
+  player.sprite.x = hedgeLocX2 + 157;
+  if (player.spriteArray[8] && player.spriteArray[8]) {//TODO TEMPORARY CHECK
+    player.sprite._texture = player.spriteArray[8]._texture;
+    player.sprite._textures = player.spriteArray[8]._textures;
+  }
+  player.sprite.x = hedgeLocX1 + 157;
+  player.holdX = hedgeLocX1 + 157;
+  disableAttacking = true;
+  let c = new camera();
+  c.updateCamera();
+  g.state = moveFromHedgeState;
 }
 function showCredits() {
   initCredits();

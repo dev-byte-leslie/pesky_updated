@@ -47,6 +47,12 @@ function moveIntoHedgeState() { // freeze the game and move player into hedge
   }
 }
 function moveFromHedgeState() {
+  if (gameMusic) {
+    if (!gameMusic.playing) {
+      menuMusic.pause();
+      gameMusic.play();
+    }
+  }
   updateFps();
   updateAI();
   updatePoints();
