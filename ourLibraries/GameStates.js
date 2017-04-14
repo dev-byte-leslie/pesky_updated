@@ -58,6 +58,8 @@ function moveFromHedgeState() {
   updatePoints();
   if (player.sprite.y < 600) {
     player.sprite.y += 60 / fps;
+    player.sprite._texture = player.spriteArray[8]._texture;
+    player.sprite._textures = player.spriteArray[8]._textures;
   } else {
     player.sprite._texture = player.spriteArray[4]._texture;
     player.sprite._textures = player.spriteArray[4]._textures;

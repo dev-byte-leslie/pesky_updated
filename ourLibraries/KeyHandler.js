@@ -13,7 +13,7 @@ function Keys() {
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
     if (!player.jumping && !disableMovement && !f.isDown) {
-      player.sprite.scale.x = 1;
+      player.sprite.scale.x = player.animal == 'goose' ? 0.7 : 1;
       player.sprite.vx = -5 * 60 / fps;
       player.sprite._texture = player.spriteArray[5]._texture;
       player.sprite._textures = player.spriteArray[5]._textures;
@@ -48,7 +48,7 @@ function Keys() {
   //Right
   right.press = function() {
     if (!player.jumping && !disableMovement && !f.isDown) {
-      player.sprite.scale.x = -1;
+      player.sprite.scale.x = player.animal == 'goose' ? -0.7 : -1;
       player.sprite._texture = player.spriteArray[5]._texture;
       player.sprite._textures = player.spriteArray[5]._textures;
       this.doingIdle = false;

@@ -49,8 +49,8 @@ function startGame() {
     player.sprite._texture = player.spriteArray[8]._texture;
     player.sprite._textures = player.spriteArray[8]._textures;
   }
-  player.sprite.x = hedgeLocX1 + 157;
-  player.holdX = hedgeLocX1 + 157;
+  player.sprite.x = hedgeLocX2 + 157;
+  player.holdX = hedgeLocX2 + 157;
   disableAttacking = true;
   let c = new camera();
   c.updateCamera();

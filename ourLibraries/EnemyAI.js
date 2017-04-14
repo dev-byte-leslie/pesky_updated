@@ -46,9 +46,9 @@ function spawnAnimalControl(x , y) {
       this.detection = 300 + (points * 124);
     }
 
-    console.log(this.closeToPlayer);
-    console.log(this.detection);
-    console.log("inside house" + " " + player.inHouse);
+    //console.log(this.closeToPlayer);
+    //console.log(this.detection);
+    //console.log("inside house" + " " + player.inHouse);
 
     //Plays the sound when player is too close
     if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
