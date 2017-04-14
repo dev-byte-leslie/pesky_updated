@@ -4,24 +4,17 @@ function initTutorial() {
   buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, tutorialGroup, 'back');
   buttonBack.scale.x = 0.5;
   buttonBack.scale.y = 0.5;
-  tutorial = new PIXI.Text('use arrow keys to move\n\n\n\navoid animal control\n\n\nwreak havoc\n\n\n', {font: '50px Arial', fill: 'red'});
-
-  var keys = PIXI.Texture.fromImage('../images/keys.png');
-  var keysSprite = new PIXI.Sprite(keys);
-  keysSprite.position.x = WIDTH * 0.45;
-  keysSprite.position.y = HEIGHT * 0.01;
-
-  var animalcontrol = PIXI.Texture.fromImage('../images/AiSprites/animal_control.png');
-  var animalcontrolSprite = new PIXI.Sprite(animalcontrol);
-  animalcontrolSprite.position.x = WIDTH * 0.45;
-  animalcontrolSprite.position.y = HEIGHT * 0.4;
+  tutorial = new PIXI.Text('a - move left\nd - move right\ne - enter houses/hedges\nf - attack\nspace bar - jump\nn - change street', {font: '50px Road_Rage', fill: '#F77A77'});
+  tutorial.x += 50;
 
   tutorialGroup.addChild(tutorial);
   tutorialGroup.addChild(buttonBack);
-  tutorialGroup.addChild(keysSprite);
-  tutorialGroup.addChild(animalcontrolSprite);
   g.stage.addChild(tutorialGroup);
 }
 function mainMenu() {
   g.state = menuState;
 }
+
+// wasd movement
+// n end street
+// e enter houses/hedges
