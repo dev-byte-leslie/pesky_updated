@@ -115,7 +115,13 @@ function createGameWorld() {
     });
   }
   garbages.forEach(function(garbage) {
-    garbage.x = randomInt(minX, maxX);
+    let garbageX = randomInt(minX, maxX);
+    while ((garbageX <= hedgeLocX1+157 + 240 && garbageX >= hedgeLocX1+157 - 240) ||
+    (garbageX <= hedgeLocX2+157 + 240 && garbageX >= hedgeLocX2+157 - 240) ||
+    (garbageX <= hedgeLocX3+157 + 240 && garbageX >= hedgeLocX3+157 - 240)) {
+      garbageX = randomInt(minX, maxX);
+    }
+    garbage.x = garbageX;
     garbage.y = 600;
     garbage.anchor.set(0.5, 1);
     garbage.animationSpeed = 0.1;
@@ -143,7 +149,7 @@ function generateWorldSprites(negVals, posVals) {
   }
 
   //assigns a random position for the hedge object
-  var randINT = randomInt(0, negLength - 1);
+  var randINT = randomInt(0, negLength / 2);
   negVals[randINT] = 4;
 
 
@@ -157,7 +163,7 @@ function generateWorldSprites(negVals, posVals) {
   }
 
   //assigns a random position for the hedge object in the positive direction
-  randINT = randomInt(0, posLength - 1);
+  randINT = randomInt(posLength / 2, posLength - 1);
   posVals[1] = 4;
   posVals[randINT] = 4;
 }
