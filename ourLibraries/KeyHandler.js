@@ -142,6 +142,8 @@ function Keys() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
       gameObjects.removeChild(chaosBar);
       chaos = 0;
+      pointsToAdd += 10;
+      updatePoints();
       people1 = [];
       people2 = [];
       people3 = [];

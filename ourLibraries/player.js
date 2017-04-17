@@ -162,13 +162,11 @@ function Player(stringAnimal) {
                 garbageHit.x -= 60;
                 garbageHit.scale.x = -1;
               }
-            } else {
-              if (player.sprite.scale.x == -1) {
-                garbageHit.scale.x = -1;
-                garbageHit.x -= 60;
-              } else {
-                garbageHit.scale.x = 1;
-              }
+              garbageHit.y += 2;
+              garbageHit.knockedOver = true;
+              garbageHit.play();
+              chaosToAdd += 5;
+              pointsToAdd += 5;
             }
             garbageHit.y += 2;
             garbageHit.knockedOver = true;

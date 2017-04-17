@@ -120,7 +120,10 @@ function spawnAnimalControl(x , y) {
     this.aCObject.animationSpeed = 0.1;
     if (b.hitTestRectangle(this.aCObject, player.sprite) && g.state == play) {
       this.aCObject.gotoAndStop(0);
-      chaosToAdd -= 30;
+      //TODO: subtract point when caught
+      //chaosToAdd -= 30;
+      //pointsToAdd -= 30;
+      //updatePoints();
       this.aCObject.vy = 0;
       this.aCObject.scale.x = -1;
       if (player.animal == 'raccoon') {

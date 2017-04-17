@@ -167,3 +167,11 @@ function updateChaos() {
   animalAnimated.shake(chaosBar, shakeAmt, true);
   animalAnimated.update();
 }
+
+function updatePoints()
+{
+  points += pointsToAdd; //TODO:Multiply by number of AI
+  pointsToAdd = 0;
+  console.log(points);
+  console.log(pointsToAdd);
+}
