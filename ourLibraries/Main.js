@@ -227,7 +227,7 @@ function setup() {
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
   blueHouse = '../images/WorldObjects/Blue_House.png';
-  greyHouse = '../images/WorldObjects/Grey_House.pwalterCaughtng';
+  greyHouse = '../images/WorldObjects/Grey_House.png';
   beigeHouse = '../images/WorldObjects/Beige_House.png';
   floorTexture = '../images/HouseBackground.png';
 
