@@ -141,10 +141,11 @@ function spawnAnimalControl(x , y) {
       player.sprite.visible = false;
       this.aCObject.play();
       g.state = caughtState;
-    } else {
+      } else {
       this.aCObject._texture = animalControlSprite._texture;
       this.aCObject._textures = animalControlSprite._textures;
       this.aCObject.gotoAndStop(0);
+      }
     }
   };
 }

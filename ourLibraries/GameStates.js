@@ -1,11 +1,8 @@
 // All game loop functions/states go here to help declutter Main.js
 function menuState() {
-  g.stage.position.x = 0;
-  g.stage.position.y = 0;
-  g.stage.scale.x = 1;
-  g.stage.scale.y = 1;
-  g.stage.pivot.x = 0;
-  g.stage.pivot.y = 0;
+  g.stage.scale.set(1, 1);
+  g.stage.pivot.set(0, 0);
+  g.stage.position.set(0, 0);
   hideAll();
   backgroundGroup.visible = true;
   title.position.x = 20;
