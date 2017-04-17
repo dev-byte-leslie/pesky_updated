@@ -60,7 +60,6 @@ function setupGame() {
   shiftKey = keyboard(16);
   switchE = keyboard(69);
   f1 = keyboard(112); // fps toggle
-  f2 = keyboard(113); // cheat key
   esc = keyboard(27);
   nVal = keyboard(78); // go to next street
   f = keyboard(70); // attack

@@ -138,10 +138,6 @@ function Keys() {
     fpsEnabled = !fpsEnabled;
   };
 
-  f2.press = function() {
-    chaosToAdd += 5;
-  };
-
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
       gameObjects.removeChild(chaosBar);
