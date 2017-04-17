@@ -28,6 +28,9 @@ function jump() {
     } else if (player.spacePush) {
       player.sprite.vy = 0;
     }
+    if (disableMovement) {
+      //player.sprite._texture = player.sprite.
+    }
   }
   if (!player.spacePush) {
     clearTimeout(timeoutID);

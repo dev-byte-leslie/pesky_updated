@@ -132,9 +132,8 @@ function spawnAnimalControl(x , y) {
         this.aCObject._textures = stankyCaught._textures;
         skunkAlive = false;
       } else {
-        //TODO replace with goose textures
-        this.aCObject._texture = stankyCaught._texture;
-        this.aCObject._textures = stankyCaught._textures;
+        this.aCObject._texture = walterCaught._texture;
+        this.aCObject._textures = walterCaught._textures;
         gooseAlive = false;
       }
       player.holdX = player.sprite.x;

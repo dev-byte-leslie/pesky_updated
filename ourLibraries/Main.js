@@ -22,6 +22,8 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
 
   hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
+  walterCaught, stankyCaught, carlosCaught,
+
   garbageSprite1, garbageSprite2, garbages = [],
 
   //vars to hold sprites of houses
@@ -79,6 +81,7 @@ function setupGame() {
     .add('../images/AiSprites/animal_control_attack.png')
     .add('../images/AiSprites/carlos_caught.png')
     .add('../images/AiSprites/stanky_caught.png')
+    .add('../images/AiSprites/Walter_Caught.png')
     .add('../images/AiSprites/animal_control.png')
 
     //People sprites
@@ -113,6 +116,7 @@ function setupGame() {
     .add('../images/PlayerAnimals/walter_jump.png')
     .add('../images/PlayerAnimals/walter_up.png')
     .add('../images/PlayerAnimals/walter_down.png')
+    .add('../images/PlayerAnimals/walter_poop.png')
 
     // Backgrounds
     .add('../images/Backgrounds/CharSelectBackground.png')
@@ -183,6 +187,8 @@ function setup() {
   walterUp2 = new spriteCreator('../images/PlayerAnimals/walter_up.png', 43, 48);
   walterDown = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
   walterDown2 = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
+  walterPoop = new spriteCreator('../images/PlayerAnimals/walter_poop.png', 70, 150);
+  walterPoop2 = new spriteCreator('../images/PlayerAnimals/walter_poop.png', 70, 150);
 
   // People sprites
   numPeople = 8; // Total number of people PER SPRITE TYPE
@@ -213,11 +219,12 @@ function setup() {
   // Animal control sprites
   carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);
   stankyCaught = new spriteCreator('../images/AiSprites/stanky_caught.png', 100, 100);
+  walterCaught = new spriteCreator('../images/AiSprites/Walter_Caught.png', 100, 100);
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';
   blueHouse = '../images/WorldObjects/Blue_House.png';
-  greyHouse = '../images/WorldObjects/Grey_House.png';
+  greyHouse = '../images/WorldObjects/Grey_House.pwalterCaughtng';
   beigeHouse = '../images/WorldObjects/Beige_House.png';
   floorTexture = '../images/HouseBackground.png';
 

@@ -15,7 +15,8 @@ function Player(stringAnimal) {
     carlosWalk, carlosWalk2, carlosIdle, carlosIdle2, carlosDown, carlosDown2,
     carlosUp, carlosUp2];
   this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
-    stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
+    stankyWalk, stankyWalk2, stankyIdle, stankyIdle2, stankyDown, stankyDown2,
+    stankyUp, stankyUp2];
 
   this.canFly = (stringAnimal == 'goose');
   this.isFlying = false;
@@ -151,31 +152,31 @@ function Player(stringAnimal) {
       // Test hit for garbages every frame to knock them down appropriately
       b.hit(player.sprite, garbages, false, false, false,
         function(collision, garbageHit) {
-          if (!garbageHit.knockedOver) {
-            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
+        if (!garbageHit.knockedOver) {
+          if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
           garbageHit.y - 100, 35, 100))) {
-              if (player.animal != 'skunk') {
-                if (player.sprite.scale.x == -1) {
-                  garbageHit.scale.x = 1;
-                } else {
-                  garbageHit.x -= 60;
-                  garbageHit.scale.x = -1;
-                }
+            if (player.animal != 'skunk') {
+              if (player.sprite.scale.x == -1) {
+                garbageHit.scale.x = 1;
               } else {
-                if (player.sprite.scale.x == -1) {
-                  garbageHit.scale.x = -1;
-                  garbageHit.x -= 60;
-                } else {
-                  garbageHit.scale.x = 1;
-                }
+                garbageHit.x -= 60;
+                garbageHit.scale.x = -1;
               }
-              garbageHit.y += 2;
-              garbageHit.knockedOver = true;
-              garbageHit.play();
-              chaosToAdd = 5;
+            } else {
+              if (player.sprite.scale.x == -1) {
+                garbageHit.scale.x = -1;
+                garbageHit.x -= 60;
+              } else {
+                garbageHit.scale.x = 1;
+              }
             }
+            garbageHit.y += 2;
+            garbageHit.knockedOver = true;
+            garbageHit.play();
+            pointsToAdd = 5;
           }
-        });
+        }
+      });
     }
     // Check list of conditions to make sure player is actually idle
     if (!space.isDown && !player.jumping && player.sprite.vx == 0
