@@ -119,7 +119,6 @@ function setupGame() {
     .add('../images/PlayerAnimals/walter_jump.png')
     .add('../images/PlayerAnimals/walter_up.png')
     .add('../images/PlayerAnimals/walter_down.png')
-    .add('../images/PlayerAnimals/walter_poop.png')
 
     // Backgrounds
     .add('../images/Backgrounds/CharSelectBackground.png')
@@ -190,8 +189,6 @@ function setup() {
   walterUp2 = new spriteCreator('../images/PlayerAnimals/walter_up.png', 43, 48);
   walterDown = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
   walterDown2 = new spriteCreator('../images/PlayerAnimals/walter_down.png', 43, 48);
-  walterPoop = new spriteCreator('../images/PlayerAnimals/walter_poop.png', 70, 150);
-  walterPoop2 = new spriteCreator('../images/PlayerAnimals/walter_poop.png', 70, 150);
 
   // People sprites
   numPeople = 8; // Total number of people PER SPRITE TYPE

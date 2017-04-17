@@ -28,9 +28,6 @@ function jump() {
     } else if (player.spacePush) {
       player.sprite.vy = 0;
     }
-    if (disableMovement) {
-      //player.sprite._texture = player.sprite.
-    }
   }
   if (!player.spacePush) {
     clearTimeout(timeoutID);
@@ -172,6 +169,6 @@ function updatePoints()
 {
   points += pointsToAdd; //TODO:Multiply by number of AI
   pointsToAdd = 0;
-  console.log(points);
-  console.log(pointsToAdd);
+  //console.log(points);
+  //console.log(pointsToAdd);
 }
