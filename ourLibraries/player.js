@@ -15,7 +15,8 @@ function Player(stringAnimal) {
     carlosWalk, carlosWalk2, carlosIdle, carlosIdle2, carlosDown, carlosDown2,
     carlosUp, carlosUp2];
   this.skunkSprites = [stankyAttack, stankyAttack2, stankyJump, stankyJump2,
-    stankyWalk, stankyWalk2, stankyIdle, stankyIdle2];
+    stankyWalk, stankyWalk2, stankyIdle, stankyIdle2, stankyDown, stankyDown2,
+    stankyUp, stankyUp2];
 
   this.canFly = (stringAnimal == 'goose');
   this.isFlying = false;

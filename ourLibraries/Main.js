@@ -103,6 +103,8 @@ function setupGame() {
     .add('../images/PlayerAnimals/Skanky_idle.png')
     .add('../images/PlayerAnimals/Skanky_jump.png')
     .add('../images/PlayerAnimals/Skanky.png')
+    .add('../images/PlayerAnimals/skanky_up.png')
+    .add('../images/PlayerAnimals/skanky_down.png')
 
     //Walter Textures
     .add('../images/PlayerAnimals/WalterFly.png')
@@ -162,6 +164,11 @@ function setup() {
   stankyJump2 = new spriteCreator('../images/PlayerAnimals/Skanky_jump.png', 75, 36);
   stankyAttack = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 39);
   stankyAttack2 = new spriteCreator('../images/PlayerAnimals/Skanky_attack.png', 70, 39);
+  stankyDown = new spriteCreator('../images/PlayerAnimals/skanky_down.png', 45, 45);
+  stankyDown2 = new spriteCreator('../images/PlayerAnimals/skanky_down.png', 45, 45);  
+  stankyUp = new spriteCreator('../images/PlayerAnimals/skanky_up.png', 45, 45);
+  stankyUp2 = new spriteCreator('../images/PlayerAnimals/skanky_up.png', 45, 45);
+
 
   //Walter sprites
   walterIdle = new spriteCreator('../images/PlayerAnimals/WalterIdle.png', 45, 55);
