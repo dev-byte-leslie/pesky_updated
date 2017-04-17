@@ -139,13 +139,13 @@ function Keys() {
   };
 
   f2.press = function() {
-    pointsToAdd += 5;
+    chaosToAdd += 5;
   };
 
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
       gameObjects.removeChild(chaosBar);
-      points = 0;
+      chaos = 0;
       people1 = [];
       people2 = [];
       people3 = [];

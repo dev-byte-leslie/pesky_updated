@@ -37,13 +37,13 @@ function spawnAnimalControl(x , y) {
     }
 
     //makes the ai go faster the more chaos that is caused. Change
-    // the number that points is divided by to tweak the rate of increase
-    if (points) {
-      this.speed = 3 + (Math.floor(points / 10) * 0.3);
+    // the number that chaos is divided by to tweak the rate of increase
+    if (chaos) {
+      this.speed = 3 + (Math.floor(chaos / 10) * 0.3);
     }
 
-    if (points) {
-      this.detection = 300 + (points * 124);
+    if (chaos) {
+      this.detection = 300 + (chaos * 124);
     }
 
     //console.log(this.closeToPlayer);
@@ -121,7 +121,7 @@ function spawnAnimalControl(x , y) {
     this.aCObject.animationSpeed = 0.1;
     if (b.hitTestRectangle(this.aCObject, player.sprite) && g.state == play) {
       this.aCObject.gotoAndStop(0);
-      pointsToAdd -= 30;
+      chaosToAdd -= 30;
       this.aCObject.vy = 0;
       this.aCObject.scale.x = -1;
       if (player.animal == 'raccoon') {
