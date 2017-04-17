@@ -172,7 +172,8 @@ function Player(stringAnimal) {
               garbageHit.y += 2;
               garbageHit.knockedOver = true;
               garbageHit.play();
-              chaosToAdd = 5;
+              chaosToAdd += 5;
+              pointsToAdd += 5;
             }
           }
         });

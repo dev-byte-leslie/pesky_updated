@@ -33,6 +33,9 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   //Global var for chaos
   chaos = 0, chaosToAdd = 0;
 
+//Global vars for points
+var points = 0, pointsToAdd = 0;
+
 // Called when everything is loaded
 $(document).ready(function() {
   initEverything();
