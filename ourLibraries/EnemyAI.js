@@ -1,5 +1,5 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
-//TODO: Determine is AI needs to be stoped when inside house
+//TODO: Make it so AI LEAVES WHEN CHANGING IN HEDGE OR INSIDE A HOUSE
 function spawnAnimalControl(x , y) {
   //instantiate animal control sprite
   this.aCObject = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
@@ -42,13 +42,10 @@ function spawnAnimalControl(x , y) {
       this.speed = 3 + (Math.floor(points / 10) * 0.3);
     }
 
+    //Makes ai able to detect player at greater distances the more chaos that is caused
     if (points) {
       this.detection = 300 + (points * 124);
     }
-
-    console.log(this.closeToPlayer);
-    console.log(this.detection);
-    console.log("inside house" + " " + player.inHouse);
 
     //Plays the sound when player is too close
     if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
