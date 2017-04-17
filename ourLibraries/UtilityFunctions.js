@@ -62,13 +62,8 @@ function enterHouse() {
     house.addChild(blackOverlay);
   }, 1667);
 
-  if (player.spriteArray[10]) {
-    player.sprite._texture = player.spriteArray[10]._texture;
-    player.sprite._textures = player.spriteArray[10]._textures;
-  } else {
-    player.sprite._texture = player.spriteArray[4]._texture;
-    player.sprite._textures = player.spriteArray[4]._textures;
-  }
+  player.sprite._texture = player.spriteArray[10]._texture;
+  player.sprite._textures = player.spriteArray[10]._textures;
   g.state = fadeOutOfWorld;
 }
 

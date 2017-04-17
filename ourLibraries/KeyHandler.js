@@ -125,6 +125,7 @@ function Keys() {
           false, false, false)) {
           player.sprite._texture = player.spriteArray[11]._texture;
           player.sprite._textures = player.spriteArray[11]._textures;
+          player.sprite.play();
           player.sprite.x = eval('hedgeLocX'+i) + 157;
           player.holdX = eval('hedgeLocX'+i) + 157;
           disableAttacking = true;
