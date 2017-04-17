@@ -156,7 +156,7 @@ function Player(stringAnimal) {
           if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
           garbageHit.y - 100, 35, 100))) {
             if (player.animal != 'skunk') {
-              if (player.sprite.scale.x == -1) {
+              if (Math.sign(player.sprite.scale.x) == -1) {
                 garbageHit.scale.x = 1;
               } else {
                 garbageHit.x -= 60;
