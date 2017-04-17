@@ -24,7 +24,7 @@ function initGame(animalType = 'raccoon') {
   //create the chaos bar
   initChaosBar();
 
-  animalCont1 = new spawnAnimalControl(WIDTH * 0.703125, 0.83333 * HEIGHT);
+  animalCont1 = new spawnAnimalControl(randomInt(minX, maxX), 0.83333 * HEIGHT);
   map.addChild(animalCont1.aCObject);
   g.stage.addChild(blackOverlay);
 }
