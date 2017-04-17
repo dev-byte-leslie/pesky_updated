@@ -1,6 +1,6 @@
 // Sprite variables for people
 var people1 = [], people2 = [], people3 = [], person1_sick,
-person2_sick, person3_sick, peopleTypes, numPeople;
+person2_sick, person3_sick, peopleTypes, numPeople, numOfEnemyAi = [], enemyAiCount = 1;
 
 // Sprite variables for carlos
 var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
@@ -30,8 +30,8 @@ var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
 //Background textures
 var titleBackground, hedgeBackground, blackOverlay, gameOverText;
 
-//Global var for points
-var points = 0, pointsToAdd = 0;
+//Global var for chaos
+var chaos = 0, chaosToAdd = 0;
 
 // Called when everything is loaded
 $(document).ready(function() {
