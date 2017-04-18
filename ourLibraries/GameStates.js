@@ -20,7 +20,10 @@ function optionsState() {
 }
 function creditsState() {
   updateFps();
-  credits.y -= 4 * 60 / fps;
+  creditsShadow1.y -= 4 * 60 / fps;
+  creditsShadow2.y -= 4 * 60 / fps;
+  creditsShadow3.y -= 4 * 60 / fps;
+  credits1.y -= 4 * 60 / fps;
   credits2.y -= 4 * 60 / fps;
   credits3.y -= 4 * 60 / fps;
 }
