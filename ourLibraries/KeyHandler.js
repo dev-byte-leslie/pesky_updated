@@ -37,14 +37,6 @@ function Keys() {
     }
   };
 
-  //Up
-  up.press = function() {
-  //TODO Make sure only works in certain spots
-  };
-
-  up.release = function() {
-  };
-
   //Right
   right.press = function() {
     if (!player.jumping && !disableMovement && !f.isDown) {
