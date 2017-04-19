@@ -68,6 +68,7 @@ function moveFromHedgeState() {
       player.sprite.play();
     }
   } else {
+    ePressed = false;
     player.sprite._texture = player.spriteArray[4]._texture;
     player.sprite._textures = player.spriteArray[4]._textures;
     g.state = play;
@@ -135,6 +136,7 @@ function fadeIntoWorld() {
   if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
+    ePressed = false;
     blackOverlay.alpha = 0;
     disableMovement = false;
     g.state = play;
@@ -151,6 +153,7 @@ function fadeIntoHouse() {
   if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
+    ePressed = false;
     blackOverlay.alpha = 0;
     player.doIdle();
     disableMovement = false;

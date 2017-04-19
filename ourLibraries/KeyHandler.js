@@ -98,30 +98,32 @@ function Keys() {
   };
 
   switchE.press = function() {
-    // location
-    if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
-      function(collision, doorHit) {
-        if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
-          enterHouse();
-        }
-      })) {
-    }
+    if (!ePressed) {
+      ePressed = true;
+      if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
+        function(collision, doorHit) {
+          if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+            enterHouse();
+          }
+        })) {
+      }
 
-    if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
-      buildOutside();
-    }
-    for (let i = 1; i <= 3; i++) {
-      if (!player.jumping && !player.inHouse) {
-        if (b.hitTestRectangle(player.sprite,
-          new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
-          false, false, false)) {
-          player.sprite._texture = player.spriteArray[11]._texture;
-          player.sprite._textures = player.spriteArray[11]._textures;
-          player.sprite.play();
-          player.sprite.x = eval('hedgeLocX'+i) + 157;
-          player.holdX = eval('hedgeLocX'+i) + 157;
-          disableAttacking = true;
-          g.state = moveIntoHedgeState;
+      if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
+        buildOutside();
+      }
+      for (let i = 1; i <= 3; i++) {
+        if (!player.jumping && !player.inHouse) {
+          if (b.hitTestRectangle(player.sprite,
+            new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
+            false, false, false)) {
+            player.sprite._texture = player.spriteArray[11]._texture;
+            player.sprite._textures = player.spriteArray[11]._textures;
+            player.sprite.play();
+            player.sprite.x = eval('hedgeLocX'+i) + 157;
+            player.holdX = eval('hedgeLocX'+i) + 157;
+            disableAttacking = true;
+            g.state = moveIntoHedgeState;
+          }
         }
       }
     }

@@ -23,7 +23,7 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
 
   hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
-  walterCaught, stankyCaught, carlosCaught, reloadTimer = 0,
+  walterCaught, stankyCaught, carlosCaught, reloadTimer = 0, ePressed = false,
 
   garbageSprite1, garbageSprite2, garbages = [],
 
@@ -34,10 +34,10 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   titleBackground, hedgeBackground, blackOverlay, gameOverText,
 
   //Global var for chaos
-  chaos = 0, chaosToAdd = 0;
+  chaos = 0, chaosToAdd = 0,
 
-//Global vars for points
-var points = 0, pointsToAdd = 0;
+  //Global vars for points
+  points = 0, pointsToAdd = 0;
 
 // Called when everything is loaded
 $(document).ready(function() {

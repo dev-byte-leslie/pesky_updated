@@ -1,6 +1,6 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
 //TODO: Make it so AI LEAVES WHEN CHANGING IN HEDGE OR INSIDE A HOUSE
-function spawnAnimalControl(x , y) {
+function spawnAnimalControl(x, y) {
   //instantiate animal control sprite
   this.aCObject = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
 
@@ -89,7 +89,7 @@ function spawnAnimalControl(x , y) {
     }
 
     //stops enemy movement if player is too far away
-    if (Math.abs(this.aCObject.x - player.sprite.x) >  this.detection) {
+    if (Math.abs(this.aCObject.x - player.sprite.x) > this.detection) {
       this.aCObject.gotoAndStop(0);
       this.aCObject.vx = 0;
       this.aCObject.vy = 0;

@@ -37,8 +37,19 @@ function jump() {
 //build the inside of a house
 function enterHouse() {
   disableMovement = true;
+  numOfEnemyAi.forEach(function(animalCont1) {
+    animalCont1.aCObject.gotoAndStop(0);
+  });
   player.doIdle();
   setTimeout(function() {
+    // Teleport AC away from player so they don't get killed right outside the door
+    numOfEnemyAi.forEach(function(animalCont1) {
+      if (animalCont1.aCObject.x >= player.sprite.x - 400) {
+        animalCont1.aCObject.x -= 600;
+      } else if (animalCont1.aCObject.x < player.sprite.x + 400) {
+        animalCont1.aCObject.x += 600;
+      }
+    });
     gameObjects.removeChild(map);
     g.stage.removeChild(gameObjects);
     gameObjects.addChild(house);
@@ -72,11 +83,14 @@ function buildOutside() {
   disableMovement = true;
   player.doIdle();
   // Teleport AC away from player so they don't get killed right outside the door
-  if (animalCont1.aCObject.x >= player.sprite.x - 400) {
-    animalCont1.aCObject.x -= 600;
-  } else if (animalCont1.aCObject.x < player.sprite.x + 400) {
-    animalCont1.aCObject.x += 600;
-  }
+  numOfEnemyAi.forEach(function(animalCont1) {
+    if (animalCont1.aCObject.x >= player.sprite.x - 400) {
+      animalCont1.aCObject.x -= 600;
+    } else if (animalCont1.aCObject.x < player.sprite.x + 400) {
+      animalCont1.aCObject.x += 600;
+    }
+  });
+
   setTimeout(function() {
     gameObjects.removeChild(house);
     g.stage.removeChild(blackOverlay);
