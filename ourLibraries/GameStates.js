@@ -103,6 +103,13 @@ function caughtState() {
     }
   } else {
     animalControlCaught.aCObject.x += 60 / fps;
+    numOfEnemyAi.forEach(function(animalCont) {
+      animalCont.aCObject.scale.x = -1;
+      animalCont.aCObject.play();
+      if (animalCont !== animalControlCaught) {
+        animalCont.aCObject.x -= 90 / fps;
+      }
+    });
   }
 }
 function gameOverState() {
