@@ -9,14 +9,12 @@ function jump() {
       setTimeout(function() {
         player.jumping = false;
         player.sprite.gotoAndStop(0);
-        player.sprite._texture = player.spriteArray[5]._texture;
-        player.sprite._textures = player.spriteArray[5]._textures;
+        player.setTextures(5);
         this.doingIdle = false;
         player.sprite.gotoAndStop(0);
       }, 1000);
     }
-    player.sprite._texture = player.spriteArray[2]._texture;
-    player.sprite._textures = player.spriteArray[2]._textures;
+    player.setTextures(2);
     jumpSound.play();
     player.sprite.gotoAndStop(0);
     player.sprite.animationSpeed = 0.1;
@@ -27,8 +25,7 @@ function jump() {
     timeoutID = setTimeout(function() {
       if (player.jumping && player.spacePush) {
         player.isFlying = true;
-        player.sprite._texture = player.spriteArray[12]._texture;
-        player.sprite._textures = player.spriteArray[12]._textures;
+        player.setTextures(12);
         player.sprite.vy = player.sprite.y > 500 ? -2.51 : 0;
         disableAttacking = true;
       }
@@ -83,9 +80,7 @@ function enterHouse() {
     house.addChild(chaosBar);
     house.addChild(blackOverlay);
   }, 1667);
-
-  player.sprite._texture = player.spriteArray[10]._texture;
-  player.sprite._textures = player.spriteArray[10]._textures;
+  player.setTextures(10);
   g.state = fadeOutOfWorld;
 }
 
@@ -113,22 +108,17 @@ function buildOutside() {
     player.inHouse = false;
 
     map.addChild(player.sprite);
-    map.addChild(animalCont1.aCObject);
+    numOfEnemyAi.forEach(function(animalCont1) {
+      map.addChild(animalCont1.aCObject);
+      animalCont1.aCObject.vx = 0;
+      animalCont1.aCObject.vy = 0;
+    });
     map.addChild(chaosBar);
-    animalCont1.aCObject.vx = 0;
-    animalCont1.aCObject.vy = 0;
-
     gameObjects.addChild(map);
     g.stage.addChild(gameObjects);
     g.stage.addChild(blackOverlay);
   }, 1667);
-  if (player.spriteArray[10]) {
-    player.sprite._texture = player.spriteArray[10]._texture;
-    player.sprite._textures = player.spriteArray[10]._textures;
-  } else {
-    player.sprite._texture = player.spriteArray[4]._texture;
-    player.sprite._textures = player.spriteArray[4]._textures;
-  }
+  player.setTextures(10);
   g.state = fadeOutOfHouse;
 }
 

@@ -60,17 +60,14 @@ function moveFromHedgeState() {
   updatePoints();
   if (player.sprite.y < 600) {
     player.sprite.y += 60 / fps;
-    if (player.sprite._texture != player.spriteArray[8]._texture &&
-        player.sprite._textures != player.spriteArray[8]._textures) {
-      player.sprite._texture = player.spriteArray[8]._texture;
-      player.sprite._textures = player.spriteArray[8]._textures;
+    if (!player.testTextures(8)) {
+      player.setTextures(8);
       player.sprite.gotoAndStop(0);
       player.sprite.play();
     }
   } else {
     ePressed = false;
-    player.sprite._texture = player.spriteArray[4]._texture;
-    player.sprite._textures = player.spriteArray[4]._textures;
+    player.setTextures(4);
     g.state = play;
   }
 }

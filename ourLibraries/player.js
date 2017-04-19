@@ -39,6 +39,16 @@ function Player(stringAnimal) {
     this.animal = stringAnimal;
   };
 
+  this.setTextures = function(texture) {
+    this.sprite._texture = this.spriteArray[texture]._texture;
+    this.sprite._textures = this.spriteArray[texture]._textures;
+  }
+
+  this.testTextures = function(texture) {
+    return (this.sprite._texture == this.spriteArray[texture]._texture ||
+      this.sprite._textures == this.spriteArray[texture]._textures)
+  }
+
   this.setCharacter(stringAnimal);
 
   //assign to the walk sprite of the designated array
@@ -94,15 +104,12 @@ function Player(stringAnimal) {
       function(collision, floorHit) {
         player.sprite.vy = 0;
         player.sprite.y = floorHit.y;
-        player.jumping = false;
-        player.isFlying = false;
+        player.jumping = player.isFlying = disableAttacking = false;
         player.sprite.gotoAndStop(0);
-        player.sprite._texture = player.spriteArray[5]._texture;
-        player.sprite._textures = player.spriteArray[5]._textures;
+        player.setTextures(5);
         this.doingIdle = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
-        disableAttacking = false;
       })) {
       if (fps >= 20) {  // lower than around 20, the player falls too quickly and through the floor
         if (player.jumping && (player.sprite.vy != 0 || player.canFly)) {
@@ -117,10 +124,8 @@ function Player(stringAnimal) {
       this.sprite.x += this.sprite.vx; //add x velocity to player's x location
       this.xValue += this.sprite.vx;
       if (left.isDown) {
-        if (player.sprite._texture != player.spriteArray[5]._texture &&
-          player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
-          player.sprite._texture = player.spriteArray[5]._texture;
-          player.sprite._textures = player.spriteArray[5]._textures;
+        if (!player.testTextures(5) && !player.jumping) {
+          player.setTextures(5);
         }
         if (fps >= 30) {
           player.sprite.vx = -5 * 60 / fps;
@@ -131,10 +136,8 @@ function Player(stringAnimal) {
         player.sprite.animationSpeed = 0.1;
         player.sprite.play();
       } else if (right.isDown) {
-        if (player.sprite._texture != player.spriteArray[5]._texture &&
-          player.sprite._textures != player.spriteArray[5]._textures && !player.jumping) {
-          player.sprite._texture = player.spriteArray[5]._texture;
-          player.sprite._textures = player.spriteArray[5]._textures;
+        if (!player.testTextures(5) && !player.jumping) {
+          player.setTextures(5);
         }
         if (fps >= 30) {
           player.sprite.vx = 5 * 60 / fps;
@@ -199,11 +202,9 @@ function Player(stringAnimal) {
   };
   // Function called to make the player idle
   this.doIdle = function () {
-    if (player.sprite._texture != player.spriteArray[7]._texture &&
-    player.sprite._textures != player.spriteArray[7]._textures) {
+    if (!player.testTextures(7)) {
       this.doingIdle = true;
-      player.sprite._texture = player.spriteArray[7]._texture;
-      player.sprite._textures = player.spriteArray[7]._textures;
+      player.setTextures(7);
       if (player.animal == 'goose') {
         this.sprite.animationSpeed = .2;
       } else {

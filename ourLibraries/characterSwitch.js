@@ -85,13 +85,7 @@ function comeFromBush() {
   g.stage.scale.y = 4;
   g.stage.pivot.x = player.sprite.position.x;
   g.stage.pivot.y = 607;
-  if (player.spriteArray[8]) {
-    player.sprite._texture = player.spriteArray[8]._texture;
-    player.sprite._textures = player.spriteArray[8]._textures;
-  } else {
-    player.sprite._texture = player.spriteArray[4]._texture;
-    player.sprite._textures = player.spriteArray[4]._textures;
-  }
+  player.setTextures(8);
   if (!player.sprite.visible) {
     player.sprite.x = eval('hedgeLocX' + randomInt(1, 3)) + 157;
   } else {

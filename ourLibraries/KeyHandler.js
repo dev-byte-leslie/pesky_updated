@@ -15,8 +15,7 @@ function Keys() {
     if (!player.jumping && !disableMovement && !f.isDown) {
       player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
       player.sprite.vx = -5 * 60 / fps;
-      player.sprite._texture = player.spriteArray[5]._texture;
-      player.sprite._textures = player.spriteArray[5]._textures;
+      player.setTextures(5);
       this.doingIdle = false;
       player.sprite.play();
     }
@@ -41,8 +40,7 @@ function Keys() {
   right.press = function() {
     if (!player.jumping && !disableMovement && !f.isDown) {
       player.sprite.scale.x = player.animal == 'goose' ? -0.8 : -1;
-      player.sprite._texture = player.spriteArray[5]._texture;
-      player.sprite._textures = player.spriteArray[5]._textures;
+      player.setTextures(5);
       this.doingIdle = false;
       player.sprite.play();
       player.sprite.vx = 5 * 60 / fps;
@@ -77,7 +75,7 @@ function Keys() {
           player.sprite.vxa = player.sprite.scale.x * -1;
         }, 250);
       }
-      let delay = 550;
+      let delay = 650;
       if (player.animal == 'skunk') {
         delay = 750;
       }
@@ -89,10 +87,8 @@ function Keys() {
           isAttacking = false;
         }
       }, delay);
-      if (player.sprite._texture != player.spriteArray[0]._texture &&
-        player.sprite._textures != player.spriteArray[0]._textures) {
-          player.sprite._texture = player.spriteArray[0]._texture;
-          player.sprite._textures = player.spriteArray[0]._textures;
+      if (!player.testTextures(0)) {
+          player.setTextures(0);
       }
       player.sprite.gotoAndStop(0);
       player.sprite.play();
@@ -120,8 +116,7 @@ function Keys() {
           if (b.hitTestRectangle(player.sprite,
             new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
             false, false, false)) {
-            player.sprite._texture = player.spriteArray[11]._texture;
-            player.sprite._textures = player.spriteArray[11]._textures;
+            player.setTextures(11);
             player.sprite.play();
             player.sprite.x = eval('hedgeLocX'+i) + 157;
             player.holdX = eval('hedgeLocX'+i) + 157;
