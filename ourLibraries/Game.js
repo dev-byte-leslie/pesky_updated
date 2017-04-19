@@ -24,7 +24,7 @@ function initGame(animalType = 'raccoon') {
   //create the chaos bar
   initChaosBar();
   if (newLevelVal) {
-    animalCont1 = new spawnAnimalControl(randomInt(minX, maxX), 600, 0.83333 * HEIGHT);
+    animalCont1 = new spawnAnimalControl(player.sprite.x + 500, 600, 0.83333 * HEIGHT);
     numOfEnemyAi.push(animalCont1);
     numOfEnemyAi.forEach(function(animalControl) {
       map.addChild(animalControl.aCObject);

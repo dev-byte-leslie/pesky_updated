@@ -66,7 +66,7 @@ function spawnAnimalControl(x , y) {
       this.closeToPlayer = false;
     }
 
-    if (this.closeToPlayer) {
+    if (this.closeToPlayer && player.sprite.y <= this.aCObject.y) {
       //if player is to the right of enemy
       if (!this.aCObject.doingAttack) {
         this.aCObject.vx = -1 * Math.sign(this.aCObject.x - player.sprite.x) * this.speed;
@@ -132,6 +132,11 @@ function spawnAnimalControl(x , y) {
       this.aCObject.play();
       g.state = caughtState;
       animalControlCaught = this;
+    } else {
+      this.aCObject.vx = 0;
+      this.aCObject._texture = animalControlSprite._texture;
+      this.aCObject._textures = animalControlSprite._textures;
+      this.aCObject.gotoAndStop(0);
     }
   };
 }
