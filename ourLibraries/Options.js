@@ -17,12 +17,12 @@ menuMusic = sounds["../sound/music/MenuMusic.wav"];
 jumpSound = sounds["../sound/music/Jump.wav"];
 aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
 
+  jumpSound.volume = 0.5;
+  menuMusic.volume = 0.5;   // menu music volume
+  menuMusic.loop = true;    // menu music loops
 
-    menuMusic.volume = 0.5;   // menu music volume
-    menuMusic.loop = true;    // menu music loops
-
-    gameMusic.volume = 0.5;   // game music volume
-    gameMusic.loop = true;    // game music loops
+  gameMusic.volume = 0.5;   // game music volume
+  gameMusic.loop = true;    // game music loops
 
   // menu music plays automatically when menu is active
   // needs more work
