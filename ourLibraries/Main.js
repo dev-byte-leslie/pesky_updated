@@ -1,6 +1,7 @@
 // Sprite variables for people
 var people1 = [], people2 = [], people3 = [], person1_sick,
-  person2_sick, person3_sick, peopleTypes, numPeople, numOfEnemyAi = [], enemyAiCount = 1,
+  person2_sick, person3_sick, peopleTypes, numPeople, numOfEnemyAi = [],
+  animalControlCaught,
 
   // Sprite variables for carlos
   carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,

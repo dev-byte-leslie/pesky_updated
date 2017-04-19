@@ -80,9 +80,9 @@ function caughtState() {
   updatePoints();
   blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
-  if (animalCont1.aCObject.x >= player.holdX + 250) {
-    animalCont1.aCObject._texture = animalControlSprite._texture;
-    animalCont1.aCObject._textures = animalControlSprite._textures;
+  if (animalControlCaught.aCObject.x >= player.holdX + 250) {
+    animalControlCaught.aCObject._texture = animalControlSprite._texture;
+    animalControlCaught.aCObject._textures = animalControlSprite._textures;
     if (skunkAlive || raccoonAlive || gooseAlive) {
       initCharacterSwitch();
       hideAll();
@@ -102,7 +102,7 @@ function caughtState() {
       }
     }
   } else {
-    animalCont1.aCObject.x += 60 / fps;
+    animalControlCaught.aCObject.x += 60 / fps;
   }
 }
 function gameOverState() {
@@ -114,7 +114,6 @@ function gameOverState() {
   }
 }
 function fadeIntoWorld() {
-  animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
   updateChaos();
   updatePoints();
@@ -149,7 +148,6 @@ function fadeIntoHouse() {
   }
 }
 function fadeOutOfWorld() {
-  animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
   updateAIMovement();
   updateChaos();
@@ -201,7 +199,9 @@ function play() {
   player.update();
   jump();
   if (!player.inHouse) { // prevent being captured by invisible animal control
-    animalCont1.aiMovement();
+    numOfEnemyAi.forEach(function(animalControl) {
+      animalControl.aiMovement();
+    });
   }
   updateFps();
   updateChaos();
