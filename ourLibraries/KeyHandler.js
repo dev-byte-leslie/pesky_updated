@@ -13,7 +13,7 @@ function Keys() {
   left.press = function() {
   //Change the sprite's velocity when the key is pressed
     if (!player.jumping && !disableMovement && !f.isDown) {
-      player.sprite.scale.x = player.animal == 'goose' ? 0.7 : 1;
+      player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
       player.sprite.vx = -5 * 60 / fps;
       player.sprite._texture = player.spriteArray[5]._texture;
       player.sprite._textures = player.spriteArray[5]._textures;
@@ -40,7 +40,7 @@ function Keys() {
   //Right
   right.press = function() {
     if (!player.jumping && !disableMovement && !f.isDown) {
-      player.sprite.scale.x = player.animal == 'goose' ? -0.7 : -1;
+      player.sprite.scale.x = player.animal == 'goose' ? -0.8 : -1;
       player.sprite._texture = player.spriteArray[5]._texture;
       player.sprite._textures = player.spriteArray[5]._textures;
       this.doingIdle = false;
@@ -77,6 +77,10 @@ function Keys() {
           player.sprite.vxa = player.sprite.scale.x * -1;
         }, 250);
       }
+      let delay = 550;
+      if (player.animal == 'skunk') {
+        delay = 750;
+      }
       setTimeout(function() {
         if (disableMovement && isAttacking) {
           player.sprite.vxa = 0;
@@ -84,7 +88,7 @@ function Keys() {
           disableMovement = false;
           isAttacking = false;
         }
-      }, 550);
+      }, delay);
       if (player.sprite._texture != player.spriteArray[0]._texture &&
         player.sprite._textures != player.spriteArray[0]._textures) {
           player.sprite._texture = player.spriteArray[0]._texture;

@@ -28,7 +28,7 @@ function Player(stringAnimal) {
       this.spriteArray = this.raccoonSprites;
       this.canFly = false;
     } else if (stringAnimal == 'goose') {
-      if (this.sprite) this.sprite.scale.set(0.7, 0.7);
+      if (this.sprite) this.sprite.scale.set(0.8, 0.8);
       this.spriteArray = this.gooseSprites;
       this.canFly = true;
     } else {
@@ -127,7 +127,7 @@ function Player(stringAnimal) {
         } else {
           player.sprite.vx = -5;
         }
-        player.sprite.scale.x = player.animal == 'goose' ? 0.7 : 1;
+        player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
         player.sprite.animationSpeed = 0.1;
         player.sprite.play();
       } else if (right.isDown) {
@@ -142,7 +142,7 @@ function Player(stringAnimal) {
           player.sprite.vx = 5;
         }
         player.sprite.play();
-        player.sprite.scale.x = player.animal == 'goose' ? -0.7 : -1;
+        player.sprite.scale.x = player.animal == 'goose' ? -0.8 : -1;
         player.sprite.animationSpeed = 0.1;
       } else {
         player.sprite.vx = 0;
