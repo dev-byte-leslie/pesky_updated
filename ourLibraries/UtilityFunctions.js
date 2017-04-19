@@ -155,7 +155,7 @@ function updateChaos() {
   chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
   triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
   triangleRight.x = topBar.position.x + topBar.width;
-  let shakeAmt = 0.000025 * chaos / 25 * fps / 60;
+  let shakeAmt = 0.000025 * chaos / 25;
   animalAnimated.shake(chaosBar, shakeAmt, true);
   animalAnimated.update();
 }
@@ -164,6 +164,4 @@ function updatePoints()
 {
   points += pointsToAdd; //TODO:Multiply by number of AI
   pointsToAdd = 0;
-  //console.log(points);
-  //console.log(pointsToAdd);
 }

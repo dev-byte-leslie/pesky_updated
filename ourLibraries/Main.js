@@ -23,7 +23,7 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
 
   hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
-  walterCaught, stankyCaught, carlosCaught,
+  walterCaught, stankyCaught, carlosCaught, reloadTimer = 0,
 
   garbageSprite1, garbageSprite2, garbages = [],
 

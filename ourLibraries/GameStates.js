@@ -118,6 +118,10 @@ function gameOverState() {
     gameOverText.alpha += 0.005 * 60 / fps;
   } else {
     gameOverText.alpha = 1;
+    reloadTimer += 1 / fps;
+    if (reloadTimer >= 5) {
+      window.location.reload();
+    }
   }
 }
 function fadeIntoWorld() {
