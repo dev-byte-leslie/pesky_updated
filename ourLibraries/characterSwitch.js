@@ -36,7 +36,6 @@ function initCharacterSwitch()
   } else {
     buttonGoose = createButton(240, 85, function() {}, switchCharacterGroup, 'walter', 'Click', false);
   }
-  //TODO figure out how to assign different button sprites
   hedgeBackground.width = 320;
   hedgeBackground.height = 180;
   switchCharacterGroup.addChild(hedgeBackground);

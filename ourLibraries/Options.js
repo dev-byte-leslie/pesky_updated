@@ -5,7 +5,6 @@ sounds.load([
   "../sound/music/MenuMusic.wav",
   "../sound/music/Jump.wav",
   "../sound/music/PoliceScanner.wav"
-  // add more sounds (attack, character switch, entering/exiting houses, etc)
 ]);
 
 sounds.whenLoaded = loadSounds;
