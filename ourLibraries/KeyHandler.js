@@ -144,6 +144,7 @@ function Keys() {
 
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
+      newLevelVal = true;
       gameObjects.removeChild(chaosBar);
       points = 0;
       people1 = [];
@@ -169,6 +170,7 @@ function Keys() {
         eval('garbages.push(garbage' + i + ');');
       }
       initGame(player.animal);
+      newLevelVal = false;
     }
   };
 }

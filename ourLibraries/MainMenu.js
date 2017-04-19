@@ -1,5 +1,5 @@
 var mainMenuGroup, buttonGroup, backgroundGroup,
-tutorialGroup, buttonStart, buttonOptions, buttonCredits;
+tutorialGroup, buttonStart, buttonOptions, buttonCredits, newLevelVal = false;
 
 function startMenu() {
   mainMenuGroup = new PIXI.Container(); /// Parent container for ALL menu items
@@ -40,6 +40,7 @@ function hoverOver() {
   this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
+  newLevelVal = true;
   initGame();
   hideAll();
   gameObjects.visible = true;
@@ -55,6 +56,7 @@ function startGame() {
   let c = new camera();
   c.updateCamera();
   g.state = moveFromHedgeState;
+  newLevelVal = false;
 }
 function showCredits() {
   initCredits();
