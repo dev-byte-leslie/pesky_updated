@@ -3,7 +3,18 @@ function jump() {
   //start the player jump if space is pressed and player isn't moving vertically
   if (player.spacePush && !player.jumping && !disableMovement) {
     player.jumping = true;
-    player.sprite.vy = -2.51;
+    if (player.animal !== 'skunk') {
+      player.sprite.vy = -2.51;
+    } else {
+      setTimeout(function() {
+        player.jumping = false;
+        player.sprite.gotoAndStop(0);
+        player.sprite._texture = player.spriteArray[5]._texture;
+        player.sprite._textures = player.spriteArray[5]._textures;
+        this.doingIdle = false;
+        player.sprite.gotoAndStop(0);
+      }, 1000);
+    }
     player.sprite._texture = player.spriteArray[2]._texture;
     player.sprite._textures = player.spriteArray[2]._textures;
     jumpSound.play();
