@@ -156,19 +156,17 @@ function Player(stringAnimal) {
           if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
           garbageHit.y - 100, 35, 100))) {
             if (player.animal != 'skunk') {
-              if (player.sprite.scale.x == -1) {
+              if (Math.sign(player.sprite.scale.x) == -1) {
                 garbageHit.scale.x = 1;
               } else {
                 garbageHit.x -= 60;
                 garbageHit.scale.x = -1;
               }
-            } else {
-              if (player.sprite.scale.x == -1) {
-                garbageHit.scale.x = -1;
-                garbageHit.x -= 60;
-              } else {
-                garbageHit.scale.x = 1;
-              }
+              garbageHit.y += 2;
+              garbageHit.knockedOver = true;
+              garbageHit.play();
+              chaosToAdd += 5;
+              pointsToAdd += 5;
             }
             garbageHit.y += 2;
             garbageHit.knockedOver = true;

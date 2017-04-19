@@ -1,11 +1,8 @@
 // All game loop functions/states go here to help declutter Main.js
 function menuState() {
-  g.stage.position.x = 0;
-  g.stage.position.y = 0;
-  g.stage.scale.x = 1;
-  g.stage.scale.y = 1;
-  g.stage.pivot.x = 0;
-  g.stage.pivot.y = 0;
+  g.stage.scale.set(1, 1);
+  g.stage.pivot.set(0, 0);
+  g.stage.position.set(0, 0);
   hideAll();
   backgroundGroup.visible = true;
   title.position.x = 20;
@@ -23,7 +20,10 @@ function optionsState() {
 }
 function creditsState() {
   updateFps();
-  credits.y -= 4 * 60 / fps;
+  creditsShadow1.y -= 4 * 60 / fps;
+  creditsShadow2.y -= 4 * 60 / fps;
+  creditsShadow3.y -= 4 * 60 / fps;
+  credits1.y -= 4 * 60 / fps;
   credits2.y -= 4 * 60 / fps;
   credits3.y -= 4 * 60 / fps;
 }
@@ -35,6 +35,7 @@ function switchCharacterState() {
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
   updateFps();
+  updateChaos();
   updatePoints();
   updateAI();
   if (player.sprite.y > hedgeLocY + 150) {
@@ -55,11 +56,17 @@ function moveFromHedgeState() {
   }
   updateFps();
   updateAI();
+  updateChaos();
   updatePoints();
   if (player.sprite.y < 600) {
     player.sprite.y += 60 / fps;
-    player.sprite._texture = player.spriteArray[8]._texture;
-    player.sprite._textures = player.spriteArray[8]._textures;
+    if (player.sprite._texture != player.spriteArray[8]._texture &&
+        player.sprite._textures != player.spriteArray[8]._textures) {
+      player.sprite._texture = player.spriteArray[8]._texture;
+      player.sprite._textures = player.spriteArray[8]._textures;
+      player.sprite.gotoAndStop(0);
+      player.sprite.play();
+    }
   } else {
     player.sprite._texture = player.spriteArray[4]._texture;
     player.sprite._textures = player.spriteArray[4]._textures;
@@ -69,6 +76,7 @@ function moveFromHedgeState() {
 function caughtState() {
   updateFps();
   updateAI();
+  updateChaos();
   updatePoints();
   blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
@@ -108,6 +116,7 @@ function gameOverState() {
 function fadeIntoWorld() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
+  updateChaos();
   updatePoints();
   updateAIMovement();
   player.camera.updateCamera();
@@ -123,6 +132,7 @@ function fadeIntoWorld() {
 }
 function fadeIntoHouse() {
   updateFps();
+  updateChaos();
   updatePoints();
   updateAIMovement();
   player.camera.updateCamera();
@@ -142,6 +152,7 @@ function fadeOutOfWorld() {
   animalCont1.aCObject.x += animalCont1.aCObject.vx * 60 / fps;
   updateFps();
   updateAIMovement();
+  updateChaos();
   updatePoints();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
@@ -160,6 +171,7 @@ function fadeOutOfWorld() {
 function fadeOutOfHouse() {
   updateFps();
   updateAIMovement();
+  updateChaos();
   updatePoints();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
@@ -192,5 +204,6 @@ function play() {
     animalCont1.aiMovement();
   }
   updateFps();
+  updateChaos();
   updatePoints();
 }

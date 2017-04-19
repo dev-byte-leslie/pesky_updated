@@ -46,10 +46,9 @@ function startGame() {
   gameObjects.visible = true;
   player.sprite.y = hedgeLocY + 150;
   player.sprite.x = hedgeLocX2 + 157;
-  if (player.spriteArray[8] && player.spriteArray[8]) {//TODO TEMPORARY CHECK
-    player.sprite._texture = player.spriteArray[8]._texture;
-    player.sprite._textures = player.spriteArray[8]._textures;
-  }
+  player.sprite._texture = player.spriteArray[8]._texture;
+  player.sprite._textures = player.spriteArray[8]._textures;
+  player.sprite.play();
   player.sprite.x = hedgeLocX2 + 157;
   player.holdX = hedgeLocX2 + 157;
   disableAttacking = true;

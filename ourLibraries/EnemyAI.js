@@ -37,24 +37,25 @@ function spawnAnimalControl(x , y) {
         animalCont1.aCObject.y = 700;
       }
 
-      console.log(Math.abs(animalCont1.aCObject.x - player.sprite.x));
-
-      //makes the ai go faster the more chaos that is caused. Change
-      // the number that points is divided by to tweak the rate of increase
-      if (points) {
-        animalCont1.speed = 3 + (Math.floor(points / 10) * 0.3);
-      }
+    //makes the ai go faster the more chaos that is caused. Change
+    // the number that chaos is divided by to tweak the rate of increase
+    //Makes ai able to detect player at greater distances the more chaos that is caused
+    if (chaos) {
+      this.speed = (3 + (Math.floor(chaos / 10) * 0.3)) * 60 / fps;
+      this.detection = 300 + (chaos * 124);
+    }
 
       //Makes ai able to detect player at greater distances the more chaos that is caused
       if (points) {
         animalCont1.detection = 300 + (points * 124);
       }
 
-      //Plays the sound when player is too close
-      if (Math.abs(animalCont1.aCObject.x - player.sprite.x) <= 800 && animalCont1.playCloseSound == false) {
-        animalCont1.playCloseSound = true;
-        aiCloseSound.playFrom(0);
-      }
+    //stops the sound from playing if player is too far or too close to ai
+    if (Math.abs(this.aCObject.x - player.sprite.x) > 500 ||
+        Math.abs(this.aCObject.x - player.sprite.x) < 300) {
+      this.playCloseSound = false;
+      aiCloseSound.pause();
+    }
 
       //stops the sound from playing if player is too far or too close to ai
       if (Math.abs(animalCont1.aCObject.x - player.sprite.x) > 500 || Math.abs(animalCont1.aCObject.x - player.sprite.x) < 300) {
@@ -118,36 +119,29 @@ function spawnAnimalControl(x , y) {
 
   };
 
-    this.catchPlayer = function() {
-      this.aCObject.doingAttack = false;
-      this.aCObject.animationSpeed = 0.1;
-      if (b.hitTestRectangle(this.aCObject, player.sprite) && g.state == play) {
-        this.aCObject.gotoAndStop(0);
-        chaosToAdd -= 30;
-        this.aCObject.vy = 0;
-        this.aCObject.scale.x = -1;
-        if (player.animal == 'raccoon') {
-          this.aCObject._texture = carlosCaught._texture;
-          this.aCObject._textures = carlosCaught._textures;
-          raccoonAlive = false;
-        } else if (player.animal == 'skunk') {
-          this.aCObject._texture = stankyCaught._texture;
-          this.aCObject._textures = stankyCaught._textures;
-          skunkAlive = false;
-        } else {
-          //TODO replace with goose textures
-          this.aCObject._texture = stankyCaught._texture;
-          this.aCObject._textures = stankyCaught._textures;
-          gooseAlive = false;
-        }
-        player.holdX = player.sprite.x;
-        player.sprite.visible = false;
-        this.aCObject.play();
-        g.state = caughtState;
+  this.catchPlayer = function() {
+    this.aCObject.doingAttack = false;
+    this.aCObject.animationSpeed = 0.1;
+    if (b.hitTestRectangle(this.aCObject, player.sprite) && g.state == play) {
+      this.aCObject.gotoAndStop(0);
+      //TODO: subtract point when caught
+      //chaosToAdd -= 30;
+      //pointsToAdd -= 30;
+      //updatePoints();
+      this.aCObject.vy = 0;
+      this.aCObject.scale.x = -1;
+      if (player.animal == 'raccoon') {
+        this.aCObject._texture = carlosCaught._texture;
+        this.aCObject._textures = carlosCaught._textures;
+        raccoonAlive = false;
+      } else if (player.animal == 'skunk') {
+        this.aCObject._texture = stankyCaught._texture;
+        this.aCObject._textures = stankyCaught._textures;
+        skunkAlive = false;
       } else {
-        this.aCObject._texture = animalControlSprite._texture;
-        this.aCObject._textures = animalControlSprite._textures;
-        this.aCObject.gotoAndStop(0);
+        this.aCObject._texture = walterCaught._texture;
+        this.aCObject._textures = walterCaught._textures;
+        gooseAlive = false;
       }
     };
 }

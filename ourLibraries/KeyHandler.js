@@ -125,6 +125,7 @@ function Keys() {
           false, false, false)) {
           player.sprite._texture = player.spriteArray[11]._texture;
           player.sprite._textures = player.spriteArray[11]._textures;
+          player.sprite.play();
           player.sprite.x = eval('hedgeLocX'+i) + 157;
           player.holdX = eval('hedgeLocX'+i) + 157;
           disableAttacking = true;
@@ -138,15 +139,13 @@ function Keys() {
     fpsEnabled = !fpsEnabled;
   };
 
-  f2.press = function() {
-    pointsToAdd += 5;
-  };
-
   nVal.press = function() {
     if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
       newLevelVal = true;
       gameObjects.removeChild(chaosBar);
-      points = 0;
+      chaos = 0;
+      pointsToAdd += 10;
+      updatePoints();
       people1 = [];
       people2 = [];
       people3 = [];

@@ -1,36 +1,41 @@
 // Sprite variables for people
 var people1 = [], people2 = [], people3 = [], person1_sick,
-person2_sick, person3_sick, peopleTypes, numPeople, numOfEnemyAi = [], enemyAiCount = 1;
+  person2_sick, person3_sick, peopleTypes, numPeople, numOfEnemyAi = [], enemyAiCount = 1,
 
-// Sprite variables for carlos
-var carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
-  carlosWalk2, carlosJump2, carlosIdle2, carlosRabies2, carlosDown2, carlosUp2;
+  // Sprite variables for carlos
+  carlosWalk, carlosJump, carlosIdle, carlosRabies, carlosDown, carlosUp,
+  carlosWalk2, carlosJump2, carlosIdle2, carlosRabies2, carlosDown2, carlosUp2,
 
-//Sprite variables for stanky
-var stankyWalk, stankyJump, stankyIdle, stankyAttack, stankyWalk2, stankyJump2,
-  stankyIdle2, stankyAttack2;
+  //Sprite variables for stanky
+  stankyWalk, stankyJump, stankyIdle, stankyAttack, stankyWalk2, stankyJump2,
+  stankyIdle2, stankyAttack2,
 
-//Sprite variables for Walter
-var walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
-  walterIdle2, walterAttack2, walterJump, walterJump2;
+  //Sprite variables for Walter
+  walterWalk, walterFly, walterIdle, walterAttack, walterWalk2, walterFly2,
+  walterIdle2, walterAttack2, walterJump, walterJump2,
 
-//General variables for different objects
-var wTexture, whiteFloor, animalTextures,
+  //General variables for different objects
+  wTexture, whiteFloor, animalTextures,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
-  doorObj, floorTexture, interior1;
+  doorObj, floorTexture, interior1,
 
-var hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY;
+  hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
-var garbageSprite1, garbageSprite2, garbages = [];
+  walterCaught, stankyCaught, carlosCaught,
 
-//vars to hold sprites of houses
-var redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor;
+  garbageSprite1, garbageSprite2, garbages = [],
 
-//Background textures
-var titleBackground, hedgeBackground, blackOverlay, gameOverText;
+  //vars to hold sprites of houses
+  redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor,
 
-//Global var for points
+  //Background textures
+  titleBackground, hedgeBackground, blackOverlay, gameOverText,
+
+  //Global var for chaos
+  chaos = 0, chaosToAdd = 0;
+
+//Global vars for points
 var points = 0, pointsToAdd = 0;
 
 // Called when everything is loaded
@@ -60,7 +65,6 @@ function setupGame() {
   shiftKey = keyboard(16);
   switchE = keyboard(69);
   f1 = keyboard(112); // fps toggle
-  f2 = keyboard(113); // cheat key
   esc = keyboard(27);
   nVal = keyboard(78); // go to next street
   f = keyboard(70); // attack
@@ -80,6 +84,7 @@ function setupGame() {
     .add('../images/AiSprites/animal_control_attack.png')
     .add('../images/AiSprites/carlos_caught.png')
     .add('../images/AiSprites/stanky_caught.png')
+    .add('../images/AiSprites/Walter_Caught.png')
     .add('../images/AiSprites/animal_control.png')
 
     //People sprites
@@ -169,7 +174,6 @@ function setup() {
   stankyUp = new spriteCreator('../images/PlayerAnimals/skanky_up.png', 45, 45);
   stankyUp2 = new spriteCreator('../images/PlayerAnimals/skanky_up.png', 45, 45);
 
-
   //Walter sprites
   walterIdle = new spriteCreator('../images/PlayerAnimals/WalterIdle.png', 45, 55);
   walterIdle2 = new spriteCreator('../images/PlayerAnimals/WalterIdle.png', 45, 55);
@@ -209,13 +213,13 @@ function setup() {
     } else {
       eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage2.png\', 80, 50);');
     }
-
     eval('garbages.push(garbage' + i + ');');
   }
 
   // Animal control sprites
   carlosCaught = new spriteCreator('../images/AiSprites/carlos_caught.png', 100, 100);
   stankyCaught = new spriteCreator('../images/AiSprites/stanky_caught.png', 100, 100);
+  walterCaught = new spriteCreator('../images/AiSprites/Walter_Caught.png', 100, 100);
 
   //strings that hold the image for the building on the map
   redHouse = '../images/WorldObjects/Red_House.png';

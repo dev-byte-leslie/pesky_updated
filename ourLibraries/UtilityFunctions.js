@@ -62,13 +62,8 @@ function enterHouse() {
     house.addChild(blackOverlay);
   }, 1667);
 
-  if (player.spriteArray[10]) {
-    player.sprite._texture = player.spriteArray[10]._texture;
-    player.sprite._textures = player.spriteArray[10]._textures;
-  } else {
-    player.sprite._texture = player.spriteArray[4]._texture;
-    player.sprite._textures = player.spriteArray[4]._textures;
-  }
+  player.sprite._texture = player.spriteArray[10]._texture;
+  player.sprite._textures = player.spriteArray[10]._textures;
   g.state = fadeOutOfWorld;
 }
 
@@ -143,24 +138,32 @@ function camera() {
     g.stage.pivot.y = 607;
   };
 }
-function updatePoints() {
+function updateChaos() {
   chaosBar.inner.x =  g.stage.pivot.x - 157;
-  // doesn't let points bar get longer than it's supposed to be
-  points += pointsToAdd;
-  if (points > 100) {
-    points = 100;
-  } else if (points < 0) {
-    points = 0;
+  // doesn't let chaos bar get longer than it's supposed to be
+  chaos += chaosToAdd;
+  if (chaos > 100) {
+    chaos = 100;
+  } else if (chaos < 0) {
+    chaos = 0;
   }
-  chaosBar.outer.width = topBar.width = bottomBar.width = points;
-  triangleLeft.width = triangleRight.width = points / 10;
-  pointsToAdd = 0;
+  chaosBar.outer.width = topBar.width = bottomBar.width = chaos;
+  triangleLeft.width = triangleRight.width = chaos / 10;
+  chaosToAdd = 0;
 
   chaosBar.outer.x =  g.stage.pivot.x - 157;
   chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
   triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
   triangleRight.x = topBar.position.x + topBar.width;
-  let shakeAmt = 0.000025 * points / 25;
+  let shakeAmt = 0.000025 * chaos / 25 * fps / 60;
   animalAnimated.shake(chaosBar, shakeAmt, true);
   animalAnimated.update();
+}
+
+function updatePoints()
+{
+  points += pointsToAdd; //TODO:Multiply by number of AI
+  pointsToAdd = 0;
+  //console.log(points);
+  //console.log(pointsToAdd);
 }
