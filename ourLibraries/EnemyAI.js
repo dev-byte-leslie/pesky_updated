@@ -44,20 +44,15 @@ function spawnAnimalControl(x , y) {
       this.detection = 300 + (chaos * 124);
     }
 
-    if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && !this.playCloseSound) {
-      this.playCloseSound = true;
-      aiCloseSound.play();
-    }
-
     //Plays the sound when player is too close
     if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
       this.playCloseSound = true;
       aiCloseSound.playFrom(0);
     }
 
-      this.playCloseSound = false;
     //stops the sound from playing if player is too far or too close to ai
     if (Math.abs(this.aCObject.x - player.sprite.x) > 500 || Math.abs(this.aCObject.x - player.sprite.x) < 300) {
+      this.playCloseSound = false;
       aiCloseSound.pause();
     }
 
