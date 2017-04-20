@@ -34,10 +34,7 @@ function switchCharacterState() {
   updateFps();
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
-  updateFps();
-  updateChaos();
-  updatePoints();
-  updateAI();
+  updateThings();
   if (player.sprite.y > hedgeLocY + 150) {
     player.sprite.y += -1 * 60 / fps;
   } else {
@@ -54,10 +51,7 @@ function moveFromHedgeState() {
       gameMusic.play();
     }
   }
-  updateFps();
-  updateAI();
-  updateChaos();
-  updatePoints();
+  updateThings();
   if (player.sprite.y < 600) {
     player.sprite.y += 60 / fps;
     if (!player.testTextures(8)) {
@@ -72,10 +66,7 @@ function moveFromHedgeState() {
   }
 }
 function caughtState() {
-  updateFps();
-  updateAI();
-  updateChaos();
-  updatePoints();
+  updateThings();
   blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
   if (animalControlCaught.aCObject.x >= player.holdX + 250) {
@@ -123,10 +114,7 @@ function gameOverState() {
   }
 }
 function fadeIntoWorld() {
-  updateFps();
-  updateChaos();
-  updatePoints();
-  updateAIMovement();
+  updateThings();
   player.camera.updateCamera();
   blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
@@ -140,10 +128,7 @@ function fadeIntoWorld() {
   }
 }
 function fadeIntoHouse() {
-  updateFps();
-  updateChaos();
-  updatePoints();
-  updateAIMovement();
+  updateThings();
   player.camera.updateCamera();
   blackOverlay.x = g.stage.pivot.x - 200;
   blackOverlay.y = 0;
@@ -159,10 +144,7 @@ function fadeIntoHouse() {
   }
 }
 function fadeOutOfWorld() {
-  updateFps();
-  updateAIMovement();
-  updateChaos();
-  updatePoints();
+  updateThings();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
   }
@@ -178,10 +160,7 @@ function fadeOutOfWorld() {
   }
 }
 function fadeOutOfHouse() {
-  updateFps();
-  updateAIMovement();
-  updateChaos();
-  updatePoints();
+  updateThings();
   if (player.sprite.y > 580) {
     player.sprite.y += -0.2 * 60 / fps;
   }
@@ -206,7 +185,6 @@ function play() {
   //call functions for player and ai logic
   blackOverlay.x = player.sprite.x - 200;
   blackOverlay.y = 0;
-  updateAI();
   player.update();
   jump();
   if (!player.inHouse) { // prevent being captured by invisible animal control
@@ -214,7 +192,5 @@ function play() {
       animalControl.aiMovement();
     });
   }
-  updateFps();
-  updateChaos();
-  updatePoints();
+  updateThings();
 }

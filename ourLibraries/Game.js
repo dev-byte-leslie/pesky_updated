@@ -8,20 +8,17 @@ function initGame(animalType = 'raccoon') {
   //calls function that designates what each key does when it is pressed
   // only enable keyboard input (e.g. movement/spacebar) after game is started
   Keys();
-  blackOverlay.alpha = 0;
-  gameOverText.alpha = 0;
-  gameOverText.scale.x = 0.25;
-  gameOverText.scale.y = 0.25;
+  blackOverlay.alpha = gameOverText.alpha = 0;
+  gameOverText.scale.set(0.25, 0.25);
   gameObjects.addChild(map);
   gameObjects.addChild(chaosBar);
-  g.stage.addChild(gameObjects);
   gameObjects.addChild(fpsDisplay);
+  g.stage.addChild(gameObjects);
   createGameWorld();
   player = new Player(animalType);
   player.sprite.x = 500;
   player.sprite.y = 600;
   map.addChild(player.sprite);
-  //create the chaos bar
   initChaosBar();
   if (newLevelVal) {
     //animalCont1 = new spawnAnimalControl(randomInt(minX, maxX), 600, 0.83333 * HEIGHT);

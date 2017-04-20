@@ -10,7 +10,7 @@ function jump() {
         player.jumping = false;
         player.sprite.gotoAndStop(0);
         player.setTextures(5);
-        this.doingIdle = false;
+        player.doingIdle = false;
         player.sprite.gotoAndStop(0);
       }, 1000);
     }
@@ -65,7 +65,6 @@ function enterHouse() {
 
     //keep track of world coordinates
     player.holdX = player.sprite.x;
-    player.holdY = player.sprite.y;
 
     player.sprite.x = player.inHouseX;
     player.sprite.y = player.inHouseY;
@@ -123,11 +122,8 @@ function buildOutside() {
 }
 
 function camera() {
-  g.stage.position.x = renderer.width / 2;
-  g.stage.position.y = renderer.height;
-  //scale it
-  g.stage.scale.x = 4;
-  g.stage.scale.y = 4;
+  g.stage.position.set(renderer.width / 2, renderer.height);
+  g.stage.scale.set(4, 4);
 
   this.updateCamera = function() {
     //now specify which point INSIDE stage must be (0,0)
@@ -157,6 +153,7 @@ function updateChaos() {
   chaosBar.inner.x =  g.stage.pivot.x - 157;
   // doesn't let chaos bar get longer than it's supposed to be
   chaos += chaosToAdd;
+  chaosToAdd = 0;
   if (chaos > 100) {
     chaos = 100;
   } else if (chaos < 0) {
@@ -164,10 +161,8 @@ function updateChaos() {
   }
   chaosBar.outer.width = topBar.width = bottomBar.width = chaos;
   triangleLeft.width = triangleRight.width = chaos / 10;
-  chaosToAdd = 0;
-
-  chaosBar.outer.x =  g.stage.pivot.x - 157;
-  chaosText.position.set(chaosBar.inner.x+chaosBar.inner.width/2, chaosBar.outer.y+11);
+  chaosBar.outer.x = g.stage.pivot.x - 157;
+  chaosText.position.set(chaosBar.inner.x + chaosBar.inner.width / 2, chaosBar.outer.y + 11);
   triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
   triangleRight.x = topBar.position.x + topBar.width;
   let shakeAmt = 0.000025 * chaos / 25;
@@ -175,8 +170,7 @@ function updateChaos() {
   animalAnimated.update();
 }
 
-function updatePoints()
-{
-  points += pointsToAdd; //TODO:Multiply by number of AI
+function updatePoints() {
+  points += pointsToAdd * numOfEnemyAi.length;
   pointsToAdd = 0;
 }

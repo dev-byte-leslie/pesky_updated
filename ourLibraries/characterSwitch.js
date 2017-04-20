@@ -13,10 +13,7 @@
 
 /* exported switchCharacter, initCharacterSwitch */ //Makes ESLint shut up about the created and not used errors
 //1280 x 720
-var buttonRaccoon;
-var buttonSkunk;
-var buttonGoose;
-var switchCharacterGroup; //Container for objects on switch character menu;
+var buttonRaccoon, buttonSkunk, buttonGoose, switchCharacterGroup;
 
 function initCharacterSwitch()
 {
@@ -42,32 +39,20 @@ function initCharacterSwitch()
   switchCharacterGroup.addChild(buttonRaccoon);
   switchCharacterGroup.addChild(buttonSkunk);
   switchCharacterGroup.addChild(buttonGoose);
-  g.stage.position.x = 0;
-  g.stage.position.y = 0;
-  g.stage.scale.x = 4;
-  g.stage.scale.y = 4;
-  g.stage.pivot.x = 0.5;
-  g.stage.pivot.y = 0;
+  g.stage.position.set(0, 0);
+  g.stage.scale.set(4, 4);
+  g.stage.pivot.set(0.5, 0);
   g.stage.addChild(switchCharacterGroup);
 }
-
-// -- Handes Raccoon Button Press -- //
-function raccoonInput()
-{
+function raccoonInput() { // -- Handes Raccoon Button Press -- //
   player.setCharacter('raccoon');
   comeFromBush();
 }
-
-// -- Handles Skunk Button Press -- //
-function skunkInput()
-{
+function skunkInput() { // -- Handles Skunk Button Press -- //
   player.setCharacter('skunk');
   comeFromBush();
 }
-
-// -- Handles Goose Button Press -- //
-function gooseInput()
-{
+function gooseInput() { // -- Handles Goose Button Press -- //
   player.setCharacter('goose');
   comeFromBush();
 }
@@ -79,12 +64,9 @@ function comeFromBush() {
   switchCharacterGroup.removeChild(buttonGoose);
   g.stage.removeChild(switchCharacterGroup);
   disableAttacking = false;
-  g.stage.position.x = renderer.width / 2;
-  g.stage.position.y = renderer.height;
-  g.stage.scale.x = 4;
-  g.stage.scale.y = 4;
-  g.stage.pivot.x = player.sprite.position.x;
-  g.stage.pivot.y = 607;
+  g.stage.position.set(renderer.width / 2, renderer.height);
+  g.stage.scale.set(4, 4);
+  g.stage.pivot.set(player.sprite.x, 607);
   player.setTextures(8);
   if (!player.sprite.visible) {
     player.sprite.x = eval('hedgeLocX' + randomInt(1, 3)) + 157;
@@ -93,7 +75,6 @@ function comeFromBush() {
   }
   player.camera.updateCamera();
   player.sprite.y = hedgeLocY + 150;
-  player.sprite.visible = true;
-  gameObjects.visible = true;
+  player.sprite.visible = gameObjects.visible = true;
   g.state = moveFromHedgeState;
 }

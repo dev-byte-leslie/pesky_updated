@@ -1,7 +1,6 @@
 //---------------------------------------------------------Thomas Rosik---------------------------------------------------------------
 //TODO: Make it so AI LEAVES WHEN CHANGING IN HEDGE OR INSIDE A HOUSE
 function spawnAnimalControl(x, y) {
-  //instantiate animal control sprite
   this.aCObject = new spriteCreator('../images/AiSprites/animal_control.png', 60, 75);
 
   //change the anchor point of the sprite so when it flips it looks normal
@@ -27,37 +26,32 @@ function spawnAnimalControl(x, y) {
   //Sound to be played when player is close to the AI
   this.playCloseSound = false;
 
-
   //method that will be called every time "play" is called to deal with
   // ai movement
   this.aiMovement = function() {
-    //doesnt let ai fall below the "floor"
-    if (this.aCObject.y > 700) {
-      this.aCObject.y = 700;
-    }
-
-    //makes the ai go faster the more chaos that is caused. Change
+    // makes the ai go faster the more chaos that is caused. Change
     // the number that chaos is divided by to tweak the rate of increase
-    //Makes ai able to detect player at greater distances the more chaos that is caused
+    // Makes ai able to detect player at greater distances the more chaos that is caused
     if (chaos) {
       this.speed = (3 + (Math.floor(chaos / 10) * 0.3)) * 60 / fps;
       this.detection = 300 + (chaos * 124);
     }
 
     //Plays the sound when player is too close
-    if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 && this.playCloseSound == false) {
+    if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 &&
+      this.playCloseSound == false) {
       this.playCloseSound = true;
       aiCloseSound.playFrom(0);
     }
 
     //stops the sound from playing if player is too far or too close to ai
-    if (Math.abs(this.aCObject.x - player.sprite.x) > 500 || Math.abs(this.aCObject.x - player.sprite.x) < 300) {
+    if (Math.abs(this.aCObject.x - player.sprite.x) > 500 ||
+      Math.abs(this.aCObject.x - player.sprite.x) < 300) {
       this.playCloseSound = false;
       aiCloseSound.pause();
     }
 
-
-    if (Math.abs(this.aCObject.x - player.sprite.x) <=  this.detection) {
+    if (Math.abs(this.aCObject.x - player.sprite.x) <= this.detection) {
       this.closeToPlayer = true;
     } else {
       this.closeToPlayer = false;
@@ -109,7 +103,6 @@ function spawnAnimalControl(x, y) {
       //chaosToAdd -= 30;
       //pointsToAdd -= 30;
       //updatePoints();
-      this.aCObject.vy = 0;
       this.aCObject.scale.x = -1;
       if (player.animal == 'raccoon') {
         this.aCObject._texture = carlosCaught._texture;

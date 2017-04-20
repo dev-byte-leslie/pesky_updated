@@ -1,6 +1,6 @@
 var widthInPixels, heightInPixels, fillColor, strokeColor, lineWidth,
 xPosition, yPosition, chaosText, topBar, bottomBar, triangleLeft, triangleRight,
-triangleColor, topColor, bottomColor;
+triangleColor, topColor, bottomColor, frontBar, backBar;
 
 function initChaosBar() {
   // Hexadecimal colors for the chaos bar
@@ -35,10 +35,7 @@ function initChaosBar() {
   chaosText = new Sprite(TextureCache['../images/HUD/chaosText.png']);
   chaosText.scale.set(0.1, 0.1);
   chaosText.anchor.set(0.5, 0);
-
-  //Create Chaos Bar Containier
   chaosBar.position.set(0 , 0);
-  var frontBar, backBar;
 
   //Create Front and back Rectangles and add to container
   if (!player.chaos) {
@@ -53,7 +50,6 @@ function initChaosBar() {
     chaosBar.addChild(triangleLeft);
     chaosBar.addChild(triangleRight);
   }
-
   chaosBar.outer = frontBar;
-  chaosBar.inner = backBar;
+  chaosBar.inner = backBar; 
 }

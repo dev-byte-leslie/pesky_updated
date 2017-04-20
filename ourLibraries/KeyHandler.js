@@ -1,17 +1,16 @@
 //----------------------------------------------------------Thomas Rosik-------------------------------------------------------------------
 //variable to control if movement stops when landing during a jump
-var moveMent = false;
-var left, up, right, down, space, shiftKey, switchE, f1, esc, nVal, f;
-var fpsEnabled = false;
-var isAttacking = false;
-var disableAttacking = false;
-var keyCodes = [];
-var attackInterval;
+var moveMent = false,
+  left, up, right, down, space, shiftKey, switchE, f1, esc, nVal, f,
+  fpsEnabled = false,
+  isAttacking = false,
+  disableAttacking = false,
+  keyCodes = [],
+  attackInterval;
 
 function Keys() {
   //Left arrow key `press` method
   left.press = function() {
-  //Change the sprite's velocity when the key is pressed
     if (!player.jumping && !disableMovement && !f.isDown) {
       player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
       player.sprite.vx = -5 * 60 / fps;
@@ -19,20 +18,13 @@ function Keys() {
       this.doingIdle = false;
       player.sprite.play();
     }
-    moveMent = true;
   };
 
   //Left arrow key `release` method
   left.release = function() {
-  //If the left arrow has been released, and the right arrow isn't down,
-  //and the pixie isn't moving vertically, stop the sprite from moving
-  //by setting its velocity to zero
     if (!right.isDown && !player.jumping) {
       if (!disableMovement) player.sprite.gotoAndStop(0);
-      if (!player.jumping) {
         player.sprite.vx = 0;
-      }
-      moveMent = false;
     }
   };
 
@@ -45,16 +37,12 @@ function Keys() {
       player.sprite.play();
       player.sprite.vx = 5 * 60 / fps;
     }
-    moveMent = true;
   };
 
   right.release = function() {
     if (!left.isDown && !player.jumping) {
       if (!disableMovement) player.sprite.gotoAndStop(0);
-      if (!player.jumping) {
-        player.sprite.vx = 0;
-      }
-      moveMent = false;
+      player.sprite.vx = 0;
     }
   };
 
@@ -64,12 +52,11 @@ function Keys() {
 
   space.release = function() {
     player.spacePush = false;
-
   };
+
   f.press = function() {
     if (!player.jumping && !disableMovement && !disableAttacking) {
-      disableMovement = true;
-      isAttacking = true;
+      disableMovement = isAttacking = true;
       if (player.animal == 'raccoon') {
         setTimeout(function() {
           player.sprite.vxa = player.sprite.scale.x * -1;
@@ -83,8 +70,7 @@ function Keys() {
         if (disableMovement && isAttacking) {
           player.sprite.vxa = 0;
           player.doIdle();
-          disableMovement = false;
-          isAttacking = false;
+          disableMovement = isAttacking = false;
         }
       }, delay);
       if (!player.testTextures(0)) {

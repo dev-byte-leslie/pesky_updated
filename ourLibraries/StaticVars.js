@@ -9,10 +9,10 @@ var Container = PIXI.Container,
   Texture = PIXI.Texture,
   Sprite = PIXI.Sprite,
   MovieClip = PIXI.extras.MovieClip;
-var g, renderer, b, tinkPoint, animalAnimated;
+var g, renderer, b, tinkPoint, animalAnimated,
 // General game variables
-var lastLoop, thisLoop, fps = 60, disableMovement = false, maxX, minX;
-var raccoonAlive = true, gooseAlive = true, skunkAlive = true;
+  lastLoop, thisLoop, fps = 60, disableMovement = false, maxX, minX,
+  raccoonAlive = true, gooseAlive = true, skunkAlive = true;
 // Hide all stage elements
 function hideAll() {
   for (var i = 0; i < g.stage.children.length; i++) {

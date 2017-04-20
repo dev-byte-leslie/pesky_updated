@@ -71,8 +71,7 @@ function initCredits() {
     eval('creditsShadow'+i).x = WIDTH / 2 + 5;
     eval('creditsShadow'+i).y = eval('credits'+i).y + 5;
   }
-  buttonBack.scale.x = 0.5;
-  buttonBack.scale.y = 0.5;
+  buttonBack.scale.set(0.5, 0.5);
   creditsGroup.addChild(creditsShadow1);
   creditsGroup.addChild(creditsShadow2);
   creditsGroup.addChild(creditsShadow3);

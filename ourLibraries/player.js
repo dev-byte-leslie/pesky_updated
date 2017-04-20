@@ -1,5 +1,4 @@
 function Player(stringAnimal) {
-  // sets initial variables for player object
   // Arrays to hold all the sprites
   // 0,1 = Attack 1 and 2
   // 2,3 = Jump 1 and 2
@@ -20,7 +19,6 @@ function Player(stringAnimal) {
 
   this.canFly = (stringAnimal == 'goose');
   this.isFlying = false;
-  this.animal = stringAnimal;
 
   this.setCharacter = function(stringAnimal) {
     if (stringAnimal == 'raccoon') {
@@ -55,13 +53,9 @@ function Player(stringAnimal) {
   this.sprite = this.spriteArray[4];
   this.sprite.vxa = 0; // attacking horizontal velocity
   this.chaos = false;
-  this.nearDoor = false; //sets whether the player is near a door
   this.jumping = false; //whether the player is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.inHouse = false;
-  //movement flags for player movement.
-  this.active = true;
-  this.moveStates = ['Left', 'Right', 'Jump', 'StopL', 'StopR'];
 
   //the World Coordinate x-value of the player
   //starts at 0 when the player is instantiated
@@ -87,13 +81,13 @@ function Player(stringAnimal) {
 
   //updates player location and camera location
   this.update = function() {
-    //add x velocity to player's x location
     this.camera.updateCamera();
-    if (this.sprite.vx < 0 && fps != 0) {
-      this.sprite.vx = -5 * 60 / fps;
-    } else if (this.sprite.vx > 0 && fps != 0) {
-      this.sprite.vx = 5 * 60 / fps;
+    this.sprite.vx = Math.sign(this.sprite.vx) * 5 * 60 / fps;
+    if (!disableMovement) {
+      this.sprite.x += this.sprite.vx; //add x velocity to player's x location
+      this.sprite.y += this.sprite.vy; //add y velocity to player's y location
     }
+    this.xValue += this.sprite.vx;
     // check collision with the floor
     // anonymous function is called when the player touches the floor
     // b.hit returns true/false as well so we can set gravity if it's false
@@ -120,35 +114,19 @@ function Player(stringAnimal) {
       }
     }
     if (!disableMovement) {
-      this.sprite.y += this.sprite.vy; //add y velocity to player's y location
-      this.sprite.x += this.sprite.vx; //add x velocity to player's x location
-      this.xValue += this.sprite.vx;
-      if (left.isDown) {
+      if (left.isDown != right.isDown) {
         if (!player.testTextures(5) && !player.jumping) {
           player.setTextures(5);
         }
-        if (fps >= 30) {
-          player.sprite.vx = -5 * 60 / fps;
-        } else {
-          player.sprite.vx = -5;
-        }
-        player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
+        player.sprite.vx = 5 * 60 / fps * (right.isDown - left.isDown);
+        player.sprite.scale.x = Math.abs(player.sprite.scale.x) * -Math.sign(player.sprite.vx);
         player.sprite.animationSpeed = 0.1;
         player.sprite.play();
-      } else if (right.isDown) {
-        if (!player.testTextures(5) && !player.jumping) {
-          player.setTextures(5);
-        }
-        if (fps >= 30) {
-          player.sprite.vx = 5 * 60 / fps;
-        } else {
-          player.sprite.vx = 5;
-        }
-        player.sprite.play();
-        player.sprite.scale.x = player.animal == 'goose' ? -0.8 : -1;
-        player.sprite.animationSpeed = 0.1;
       } else {
         player.sprite.vx = 0;
+        if (!player.isFlying && !player.jumping) {
+          player.doIdle();
+        }
       }
     } else { // disableMovement = true, i.e. player is attacking
       player.sprite.x += player.sprite.vxa * 144 / fps;

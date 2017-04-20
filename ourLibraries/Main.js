@@ -246,3 +246,10 @@ function setup() {
   startMenu();
   g.state = menuState;
 }
+
+function updateThings() {
+  updateFps();
+  updateChaos();
+  updatePoints();
+  updateAI();
+}

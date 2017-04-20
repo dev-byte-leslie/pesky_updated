@@ -12,21 +12,19 @@ function startMenu() {
   buttonTutorial = createButton(WIDTH * .8, HEIGHT * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
   buttonCredits = createButton(WIDTH * .8, HEIGHT - 90, showCredits, buttonGroup, 'credits');
   for (let i = 0; i < buttonGroup.children.length; i++) {
-    buttonGroup.getChildAt(i).scale.x = 0.5;
-    buttonGroup.getChildAt(i).scale.y = 0.5;
+    buttonGroup.getChildAt(i).scale.set(0.5, 0.5);
   }
-  titleBackground.width = 1280;
-  titleBackground.height = 720;
+  titleBackground.width = WIDTH;
+  titleBackground.height = HEIGHT;
   titleBackground.position.x = 0;
   titleBackground.position.y = 0;
-  title.width = 1280;
-  title.height = 720;
-  title.position.x = 100;
-  title.position.y = 0;
+  title.width = WIDTH;
+  title.height = HEIGHT;
+  title.position.set(100, 0);
   backgroundGroup.addChild(titleBackground);
-  g.stage.addChild(backgroundGroup);
   mainMenuGroup.addChild(title);
   mainMenuGroup.addChild(buttonGroup);
+  g.stage.addChild(backgroundGroup);
   g.stage.addChild(mainMenuGroup);
 }
 // Button interaction functions
@@ -46,8 +44,7 @@ function startGame() {
   gameObjects.visible = true;
   player.sprite.y = hedgeLocY + 150;
   player.sprite.x = hedgeLocX2 + 157;
-  player.sprite._texture = player.spriteArray[8]._texture;
-  player.sprite._textures = player.spriteArray[8]._textures;
+  player.setTextures(8);
   player.sprite.play();
   player.sprite.x = hedgeLocX2 + 157;
   player.holdX = hedgeLocX2 + 157;
@@ -60,22 +57,19 @@ function startGame() {
 function showCredits() {
   initCredits();
   hideAll();
-  backgroundGroup.visible = true;
-  creditsGroup.visible = true;
+  backgroundGroup.visible = creditsGroup.visible = true;
   g.state = creditsState;
 }
 function showTutorial() {
   initTutorial();
   hideAll();
-  backgroundGroup.visible = true;
-  tutorialGroup.visible = true;
+  backgroundGroup.visible = tutorialGroup.visible = true;
   g.state = tutorialState;
 }
 function showOptions() {
   initOptions();
   hideAll();
-  backgroundGroup.visible = true;
-  optionsGroup.visible = true;
+  backgroundGroup.visible = optionsGroup.visible = true;
   g.state = optionsState;
 }
 // Create a button with text given its x and y coords, click function, button group, and sprite name
@@ -85,10 +79,8 @@ function createButton(x, y, clickFunction, buttonGroup, spriteName,
   var buttonSprite = PIXI.Texture.fromImage('../images/btn/' + spriteName +
     spriteState + '.png');
   var button = new PIXI.Sprite(buttonSprite);
-  button.anchor.x = 0.5;
-  button.anchor.y = 0.5;
-  button.position.x = x;
-  button.position.y = y;
+  button.anchor.set(0.5, 0.5);
+  button.position.set(x, y);
   button.interactive = true;
   button.spriteName = spriteName;
 
@@ -100,7 +92,6 @@ function createButton(x, y, clickFunction, buttonGroup, spriteName,
       .on('mouseover', hoverOver)
       .on('mouseout', onButtonUp);
   }
-
   buttonGroup.addChild(button);
 
   return button;

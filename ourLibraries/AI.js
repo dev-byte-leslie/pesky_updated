@@ -20,7 +20,7 @@ function updateAI() {
           personHit.scale.x *= -1;
           personHit.vx *= -1.5;
           personHit.isRunning = true;
-          personHit.animationSpeed *= 2;
+          personHit.animationSpeed *= 1.5;
           setTimeout(function() {
             personHit.isRunning = false;
             if (personHit._texture != eval("person"+i+"_sick._texture")
@@ -40,9 +40,12 @@ function updateAIMovement() {
   for (let i = 1; i <= peopleTypes; i++) {
     eval("people" + i).forEach(function(person) {
       person.x += person.vx * 60 / fps;
-      if (person.x + person.vx > 12000 || person.x + person.vx < -11800) {
-        person.vx *= -1;
-        person.scale.x *= -1;
+      if (person.x + person.vx * 60 / fps > 12000) {
+        person.vx = -1;
+        person.scale.x = -1;
+      } else if (person.x + person.vx * 60 / fps < -11800) {
+        person.vx = 1;
+        person.scale.x = 1;
       }
     });
   }
