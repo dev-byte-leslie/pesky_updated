@@ -143,7 +143,7 @@ function Player(stringAnimal) {
               garbageHit.scale.x = player.animal == 'skunk' ? -1 : 1;
               if (player.animal == 'skunk') garbageHit.x -= 60;
             } else {
-              garbageHit.x -= 60;
+              if (player.animal != 'skunk') garbageHit.x -= 60;
               garbageHit.scale.x = player.animal == 'skunk' ? 1 : -1;
             }
             garbageHit.y += 2;

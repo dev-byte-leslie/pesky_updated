@@ -260,6 +260,8 @@ function setup() {
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
   interior1 = new Sprite(TextureCache['../images/WorldObjects/Interior_1.png']);
 
+
+
   startMenu();
   g.state = menuState;
 }

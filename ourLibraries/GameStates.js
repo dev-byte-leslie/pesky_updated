@@ -35,6 +35,7 @@ function switchCharacterState() {
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
   updateThings();
+  disableMovement = true;
   if (player.sprite.y > hedgeLocY + 150) {
     player.sprite.y += -1 * 60 / fps;
   } else {
