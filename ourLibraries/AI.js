@@ -3,7 +3,7 @@ function updateAI() {
     b.hit(player.sprite, eval("people"+i), false, false, false,
       function(collision, personHit) {
       if (!personHit.isRunning) {
-        if (disableMovement) { // if player is attacking
+        if (isAttacking) { // if player is attacking
           if (personHit._texture != eval("person"+i+"_sick._texture")
           && personHit._textures != eval("person"+i+"_sick._textures")) {
             personHit._texture = eval("person"+i+"_sick._texture");
