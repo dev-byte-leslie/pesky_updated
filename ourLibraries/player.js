@@ -131,6 +131,36 @@ function Player(stringAnimal) {
           player.doIdle();
         }
       }
+      // Test easily breakable objects, i.e. coffeemaker and lamps
+      b.hit(player.sprite, lamps1, false, false, false,
+        function(collision, lampHit) {
+        if (!lampHit.hasBeenRuined) {
+          chaosToAdd += 5;
+          pointsToAdd += 5;
+          lampHit.play();
+          lampHit.hasBeenRuined = true;
+        }
+      });
+      b.hit(player.sprite, coffeeMakers, false, false, false,
+        function(collision, coffeeHit) {
+        if (!coffeeHit.hasBeenRuined) {
+          chaosToAdd += 5;
+          pointsToAdd += 5;
+          coffeeHit.y += 3;
+          coffeeHit.play();
+          coffeeHit.hasBeenRuined = true;
+        }
+      });
+      b.hit(player.sprite, lamps2, false, false, false,
+        function(collision, lampHit) {
+        if (!lampHit.hasBeenRuined) {
+          chaosToAdd += 5;
+          pointsToAdd += 5;
+          lampHit.play();
+          lampHit.x += 13;
+          lampHit.hasBeenRuined = true;
+        }
+      });
     } else { // disableMovement = true, i.e. player is attacking
       player.sprite.x += player.sprite.vxa * 144 / fps;
       // Test hit for garbages every frame to knock them down appropriately
@@ -161,6 +191,15 @@ function Player(stringAnimal) {
           pointsToAdd += 5;
           fridgeHit.play();
           fridgeHit.hasBeenRuined = true;
+        }
+      });
+      b.hit(player.sprite, chairs, false, false, false,
+        function(collision, chairHit) {
+        if (!chairHit.hasBeenRuined) {
+          chaosToAdd += 5;
+          pointsToAdd += 5;
+          chairHit.play();
+          chairHit.hasBeenRuined = true;
         }
       });
     }

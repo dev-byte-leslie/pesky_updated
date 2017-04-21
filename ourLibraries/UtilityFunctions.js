@@ -77,33 +77,55 @@ function enterHouse(interiorNum, realIndex) {
     door.scale.x = 0.35;
     door.y = player.sprite.y - 10;
     fridge.y = 595;
-    switch (interiorNum) {
+    coffeeMaker.y = 558;
+    switch (interiorNum) { // place items individually based on the house background
       case 0:
         door.x = 500;
         fridge.x = 645;
+        chair.x = 332;
+        chair.y = 615;
+        lamp2.x = 506;
+        lamp2.y = 570;
+        coffeeMaker.x = 625;
         break;
       case 1:
         door.x = 500;
-        fridge.x = 541;
+        fridge.x = 583;
+        fridge.scale.x = -1;
+        chair.x = 340;
+        chair.y = 615;
+        lamp1.x = 454;
+        lamp1.y = 572;
+        coffeeMaker.x = 600;
         break;
       case 2:
         door.x = 500;
         fridge.x = 600;
+        chair.x = 343;
+        chair.y = 615;
+        lamp1.x = 379;
+        lamp1.y = 572;
+        coffeeMaker.x = 660;
         break;
       case 3:
         door.x = 500;
         fridge.x = 363;
+        chair.x = 505;
+        chair.y = 615;
+        lamp1.x = 546;
+        lamp1.y = 574;
+        coffeeMaker.x = 350;
         break;
     }
     interiors[interiorNum].x = player.sprite.x - 200;
     interiors[interiorNum].y = player.sprite.y - 215;
     house.addChild(interiors[interiorNum]);
-    house.addChild(fridge);
     house.addChild(chair);
     house.addChild(lamp1);
     house.addChild(lamp2);
     house.addChild(coffeeMaker);
-    house.addChild(door);
+    house.addChild(fridge);
+    //house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(chaosBar);
     house.addChild(blackOverlay);
