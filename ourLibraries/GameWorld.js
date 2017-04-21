@@ -1,5 +1,6 @@
 //--------------------------------------------------------------Thomas Rosik-----------------------------------------------
 function createGameWorld() {
+
   var gameX = 0;
   var negativeX = new Array(30);
   var positiveX = new Array(31); // positiveX has to be one bigger to accommodate 0
@@ -15,27 +16,27 @@ function createGameWorld() {
   gameX = -400;
   for (i = 0; i < negativeX.length; i++) {
     if (negativeX[i] == 0) {
-      curObj = new spawnWorldObject(redHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(redHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 190, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else if (negativeX[i] == 1) {
-      curObj = new spawnWorldObject(blueHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(blueHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 90, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else if (negativeX[i] == 2) {
-      curObj = new spawnWorldObject(beigeHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(beigeHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 70, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else if (negativeX[i] == 3) {
-      curObj = new spawnWorldObject(greyHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(greyHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 320, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else {
-      curObj = new spawnWorldObject(hedgeNoSky, gameX, 407);
+      curObj = new spawnWorldObject(hedge, gameX, 407);
       hedgeLocX1 = gameX;
       hedgeLocY = 407;
     }
@@ -49,27 +50,27 @@ function createGameWorld() {
   gameX = 0;
   for (i = 0; i < positiveX.length; i++) {
     if (positiveX[i] == 0) {
-      curObj = new spawnWorldObject(redHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(redHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 190, 525); //shows the test so I remember original height
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else if (positiveX[i] == 1) {
-      curObj = new spawnWorldObject(blueHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(blueHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 90, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else if (positiveX[i] == 2) {
-      curObj = new spawnWorldObject(beigeHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(beigeHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 70, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else if (positiveX[i] == 3) {
-      curObj = new spawnWorldObject(greyHouseNoSky, gameX, 410);
+      curObj = new spawnWorldObject(greyHouse, gameX, 410);
       doorObj = new spawnWorldObject(iDoor, gameX + 320, 525);
       houseDoors.push(doorObj.obSprite);
       map.addChild(doorObj.obSprite);
     } else {
-      curObj = new spawnWorldObject(hedgeNoSky, gameX, 407);
+      curObj = new spawnWorldObject(hedge, gameX, 407);
       if (hedgeLocX1 && hedgeLocX2) {
         hedgeLocX3 = gameX;
       } else {
@@ -111,7 +112,6 @@ function createGameWorld() {
     garbage.loop = garbage.knockedOver = false;
     map.addChild(garbage);
   });
-
 }
 
 function generateWorldSprites(negVals, posVals) {

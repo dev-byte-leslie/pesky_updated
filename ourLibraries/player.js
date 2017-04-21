@@ -40,12 +40,12 @@ function Player(stringAnimal) {
   this.setTextures = function(texture) {
     this.sprite._texture = this.spriteArray[texture]._texture;
     this.sprite._textures = this.spriteArray[texture]._textures;
-  }
+  };
 
   this.testTextures = function(texture) {
     return (this.sprite._texture == this.spriteArray[texture]._texture ||
-      this.sprite._textures == this.spriteArray[texture]._textures)
-  }
+      this.sprite._textures == this.spriteArray[texture]._textures);
+  };
 
   this.setCharacter(stringAnimal);
 

@@ -144,6 +144,7 @@ function setupGame() {
     .add('../images/WorldObjects/Grey_House_noSky.png')
     .add('../images/WorldObjects/Red_House_noSky.png')
     .add('../images/WorldObjects/bush_no_back.gif')
+    .add('../images/WorldObjects/cloud_back_ground.png')
 
     // Object sprites
     .add('../images/WorldObjects/garbage.png')

@@ -149,6 +149,7 @@ function camera() {
     g.stage.pivot.y = 607;
   };
 }
+
 function updateChaos() {
   chaosBar.inner.x =  g.stage.pivot.x - 157;
   // doesn't let chaos bar get longer than it's supposed to be
