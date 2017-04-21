@@ -19,7 +19,7 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   wTexture, whiteFloor, animalTextures,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
-  doorObj, floorTexture, interior1,
+  doorObj, floorTexture, interior1, fridge, groot, chair, coffeeMaker, lamp1, lamp2,
 
   hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
@@ -149,12 +149,12 @@ function setupGame() {
     // Object sprites
     .add('../images/WorldObjects/garbage.png')
     .add('../images/WorldObjects/garbage2.png')
-    .add('../images/WorldObjects/chair.png')
-    .add('../images/WorldObjects/Coffee_maker.png')
-    .add('../images/WorldObjects/fridge.png')
-    .add('../images/WorldObjects/lamp_1.png')
-    .add('../images/WorldObjects/lamp_2.png')
-    .add('../images/WorldObjects/baby_groot.png')
+    .add('../images/HouseObjects/chair.png')
+    .add('../images/HouseObjects/Coffee_maker.png')
+    .add('../images/HouseObjects/fridge.png')
+    .add('../images/HouseObjects/lamp_1.png')
+    .add('../images/HouseObjects/lamp_2.png')
+    .add('../images/HouseObjects/baby_groot.png')
     .load(setup);
 }
 // Second setup function for assigning assets to variables
@@ -261,7 +261,13 @@ function setup() {
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
   interior1 = new Sprite(TextureCache['../images/WorldObjects/Interior_1.png']);
 
-
+  fridge = new spriteCreator('../images/HouseObjects/fridge.png', 100, 100);
+  groot = new spriteCreator('../images/HouseObjects/baby_groot.png', 50, 50);
+  coffeeMaker = new spriteCreator('../images/HouseObjects/Coffee_maker.png', 100, 100);
+  chair = new spriteCreator('../images/HouseObjects/chair.png', 80, 100);
+  lamp1 = new spriteCreator('../images/HouseObjects/lamp_1.png', 50, 50);
+  lamp2 = new spriteCreator('../images/HouseObjects/lamp_2.png', 50, 50);
+  fridge.loop = coffeeMaker.loop = chair.loop = lamp1.loop = lamp2.loop = false;
 
   startMenu();
   g.state = menuState;
