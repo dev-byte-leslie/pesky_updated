@@ -61,6 +61,8 @@ function moveFromHedgeState() {
     }
   } else {
     ePressed = false;
+    disableMovement = false;
+    disableAttacking = false;
     player.setTextures(4);
     g.state = play;
   }

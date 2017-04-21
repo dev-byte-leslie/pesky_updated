@@ -111,7 +111,6 @@ function createGameWorld() {
     garbage.loop = garbage.knockedOver = false;
     map.addChild(garbage);
   });
-
 }
 
 function generateWorldSprites(negVals, posVals) {
