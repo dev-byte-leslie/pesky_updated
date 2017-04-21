@@ -11,6 +11,9 @@ function jump() {
         player.sprite.gotoAndStop(0);
         player.setTextures(5);
         player.doingIdle = false;
+        disableAttacking = false;
+        disableMovement = false;
+        ePressed = false;
         player.sprite.gotoAndStop(0);
       }, 1000);
     }
