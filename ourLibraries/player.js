@@ -102,6 +102,9 @@ function Player(stringAnimal) {
         player.sprite.gotoAndStop(0);
         player.setTextures(5);
         this.doingIdle = false;
+        disableAttacking = false;
+        disableMovement = false;
+        ePressed = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
       })) {
