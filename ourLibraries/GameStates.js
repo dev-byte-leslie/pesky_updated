@@ -124,6 +124,8 @@ function fadeIntoWorld() {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
     ePressed = false;
+    disableMovement = false;
+    disableAttacking = false;
     blackOverlay.alpha = 0;
     disableMovement = false;
     g.state = play;
