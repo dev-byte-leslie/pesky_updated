@@ -142,6 +142,12 @@ function setupGame() {
     // Object sprites
     .add('../images/WorldObjects/garbage.png')
     .add('../images/WorldObjects/garbage2.png')
+    .add('../images/WorldObjects/chair.png')
+    .add('../images/WorldObjects/Coffee_maker.png')
+    .add('../images/WorldObjects/fridge.png')
+    .add('../images/WorldObjects/lamp_1.png')
+    .add('../images/WorldObjects/lamp_2.png')
+    .add('../images/WorldObjects/baby_groot.png')
     .load(setup);
 }
 // Second setup function for assigning assets to variables
