@@ -28,7 +28,8 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   garbageSprite1, garbageSprite2, garbages = [],
 
   //vars to hold sprites of houses
-  redHouse, blueHouse, beigeHouse, greyHouse, hedge, iDoor, sDoor,
+  redHouse, blueHouse, beigeHouse, greyHouse, hedge, redHouseNoSky, blueHouseNoSky, beigeHouseNoSky,
+    greyHouseNoSky, iDoor, sDoor, hedgeNoSky,
 
   //Background textures
   titleBackground, hedgeBackground, blackOverlay, gameOverText,
@@ -138,6 +139,11 @@ function setupGame() {
     .add('../images/WorldObjects/Grey_House.png')
     .add('../images/WorldObjects/Door_Invisible.png')
     .add('../images/WorldObjects/Interior_1.png')
+    .add('../images/WorldObjects/Beige_House_noSky.png')
+    .add('../images/WorldObjects/Blue_House_noSky.png')
+    .add('../images/WorldObjects/Grey_House_noSky.png')
+    .add('../images/WorldObjects/Red_House_noSky.png')
+    .add('../images/WorldObjects/bush_no_back.gif')
 
     // Object sprites
     .add('../images/WorldObjects/garbage.png')
@@ -228,8 +234,13 @@ function setup() {
   greyHouse = '../images/WorldObjects/Grey_House.png';
   beigeHouse = '../images/WorldObjects/Beige_House.png';
   floorTexture = '../images/HouseBackground.png';
+  redHouseNoSky = '../images/WorldObjects/Red_House_noSky.png';
+  blueHouseNoSky = '../images/WorldObjects/Blue_House_noSky.png';
+  greyHouseNoSky = '../images/WorldObjects/Grey_House_noSky.png';
+  beigeHouseNoSky = '../images/WorldObjects/Beige_House_noSky.png';
 
   hedge = '../images/WorldObjects/LongHedge.png';
+  hedgeNoSky = '../images/WorldObjects/bush_no_back.gif';
   iDoor = '../images/WorldObjects/Door_Invisible.png';
   sDoor = '../images/AnimalPlaceHolder.png';
 
