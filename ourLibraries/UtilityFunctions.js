@@ -1,10 +1,11 @@
 //---------------------------------------------------------Thomas Rosik------------------------------------------------------------------------
 function jump() {
   //start the player jump if space is pressed and player isn't moving vertically
+  let jumpVelocity = player.inHouse ? -2.01 : -2.51;
   if (player.spacePush && !player.jumping && !disableMovement) {
     player.jumping = true;
     if (player.animal !== 'skunk') {
-      player.sprite.vy = -2.51;
+      player.sprite.vy = jumpVelocity;
     } else {
       setTimeout(function() {
         player.jumping = false;
@@ -24,18 +25,19 @@ function jump() {
     player.sprite.play();
   }
   let timeoutID;
+  let flyHeight = player.inHouse ? 570 : 500;
   if (!player.isFlying && player.jumping && player.canFly) {
     timeoutID = setTimeout(function() {
       if (player.jumping && player.spacePush) {
         player.isFlying = true;
         player.setTextures(12);
-        player.sprite.vy = player.sprite.y > 500 ? -2.51 : 0;
+        player.sprite.vy = player.sprite.y > flyHeight ? jumpVelocity : 0;
         disableAttacking = true;
       }
     }, 500);
   } else if (player.isFlying) {
-    if (player.spacePush && player.sprite.y > 500) {
-      player.sprite.vy = -2.51;
+    if (player.spacePush && player.sprite.y > flyHeight) {
+      player.sprite.vy = jumpVelocity;
     } else if (player.spacePush) {
       player.sprite.vy = 0;
     }
@@ -53,14 +55,6 @@ function enterHouse() {
   });
   player.doIdle();
   setTimeout(function() {
-    // Teleport AC away from player so they don't get killed right outside the door
-    numOfEnemyAi.forEach(function(animalCont1) {
-      if (animalCont1.aCObject.x >= player.sprite.x - 400) {
-        animalCont1.aCObject.x -= 600;
-      } else if (animalCont1.aCObject.x < player.sprite.x + 400) {
-        animalCont1.aCObject.x += 600;
-      }
-    });
     gameObjects.removeChild(map);
     g.stage.removeChild(gameObjects);
     gameObjects.addChild(house);
@@ -72,12 +66,13 @@ function enterHouse() {
     player.sprite.x = player.inHouseX;
     player.sprite.y = player.inHouseY;
 
-    door.x = player.sprite.x + 70;
-    door.y = player.sprite.y - 60;
+    door.scale.x = 0.35;
+    door.x = 500;
+    door.y = player.sprite.y - 10;
     interior1.x = player.sprite.x - 200;
-    interior1.y = player.sprite.y - 200;
+    interior1.y = player.sprite.y - 215;
     house.addChild(interior1);
-    house.addChild(door);
+    //house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(chaosBar);
     house.addChild(blackOverlay);
@@ -120,7 +115,7 @@ function buildOutside() {
     g.stage.addChild(gameObjects);
     g.stage.addChild(blackOverlay);
   }, 1667);
-  player.setTextures(10);
+  player.setTextures(8);
   g.state = fadeOutOfHouse;
 }
 

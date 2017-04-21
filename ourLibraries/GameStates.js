@@ -166,8 +166,8 @@ function fadeOutOfWorld() {
 }
 function fadeOutOfHouse() {
   updateThings();
-  if (player.sprite.y > 580) {
-    player.sprite.y += player.animal == 'skunk' ? -0.1 * 60 / fps : -0.2 * 60 / fps;
+  if (player.sprite.y < 620) {
+    player.sprite.y -= player.animal == 'skunk' ? -0.1 * 60 / fps : -0.2 * 60 / fps;
   }
   player.camera.updateCamera();
   blackOverlay.x = g.stage.pivot.x - 200;
