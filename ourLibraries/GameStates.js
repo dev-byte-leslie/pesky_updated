@@ -128,7 +128,6 @@ function fadeIntoWorld() {
     disableMovement = false;
     disableAttacking = false;
     blackOverlay.alpha = 0;
-    disableMovement = false;
     g.state = play;
   }
 }
@@ -140,10 +139,11 @@ function fadeIntoHouse() {
   if (blackOverlay.alpha - 0.01 * 60 / fps > 0) {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
-    ePressed = false;
     blackOverlay.alpha = 0;
     player.doIdle();
+    ePressed = false;
     disableMovement = false;
+    disableAttacking = false;
     g.state = play;
     player.inHouse = true;
   }

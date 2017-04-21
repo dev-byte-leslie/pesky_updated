@@ -19,7 +19,11 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   wTexture, whiteFloor, animalTextures,
   animalObjectTexture, houseBackground1, houseOutside1, houseBackgroundTexture1,
   houseOutsideTexture1, doorText, door, floors = [], houseDoors = [], platform,
-  doorObj, floorTexture, interior1, fridge, groot, chair, coffeeMaker, lamp1, lamp2,
+  doorObj, floorTexture,
+
+  // Inside house stuff
+  interiors = [], houses = [],
+  fridge, groot, chair, coffeeMaker, lamp1, lamp2,
 
   hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
@@ -138,13 +142,18 @@ function setupGame() {
     .add('../images/WorldObjects/Red_House.png')
     .add('../images/WorldObjects/Grey_House.png')
     .add('../images/WorldObjects/Door_Invisible.png')
-    .add('../images/WorldObjects/Interior_1.png')
     .add('../images/WorldObjects/Beige_House_noSky.png')
     .add('../images/WorldObjects/Blue_House_noSky.png')
     .add('../images/WorldObjects/Grey_House_noSky.png')
     .add('../images/WorldObjects/Red_House_noSky.png')
     .add('../images/WorldObjects/bush_no_back.gif')
     .add('../images/WorldObjects/cloud_back_ground.png')
+
+    //interiors
+    .add('../images/HouseObjects/Interior_1.png')
+    .add('../images/HouseObjects/Interior_2.png')
+    .add('../images/HouseObjects/Interior_3.png')
+    .add('../images/HouseObjects/Interior_4.png')
 
     // Object sprites
     .add('../images/WorldObjects/garbage.png')
@@ -259,7 +268,10 @@ function setup() {
 
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);
-  interior1 = new Sprite(TextureCache['../images/WorldObjects/Interior_1.png']);
+
+  for (let i = 1; i <= 4; i++) {
+    interiors.push(eval('new Sprite(TextureCache[\'../images/HouseObjects/Interior_' + i +'.png\']);'));
+  }
 
   fridge = new spriteCreator('../images/HouseObjects/fridge.png', 100, 100);
   groot = new spriteCreator('../images/HouseObjects/baby_groot.png', 50, 50);

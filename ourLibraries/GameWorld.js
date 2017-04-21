@@ -40,6 +40,7 @@ function createGameWorld() {
       hedgeLocX1 = gameX;
       hedgeLocY = 407;
     }
+    houses.push(curObj.obSprite);
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
     map.addChildAt(floorObj.obSprite, 0);
@@ -78,6 +79,7 @@ function createGameWorld() {
       }
       hedgeLocY = 407;
     }
+    houses.push(curObj.obSprite);
     floorObj = new spawnWorldObject(floorTexture, gameX, 600);
     floors.push(floorObj.obSprite);
     map.addChildAt(floorObj.obSprite, 0);

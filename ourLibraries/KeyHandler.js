@@ -89,7 +89,8 @@ function Keys() {
       if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
-            enterHouse();
+            let index = houseDoors.indexOf(doorHit);
+            enterHouse(Math.abs(index % interiors.length));
           }
         })) {
       }

@@ -48,7 +48,10 @@ function jump() {
 }
 
 //build the inside of a house
-function enterHouse() {
+function enterHouse(interiorNum) {
+  for (let i = 0; i < house.children.length; i++) {
+    house.removeChildAt(i);
+  }
   disableMovement = true;
   numOfEnemyAi.forEach(function(animalCont1) {
     animalCont1.aCObject.gotoAndStop(0);
@@ -62,17 +65,25 @@ function enterHouse() {
 
     //keep track of world coordinates
     player.holdX = player.sprite.x;
-
     player.sprite.x = player.inHouseX;
     player.sprite.y = player.inHouseY;
 
     door.scale.x = 0.35;
-    door.x = 500;
     door.y = player.sprite.y - 10;
-    interior1.x = player.sprite.x - 200;
-    interior1.y = player.sprite.y - 215;
-    house.addChild(interior1);
-    //house.addChild(door);
+    switch (interiorNum) {
+      case 0:
+        door.x = 500;
+      case 1:
+        door.x = 500;
+      case 2:
+        door.x = 500;
+      case 3:
+        door.x = 500;
+    }
+    interiors[interiorNum].x = player.sprite.x - 200;
+    interiors[interiorNum].y = player.sprite.y - 215;
+    house.addChild(interiors[interiorNum]);
+    house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(chaosBar);
     house.addChild(blackOverlay);
