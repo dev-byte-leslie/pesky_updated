@@ -55,7 +55,7 @@ function Keys() {
   };
 
   f.press = function() {
-    if (!player.jumping && !disableMovement && !disableAttacking) {
+    if (!player.jumping && !disableMovement && !disableAttacking && !ePressed) {
       disableMovement = isAttacking = true;
       if (player.animal == 'raccoon') {
         setTimeout(function() {
