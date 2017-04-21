@@ -35,6 +35,7 @@ function switchCharacterState() {
 }
 function moveIntoHedgeState() { // freeze the game and move player into hedge
   updateThings();
+  disableMovement = true;
   if (player.sprite.y > hedgeLocY + 150) {
     player.sprite.y += -1 * 60 / fps;
   } else {
@@ -61,6 +62,8 @@ function moveFromHedgeState() {
     }
   } else {
     ePressed = false;
+    disableMovement = false;
+    disableAttacking = false;
     player.setTextures(4);
     g.state = play;
   }
@@ -122,6 +125,8 @@ function fadeIntoWorld() {
     blackOverlay.alpha -= 0.01 * 60 / fps;
   } else {
     ePressed = false;
+    disableMovement = false;
+    disableAttacking = false;
     blackOverlay.alpha = 0;
     disableMovement = false;
     g.state = play;

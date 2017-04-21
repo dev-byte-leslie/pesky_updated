@@ -102,6 +102,9 @@ function Player(stringAnimal) {
         player.sprite.gotoAndStop(0);
         player.setTextures(5);
         this.doingIdle = false;
+        disableAttacking = false;
+        disableMovement = false;
+        ePressed = false;
         player.sprite.gotoAndStop(0);
         floorHit.y = 600;
       })) {
@@ -136,23 +139,18 @@ function Player(stringAnimal) {
         if (!garbageHit.knockedOver) {
           if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
           garbageHit.y - 100, 35, 100))) {
-            if (player.animal != 'skunk') {
-              if (Math.sign(player.sprite.scale.x) == -1) {
-                garbageHit.scale.x = 1;
-              } else {
-                garbageHit.x -= 60;
-                garbageHit.scale.x = -1;
-              }
-              garbageHit.y += 2;
-              garbageHit.knockedOver = true;
-              garbageHit.play();
-              chaosToAdd += 5;
-              pointsToAdd += 5;
+            if (Math.sign(player.sprite.scale.x) == -1) {
+              garbageHit.scale.x = player.animal == 'skunk' ? -1 : 1;
+              if (player.animal == 'skunk') garbageHit.x -= 60;
+            } else {
+              if (player.animal != 'skunk') garbageHit.x -= 60;
+              garbageHit.scale.x = player.animal == 'skunk' ? 1 : -1;
             }
             garbageHit.y += 2;
             garbageHit.knockedOver = true;
             garbageHit.play();
-            pointsToAdd = 5;
+            chaosToAdd += 5;
+            pointsToAdd += 5;
           }
         }
       });

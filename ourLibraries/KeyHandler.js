@@ -67,7 +67,7 @@ function Keys() {
         delay = 750;
       }
       setTimeout(function() {
-        if (disableMovement && isAttacking) {
+        if (disableMovement && isAttacking && !ePressed) {
           player.sprite.vxa = 0;
           player.doIdle();
           disableMovement = isAttacking = false;
