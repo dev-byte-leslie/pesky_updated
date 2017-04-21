@@ -90,7 +90,7 @@ function Keys() {
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
             let index = houseDoors.indexOf(doorHit);
-            enterHouse(Math.abs(index % interiors.length));
+            enterHouse(index % interiors.length, index);
           }
         })) {
       }

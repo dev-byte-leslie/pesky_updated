@@ -154,6 +154,15 @@ function Player(stringAnimal) {
           }
         }
       });
+      b.hit(player.sprite, fridges, false, false, false,
+        function(collision, fridgeHit) {
+        if (!fridgeHit.hasBeenRuined) {
+          chaosToAdd += 5;
+          pointsToAdd += 5;
+          fridgeHit.play();
+          fridgeHit.hasBeenRuined = true;
+        }
+      });
     }
     // Check list of conditions to make sure player is actually idle
     if (!space.isDown && !player.jumping && player.sprite.vx == 0

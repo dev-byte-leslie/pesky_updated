@@ -48,7 +48,7 @@ function jump() {
 }
 
 //build the inside of a house
-function enterHouse(interiorNum) {
+function enterHouse(interiorNum, realIndex) {
   for (let i = 0; i < house.children.length; i++) {
     house.removeChildAt(i);
   }
@@ -58,6 +58,12 @@ function enterHouse(interiorNum) {
   });
   player.doIdle();
   setTimeout(function() {
+    let fridge = fridges[realIndex],
+      chair = chairs[realIndex],
+      lamp1 = lamps1[realIndex],
+      lamp2 = lamps2[realIndex],
+      coffeeMaker = coffeeMakers[realIndex];
+
     gameObjects.removeChild(map);
     g.stage.removeChild(gameObjects);
     gameObjects.addChild(house);
@@ -70,19 +76,33 @@ function enterHouse(interiorNum) {
 
     door.scale.x = 0.35;
     door.y = player.sprite.y - 10;
+    fridge.y = 595;
     switch (interiorNum) {
       case 0:
         door.x = 500;
+        fridge.x = 645;
+        break;
       case 1:
         door.x = 500;
+        fridge.x = 541;
+        break;
       case 2:
         door.x = 500;
+        fridge.x = 600;
+        break;
       case 3:
         door.x = 500;
+        fridge.x = 363;
+        break;
     }
     interiors[interiorNum].x = player.sprite.x - 200;
     interiors[interiorNum].y = player.sprite.y - 215;
     house.addChild(interiors[interiorNum]);
+    house.addChild(fridge);
+    house.addChild(chair);
+    house.addChild(lamp1);
+    house.addChild(lamp2);
+    house.addChild(coffeeMaker);
     house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(chaosBar);

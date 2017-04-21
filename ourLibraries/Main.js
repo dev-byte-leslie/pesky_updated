@@ -22,8 +22,8 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   doorObj, floorTexture,
 
   // Inside house stuff
-  interiors = [], houses = [],
-  fridge, groot, chair, coffeeMaker, lamp1, lamp2,
+  interiors = [], houses = [], fridges = [], groots = [], chairs = [], coffeeMakers = [],
+  lamps1 = [], lamps2 = [],
 
   hedgeLocX1, hedgeLocX2, hedgeLocX3, hedgeLocY,
 
@@ -32,8 +32,8 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   garbageSprite1, garbageSprite2, garbages = [],
 
   //vars to hold sprites of houses
-  redHouse, blueHouse, beigeHouse, greyHouse, hedge, redHouseNoSky, blueHouseNoSky, beigeHouseNoSky,
-    greyHouseNoSky, iDoor, sDoor, hedgeNoSky,
+  redHouse, blueHouse, beigeHouse, greyHouse, hedge, redHouseNoSky, blueHouseNoSky,
+  beigeHouseNoSky, greyHouseNoSky, iDoor, sDoor, hedgeNoSky,
 
   //Background textures
   titleBackground, hedgeBackground, blackOverlay, gameOverText,
@@ -273,13 +273,44 @@ function setup() {
     interiors.push(eval('new Sprite(TextureCache[\'../images/HouseObjects/Interior_' + i +'.png\']);'));
   }
 
-  fridge = new spriteCreator('../images/HouseObjects/fridge.png', 100, 100);
-  groot = new spriteCreator('../images/HouseObjects/baby_groot.png', 50, 50);
-  coffeeMaker = new spriteCreator('../images/HouseObjects/Coffee_maker.png', 100, 100);
-  chair = new spriteCreator('../images/HouseObjects/chair.png', 80, 100);
-  lamp1 = new spriteCreator('../images/HouseObjects/lamp_1.png', 50, 50);
-  lamp2 = new spriteCreator('../images/HouseObjects/lamp_2.png', 50, 50);
-  fridge.loop = coffeeMaker.loop = chair.loop = lamp1.loop = lamp2.loop = false;
+  for (let i = 0; i < 61; i++) {
+    eval('fridge'+i+'= new spriteCreator(\'../images/HouseObjects/fridge.png\', 100, 100);');
+    fridges.push(eval('fridge'+i));
+    eval('groot'+i+'= new spriteCreator(\'../images/HouseObjects/baby_groot.png\', 50, 50);');
+    groots.push(eval('groot'+i));
+    eval('coffeeMaker'+i+'= new spriteCreator(\'../images/HouseObjects/Coffee_maker.png\', 100, 100);');
+    coffeeMakers.push(eval('coffeeMaker'+i));
+    eval('chair'+i+'= new spriteCreator(\'../images/HouseObjects/chair.png\', 80, 100);');
+    chairs.push(eval('chair'+i));
+    eval('lamp1_'+i+'= new spriteCreator(\'../images/HouseObjects/lamp_1.png\', 50, 50);');
+    lamps1.push(eval('lamp1_'+i));
+    eval('lamp2_'+i+'= new spriteCreator(\'../images/HouseObjects/lamp_2.png\', 50, 50);');
+    lamps2.push(eval('lamp2_'+i));
+
+    eval('fridge'+i).loop = false;
+    eval('fridge'+i).anchor.set(0.5, 1);
+    eval('fridge'+i).hasBeenRuined = false;
+
+    eval('coffeeMaker'+i).loop = false;
+    eval('coffeeMaker'+i).anchor.set(0.5, 1);
+    eval('coffeeMaker'+i).hasBeenRuined = false;
+
+    eval('chair'+i).loop = false;
+    eval('chair'+i).anchor.set(0.5, 1);
+    eval('chair'+i).hasBeenRuined = false;
+
+    eval('groot'+i).loop = false;
+    eval('groot'+i).anchor.set(0.5, 1);
+    eval('groot'+i).hasBeenRuined = false;
+
+    eval('lamp1_'+i).loop = false;
+    eval('lamp1_'+i).anchor.set(0.5, 1);
+    eval('lamp1_'+i).hasBeenRuined = false;
+
+    eval('lamp2_'+i).loop = false;
+    eval('lamp2_'+i).anchor.set(0.5, 1);
+    eval('lamp2_'+i).hasBeenRuined = false;
+  }
 
   startMenu();
   g.state = menuState;
