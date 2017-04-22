@@ -117,13 +117,14 @@ function Keys() {
 
   f1.press = function() {
     //fpsEnabled = !fpsEnabled;
-    pointsToAdd += 50;
-    chaosToAdd += 50;
-    let randX = player.sprite.x + (600 * Math.sign(player.sprite.scale.x));
-    let animalCont = new spawnAnimalControl(randX, 600);
-    numOfEnemyAi.push(animalCont);
-    //console.log(numOfEnemyAi[numOfEnemyAi.length-1]);
-    map.addChild(numOfEnemyAi[numOfEnemyAi.length-1].aCObject);
+    chaosToAdd += 5;
+    // pointsToAdd += 50;
+    // chaosToAdd += 50;
+    // let randX = player.sprite.x + (600 * Math.sign(player.sprite.scale.x));
+    // let animalCont = new spawnAnimalControl(randX, 600);
+    // numOfEnemyAi.push(animalCont);
+    // //console.log(numOfEnemyAi[numOfEnemyAi.length-1]);
+    // map.addChild(numOfEnemyAi[numOfEnemyAi.length-1].aCObject);
   };
 
   nVal.press = function() {

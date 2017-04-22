@@ -196,12 +196,11 @@ function camera() {
     g.stage.pivot.y = 607;
   };
 }
-
+let shakeTimer = 0;
 function updateChaos() {
   chaosBar.inner.x =  g.stage.pivot.x - 157;
   // doesn't let chaos bar get longer than it's supposed to be
   chaos += chaosToAdd;
-  chaosToAdd = 0;
   if (chaos > 100) {
     chaos = 100;
   } else if (chaos < 0) {
@@ -213,9 +212,16 @@ function updateChaos() {
   chaosText.position.set(chaosBar.inner.x + chaosBar.inner.width / 2, chaosBar.outer.y + 11);
   triangleLeft.x = topBar.position.x = bottomBar.position.x = chaosBar.outer.x;
   triangleRight.x = topBar.position.x + topBar.width;
-  let shakeAmt = 0.000025 * chaos / 25;
-  animalAnimated.shake(chaosBar, shakeAmt, true);
+  let shakeAmt = chaos / 50;//0.0005 * chaos / 25;
+  if (shakeTimer >= fps) {
+    animalAnimated.shake(chaosBar, shakeAmt, false);
+    shakeTimer = 0;
+  } else {
+    shakeTimer++;
+  }
+
   animalAnimated.update();
+  chaosToAdd = 0;
 }
 
 function updatePoints() {
