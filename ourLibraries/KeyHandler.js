@@ -10,41 +10,41 @@ var moveMent = false,
 
 function Keys() {
   //Left arrow key `press` method
-  left.press = function() {
-    if (!player.jumping && !disableMovement && !f.isDown) {
-      player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
-      player.sprite.vx = -5 * 60 / fps;
-      player.setTextures(5);
-      this.doingIdle = false;
-      player.sprite.play();
-    }
-  };
-
-  //Left arrow key `release` method
-  left.release = function() {
-    if (!right.isDown && !player.jumping) {
-      if (!disableMovement) player.sprite.gotoAndStop(0);
-        player.sprite.vx = 0;
-    }
-  };
-
-  //Right
-  right.press = function() {
-    if (!player.jumping && !disableMovement && !f.isDown) {
-      player.sprite.scale.x = player.animal == 'goose' ? -0.8 : -1;
-      player.setTextures(5);
-      this.doingIdle = false;
-      player.sprite.play();
-      player.sprite.vx = 5 * 60 / fps;
-    }
-  };
-
-  right.release = function() {
-    if (!left.isDown && !player.jumping) {
-      if (!disableMovement) player.sprite.gotoAndStop(0);
-      player.sprite.vx = 0;
-    }
-  };
+  // left.press = function() {
+  //   if (!player.jumping && !disableMovement && !f.isDown) {
+  //     player.sprite.scale.x = player.animal == 'goose' ? 0.8 : 1;
+  //     player.sprite.vx = -5 * 60 / fps;
+  //     player.setTextures(5);
+  //     this.doingIdle = false;
+  //     player.sprite.play();
+  //   }
+  // };
+  //
+  // //Left arrow key `release` method
+  // left.release = function() {
+  //   if (!right.isDown && !player.jumping) {
+  //     if (!disableMovement) player.sprite.gotoAndStop(0);
+  //       player.sprite.vx = 0;
+  //   }
+  // };
+  //
+  // //Right
+  // right.press = function() {
+  //   if (!player.jumping && !disableMovement && !f.isDown) {
+  //     player.sprite.scale.x = player.animal == 'goose' ? -0.8 : -1;
+  //     player.setTextures(5);
+  //     this.doingIdle = false;
+  //     player.sprite.play();
+  //     player.sprite.vx = 5 * 60 / fps;
+  //   }
+  // };
+  //
+  // right.release = function() {
+  //   if (!left.isDown && !player.jumping) {
+  //     if (!disableMovement) player.sprite.gotoAndStop(0);
+  //     player.sprite.vx = 0;
+  //   }
+  // };
 
   space.press = function() {
     player.spacePush = true;

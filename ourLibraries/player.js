@@ -19,6 +19,7 @@ function Player(stringAnimal) {
 
   this.canFly = (stringAnimal == 'goose');
   this.isFlying = false;
+  this.speed = 4;
 
   this.setCharacter = function(stringAnimal) {
     if (stringAnimal == 'raccoon') {
@@ -82,7 +83,7 @@ function Player(stringAnimal) {
   //updates player location and camera location
   this.update = function() {
     this.camera.updateCamera();
-    this.sprite.vx = Math.sign(this.sprite.vx) * 5 * 60 / fps;
+    this.sprite.vx = Math.sign(this.sprite.vx) * this.speed * 60 / fps;
     if (!disableMovement) {
       this.sprite.x += this.sprite.vx; //add x velocity to player's x location
       this.sprite.y += this.sprite.vy; //add y velocity to player's y location
@@ -121,7 +122,7 @@ function Player(stringAnimal) {
         if (!player.testTextures(5) && !player.jumping) {
           player.setTextures(5);
         }
-        player.sprite.vx = 5 * 60 / fps * (right.isDown - left.isDown);
+        player.sprite.vx = this.speed * 60 / fps * (right.isDown - left.isDown);
         player.sprite.scale.x = Math.abs(player.sprite.scale.x) * -Math.sign(player.sprite.vx);
         player.sprite.animationSpeed = 0.1;
         player.sprite.play();
