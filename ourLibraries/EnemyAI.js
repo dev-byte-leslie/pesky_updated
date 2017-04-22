@@ -57,14 +57,16 @@ function spawnAnimalControl(x, y) {
     } else {
       this.closeToPlayer = false;
     }
-
-    if (this.closeToPlayer && player.sprite.y <= this.aCObject.y) {
-      //if player is to the right of enemy
-      if (!this.aCObject.doingAttack) {
+    if (this.closeToPlayer && !this.aCObject.doingAttack) {
+      if (player.sprite.y >= 550 || !(this.aCObject.x <= player.sprite.x + 50 &&
+          this.aCObject.x >= player.sprite.x - 50)) {
         this.aCObject.vx = -1 * Math.sign(this.aCObject.x - player.sprite.x) * this.speed;
-        this.aCObject.scale.x = -1 * Math.sign(this.aCObject.x - player.sprite.x);
         this.aCObject.play();
+      } else {
+        this.aCObject.vx = 0;
+        this.aCObject.gotoAndStop(0);
       }
+      this.aCObject.scale.x = -1 * Math.sign(this.aCObject.x - player.sprite.x);
     }
 
     //if player is next to enemy
