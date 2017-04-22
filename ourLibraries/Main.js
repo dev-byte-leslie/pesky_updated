@@ -36,7 +36,7 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   beigeHouseNoSky, greyHouseNoSky, iDoor, sDoor, hedgeNoSky,
 
   //Background textures
-  titleBackground, hedgeBackground, blackOverlay, gameOverText,
+  titleBackground, hedgeBackground, blackOverlay, gameOverText, pointsText,
 
   //Global var for chaos
   chaos = 0, chaosToAdd = 0,
@@ -265,6 +265,7 @@ function setup() {
   title = new Sprite(TextureCache['../images/Backgrounds/Title.png']);
   blackOverlay = new Sprite(TextureCache['../images/Backgrounds/BlackOverlay.png']);
   gameOverText = new Sprite(TextureCache['../images/Backgrounds/GameOver.png']);
+  pointsText = new PIXI.Text('Score: '+ points, {font: '50px Road_Rage', fill: '#eeeeee'});
 
   door = new Sprite(TextureCache['../images/AnimalPlaceHolder.png']);
   houseBackground1 = new Sprite(TextureCache['../images/HouseBackground.png']);

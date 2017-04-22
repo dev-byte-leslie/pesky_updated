@@ -225,4 +225,6 @@ function updateChaos() {
 function updatePoints() {
   points += pointsToAdd * numOfEnemyAi.length;
   pointsToAdd = 0;
+  pointsText.text = 'Score: ' + points;
+  pointsText.anchor.set(0.5, 0.5);
 }

@@ -8,8 +8,10 @@ function initGame(animalType = 'raccoon') {
   //calls function that designates what each key does when it is pressed
   // only enable keyboard input (e.g. movement/spacebar) after game is started
   Keys();
-  blackOverlay.alpha = gameOverText.alpha = 0;
+  blackOverlay.alpha = gameOverText.alpha = pointsText.alpha = 0;
   gameOverText.scale.set(0.25, 0.25);
+  gameOverText.anchor.set(0.5, 0.5);
+  pointsText.scale.set(0.25, 0.25);
   gameObjects.addChild(map);
   gameObjects.addChild(chaosBar);
   gameObjects.addChild(fpsDisplay);

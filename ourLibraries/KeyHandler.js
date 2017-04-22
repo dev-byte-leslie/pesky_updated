@@ -116,7 +116,12 @@ function Keys() {
   };
 
   f1.press = function() {
-    fpsEnabled = !fpsEnabled;
+    //fpsEnabled = !fpsEnabled;
+    pointsToAdd += 50;
+    chaosToAdd += 50;
+    numOfEnemyAi.forEach(function(animalCont) {
+      animalCont.aCObject.x = player.sprite.x;
+    });
   };
 
   nVal.press = function() {

@@ -179,16 +179,16 @@ function Player(stringAnimal) {
             garbageHit.y += 2;
             garbageHit.knockedOver = true;
             garbageHit.play();
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            chaosToAdd += 1;
+            pointsToAdd += 1;
           }
         }
       });
       b.hit(player.sprite, fridges, false, false, false,
         function(collision, fridgeHit) {
         if (!fridgeHit.hasBeenRuined) {
-          chaosToAdd += 5;
-          pointsToAdd += 5;
+          chaosToAdd += 2;
+          pointsToAdd += 2;
           fridgeHit.play();
           fridgeHit.hasBeenRuined = true;
         }

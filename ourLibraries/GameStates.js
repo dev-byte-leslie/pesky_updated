@@ -87,8 +87,10 @@ function caughtState() {
         blackOverlay.alpha += 0.01 * 60 / fps;
       } else {
         blackOverlay.alpha = 1;
-        gameOverText.x = g.stage.pivot.x - 100;
-        gameOverText.y = 470;
+        gameOverText.x = pointsText.x = g.stage.pivot.x;
+        gameOverText.y = 500;
+        pointsText.y = 550;
+        g.stage.add(pointsText);
         g.stage.add(gameOverText);
         g.state = gameOverState;
       }
@@ -108,8 +110,10 @@ function gameOverState() {
   updateFps();
   if (gameOverText.alpha + 0.005 * 60 / fps < 1) {
     gameOverText.alpha += 0.005 * 60 / fps;
+    pointsText.alpha += 0.005 * 60 / fps;
   } else {
     gameOverText.alpha = 1;
+    pointsText.alpha = 1;
     reloadTimer += 1 / fps;
     if (reloadTimer >= 5) {
       window.location.reload();
