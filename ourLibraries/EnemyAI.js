@@ -32,9 +32,10 @@ function spawnAnimalControl(x, y) {
     // makes the ai go faster the more chaos that is caused. Change
     // the number that chaos is divided by to tweak the rate of increase
     // Makes ai able to detect player at greater distances the more chaos that is caused
+    this.aCObject.y = 600;
     if (chaos) {
-      this.speed = (3 + (Math.floor(chaos / 10) * 0.3)) * 60 / fps;
-      this.detection = 300 + (chaos * 124);
+      this.speed = (3 + (Math.floor(chaos / 10) * 0.4)) * 60 / fps;
+      this.detection = 1000 + (chaos * 248);
     }
 
     //Plays the sound when player is too close
@@ -76,11 +77,20 @@ function spawnAnimalControl(x, y) {
         this.aCObject._textures = animalControlAttackSprite._textures;
         this.aCObject.gotoAndStop(0);
         this.aCObject.vx = 0;
-        this.aCObject.animationSpeed = 0.25;
+        let catchTime = 500 - chaos * 2;
+        this.aCObject.animationSpeed = 0.25 * (500 / catchTime);
         this.aCObject.play();
-        setTimeout(function() { ac.catchPlayer() }, 500);
+        setTimeout(function() { ac.catchPlayer() }, catchTime);
       }
     }
+    let ac = this;
+    numOfEnemyAi.forEach(function(otherAC) {
+      if (ac.aCObject != otherAC.aCObject) {
+        b.hit(ac.aCObject, otherAC.aCObject, true, false, false, function() {
+          ac.aCObject.vx = 0;
+        });
+      }
+    });
 
     //stops enemy movement if player is too far away
     if (Math.abs(this.aCObject.x - player.sprite.x) > this.detection) {

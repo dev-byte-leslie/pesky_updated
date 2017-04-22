@@ -185,6 +185,12 @@ function fadeOutOfHouse() {
   }
 }
 function play() {
+  if (Math.floor(chaos / 10) * 0.3 > numOfEnemyAi.length) {
+    let randX = player.sprite.x + (600 * Math.sign(player.sprite.scale.x));
+    let animalCont = new spawnAnimalControl(randX, 600);
+    numOfEnemyAi.push(animalCont);
+    map.addChild(numOfEnemyAi[numOfEnemyAi.length-1].aCObject);
+  }
   if (gameMusic) {
     if (!gameMusic.playing) {
       menuMusic.pause();

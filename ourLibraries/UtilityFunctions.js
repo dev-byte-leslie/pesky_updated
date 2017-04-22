@@ -50,7 +50,7 @@ function jump() {
 //build the inside of a house
 function enterHouse(interiorNum, realIndex) {
   for (let i = 0; i < house.children.length; i++) {
-    house.removeChildAt(i);
+    house.removeChildAt(0);
   }
   disableMovement = true;
   numOfEnemyAi.forEach(function(animalCont1) {
@@ -138,13 +138,9 @@ function enterHouse(interiorNum, realIndex) {
 function buildOutside() {
   disableMovement = true;
   player.doIdle();
-  // Teleport AC away from player so they don't get killed right outside the door
   numOfEnemyAi.forEach(function(animalCont1) {
-    if (animalCont1.aCObject.x >= player.sprite.x - 400) {
-      animalCont1.aCObject.x -= 600;
-    } else if (animalCont1.aCObject.x < player.sprite.x + 400) {
-      animalCont1.aCObject.x += 600;
-    }
+    let randX = Math.random() < 0.5 ? player.sprite.x - 600 : player.sprite.x + 600;
+    animalCont1.aCObject.x = randX;
   });
 
   setTimeout(function() {
