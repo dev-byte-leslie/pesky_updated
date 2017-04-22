@@ -113,6 +113,8 @@ function createGameWorld() {
     garbage.animationSpeed = 0.1;
     garbage.loop = garbage.knockedOver = false;
     map.addChild(garbage);
+    b.hit(garbage, garbages, true);
+    garbage.y = 600;
   });
 }
 

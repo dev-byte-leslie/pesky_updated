@@ -1,5 +1,13 @@
 function updateAI() {
   for (let i = 1; i <= peopleTypes; i++) {
+    eval('people'+i).forEach(function(person) {
+      person.y = 525;
+      if (this != person) {
+        b.hit(this, eval('people'+i)), true, false, false, function() {
+          this.vx = 0;
+        };
+      }
+    });
     b.hit(player.sprite, eval("people"+i), false, false, false,
       function(collision, personHit) {
       if (!personHit.isRunning) {
