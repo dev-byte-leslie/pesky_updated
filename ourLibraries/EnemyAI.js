@@ -33,20 +33,22 @@ function spawnAnimalControl(x, y) {
     // the number that chaos is divided by to tweak the rate of increase
     // Makes ai able to detect player at greater distances the more chaos that is caused
     this.aCObject.y = 600;
+
+    
     if (chaos) {
       this.speed = (3 + (Math.floor(chaos / 10) * 0.4)) * 60 / fps;
       this.detection = 1000 + (chaos * 248);
     }
 
     //Plays the sound when player is too close
-    if (Math.abs(this.aCObject.x - player.sprite.x) <= 800 &&
+    if (Math.abs(this.aCObject.x - player.sprite.x) <= this.detection &&
       this.playCloseSound == false) {
       this.playCloseSound = true;
       aiCloseSound.playFrom(0);
     }
 
     //stops the sound from playing if player is too far or too close to ai
-    if (Math.abs(this.aCObject.x - player.sprite.x) > 500 ||
+    if (Math.abs(this.aCObject.x - player.sprite.x) > this.detection ||
       Math.abs(this.aCObject.x - player.sprite.x) < 300) {
       this.playCloseSound = false;
       aiCloseSound.pause();

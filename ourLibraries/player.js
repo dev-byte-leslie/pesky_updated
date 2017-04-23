@@ -136,74 +136,74 @@ function Player(stringAnimal) {
       // Test easily breakable objects, i.e. coffeemaker and lamps
       b.hit(player.sprite, lamps1, false, false, false,
         function(collision, lampHit) {
-        if (!lampHit.hasBeenRuined) {
-          chaosToAdd += 5;
-          pointsToAdd += 5;
-          lampHit.play();
-          lampHit.hasBeenRuined = true;
-        }
-      });
+          if (!lampHit.hasBeenRuined) {
+            chaosToAdd += 5;
+            pointsToAdd += 5;
+            lampHit.play();
+            lampHit.hasBeenRuined = true;
+          }
+        });
       b.hit(player.sprite, coffeeMakers, false, false, false,
         function(collision, coffeeHit) {
-        if (!coffeeHit.hasBeenRuined) {
-          chaosToAdd += 5;
-          pointsToAdd += 5;
-          coffeeHit.y += 3;
-          coffeeHit.play();
-          coffeeHit.hasBeenRuined = true;
-        }
-      });
+          if (!coffeeHit.hasBeenRuined) {
+            chaosToAdd += 5;
+            pointsToAdd += 5;
+            coffeeHit.y += 3;
+            coffeeHit.play();
+            coffeeHit.hasBeenRuined = true;
+          }
+        });
       b.hit(player.sprite, lamps2, false, false, false,
         function(collision, lampHit) {
-        if (!lampHit.hasBeenRuined) {
-          chaosToAdd += 5;
-          pointsToAdd += 5;
-          lampHit.play();
-          lampHit.x += 13;
-          lampHit.hasBeenRuined = true;
-        }
-      });
+          if (!lampHit.hasBeenRuined) {
+            chaosToAdd += 5;
+            pointsToAdd += 5;
+            lampHit.play();
+            lampHit.x += 13;
+            lampHit.hasBeenRuined = true;
+          }
+        });
     } else { // disableMovement = true, i.e. player is attacking
       player.sprite.x += player.sprite.vxa * 144 / fps;
       // Test hit for garbages every frame to knock them down appropriately
       b.hit(player.sprite, garbages, false, false, false,
         function(collision, garbageHit) {
-        if (!garbageHit.knockedOver) {
-          if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
-          garbageHit.y - 100, 35, 100))) {
-            if (Math.sign(player.sprite.scale.x) == -1) {
-              garbageHit.scale.x = player.animal == 'skunk' ? -1 : 1;
-              if (player.animal == 'skunk') garbageHit.x -= 60;
-            } else {
-              if (player.animal != 'skunk') garbageHit.x -= 60;
-              garbageHit.scale.x = player.animal == 'skunk' ? 1 : -1;
+          if (!garbageHit.knockedOver) {
+            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
+            garbageHit.y - 100, 35, 100))) {
+              if (Math.sign(player.sprite.scale.x) == -1) {
+                garbageHit.scale.x = player.animal == 'skunk' ? -1 : 1;
+                if (player.animal == 'skunk') garbageHit.x -= 60;
+              } else {
+                if (player.animal != 'skunk') garbageHit.x -= 60;
+                garbageHit.scale.x = player.animal == 'skunk' ? 1 : -1;
+              }
+              garbageHit.y += 2;
+              garbageHit.knockedOver = true;
+              garbageHit.play();
+              chaosToAdd += 1;
+              pointsToAdd += 1;
             }
-            garbageHit.y += 2;
-            garbageHit.knockedOver = true;
-            garbageHit.play();
-            chaosToAdd += 1;
-            pointsToAdd += 1;
           }
-        }
-      });
+        });
       b.hit(player.sprite, fridges, false, false, false,
         function(collision, fridgeHit) {
-        if (!fridgeHit.hasBeenRuined) {
-          chaosToAdd += 2;
-          pointsToAdd += 2;
-          fridgeHit.play();
-          fridgeHit.hasBeenRuined = true;
-        }
-      });
+          if (!fridgeHit.hasBeenRuined) {
+            chaosToAdd += 2;
+            pointsToAdd += 2;
+            fridgeHit.play();
+            fridgeHit.hasBeenRuined = true;
+          }
+        });
       b.hit(player.sprite, chairs, false, false, false,
         function(collision, chairHit) {
-        if (!chairHit.hasBeenRuined) {
-          chaosToAdd += 5;
-          pointsToAdd += 5;
-          chairHit.play();
-          chairHit.hasBeenRuined = true;
-        }
-      });
+          if (!chairHit.hasBeenRuined) {
+            chaosToAdd += 5;
+            pointsToAdd += 5;
+            chairHit.play();
+            chairHit.hasBeenRuined = true;
+          }
+        });
     }
     // Check list of conditions to make sure player is actually idle
     if (!space.isDown && !player.jumping && player.sprite.vx == 0
