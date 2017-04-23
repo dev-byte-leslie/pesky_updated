@@ -79,6 +79,7 @@ function Player(stringAnimal) {
   this.sprite.vy = 0;
   this.sprite.animationSpeed = 0.1;
   this.doingIdle = false;
+  this.sprite.circular = true;
 
   //updates player location and camera location
   this.update = function() {
