@@ -17,47 +17,49 @@ function initCredits() {
   };
   // Credits must be broken into smaller sprites because
   // WebGL has a limitation of 8192x8192 size texture for the cache
-  credits1 = new PIXI.MultiStyleText('<title>PESKY\n\n\n</title>' +
-    '<title2>UW-Stout\nGDD-325\n\n\n\n</title2>' +
-    '<title2>Art\n\n\n\n\n</title2>' +
-    '<name>Susan Evans\n\nAllan Seckora\n</name>' +
-    '<title2>Programming\n</title2>\n',
+  credits1 = new PIXI.MultiStyleText('<title>PESKY \n\n\n</title>' +
+    '<title2>UW-Stout \nGDD-325 \n\n\n\n</title2>' +
+    '<title2>Art \n\n\n\n\n</title2>' +
+    '<name>Susan Evans \n\nAllan Seckora \n</name>' +
+    '<title2> Programming \n</title2>\n',
     creditsStyle,
-    { align: 'center' }
+    { align: 'right' }
   );
   credits2 = new PIXI.MultiStyleText(
-    '<name>\nAlex Hill\n\nDan Hying\n\nLeslie Murphy\n\nThomas Rosik\n</name>' +
-    '<title2>\nInstructor\n\n\n\n\n</title2>' +
-    '<name>Seth Berrier</name>',
+    '<name>\nAlex Hill \n\nDan Hying \n\nLeslie Murphy \n\nThomas Rosik \n</name>' +
+    '<title2>\n Instructor \n\n\n\n\n</title2>' +
+    '<name>Seth Berrier </name>',
     creditsStyle,
-    { align: 'center' }
+    { align: 'right' }
   );
   credits3 = new PIXI.MultiStyleText(
-    '<title2>Music\n\n</title2>' +
-    '<name>Tristan Lohengrin</name>',
+    '<title2>Music \n\n</title2>' +
+    '<name> Tristan Lohengrin \n\n\n\n</name>' +
+    '<name>Font: Road Rage \n\nwww.dafont.com <name>',
     creditsStyle,
-    { align: 'center' }
+    { align: 'right' }
   );
-  creditsShadow1 = new PIXI.MultiStyleText('<title>PESKY\n\n\n</title>' +
-    '<title2>UW-Stout\nGDD-325\n\n\n\n</title2>' +
-    '<title2>Art\n\n\n\n\n</title2>' +
-    '<name>Susan Evans\n\nAllan Seckora\n</name>' +
-    '<title2>Programming\n</title2>\n',
+  creditsShadow1 = new PIXI.MultiStyleText('<title>PESKY \n\n\n</title>' +
+    '<title2>UW-Stout \nGDD-325 \n\n\n\n</title2>' +
+    '<title2>Art \n\n\n\n\n</title2>' +
+    '<name>Susan Evans \n\nAllan Seckora \n</name>' +
+    '<title2> Programming \n</title2>\n',
     creditsStyleShadow,
-    { align: 'center' }
+    { align: 'right' }
   );
   creditsShadow2 = new PIXI.MultiStyleText(
-    '<name>\nAlex Hill\n\nDan Hying\n\nLeslie Murphy\n\nThomas Rosik\n</name>' +
-    '<title2>\nInstructor\n\n\n\n\n</title2>' +
-    '<name>Seth Berrier</name>',
+    '<name>\nAlex Hill \n\nDan Hying \n\nLeslie Murphy \n\nThomas Rosik \n</name>' +
+    '<title2>\n Instructor \n\n\n\n\n</title2>' +
+    '<name>Seth Berrier </name>',
     creditsStyleShadow,
-    { align: 'center' }
+    { align: 'right' }
   );
   creditsShadow3 = new PIXI.MultiStyleText(
-    '<title2>Music\n\n</title2>' +
-    '<name>Tristan Lohengrin</name>',
+    '<title2>Music \n\n</title2>' +
+    '<name> Tristan Lohengrin \n\n\n\n</name>' +
+    '<name>Font: Road Rage \n\nwww.dafont.com <name>',
     creditsStyleShadow,
-    { align: 'center' }
+    { align: 'right' }
   );
   credits1.anchor.set(0.5, 0);
   credits1.y = HEIGHT + 10;
@@ -66,11 +68,13 @@ function initCredits() {
   credits3.anchor.set(0.5, 0);
   credits3.y = credits2.y + credits2.height - 150;
   for (let i = 1; i <= 3; i++) {
-    eval('credits'+i).x = WIDTH / 2;
+    eval('credits'+i).x = WIDTH / 2 + 250;
     eval('creditsShadow'+i).anchor.set(0.5, 0);
-    eval('creditsShadow'+i).x = WIDTH / 2 + 5;
+    eval('creditsShadow'+i).x = WIDTH / 2 + 255;
     eval('creditsShadow'+i).y = eval('credits'+i).y + 5;
   }
+  credits2.x += 40;
+  creditsShadow2.x += 40;
   buttonBack.scale.set(0.5, 0.5);
   creditsGroup.addChild(creditsShadow1);
   creditsGroup.addChild(creditsShadow2);
