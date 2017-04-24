@@ -128,7 +128,7 @@ function Keys() {
   };
 
   nVal.press = function() {
-    if (player.sprite.position.x >= 12340 || player.sprite.position.x <= -11940) {
+    if (player.sprite.position.x >= 12330 || player.sprite.position.x <= -11940) {
       newLevelVal = true;
       gameObjects.removeChild(chaosBar);
       chaos = 0;
