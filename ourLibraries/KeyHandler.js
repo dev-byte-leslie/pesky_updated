@@ -157,6 +157,16 @@ function Keys() {
         eval('garbages.push(garbage' + i + ');');
       }
       initGame(player.animal);
+      player.sprite.y = hedgeLocY + 150;
+      player.sprite.x = hedgeLocX2 + 157;
+      player.setTextures(8);
+      player.sprite.play();
+      player.sprite.x = hedgeLocX2 + 157;
+      player.holdX = hedgeLocX2 + 157;
+      disableAttacking = true;
+      let c = new camera();
+      c.updateCamera();
+      g.state = moveFromHedgeState;
       newLevelVal = false;
     }
   };
