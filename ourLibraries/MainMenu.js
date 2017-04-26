@@ -11,6 +11,7 @@ function startMenu() {
   buttonOptions = createButton(WIDTH * .8, HEIGHT * 0.5 - 90, showOptions, buttonGroup, 'options');
   buttonTutorial = createButton(WIDTH * .8, HEIGHT * 0.75 - 90, showTutorial, buttonGroup, 'tutorial');
   buttonCredits = createButton(WIDTH * .8, HEIGHT - 90, showCredits, buttonGroup, 'credits');
+
   for (let i = 0; i < buttonGroup.children.length; i++) {
     buttonGroup.getChildAt(i).scale.set(0.5, 0.5);
   }
@@ -20,8 +21,11 @@ function startMenu() {
   titleBackground.position.y = 0;
   title.width = WIDTH;
   title.height = HEIGHT;
+  blackTitleOverlay.width = WIDTH;
+  blackTitleOverlay.height = HEIGHT;
   title.position.set(100, 0);
   backgroundGroup.addChild(titleBackground);
+  mainMenuGroup.addChild(blackTitleOverlay);
   mainMenuGroup.addChild(title);
   mainMenuGroup.addChild(buttonGroup);
   g.stage.addChild(backgroundGroup);
