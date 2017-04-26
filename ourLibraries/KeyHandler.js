@@ -6,7 +6,8 @@ var moveMent = false,
   isAttacking = false,
   disableAttacking = false,
   keyCodes = [],
-  attackInterval;
+  attackInterval,
+  fPressed = false;
 
 function Keys() {
   //Left arrow key `press` method
@@ -55,36 +56,38 @@ function Keys() {
   };
 
   f.press = function() {
-    if (!player.jumping && !disableMovement && !disableAttacking && !ePressed) {
-      disableMovement = isAttacking = true;
-      if (player.animal == 'raccoon') {
-        setTimeout(function() {
-          player.sprite.vxa = player.sprite.scale.x * -1;
-        }, 250);
-      }
-      let delay = 650;
-      if (player.animal == 'skunk') {
-        delay = 750;
-      }
-      setTimeout(function() {
-        if (disableMovement && isAttacking && !ePressed) {
-          player.sprite.vxa = 0;
-          player.doIdle();
-          disableMovement = isAttacking = false;
+    if (!fPressed) {
+      if (!player.jumping && !disableMovement && !disableAttacking && !ePressed) {
+        disableMovement = isAttacking = fPressed = true;
+        if (player.animal == 'raccoon') {
+          setTimeout(function() {
+            player.sprite.vxa = player.sprite.scale.x * -1;
+          }, 250);
         }
-      }, delay);
-      if (!player.testTextures(0)) {
-          player.setTextures(0);
+        let delay = 650;
+        if (player.animal == 'skunk') {
+          delay = 750;
+        }
+        setTimeout(function() {
+          if (disableMovement && isAttacking && !ePressed) {
+            player.sprite.vxa = 0;
+            player.doIdle();
+            disableMovement = isAttacking = fPressed = false;
+          }
+        }, delay);
+        if (!player.testTextures(0)) {
+            player.setTextures(0);
+        }
+        player.sprite.gotoAndStop(0);
+        player.sprite.play();
+        player.sprite.animationSpeed = 0.2;
+        player.doingIdle = false;
       }
-      player.sprite.gotoAndStop(0);
-      player.sprite.play();
-      player.sprite.animationSpeed = 0.2;
-      player.doingIdle = false;
     }
   };
 
   switchE.press = function() {
-    if (!ePressed) {
+    if (!ePressed && !fPressed) {
       ePressed = true;
       if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
