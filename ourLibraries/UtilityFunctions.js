@@ -49,9 +49,6 @@ function jump() {
 
 //build the inside of a house
 function enterHouse(interiorNum, realIndex) {
-  for (let i = 0; i < house.children.length; i++) {
-    house.removeChildAt(0);
-  }
   disableMovement = true;
   numOfEnemyAi.forEach(function(animalCont1) {
     animalCont1.aCObject.gotoAndStop(0);
