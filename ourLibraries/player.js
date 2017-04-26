@@ -83,7 +83,6 @@ function Player(stringAnimal) {
 
   //updates player location and camera location
   this.update = function() {
-    console.log(player.sprite.x);
     this.camera.updateCamera();
     this.sprite.vx = Math.sign(this.sprite.vx) * this.speed * 60 / fps;
     if (!disableMovement) {
