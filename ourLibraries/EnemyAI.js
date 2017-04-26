@@ -150,6 +150,7 @@ function spawnAnimalControl(x, y) {
       this.aCObject.vx = this.aCObject.scale.x * this.speed;
       this.aCObject.x += this.aCObject.vx;
       this.aCObject.y += this.aCObject.vy;
+      this.aCObject.animationSpeed = 0.15;
       this.aCObject.play();
     }
   }
