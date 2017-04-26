@@ -1,4 +1,4 @@
-var gameMusic, menuMusic, jumpSound, aiCloseSound, optionsGroup;
+var gameMusic, menuMusic, jumpSound, aiCloseSound, optionsGroup, soundsArray = [];
 // load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
@@ -14,6 +14,11 @@ gameMusic = sounds["../sound/music/GameMusic.wav"];
 menuMusic = sounds["../sound/music/MenuMusic.wav"];
 jumpSound = sounds["../sound/music/Jump.wav"];
 aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
+
+soundsArray.push(gameMusic);
+soundsArray.push(menuMusic);
+soundsArray.push(jumpSound);
+soundsArray.push(aiCloseSound);
 
   jumpSound.volume = 0.5;
   menuMusic.volume = 0.5;
@@ -42,6 +47,9 @@ function mainMenu() {
 }
 
 function muteAudio() {
-  menuMusic.volume = (menuMusic.volume == 0) ? 0.5 : 0;
-  gameMusic.volume = (gameMusic.volume == 0) ? 0.5 : 0;
+  soundsArray.forEach(function(sound) {
+    sound.volume = (sound.volume == 0) ? 0.5 : 0;
+  });
+  //menuMusic.volume = (menuMusic.volume == 0) ? 0.5 : 0;
+  //gameMusic.volume = (gameMusic.volume == 0) ? 0.5 : 0;
 }
