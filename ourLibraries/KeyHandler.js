@@ -100,6 +100,7 @@ function Keys() {
 
       if (player.inHouse && b.hit(player.sprite, door, false, false, false,
         function(collision, doorHit) {
+          ePressed = true;
           buildOutside();
         })) {
       }
