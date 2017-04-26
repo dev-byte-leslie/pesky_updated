@@ -88,10 +88,10 @@ function Keys() {
 
   switchE.press = function() {
     if (!ePressed && !fPressed) {
-      ePressed = true;
       if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+            ePressed = true;
             let index = houseDoors.indexOf(doorHit);
             enterHouse(index % interiors.length, index);
           }
@@ -99,6 +99,7 @@ function Keys() {
       }
 
       if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
+        ePressed = true;
         buildOutside();
       }
       for (let i = 1; i <= 3; i++) {
@@ -106,6 +107,7 @@ function Keys() {
           if (b.hitTestRectangle(player.sprite,
             new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
             false, false, false)) {
+            ePressed = true;
             player.setTextures(11);
             player.sprite.play();
             player.sprite.x = eval('hedgeLocX'+i) + 157;
