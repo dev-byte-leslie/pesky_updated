@@ -69,12 +69,13 @@ function enterHouse(interiorNum, realIndex) {
     gameObjects.addChild(house);
     g.stage.addChild(gameObjects);
 
+
     //keep track of world coordinates
     player.holdX = player.sprite.x;
     player.sprite.x = player.inHouseX;
     player.sprite.y = player.inHouseY;
 
-    door.scale.x = 0.35;
+  //door.scale.x = 0.35;
     door.y = player.sprite.y - 10;
     fridge.y = 595;
     coffeeMaker.y = 558;
@@ -136,6 +137,7 @@ function enterHouse(interiorNum, realIndex) {
 
 //builds the outside game map
 function buildOutside() {
+  console.log("inside function");
   disableMovement = true;
   player.doIdle();
   numOfEnemyAi.forEach(function(animalCont1) {

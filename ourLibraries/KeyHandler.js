@@ -92,12 +92,16 @@ function Keys() {
             let index = houseDoors.indexOf(doorHit);
             enterHouse(index % interiors.length, index);
           }
+        })){}
+
+
+      if (player.inHouse && b.hit(player.sprite, door, false, false, false,
+        function(collision, doorHit) {
+          buildOutside();
         })) {
       }
 
-      if (b.hit(player.sprite, door, false, false, false) && !player.jumping) {
-        buildOutside();
-      }
+
       for (let i = 1; i <= 3; i++) {
         if (!player.jumping && !player.inHouse) {
           if (b.hitTestRectangle(player.sprite,
@@ -130,6 +134,7 @@ function Keys() {
   nVal.press = function() {
     if (player.sprite.position.x >= 12330 || player.sprite.position.x <= -11940) {
       newLevelVal = true;
+      gameObjects.removeChild(map);
       gameObjects.removeChild(chaosBar);
       chaos = 0;
       pointsToAdd += 10;
@@ -138,6 +143,7 @@ function Keys() {
       people2 = [];
       people3 = [];
       garbages = [];
+      interiors = [];
       // People sprites
       numPeople = 8; // Total number of people PER SPRITE TYPE
       peopleTypes = 3; // Number of sprite types for people
@@ -153,8 +159,49 @@ function Keys() {
 
       // Objects like garbage
       for (let i = 1; i <= 50; i++) { // 50 garbages in the world
-        eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage.png\', 80, 42);');
+        if (Math.random() < 0.5) {
+          eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage.png\', 80, 42);');
+        } else {
+          eval('garbage' + i + '= new spriteCreator(\'../images/WorldObjects/garbage2.png\', 80, 50);');
+        }
         eval('garbages.push(garbage' + i + ');');
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        interiors.push(eval('new Sprite(TextureCache[\'../images/HouseObjects/Interior_' + i +'.png\']);'));
+      }
+
+      for (let i = 0; i < 61; i++) {
+        eval('fridge'+i+'= new spriteCreator(\'../images/HouseObjects/fridge.png\', 100, 100);');
+        fridges.push(eval('fridge'+i));
+        eval('coffeeMaker'+i+'= new spriteCreator(\'../images/HouseObjects/Coffee_maker.png\', 28, 28);');
+        coffeeMakers.push(eval('coffeeMaker'+i));
+        eval('chair'+i+'= new spriteCreator(\'../images/HouseObjects/chair.png\', 80, 100);');
+        chairs.push(eval('chair'+i));
+        eval('lamp1_'+i+'= new spriteCreator(\'../images/HouseObjects/lamp_1.png\', 50, 50);');
+        lamps1.push(eval('lamp1_'+i));
+        eval('lamp2_'+i+'= new spriteCreator(\'../images/HouseObjects/lamp_2.png\', 50, 50);');
+        lamps2.push(eval('lamp2_'+i));
+
+        eval('fridge'+i).loop = false;
+        eval('fridge'+i).anchor.set(0.5, 1);
+        eval('fridge'+i).hasBeenRuined = false;
+
+        eval('coffeeMaker'+i).loop = false;
+        eval('coffeeMaker'+i).anchor.set(0.5, 1);
+        eval('coffeeMaker'+i).hasBeenRuined = false;
+
+        eval('chair'+i).loop = false;
+        eval('chair'+i).anchor.set(0.5, 1);
+        eval('chair'+i).hasBeenRuined = false;
+
+        eval('lamp1_'+i).loop = false;
+        eval('lamp1_'+i).anchor.set(0.5, 1);
+        eval('lamp1_'+i).hasBeenRuined = false;
+
+        eval('lamp2_'+i).loop = false;
+        eval('lamp2_'+i).anchor.set(0.5, 1);
+        eval('lamp2_'+i).hasBeenRuined = false;
       }
       initGame(player.animal);
       player.sprite.y = hedgeLocY + 150;
