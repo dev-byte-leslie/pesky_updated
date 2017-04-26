@@ -20,7 +20,7 @@ function spawnAnimalControl(x, y) {
   this.aCObject.doingAttack = false;
 
   //detection distrance
-  this.detection = 300;
+  this.detection = 1000;
   this.closeToPlayer = false;
 
   //Sound to be played when player is close to the AI
@@ -34,7 +34,7 @@ function spawnAnimalControl(x, y) {
     // Makes ai able to detect player at greater distances the more chaos that is caused
     this.aCObject.y = 600;
 
-    
+
     if (chaos) {
       this.speed = (3 + (Math.floor(chaos / 10) * 0.4)) * 60 / fps;
       this.detection = 1000 + (chaos * 248);
@@ -81,7 +81,7 @@ function spawnAnimalControl(x, y) {
         this.aCObject._textures = animalControlAttackSprite._textures;
         this.aCObject.gotoAndStop(0);
         this.aCObject.vx = 0;
-        let catchTime = 500 - chaos * 2;
+        let catchTime = 500 - chaos * 1.5;
         this.aCObject.animationSpeed = 0.25 * (500 / catchTime);
         this.aCObject.play();
         setTimeout(function() { ac.catchPlayer() }, catchTime);
@@ -104,8 +104,8 @@ function spawnAnimalControl(x, y) {
     }
 
     //add x and y velocities to the animal control object
-    this.aCObject.x += this.aCObject.vx * 60 / fps;
-    this.aCObject.y += this.aCObject.vy * 60 / fps;
+    this.aCObject.x += this.aCObject.vx;
+    this.aCObject.y += this.aCObject.vy;
   };
 
   this.catchPlayer = function() {
