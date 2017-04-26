@@ -81,7 +81,7 @@ function spawnAnimalControl(x, y) {
         this.aCObject._textures = animalControlAttackSprite._textures;
         this.aCObject.gotoAndStop(0);
         this.aCObject.vx = 0;
-        let catchTime = 500 - chaos * 1.5;
+        let catchTime = 500 - chaos * 1.25;
         this.aCObject.animationSpeed = 0.25 * (500 / catchTime);
         this.aCObject.play();
         setTimeout(function() { ac.catchPlayer() }, catchTime);
@@ -145,7 +145,12 @@ function spawnAnimalControl(x, y) {
   };
 
   this.updateAiMovement = function() {
-    this.aCObject.x += this.aCObject.vx;
-    this.aCObject.y += this.aCObject.vy;
+    if (this.aCObject._texture == animalControlAttackSprite._texture &&
+    this.aCObject._textures == animalControlAttackSprite._textures) {
+      this.aCObject.vx = this.aCObject.scale.x * this.speed;
+      this.aCObject.x += this.aCObject.vx;
+      this.aCObject.y += this.aCObject.vy;
+      this.aCObject.play();
+    }
   }
 }
