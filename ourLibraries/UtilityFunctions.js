@@ -72,7 +72,7 @@ function enterHouse(interiorNum, realIndex) {
     player.sprite.x = player.inHouseX;
     player.sprite.y = player.inHouseY;
 
-  //door.scale.x = 0.35;
+    door.scale.x = 0.35;
     door.y = player.sprite.y - 10;
     fridge.y = 595;
     coffeeMaker.y = 558;

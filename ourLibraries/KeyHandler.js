@@ -148,6 +148,7 @@ function Keys() {
       people2 = [];
       people3 = [];
       garbages = [];
+      interiors = [];
       // People sprites
       numPeople = 8; // Total number of people PER SPRITE TYPE
       peopleTypes = 3; // Number of sprite types for people
@@ -221,5 +222,5 @@ function Keys() {
       newLevelVal = false;
     }
   };
-      interiors = [];
+
 }
