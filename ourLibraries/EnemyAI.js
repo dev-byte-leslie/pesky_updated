@@ -84,7 +84,7 @@ function spawnAnimalControl(x, y) {
         let catchTime = 500 - chaos * 1.5;
         this.aCObject.animationSpeed = 0.25 * (500 / catchTime);
         this.aCObject.play();
-        setTimeout(function() { ac.catchPlayer() }, catchTime);
+        setTimeout(function() { ac.catchPlayer() }, catchTime + 100);
       }
     }
     let ac = this;
@@ -140,4 +140,9 @@ function spawnAnimalControl(x, y) {
       this.aCObject.gotoAndStop(0);
     }
   };
+
+  this.updateAiMovement = function() {
+    this.aCObject.x += this.aCObject.vx;
+    this.aCObject.y += this.aCObject.vy;
+  }
 }
