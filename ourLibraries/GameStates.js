@@ -79,6 +79,7 @@ function caughtState() {
       initCharacterSwitch();
       hideAll();
       switchCharacterGroup.visible = true;
+      animalControlCaught = null;
       g.state = switchCharacterState;
     } else { // all animals are captured
       blackOverlay.x = g.stage.pivot.x - 200;

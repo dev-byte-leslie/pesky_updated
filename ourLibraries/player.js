@@ -54,12 +54,12 @@ function Player(stringAnimal) {
   this.sprite = this.spriteArray[4];
   this.sprite.vxa = 0; // attacking horizontal velocity
   this.chaos = false;
-  this.jumping = false; //whether the player is jumping
+  this.jumping = false; //whether the this is jumping
   this.spacePush = false; //whether the spacebar is being pressed or not
   this.inHouse = false;
 
-  //the World Coordinate x-value of the player
-  //starts at 0 when the player is instantiated
+  //the World Coordinate x-value of the this
+  //starts at 0 when the this is instantiated
   this.xValue = 0;
 
   //variables to hold world coordinates when in house.
@@ -73,7 +73,7 @@ function Player(stringAnimal) {
   //likely to change
   this.sprite.x = 500;
   this.sprite.y = 600;
-  this.sprite.anchor.set(0.5, 1); //sets anchor of player sprite for animation flipping
+  this.sprite.anchor.set(0.5, 1); //sets anchor of this sprite for animation flipping
   this.camera = new camera(); //instantiates the camera for the main character
   this.sprite.vx = 0; //set the objects starting velocities
   this.sprite.vy = 0;
@@ -81,60 +81,61 @@ function Player(stringAnimal) {
   this.doingIdle = false;
   this.sprite.circular = true;
 
-  //updates player location and camera location
+  //updates this location and camera location
   this.update = function() {
     this.camera.updateCamera();
     this.sprite.vx = Math.sign(this.sprite.vx) * this.speed * 60 / fps;
     if (!disableMovement) {
-      this.sprite.x += this.sprite.vx; //add x velocity to player's x location
-      this.sprite.y += this.sprite.vy; //add y velocity to player's y location
+      this.sprite.x += this.sprite.vx; //add x velocity to this's x location
+      this.sprite.y += this.sprite.vy; //add y velocity to this's y location
     }
     this.xValue += this.sprite.vx;
     // check collision with the floor
-    // anonymous function is called when the player touches the floor
+    // anonymous function is called when the this touches the floor
     // b.hit returns true/false as well so we can set gravity if it's false
+    let playerObj = this;
     if (!b.hit(
-      player.sprite,
+      this.sprite,
       floors,
       true, false, false,
       function(collision, floorHit) {
-        player.sprite.vy = 0;
-        player.sprite.y = floorHit.y;
-        player.jumping = player.isFlying = disableAttacking = false;
-        player.sprite.gotoAndStop(0);
-        player.setTextures(5);
-        this.doingIdle = false;
+        playerObj.sprite.vy = 0;
+        playerObj.sprite.y = floorHit.y;
+        playerObj.jumping = playerObj.isFlying = disableAttacking = false;
+        playerObj.sprite.gotoAndStop(0);
+        playerObj.setTextures(5);
+        playerObj.doingIdle = false;
         disableAttacking = false;
         disableMovement = false;
         ePressed = false;
-        player.sprite.gotoAndStop(0);
+        playerObj.sprite.gotoAndStop(0);
         floorHit.y = 600;
       })) {
-      if (fps >= 20) {  // lower than around 20, the player falls too quickly and through the floor
-        if (player.jumping && (player.sprite.vy != 0 || player.canFly)) {
-          player.sprite.vy += 0.05 * 144 / fps; // add gravity
+      if (fps >= 20) {  // lower than around 20, the this falls too quickly and through the floor
+        if (this.jumping && (this.sprite.vy != 0 || this.canFly)) {
+          this.sprite.vy += 0.05 * 144 / fps; // add gravity
         }
       } else {
-        player.sprite.vy += 0.2;
+        this.sprite.vy += 0.2;
       }
     }
     if (!disableMovement) {
       if (left.isDown != right.isDown) {
-        if (!player.testTextures(5) && !player.jumping) {
-          player.setTextures(5);
+        if (!this.testTextures(5) && !this.jumping) {
+          this.setTextures(5);
         }
-        player.sprite.vx = this.speed * 60 / fps * (right.isDown - left.isDown);
-        player.sprite.scale.x = Math.abs(player.sprite.scale.x) * -Math.sign(player.sprite.vx);
-        player.sprite.animationSpeed = 0.1;
-        player.sprite.play();
+        this.sprite.vx = this.speed * 60 / fps * (right.isDown - left.isDown);
+        this.sprite.scale.x = Math.abs(this.sprite.scale.x) * -Math.sign(this.sprite.vx);
+        this.sprite.animationSpeed = 0.1;
+        this.sprite.play();
       } else {
-        player.sprite.vx = 0;
-        if (!player.isFlying && !player.jumping) {
-          player.doIdle();
+        this.sprite.vx = 0;
+        if (!this.isFlying && !this.jumping) {
+          this.doIdle();
         }
       }
       // Test easily breakable objects, i.e. coffeemaker and lamps
-      b.hit(player.sprite, lamps1, false, false, false,
+      b.hit(this.sprite, lamps1, false, false, false,
         function(collision, lampHit) {
           if (!lampHit.hasBeenRuined) {
             chaosToAdd += 5;
@@ -143,7 +144,7 @@ function Player(stringAnimal) {
             lampHit.hasBeenRuined = true;
           }
         });
-      b.hit(player.sprite, coffeeMakers, false, false, false,
+      b.hit(this.sprite, coffeeMakers, false, false, false,
         function(collision, coffeeHit) {
           if (!coffeeHit.hasBeenRuined) {
             chaosToAdd += 5;
@@ -153,7 +154,7 @@ function Player(stringAnimal) {
             coffeeHit.hasBeenRuined = true;
           }
         });
-      b.hit(player.sprite, lamps2, false, false, false,
+      b.hit(this.sprite, lamps2, false, false, false,
         function(collision, lampHit) {
           if (!lampHit.hasBeenRuined) {
             chaosToAdd += 5;
@@ -163,20 +164,20 @@ function Player(stringAnimal) {
             lampHit.hasBeenRuined = true;
           }
         });
-    } else { // disableMovement = true, i.e. player is attacking
-      player.sprite.x += player.sprite.vxa * 144 / fps;
+    } else { // disableMovement = true, i.e. this is attacking
+      this.sprite.x += this.sprite.vxa * 144 / fps;
       // Test hit for garbages every frame to knock them down appropriately
-      b.hit(player.sprite, garbages, false, false, false,
+      b.hit(this.sprite, garbages, false, false, false,
         function(collision, garbageHit) {
           if (!garbageHit.knockedOver) {
-            if (b.hitTestRectangle(player.sprite, new PIXI.Rectangle(garbageHit.x - 60,
+            if (b.hitTestRectangle(playerObj.sprite, new PIXI.Rectangle(garbageHit.x - 60,
             garbageHit.y - 100, 35, 100))) {
-              if (Math.sign(player.sprite.scale.x) == -1) {
-                garbageHit.scale.x = player.animal == 'skunk' ? -1 : 1;
-                if (player.animal == 'skunk') garbageHit.x -= 60;
+              if (Math.sign(playerObj.sprite.scale.x) == -1) {
+                garbageHit.scale.x = playerObj.animal == 'skunk' ? -1 : 1;
+                if (playerObj.animal == 'skunk') garbageHit.x -= 60;
               } else {
-                if (player.animal != 'skunk') garbageHit.x -= 60;
-                garbageHit.scale.x = player.animal == 'skunk' ? 1 : -1;
+                if (playerObj.animal != 'skunk') garbageHit.x -= 60;
+                garbageHit.scale.x = playerObj.animal == 'skunk' ? 1 : -1;
               }
               garbageHit.y += 2;
               garbageHit.knockedOver = true;
@@ -186,7 +187,7 @@ function Player(stringAnimal) {
             }
           }
         });
-      b.hit(player.sprite, fridges, false, false, false,
+      b.hit(this.sprite, fridges, false, false, false,
         function(collision, fridgeHit) {
           if (!fridgeHit.hasBeenRuined) {
             chaosToAdd += 2;
@@ -195,7 +196,7 @@ function Player(stringAnimal) {
             fridgeHit.hasBeenRuined = true;
           }
         });
-      b.hit(player.sprite, chairs, false, false, false,
+      b.hit(this.sprite, chairs, false, false, false,
         function(collision, chairHit) {
           if (!chairHit.hasBeenRuined) {
             chaosToAdd += 5;
@@ -205,38 +206,38 @@ function Player(stringAnimal) {
           }
         });
     }
-    // Check list of conditions to make sure player is actually idle
-    if (!space.isDown && !player.jumping && player.sprite.vx == 0
+    // Check list of conditions to make sure this is actually idle
+    if (!space.isDown && !this.jumping && this.sprite.vx == 0
        && !disableMovement && !left.isDown && !right.isDown) {
       this.doIdle();
     }
     this.camera.updateCamera();
 
-    //controls the player being able to leave the bounds of the world
-    if (player.sprite.position.x > 12340) {
-      player.sprite.position.x = 12340;
+    //controls the this being able to leave the bounds of the world
+    if (this.sprite.position.x > 12340) {
+      this.sprite.position.x = 12340;
     }
-    if (player.sprite.position.x < -11940) {
-      player.sprite.position.x = -11940;
+    if (this.sprite.position.x < -11940) {
+      this.sprite.position.x = -11940;
     }
-    if (player.inHouse && player.sprite.position.x >= 679) {
-      player.sprite.position.x = 679;
+    if (this.inHouse && this.sprite.position.x >= 679) {
+      this.sprite.position.x = 679;
     }
-    if (player.inHouse && player.sprite.position.x <= 329) {
-      player.sprite.position.x = 329;
+    if (this.inHouse && this.sprite.position.x <= 329) {
+      this.sprite.position.x = 329;
     }
   };
-  // Function called to make the player idle
+  // Function called to make the this idle
   this.doIdle = function () {
-    if (!player.testTextures(7)) {
+    if (!this.testTextures(7)) {
       this.doingIdle = true;
-      player.setTextures(7);
-      if (player.animal == 'goose') {
+      this.setTextures(7);
+      if (this.animal == 'goose') {
         this.sprite.animationSpeed = .2;
       } else {
         this.sprite.animationSpeed = 0.05;
       }
-      player.sprite.play();
+      this.sprite.play();
     }
   };
 }

@@ -36,7 +36,7 @@ function spawnAnimalControl(x, y) {
 
 
     if (chaos) {
-      this.speed = (3 + (Math.floor(chaos / 10) * 0.4)) * 60 / fps;
+      this.speed = 3 + (Math.floor(chaos / 10) * 0.4);
       this.detection = 1000 + (chaos * 248);
     }
 
@@ -104,8 +104,7 @@ function spawnAnimalControl(x, y) {
     }
 
     //add x and y velocities to the animal control object
-    this.aCObject.x += this.aCObject.vx;
-    this.aCObject.y += this.aCObject.vy;
+    this.aCObject.x += this.aCObject.vx * 60 / fps;
   };
 
   this.catchPlayer = function() {
@@ -145,11 +144,9 @@ function spawnAnimalControl(x, y) {
   };
 
   this.updateAiMovement = function() {
-    if (this.aCObject._texture == animalControlAttackSprite._texture &&
-    this.aCObject._textures == animalControlAttackSprite._textures) {
-      this.aCObject.vx = this.aCObject.scale.x * this.speed;
-      this.aCObject.x += this.aCObject.vx;
-      this.aCObject.y += this.aCObject.vy;
+    if (this != animalControlCaught && !this.aCObject.doingAttack) {
+      this.aCObject.vx = this.aCObject.scale.x * 3;
+      this.aCObject.x += this.aCObject.vx * 60 / fps;
       this.aCObject.animationSpeed = 0.15;
       this.aCObject.play();
     }
