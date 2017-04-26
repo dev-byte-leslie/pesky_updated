@@ -317,4 +317,7 @@ function updateThings() {
   updateChaos();
   updatePoints();
   updateAI();
+  numOfEnemyAi.forEach(function(animalControl) {
+    animalControl.updateAiMovement();
+  });
 }

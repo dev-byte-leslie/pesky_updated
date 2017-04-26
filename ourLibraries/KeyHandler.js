@@ -6,7 +6,8 @@ var moveMent = false,
   isAttacking = false,
   disableAttacking = false,
   keyCodes = [],
-  attackInterval;
+  attackInterval,
+  fPressed = false;
 
 function Keys() {
   //Left arrow key `press` method
@@ -55,40 +56,42 @@ function Keys() {
   };
 
   f.press = function() {
-    if (!player.jumping && !disableMovement && !disableAttacking && !ePressed) {
-      disableMovement = isAttacking = true;
-      if (player.animal == 'raccoon') {
-        setTimeout(function() {
-          player.sprite.vxa = player.sprite.scale.x * -1;
-        }, 250);
-      }
-      let delay = 650;
-      if (player.animal == 'skunk') {
-        delay = 750;
-      }
-      setTimeout(function() {
-        if (disableMovement && isAttacking && !ePressed) {
-          player.sprite.vxa = 0;
-          player.doIdle();
-          disableMovement = isAttacking = false;
+    if (!fPressed) {
+      if (!player.jumping && !disableMovement && !disableAttacking && !ePressed) {
+        disableMovement = isAttacking = fPressed = true;
+        if (player.animal == 'raccoon') {
+          setTimeout(function() {
+            player.sprite.vxa = player.sprite.scale.x * -1;
+          }, 250);
         }
-      }, delay);
-      if (!player.testTextures(0)) {
-          player.setTextures(0);
+        let delay = 650;
+        if (player.animal == 'skunk') {
+          delay = 750;
+        }
+        setTimeout(function() {
+          if (disableMovement && isAttacking && !ePressed) {
+            player.sprite.vxa = 0;
+            player.doIdle();
+            disableMovement = isAttacking = fPressed = false;
+          }
+        }, delay);
+        if (!player.testTextures(0)) {
+            player.setTextures(0);
+        }
+        player.sprite.gotoAndStop(0);
+        player.sprite.play();
+        player.sprite.animationSpeed = 0.2;
+        player.doingIdle = false;
       }
-      player.sprite.gotoAndStop(0);
-      player.sprite.play();
-      player.sprite.animationSpeed = 0.2;
-      player.doingIdle = false;
     }
   };
 
   switchE.press = function() {
-    if (!ePressed) {
-      ePressed = true;
+    if (!ePressed && !fPressed) {
       if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+            ePressed = true;
             let index = houseDoors.indexOf(doorHit);
             enterHouse(index % interiors.length, index);
           }
@@ -107,6 +110,7 @@ function Keys() {
           if (b.hitTestRectangle(player.sprite,
             new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
             false, false, false)) {
+            ePressed = true;
             player.setTextures(11);
             player.sprite.play();
             player.sprite.x = eval('hedgeLocX'+i) + 157;
@@ -143,7 +147,6 @@ function Keys() {
       people2 = [];
       people3 = [];
       garbages = [];
-      interiors = [];
       // People sprites
       numPeople = 8; // Total number of people PER SPRITE TYPE
       peopleTypes = 3; // Number of sprite types for people
@@ -217,4 +220,5 @@ function Keys() {
       newLevelVal = false;
     }
   };
+      interiors = [];
 }

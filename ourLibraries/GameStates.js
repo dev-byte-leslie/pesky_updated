@@ -98,9 +98,9 @@ function caughtState() {
   } else {
     animalControlCaught.aCObject.x += 60 / fps;
     numOfEnemyAi.forEach(function(animalCont) {
-      animalCont.aCObject.scale.x = -1;
-      animalCont.aCObject.play();
       if (animalCont !== animalControlCaught) {
+        animalCont.aCObject.scale.x = -1;
+        animalCont.aCObject.play();
         animalCont.aCObject.x -= 90 / fps;
       }
     });
@@ -205,10 +205,13 @@ function play() {
   blackOverlay.y = 0;
   player.update();
   jump();
-  if (!player.inHouse) { // prevent being captured by invisible animal control
+  updateFps();
+  updateChaos();
+  updatePoints();
+  updateAI();
+  if (!player.inHouse) {
     numOfEnemyAi.forEach(function(animalControl) {
       animalControl.aiMovement();
     });
   }
-  updateThings();
 }

@@ -49,9 +49,6 @@ function jump() {
 
 //build the inside of a house
 function enterHouse(interiorNum, realIndex) {
-  for (let i = 0; i < house.children.length; i++) {
-    house.removeChildAt(0);
-  }
   disableMovement = true;
   numOfEnemyAi.forEach(function(animalCont1) {
     animalCont1.aCObject.gotoAndStop(0);
@@ -140,10 +137,6 @@ function buildOutside() {
   console.log("inside function");
   disableMovement = true;
   player.doIdle();
-  numOfEnemyAi.forEach(function(animalCont1) {
-    let randX = Math.random() < 0.5 ? player.sprite.x - 600 : player.sprite.x + 600;
-    animalCont1.aCObject.x = randX;
-  });
 
   setTimeout(function() {
     gameObjects.removeChild(house);

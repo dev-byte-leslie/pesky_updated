@@ -76,5 +76,9 @@ function comeFromBush() {
   player.camera.updateCamera();
   player.sprite.y = hedgeLocY + 150;
   player.sprite.visible = gameObjects.visible = true;
+  numOfEnemyAi.forEach(function(animalCont1) {
+    let randX = Math.random() < 0.5 ? player.sprite.x - 600 : player.sprite.x + 600;
+    animalCont1.aCObject.x = randX;
+  });
   g.state = moveFromHedgeState;
 }
