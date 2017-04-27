@@ -42,21 +42,8 @@ function hoverOver() {
   this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
-  newLevelVal = true;
-  initGame();
-  hideAll();
-  gameObjects.visible = true;
-  player.sprite.y = hedgeLocY + 150;
-  player.sprite.x = hedgeLocX2 + 157;
-  player.setTextures(8);
-  player.sprite.play();
-  player.sprite.x = hedgeLocX2 + 157;
-  player.holdX = hedgeLocX2 + 157;
-  disableAttacking = true;
-  let c = new camera();
-  c.updateCamera();
-  g.state = moveFromHedgeState;
-  newLevelVal = false;
+  initCharacterSwitch();
+  g.state = switchCharacterState;
 }
 function showCredits() {
   initCredits();

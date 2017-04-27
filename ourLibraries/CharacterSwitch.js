@@ -45,14 +45,59 @@ function initCharacterSwitch()
   g.stage.addChild(switchCharacterGroup);
 }
 function raccoonInput() { // -- Handes Raccoon Button Press -- //
+  if (!newLevelVal) {
+    initGame('raccoon');
+    hideAll();
+    gameObjects.visible = true;
+    player.sprite.y = hedgeLocY + 150;
+    player.sprite.x = hedgeLocX2 + 157;
+    player.setTextures(8);
+    player.sprite.play();
+    player.holdX = hedgeLocX2 + 157;
+    disableAttacking = true;
+    let c = new camera();
+    c.updateCamera();
+    g.state = moveFromHedgeState;
+    newLevelVal = false;
+  }
   player.setCharacter('raccoon');
   comeFromBush();
 }
 function skunkInput() { // -- Handles Skunk Button Press -- //
+  if (!newLevelVal) {
+    initGame('skunk');
+    hideAll();
+    gameObjects.visible = true;
+    player.sprite.y = hedgeLocY + 150;
+    player.sprite.x = hedgeLocX2 + 157;
+    player.setTextures(8);
+    player.sprite.play();
+    player.holdX = hedgeLocX2 + 157;
+    disableAttacking = true;
+    let c = new camera();
+    c.updateCamera();
+    g.state = moveFromHedgeState;
+    newLevelVal = false;
+  }
   player.setCharacter('skunk');
   comeFromBush();
 }
 function gooseInput() { // -- Handles Goose Button Press -- //
+  if (!newLevelVal) {
+    initGame('goose');
+    hideAll();
+    gameObjects.visible = true;
+    player.sprite.y = hedgeLocY + 150;
+    player.sprite.x = hedgeLocX2 + 157;
+    player.setTextures(8);
+    player.sprite.play();
+    player.holdX = hedgeLocX2 + 157;
+    disableAttacking = true;
+    let c = new camera();
+    c.updateCamera();
+    g.state = moveFromHedgeState;
+    newLevelVal = false;
+  }
   player.setCharacter('goose');
   comeFromBush();
 }
