@@ -2,6 +2,7 @@ var creditsGroup, credits1, credits2, credits3, creditsShadow, creditsShadow2,
   creditsShadow3;
 function initCredits() {
   creditsGroup = new PIXI.Container();
+  creditsGroup.addChild(blackTitleOverlay);
   buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, creditsGroup, 'back');
   let creditsStyle =
   {

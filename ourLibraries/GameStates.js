@@ -3,6 +3,9 @@ function menuState() {
   g.stage.scale.set(1, 1);
   g.stage.pivot.set(0, 0);
   g.stage.position.set(0, 0);
+  blackTitleOverlay.width = WIDTH;
+  blackTitleOverlay.height = HEIGHT;
+  blackTitleOverlay.position.set(0, 0);
 
   hideAll();
 
@@ -15,6 +18,7 @@ function menuState() {
 
   if(mainMenuGroup !== undefined) {
     mainMenuGroup.visible = true;
+    mainMenuGroup.addChildAt(blackTitleOverlay, 0);
   }
 
   if (menuMusic) {
@@ -26,9 +30,17 @@ function menuState() {
 }
 function optionsState() {
   updateFps();
+  optionsGroup.addChildAt(blackTitleOverlay, 0);
+  blackTitleOverlay.position.set(0, 0);
+  blackTitleOverlay.width = WIDTH;
+  blackTitleOverlay.height = HEIGHT;
 }
 function creditsState() {
   updateFps();
+  blackTitleOverlay.width = WIDTH + 700;
+  blackTitleOverlay.position.x = -700;
+  blackTitleOverlay.height = HEIGHT;
+  creditsGroup.addChildAt(blackTitleOverlay, 0);
   creditsShadow1.y -= 4 * 60 / fps;
   creditsShadow2.y -= 4 * 60 / fps;
   creditsShadow3.y -= 4 * 60 / fps;
