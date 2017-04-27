@@ -3,11 +3,20 @@ function menuState() {
   g.stage.scale.set(1, 1);
   g.stage.pivot.set(0, 0);
   g.stage.position.set(0, 0);
+
   hideAll();
-  backgroundGroup.visible = true;
-  title.position.x = 20;
+
+  if(backgroundGroup !== undefined) {
+    backgroundGroup.visible = true;
+    title.position.x = 20;
+  }
+
   updateFps();
-  mainMenuGroup.visible = true;
+
+  if(mainMenuGroup !== undefined) {
+    mainMenuGroup.visible = true;
+  }
+
   if (menuMusic) {
     if (!menuMusic.playing) {
       gameMusic.pause();
