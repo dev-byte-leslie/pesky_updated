@@ -65,15 +65,17 @@ function toggleFullscreen() {
     } else if (document.documentElement.msRequestFullscreen) {
       document.documentElement.msRequestFullscreen();
     }
+    isFullscreen = true;
   } else {
-    if (document.documentElement.exitFullscreen) {
-      document.documentElement.exitFullscreen();
-    } else if (document.documentElement.webkitExitFullscreen) {
-      document.documentElement.webkitExitFullscreen();
-    } else if (document.documentElement.mozCancelFullScreen) {
-      document.documentElement.mozCancelFullScreen();
-    } else if (document.documentElement.msExitFullscreen) {
-      document.documentElement.msExitFullscreen();
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
     }
+    isFullscreen = false;
   }
 }

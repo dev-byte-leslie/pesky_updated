@@ -3,9 +3,11 @@ function menuState() {
   g.stage.scale.set(1, 1);
   g.stage.pivot.set(0, 0);
   g.stage.position.set(0, 0);
-  blackTitleOverlay.width = WIDTH;
-  blackTitleOverlay.height = HEIGHT;
-  blackTitleOverlay.position.set(0, 0);
+  if (blackTitleOverlay !== undefined) {
+    blackTitleOverlay.width = WIDTH;
+    blackTitleOverlay.height = HEIGHT;
+    blackTitleOverlay.position.set(0, 0);
+  }
 
   hideAll();
 
