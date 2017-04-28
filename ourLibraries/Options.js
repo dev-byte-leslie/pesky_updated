@@ -21,11 +21,11 @@ soundsArray.push(menuMusic);
 soundsArray.push(jumpSound);
 soundsArray.push(aiCloseSound);
 
-  jumpSound.volume = 0.5;
-  menuMusic.volume = 0.5;
+  jumpSound.volume = 0.25;
+  menuMusic.volume = 0.25;
   menuMusic.loop = true;
 
-  gameMusic.volume = 0.5;
+  gameMusic.volume = 0.25;
   gameMusic.loop = true;
   if (g.state = menuState) {
     menuMusic.play();

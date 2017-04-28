@@ -110,6 +110,7 @@ function caughtState() {
       if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
         blackOverlay.alpha += 0.01 * 60 / fps;
       } else {
+        gameMusic.volume = 0;
         blackOverlay.alpha = 1;
         gameOverText.x = pointsText.x = g.stage.pivot.x;
         gameOverText.y = 500;

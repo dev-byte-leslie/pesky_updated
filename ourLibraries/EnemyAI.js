@@ -38,7 +38,7 @@ function spawnAnimalControl(x, y) {
 
     if (chaos) {
       this.speed = 3 + (Math.floor(chaos / 10) * 0.225);
-      this.detection = 1000 + (chaos * 248);
+      this.detection = 600 + (chaos * 248);
     }
 
     //Plays the sound when player is too close
