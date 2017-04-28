@@ -119,13 +119,13 @@ function comeFromBush() {
     player.sprite.x = player.holdX;
   }
   player.camera.updateCamera();
+  player.sprite.x = player.holdX;
   player.sprite.y = hedgeLocY + 150;
   player.sprite.visible = gameObjects.visible = true;
   numOfEnemyAi.forEach(function(animalCont1) {
     let randX = Math.random() < 0.5 ? player.sprite.x - 600 : player.sprite.x + 600;
     animalCont1.aCObject.x = randX;
-    map.addChild(animalControl.aCObject);
+    map.addChild(animalCont1.aCObject);
   });
-  g.stage.addChild(map);
   g.state = moveFromHedgeState;
 }
