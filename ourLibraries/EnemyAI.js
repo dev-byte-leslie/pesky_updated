@@ -20,6 +20,7 @@ function spawnAnimalControl(x, y) {
   this.aCObject.doingAttack = false;
   this.canMove = false;
   this.patrolArea = 100; // How much to either side of the player AI can move while flying
+  this.holdPatrolArea = this.patrolArea;
 
   //detection distrance
   this.detection = 1000;
@@ -62,6 +63,11 @@ function spawnAnimalControl(x, y) {
     }
 
     if (this.closeToPlayer && !this.aCObject.doingAttack) {
+      if (player.sprite.vx != 0) {
+        this.patrolArea = 0;
+      } else {
+        this.patrolArea = this.holdPatrolArea;
+      }
       if (this.canMove || !(this.aCObject.x <= player.sprite.x + this.patrolArea &&
             this.aCObject.x >= player.sprite.x - this.patrolArea)) {
         this.canMove = false;
@@ -71,7 +77,10 @@ function spawnAnimalControl(x, y) {
 
     if (this.aCObject.vx != 0) {
       this.aCObject.scale.x = Math.sign(this.aCObject.vx);
-      this.aCObject.play();
+      let ac = this;
+      setTimeout(function() {
+        ac.aCObject.play();
+      }, Math.random() * 125);
     } else if (!this.aCObject.doingAttack) {
       this.aCObject.gotoAndStop(0);
     }
