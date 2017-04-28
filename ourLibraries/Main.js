@@ -129,7 +129,6 @@ function setupGame() {
     // Backgrounds
     .add('../images/Backgrounds/CharSelectBackground.png')
     .add('../images/Backgrounds/Title.png')
-    .add('../images/Backgrounds/title_background.mp4')
     .add('../images/Backgrounds/BlackOverlay.png')
     .add('../images/Backgrounds/blackMenuOverlay.png')
     .add('../images/Backgrounds/GameOver.png')
