@@ -27,9 +27,6 @@ function loadSounds() {
 
   gameMusic.volume = 0.25;
   gameMusic.loop = true;
-  if (g.state = menuState) {
-    menuMusic.play();
-  }
 }
 function initOptions() {
   optionsGroup = new PIXI.Container();

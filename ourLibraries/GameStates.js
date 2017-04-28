@@ -11,14 +11,14 @@ function menuState() {
 
   hideAll();
 
-  if(backgroundGroup !== undefined) {
+  if (backgroundGroup !== undefined) {
     backgroundGroup.visible = true;
     title.position.x = 20;
   }
 
   updateFps();
 
-  if(mainMenuGroup !== undefined) {
+  if (mainMenuGroup !== undefined) {
     mainMenuGroup.visible = true;
     mainMenuGroup.addChildAt(blackTitleOverlay, 0);
   }
