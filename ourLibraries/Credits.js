@@ -69,9 +69,9 @@ function initCredits() {
   credits3.anchor.set(0.5, 0);
   credits3.y = credits2.y + credits2.height - 150;
   for (let i = 1; i <= 3; i++) {
-    eval('credits'+i).x = WIDTH / 2 + 250;
+    eval('credits'+i).x = WIDTH / 2 + 260;
     eval('creditsShadow'+i).anchor.set(0.5, 0);
-    eval('creditsShadow'+i).x = WIDTH / 2 + 255;
+    eval('creditsShadow'+i).x = WIDTH / 2 + 265;
     eval('creditsShadow'+i).y = eval('credits'+i).y + 5;
   }
   credits2.x += 40;

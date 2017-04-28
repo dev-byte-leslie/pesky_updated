@@ -36,9 +36,9 @@ function initOptions() {
   optionsGroup.addChild(blackTitleOverlay);
   let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
   buttonBack.scale.set(0.5, 0.5);
-  buttonMute = createButton(WIDTH - 250, HEIGHT * 0.5 - 90, muteAudio, optionsGroup, 'mute');
+  buttonMute = createButton(WIDTH - 250, HEIGHT * 0.5 - 55, muteAudio, optionsGroup, 'mute');
   buttonMute.scale.set(0.5, 0.5);
-  buttonFullscreen = createButton(WIDTH - 250, HEIGHT * 0.75 - 90, toggleFullscreen, optionsGroup, 'fullscreen');
+  buttonFullscreen = createButton(WIDTH - 250, HEIGHT * 0.75 - 55, toggleFullscreen, optionsGroup, 'fullscreen');
   buttonFullscreen.scale.set(0.5, 0.5);
   optionsGroup.addChild(buttonBack); // this button is reused for credits and tutorial
   g.stage.addChild(optionsGroup);
