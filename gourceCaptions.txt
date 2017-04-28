@@ -1,0 +1,5 @@
+1488326400|Sprint 1 Ends
+1490918400|Sprint 2 Ends
+1492992000|Sprint 3 Ends
+1493640000|Stable Lockdown
+1493899200|SGX May '17

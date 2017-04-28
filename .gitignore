@@ -45,3 +45,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Files generated for gource video
+gourcelog.txt
+gourceVideo.mp4
