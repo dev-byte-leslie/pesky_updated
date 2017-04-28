@@ -45,59 +45,14 @@ function initCharacterSwitch()
   g.stage.addChild(switchCharacterGroup);
 }
 function raccoonInput() { // -- Handes Raccoon Button Press -- //
-  if (!newLevelVal) {
-    initGame('raccoon');
-    hideAll();
-    gameObjects.visible = true;
-    player.sprite.y = hedgeLocY + 150;
-    player.sprite.x = hedgeLocX2 + 157;
-    player.setTextures(8);
-    player.sprite.play();
-    player.holdX = hedgeLocX2 + 157;
-    disableAttacking = true;
-    let c = new camera();
-    c.updateCamera();
-    g.state = moveFromHedgeState;
-    newLevelVal = false;
-  }
   player.setCharacter('raccoon');
   comeFromBush();
 }
 function skunkInput() { // -- Handles Skunk Button Press -- //
-  if (!newLevelVal) {
-    initGame('skunk');
-    hideAll();
-    gameObjects.visible = true;
-    player.sprite.y = hedgeLocY + 150;
-    player.sprite.x = hedgeLocX2 + 157;
-    player.setTextures(8);
-    player.sprite.play();
-    player.holdX = hedgeLocX2 + 157;
-    disableAttacking = true;
-    let c = new camera();
-    c.updateCamera();
-    g.state = moveFromHedgeState;
-    newLevelVal = false;
-  }
   player.setCharacter('skunk');
   comeFromBush();
 }
 function gooseInput() { // -- Handles Goose Button Press -- //
-  if (!newLevelVal) {
-    initGame('goose');
-    hideAll();
-    gameObjects.visible = true;
-    player.sprite.y = hedgeLocY + 150;
-    player.sprite.x = hedgeLocX2 + 157;
-    player.setTextures(8);
-    player.sprite.play();
-    player.holdX = hedgeLocX2 + 157;
-    disableAttacking = true;
-    let c = new camera();
-    c.updateCamera();
-    g.state = moveFromHedgeState;
-    newLevelVal = false;
-  }
   player.setCharacter('goose');
   comeFromBush();
 }
@@ -119,13 +74,11 @@ function comeFromBush() {
     player.sprite.x = player.holdX;
   }
   player.camera.updateCamera();
-  player.sprite.x = player.holdX;
   player.sprite.y = hedgeLocY + 150;
   player.sprite.visible = gameObjects.visible = true;
   numOfEnemyAi.forEach(function(animalCont1) {
     let randX = Math.random() < 0.5 ? player.sprite.x - 600 : player.sprite.x + 600;
     animalCont1.aCObject.x = randX;
-    map.addChild(animalCont1.aCObject);
   });
   g.state = moveFromHedgeState;
 }
