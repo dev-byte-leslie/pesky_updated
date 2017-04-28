@@ -50,12 +50,14 @@ function startGame() {
   player.sprite.x = hedgeLocX2 + 157;
   player.setTextures(8);
   player.sprite.play();
-  player.sprite.x = hedgeLocX2 + 157;
   player.holdX = hedgeLocX2 + 157;
   disableAttacking = true;
   let c = new camera();
   c.updateCamera();
-  g.state = moveFromHedgeState;
+  initCharacterSwitch();
+  hideAll();
+  switchCharacterGroup.visible = true;
+  g.state = switchCharacterState;
   newLevelVal = false;
 }
 function showCredits() {
