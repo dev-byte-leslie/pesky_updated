@@ -107,10 +107,14 @@ function caughtState() {
     } else { // all animals are captured
       blackOverlay.x = g.stage.pivot.x - 200;
       blackOverlay.y = 0;
+      if (gameMusic.volume - 0.0025 * 60 / fps > 0) {
+        gameMusic.volume -= 0.0025 * 60 / fps;
+      } else {
+        gameMusic.volume = 0;
+      }
       if (blackOverlay.alpha + 0.01 * 60 / fps < 1) {
         blackOverlay.alpha += 0.01 * 60 / fps;
       } else {
-        gameMusic.volume = 0;
         blackOverlay.alpha = 1;
         gameOverText.x = pointsText.x = g.stage.pivot.x;
         gameOverText.y = 500;

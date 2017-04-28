@@ -11,15 +11,15 @@ sounds.load([
 sounds.whenLoaded = loadSounds;
 
 function loadSounds() {
-gameMusic = sounds["../sound/music/GameMusic.wav"];
-menuMusic = sounds["../sound/music/MenuMusic.wav"];
-jumpSound = sounds["../sound/music/Jump.wav"];
-aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
+  gameMusic = sounds["../sound/music/GameMusic.wav"];
+  menuMusic = sounds["../sound/music/MenuMusic.wav"];
+  jumpSound = sounds["../sound/music/Jump.wav"];
+  aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
 
-soundsArray.push(gameMusic);
-soundsArray.push(menuMusic);
-soundsArray.push(jumpSound);
-soundsArray.push(aiCloseSound);
+  soundsArray.push(gameMusic);
+  soundsArray.push(menuMusic);
+  soundsArray.push(jumpSound);
+  soundsArray.push(aiCloseSound);
 
   jumpSound.volume = 0.25;
   menuMusic.volume = 0.25;
