@@ -124,6 +124,12 @@ function comeFromBush() {
   numOfEnemyAi.forEach(function(animalCont1) {
     let randX = Math.random() < 0.5 ? player.sprite.x - 600 : player.sprite.x + 600;
     animalCont1.aCObject.x = randX;
+    numOfEnemyAi.push(animalCont1);
+    numOfEnemyAi.forEach(function(animalControl) {
+      if (map.indexOf(animalControl) === -1) {
+        map.addChild(animalControl.aCObject);
+      }
+    });
   });
   g.state = moveFromHedgeState;
 }
