@@ -34,7 +34,6 @@ function spawnAnimalControl(x, y) {
     // Makes ai able to detect player at greater distances the more chaos that is caused
     this.aCObject.y = 600;
 
-
     if (chaos) {
       this.speed = 3 + (Math.floor(chaos / 10) * 0.4);
       this.detection = 1000 + (chaos * 248);
@@ -150,5 +149,5 @@ function spawnAnimalControl(x, y) {
       this.aCObject.animationSpeed = 0.15;
       this.aCObject.play();
     }
-  }
+  };
 }
