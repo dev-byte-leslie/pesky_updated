@@ -3,11 +3,26 @@ function menuState() {
   g.stage.scale.set(1, 1);
   g.stage.pivot.set(0, 0);
   g.stage.position.set(0, 0);
+  if (blackTitleOverlay !== undefined) {
+    blackTitleOverlay.width = WIDTH;
+    blackTitleOverlay.height = HEIGHT;
+    blackTitleOverlay.position.set(0, 0);
+  }
+
   hideAll();
-  backgroundGroup.visible = true;
-  title.position.x = 20;
+
+  if(backgroundGroup !== undefined) {
+    backgroundGroup.visible = true;
+    title.position.x = 20;
+  }
+
   updateFps();
-  mainMenuGroup.visible = true;
+
+  if(mainMenuGroup !== undefined) {
+    mainMenuGroup.visible = true;
+    mainMenuGroup.addChildAt(blackTitleOverlay, 0);
+  }
+
   if (menuMusic) {
     if (!menuMusic.playing) {
       gameMusic.pause();
@@ -17,9 +32,17 @@ function menuState() {
 }
 function optionsState() {
   updateFps();
+  optionsGroup.addChildAt(blackTitleOverlay, 0);
+  blackTitleOverlay.position.set(0, 0);
+  blackTitleOverlay.width = WIDTH;
+  blackTitleOverlay.height = HEIGHT;
 }
 function creditsState() {
   updateFps();
+  blackTitleOverlay.width = WIDTH + 700;
+  blackTitleOverlay.position.x = -700;
+  blackTitleOverlay.height = HEIGHT;
+  creditsGroup.addChildAt(blackTitleOverlay, 0);
   creditsShadow1.y -= 4 * 60 / fps;
   creditsShadow2.y -= 4 * 60 / fps;
   creditsShadow3.y -= 4 * 60 / fps;

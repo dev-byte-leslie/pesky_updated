@@ -60,14 +60,12 @@ function Keys() {
           }
         })){}
 
-
       if (player.inHouse && b.hit(player.sprite, door, false, false, false,
         function(collision, doorHit) {
           ePressed = true;
           buildOutside();
         })) {
       }
-
 
       for (let i = 1; i <= 3; i++) {
         if (!player.jumping && !player.inHouse) {
@@ -167,6 +165,9 @@ function Keys() {
         eval('lamp2_'+i).hasBeenRuined = false;
       }
       initGame(player.animal);
+      if (player.animal == 'goose') {
+        player.sprite.scale.set(0.8, 0.8);
+      }
       player.sprite.y = hedgeLocY + 150;
       player.sprite.x = hedgeLocX2 + 157;
       player.setTextures(8);

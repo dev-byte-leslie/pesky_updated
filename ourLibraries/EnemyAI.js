@@ -18,6 +18,8 @@ function spawnAnimalControl(x, y) {
   this.aCObject.vx = 0;
   this.aCObject.vy = 0;
   this.aCObject.doingAttack = false;
+  this.canMove = false;
+  this.patrolArea = 100; // How much to either side of the player AI can move while flying
 
   //detection distrance
   this.detection = 1000;
@@ -34,9 +36,8 @@ function spawnAnimalControl(x, y) {
     // Makes ai able to detect player at greater distances the more chaos that is caused
     this.aCObject.y = 600;
 
-
     if (chaos) {
-      this.speed = 3 + (Math.floor(chaos / 10) * 0.4);
+      this.speed = 3 + (Math.floor(chaos / 10) * 0.225);
       this.detection = 1000 + (chaos * 248);
     }
 
@@ -59,16 +60,20 @@ function spawnAnimalControl(x, y) {
     } else {
       this.closeToPlayer = false;
     }
+
     if (this.closeToPlayer && !this.aCObject.doingAttack) {
-      if (player.sprite.y >= 550 || !(this.aCObject.x <= player.sprite.x + 50 &&
-          this.aCObject.x >= player.sprite.x - 50)) {
-        this.aCObject.vx = -1 * Math.sign(this.aCObject.x - player.sprite.x) * this.speed;
-        this.aCObject.play();
-      } else {
-        this.aCObject.vx = 0;
-        this.aCObject.gotoAndStop(0);
+      if (this.canMove || !(this.aCObject.x <= player.sprite.x + this.patrolArea &&
+            this.aCObject.x >= player.sprite.x - this.patrolArea)) {
+        this.canMove = false;
+        this.aCObject.vx = -(Math.random() * 0.5 + 0.5) * Math.sign(this.aCObject.x - player.sprite.x) * this.speed;
       }
-      this.aCObject.scale.x = -Math.sign(this.aCObject.x - player.sprite.x);
+    }
+
+    if (this.aCObject.vx != 0) {
+      this.aCObject.scale.x = Math.sign(this.aCObject.vx);
+      this.aCObject.play();
+    } else if (!this.aCObject.doingAttack) {
+      this.aCObject.gotoAndStop(0);
     }
 
     //if player is next to enemy
@@ -87,14 +92,6 @@ function spawnAnimalControl(x, y) {
         setTimeout(function() { ac.catchPlayer() }, catchTime);
       }
     }
-    let ac = this;
-    numOfEnemyAi.forEach(function(otherAC) {
-      if (ac.aCObject != otherAC.aCObject) {
-        b.hit(ac.aCObject, otherAC.aCObject, true, false, false, function() {
-          ac.aCObject.vx = 0;
-        });
-      }
-    });
 
     //stops enemy movement if player is too far away
     if (Math.abs(this.aCObject.x - player.sprite.x) > this.detection) {
@@ -109,6 +106,7 @@ function spawnAnimalControl(x, y) {
 
   this.catchPlayer = function() {
     this.aCObject.doingAttack = false;
+    this.canMove = true;
     this.aCObject.animationSpeed = 0.1;
     if (b.hitTestRectangle(this.aCObject, player.sprite) && g.state == play) {
       if (Math.sign(this.aCObject.x - player.sprite.x) == -Math.sign(this.aCObject.scale.x)) {
@@ -145,10 +143,10 @@ function spawnAnimalControl(x, y) {
 
   this.updateAiMovement = function() {
     if (this != animalControlCaught && !this.aCObject.doingAttack) {
-      this.aCObject.vx = this.aCObject.scale.x * 3;
+      this.aCObject.vx = this.aCObject.scale.x * (Math.random() + 1);
       this.aCObject.x += this.aCObject.vx * 60 / fps;
       this.aCObject.animationSpeed = 0.15;
       this.aCObject.play();
     }
-  }
+  };
 }

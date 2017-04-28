@@ -1,4 +1,5 @@
-var gameMusic, menuMusic, jumpSound, aiCloseSound, optionsGroup, soundsArray = [];
+var gameMusic, menuMusic, jumpSound, aiCloseSound, buttonMute, buttonFullscreen,
+  optionsGroup, soundsArray = [], isFullscreen = false;
 // load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
@@ -32,13 +33,14 @@ soundsArray.push(aiCloseSound);
 }
 function initOptions() {
   optionsGroup = new PIXI.Container();
+  optionsGroup.addChild(blackTitleOverlay);
   let buttonBack = createButton(WIDTH * 0.15, HEIGHT * .85, mainMenu, optionsGroup, 'back');
   buttonBack.scale.set(0.5, 0.5);
-  var buttonMute = createButton(WIDTH / 2, HEIGHT * 0.5 - 90, muteAudio, optionsGroup, 'mute');
+  buttonMute = createButton(WIDTH - 250, HEIGHT * 0.5 - 55, muteAudio, optionsGroup, 'mute');
   buttonMute.scale.set(0.5, 0.5);
-
+  buttonFullscreen = createButton(WIDTH - 250, HEIGHT * 0.75 - 55, toggleFullscreen, optionsGroup, 'fullscreen');
+  buttonFullscreen.scale.set(0.5, 0.5);
   optionsGroup.addChild(buttonBack); // this button is reused for credits and tutorial
-  optionsGroup.addChild(buttonMute);
   g.stage.addChild(optionsGroup);
 }
 
@@ -50,6 +52,30 @@ function muteAudio() {
   soundsArray.forEach(function(sound) {
     sound.volume = (sound.volume == 0) ? 0.5 : 0;
   });
-  //menuMusic.volume = (menuMusic.volume == 0) ? 0.5 : 0;
-  //gameMusic.volume = (gameMusic.volume == 0) ? 0.5 : 0;
+}
+
+function toggleFullscreen() {
+  if (!isFullscreen) {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) {
+      document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) {
+      document.documentElement.msRequestFullscreen();
+    }
+    isFullscreen = true;
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+    isFullscreen = false;
+  }
 }
