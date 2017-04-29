@@ -7,16 +7,19 @@ function jump() {
     if (player.animal !== 'skunk') {
       player.sprite.vy = jumpVelocity;
     } else {
+      // setTimeout(function() {
+      //   player.jumping = false;
+      //   player.sprite.gotoAndStop(0);
+      //   player.setTextures(5);
+      //   player.doingIdle = false;
+      //   disableAttacking = false;
+      //   disableMovement = false;
+      //   ePressed = false;
+      //   player.sprite.gotoAndStop(0);
+      // }, 1000);
       setTimeout(function() {
-        player.jumping = false;
-        player.sprite.gotoAndStop(0);
-        player.setTextures(5);
-        player.doingIdle = false;
-        disableAttacking = false;
-        disableMovement = false;
-        ePressed = false;
-        player.sprite.gotoAndStop(0);
-      }, 1000);
+        player.sprite.vy = jumpVelocity / 2;
+      }, 400);
     }
     player.setTextures(2);
     jumpSound.play();

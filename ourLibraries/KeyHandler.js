@@ -55,6 +55,7 @@ function Keys() {
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
             player.sprite.x = doorHit.x + 40;
+            player.sprite.y += 5;
             ePressed = true;
             let index = houseDoors.indexOf(doorHit);
             enterHouse(index % interiors.length, index);
@@ -63,6 +64,9 @@ function Keys() {
 
       if (player.inHouse) {
         player.sprite.x = player.inHouseX + 13;
+        if (player.animal == 'skunk') {
+          player.sprite.y += 10;
+        }
         ePressed = true;
         buildOutside();
       } else {
