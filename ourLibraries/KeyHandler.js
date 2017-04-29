@@ -54,17 +54,17 @@ function Keys() {
       if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+            player.sprite.x = doorHit.x + 5;
             ePressed = true;
             let index = houseDoors.indexOf(doorHit);
             enterHouse(index % interiors.length, index);
           }
         })){}
 
-      if (player.inHouse && b.hit(player.sprite, door, false, false, false,
-        function(collision, doorHit) {
-          ePressed = true;
-          buildOutside();
-        })) {
+      if (player.inHouse) {
+        player.sprite.x = player.inHouseX + 13;
+        ePressed = true;
+        buildOutside();
       }
 
       for (let i = 1; i <= 3; i++) {

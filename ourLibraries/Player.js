@@ -137,8 +137,8 @@ function Player(stringAnimal) {
       b.hit(player.sprite, lamps1, false, false, false,
         function(collision, lampHit) {
           if (!lampHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             lampHit.play();
             lampHit.hasBeenRuined = true;
           }
@@ -146,8 +146,8 @@ function Player(stringAnimal) {
       b.hit(player.sprite, coffeeMakers, false, false, false,
         function(collision, coffeeHit) {
           if (!coffeeHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             coffeeHit.y += 3;
             coffeeHit.play();
             coffeeHit.hasBeenRuined = true;
@@ -156,8 +156,8 @@ function Player(stringAnimal) {
       b.hit(player.sprite, lamps2, false, false, false,
         function(collision, lampHit) {
           if (!lampHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             lampHit.play();
             lampHit.x += 13;
             lampHit.hasBeenRuined = true;
@@ -181,8 +181,8 @@ function Player(stringAnimal) {
               garbageHit.y += 2;
               garbageHit.knockedOver = true;
               garbageHit.play();
-              chaosToAdd += 1;
-              pointsToAdd += 1;
+              chaosToAdd += 5;
+              pointsToAdd += 5;
             }
           }
         });
@@ -198,8 +198,8 @@ function Player(stringAnimal) {
       b.hit(player.sprite, chairs, false, false, false,
         function(collision, chairHit) {
           if (!chairHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             chairHit.play();
             chairHit.hasBeenRuined = true;
           }
