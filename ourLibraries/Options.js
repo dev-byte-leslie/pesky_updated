@@ -60,7 +60,7 @@ function mainMenu() {
 
 function muteAudio() {
   soundsArray.forEach(function(sound) {
-    sound.volume = (sound.volume == 0) ? 0.5 : 0;
+    sound.volume = (sound.volume == 0) ? 0.25 : 0;
   });
 }
 
