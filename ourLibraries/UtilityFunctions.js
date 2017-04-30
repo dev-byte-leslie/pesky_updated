@@ -18,7 +18,7 @@ function jump() {
       //   player.sprite.gotoAndStop(0);
       // }, 1000);
       setTimeout(function() {
-        player.sprite.vy = jumpVelocity / 2;
+        player.sprite.vy = jumpVelocity / 2 * 144 / fps;
       }, 400);
     }
     player.setTextures(2);
