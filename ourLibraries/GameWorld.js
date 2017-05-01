@@ -17,24 +17,16 @@ function createGameWorld() {
   for (i = 0; i < negativeX.length; i++) {
     if (negativeX[i] == 0) {
       curObj = new spawnWorldObject(redHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 190, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 153, 525);
     } else if (negativeX[i] == 1) {
       curObj = new spawnWorldObject(blueHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 90, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 60, 525);
     } else if (negativeX[i] == 2) {
       curObj = new spawnWorldObject(beigeHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 70, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 33, 525);
     } else if (negativeX[i] == 3) {
       curObj = new spawnWorldObject(greyHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 320, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 275, 525);
     } else {
       curObj = new spawnWorldObject(hedge, gameX, 407);
       hedgeLocX1 = gameX;
@@ -45,6 +37,8 @@ function createGameWorld() {
     floors.push(floorObj.obSprite);
     map.addChildAt(floorObj.obSprite, 0);
     map.addChild(curObj.obSprite);
+    houseDoors.push(doorObj.obSprite);
+    map.addChild(doorObj.obSprite);
     gameX -= 400;
   }
   minX = gameX;
@@ -52,24 +46,16 @@ function createGameWorld() {
   for (i = 0; i < positiveX.length; i++) {
     if (positiveX[i] == 0) {
       curObj = new spawnWorldObject(redHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 190, 525); //shows the test so I remember original height
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 153, 525); //shows the test so I remember original height
     } else if (positiveX[i] == 1) {
       curObj = new spawnWorldObject(blueHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 90, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 60, 525);
     } else if (positiveX[i] == 2) {
       curObj = new spawnWorldObject(beigeHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 70, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 33, 525);
     } else if (positiveX[i] == 3) {
       curObj = new spawnWorldObject(greyHouse, gameX, 410);
-      doorObj = new spawnWorldObject(iDoor, gameX + 320, 525);
-      houseDoors.push(doorObj.obSprite);
-      map.addChild(doorObj.obSprite);
+      doorObj = new spawnWorldObject(iDoor, gameX + 275, 525);
     } else {
       curObj = new spawnWorldObject(hedge, gameX, 407);
       if (hedgeLocX1 && hedgeLocX2) {
@@ -84,6 +70,8 @@ function createGameWorld() {
     floors.push(floorObj.obSprite);
     map.addChildAt(floorObj.obSprite, 0);
     map.addChild(curObj.obSprite);
+    houseDoors.push(doorObj.obSprite);
+    map.addChild(doorObj.obSprite);
     gameX += 400;
   }
   maxX = gameX;

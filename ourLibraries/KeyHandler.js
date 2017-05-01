@@ -54,31 +54,35 @@ function Keys() {
       if (!player.inHouse && b.hit(player.sprite, houseDoors, false, false, false,
         function(collision, doorHit) {
           if (!player.jumping && g.state != caughtState && g.state != gameOverState) {
+            player.sprite.x = doorHit.x + 40;
+            player.sprite.y += 5;
             ePressed = true;
             let index = houseDoors.indexOf(doorHit);
             enterHouse(index % interiors.length, index);
           }
         })){}
 
-      if (player.inHouse && b.hit(player.sprite, door, false, false, false,
-        function(collision, doorHit) {
-          ePressed = true;
-          buildOutside();
-        })) {
-      }
-
-      for (let i = 1; i <= 3; i++) {
-        if (!player.jumping && !player.inHouse) {
-          if (b.hitTestRectangle(player.sprite,
-            new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
-            false, false, false)) {
-            ePressed = true;
-            player.setTextures(11);
-            player.sprite.play();
-            player.sprite.x = eval('hedgeLocX'+i) + 157;
-            player.holdX = eval('hedgeLocX'+i) + 157;
-            disableAttacking = true;
-            g.state = moveIntoHedgeState;
+      if (player.inHouse) {
+        player.sprite.x = player.inHouseX + 13;
+        if (player.animal == 'skunk') {
+          player.sprite.y += 10;
+        }
+        ePressed = true;
+        buildOutside();
+      } else {
+        if (!player.jumping) {
+          for (let i = 1; i <= 3; i++) {
+            if (b.hitTestRectangle(player.sprite,
+              new PIXI.Rectangle(eval('hedgeLocX'+i)+157, hedgeLocY, 1, 300),
+              false, false, false)) {
+              ePressed = true;
+              player.setTextures(11);
+              player.sprite.play();
+              player.sprite.x = eval('hedgeLocX'+i) + 157;
+              player.holdX = player.sprite.x;
+              disableAttacking = true;
+              g.state = moveIntoHedgeState;
+            }
           }
         }
       }

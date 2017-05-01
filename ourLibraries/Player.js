@@ -137,8 +137,9 @@ function Player(stringAnimal) {
       b.hit(player.sprite, lamps1, false, false, false,
         function(collision, lampHit) {
           if (!lampHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            lampBreakSound.play();
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             lampHit.play();
             lampHit.hasBeenRuined = true;
           }
@@ -146,8 +147,9 @@ function Player(stringAnimal) {
       b.hit(player.sprite, coffeeMakers, false, false, false,
         function(collision, coffeeHit) {
           if (!coffeeHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            lampBreakSound.play();
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             coffeeHit.y += 3;
             coffeeHit.play();
             coffeeHit.hasBeenRuined = true;
@@ -156,8 +158,9 @@ function Player(stringAnimal) {
       b.hit(player.sprite, lamps2, false, false, false,
         function(collision, lampHit) {
           if (!lampHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            lampBreakSound.play();
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             lampHit.play();
             lampHit.x += 13;
             lampHit.hasBeenRuined = true;
@@ -178,17 +181,19 @@ function Player(stringAnimal) {
                 if (player.animal != 'skunk') garbageHit.x -= 60;
                 garbageHit.scale.x = player.animal == 'skunk' ? 1 : -1;
               }
+              eval('garbageSound' + (1 + Math.round(Math.random()))).play();
               garbageHit.y += 2;
               garbageHit.knockedOver = true;
               garbageHit.play();
-              chaosToAdd += 1;
-              pointsToAdd += 1;
+              chaosToAdd += 5;
+              pointsToAdd += 5;
             }
           }
         });
       b.hit(player.sprite, fridges, false, false, false,
         function(collision, fridgeHit) {
           if (!fridgeHit.hasBeenRuined) {
+            fridgeOpenSound.play();
             chaosToAdd += 2;
             pointsToAdd += 2;
             fridgeHit.play();
@@ -198,8 +203,9 @@ function Player(stringAnimal) {
       b.hit(player.sprite, chairs, false, false, false,
         function(collision, chairHit) {
           if (!chairHit.hasBeenRuined) {
-            chaosToAdd += 5;
-            pointsToAdd += 5;
+            chairRipSound.play();
+            chaosToAdd += 3;
+            pointsToAdd += 3;
             chairHit.play();
             chairHit.hasBeenRuined = true;
           }

@@ -36,7 +36,8 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
   beigeHouseNoSky, greyHouseNoSky, iDoor, sDoor, hedgeNoSky,
 
   //Background textures
-  title, titleBackground, blackTitleOverlay, backgroundVideo, hedgeBackground, blackOverlay, gameOverText, pointsText,
+  title, titleBackground, blackTitleOverlay, backgroundVideo, hedgeBackground,
+  videoTexture, blackOverlay, gameOverText, pointsText,
 
   //Global var for chaos
   chaos = 0, chaosToAdd = 0,
@@ -129,7 +130,6 @@ function setupGame() {
     // Backgrounds
     .add('../images/Backgrounds/CharSelectBackground.png')
     .add('../images/Backgrounds/Title.png')
-    .add('../images/Backgrounds/title_background.mp4')
     .add('../images/Backgrounds/BlackOverlay.png')
     .add('../images/Backgrounds/blackMenuOverlay.png')
     .add('../images/Backgrounds/GameOver.png')
@@ -262,7 +262,7 @@ function setup() {
   sDoor = '../images/AnimalPlaceHolder.png';
 
   hedgeBackground = new Sprite(TextureCache['../images/Backgrounds/CharSelectBackground.png']);
-  let videoTexture = new Texture.fromVideo('../images/Backgrounds/title_background_noOverlay.mp4');
+  videoTexture = new Texture.fromVideo('../images/Backgrounds/title_background_noOverlay.mp4');
   titleBackground = new Sprite(videoTexture);
   title = new Sprite(TextureCache['../images/Backgrounds/Title.png']);
   blackTitleOverlay = new Sprite(TextureCache['../images/Backgrounds/blackMenuOverlay.png']);

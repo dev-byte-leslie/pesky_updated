@@ -1,35 +1,45 @@
 var gameMusic, menuMusic, jumpSound, aiCloseSound, buttonMute, buttonFullscreen,
-  optionsGroup, soundsArray = [], isFullscreen = false;
+  optionsGroup, soundsArray = [], isFullscreen = false, lampBreakSound, chairRipSound,
+  fridgeOpenSound, garbageSound1, garbageSound2;
 // load the music and sounds
 sounds.load([
   "../sound/music/GameMusic.wav",
   "../sound/music/MenuMusic.wav",
   "../sound/music/Jump.wav",
-  "../sound/music/PoliceScanner.wav"
+  "../sound/music/PoliceScanner.wav",
+  '../sound/music/LampBreak.wav',
+  '../sound/music/ChairRip.wav',
+  '../sound/music/FridgeOpen.wav',
+  '../sound/music/Garbage1.wav',
+  '../sound/music/Garbage2.wav'
 ]);
 
 sounds.whenLoaded = loadSounds;
 
 function loadSounds() {
-gameMusic = sounds["../sound/music/GameMusic.wav"];
-menuMusic = sounds["../sound/music/MenuMusic.wav"];
-jumpSound = sounds["../sound/music/Jump.wav"];
-aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
+  gameMusic = sounds["../sound/music/GameMusic.wav"];
+  menuMusic = sounds["../sound/music/MenuMusic.wav"];
+  jumpSound = sounds["../sound/music/Jump.wav"];
+  aiCloseSound = sounds["../sound/music/PoliceScanner.wav"];
+  lampBreakSound = sounds['../sound/music/LampBreak.wav'];
+  chairRipSound = sounds['../sound/music/ChairRip.wav'];
+  fridgeOpenSound = sounds['../sound/music/FridgeOpen.wav'];
+  garbageSound1 = sounds['../sound/music/Garbage1.wav'];
+  garbageSound2 = sounds['../sound/music/Garbage2.wav'];
 
-soundsArray.push(gameMusic);
-soundsArray.push(menuMusic);
-soundsArray.push(jumpSound);
-soundsArray.push(aiCloseSound);
+  soundsArray.push(gameMusic);
+  soundsArray.push(menuMusic);
+  soundsArray.push(jumpSound);
+  soundsArray.push(aiCloseSound);
 
-  jumpSound.volume = 0.5;
-  menuMusic.volume = 0.5;
+  lampBreakSound.volume = 0.25;
+  chairRipSound.volume = 0.25;
+  jumpSound.volume = 0.25;
+  menuMusic.volume = 0.25;
   menuMusic.loop = true;
 
-  gameMusic.volume = 0.5;
+  gameMusic.volume = 0.25;
   gameMusic.loop = true;
-  if (g.state = menuState) {
-    menuMusic.play();
-  }
 }
 function initOptions() {
   optionsGroup = new PIXI.Container();
@@ -50,7 +60,7 @@ function mainMenu() {
 
 function muteAudio() {
   soundsArray.forEach(function(sound) {
-    sound.volume = (sound.volume == 0) ? 0.5 : 0;
+    sound.volume = (sound.volume == 0) ? 0.25 : 0;
   });
 }
 

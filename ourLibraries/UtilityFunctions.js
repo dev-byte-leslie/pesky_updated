@@ -7,16 +7,19 @@ function jump() {
     if (player.animal !== 'skunk') {
       player.sprite.vy = jumpVelocity;
     } else {
+      // setTimeout(function() {
+      //   player.jumping = false;
+      //   player.sprite.gotoAndStop(0);
+      //   player.setTextures(5);
+      //   player.doingIdle = false;
+      //   disableAttacking = false;
+      //   disableMovement = false;
+      //   ePressed = false;
+      //   player.sprite.gotoAndStop(0);
+      // }, 1000);
       setTimeout(function() {
-        player.jumping = false;
-        player.sprite.gotoAndStop(0);
-        player.setTextures(5);
-        player.doingIdle = false;
-        disableAttacking = false;
-        disableMovement = false;
-        ePressed = false;
-        player.sprite.gotoAndStop(0);
-      }, 1000);
+        player.sprite.vy = jumpVelocity / 2 * 144 / fps;
+      }, 400);
     }
     player.setTextures(2);
     jumpSound.play();
@@ -53,6 +56,7 @@ function enterHouse(interiorNum, realIndex) {
   numOfEnemyAi.forEach(function(animalCont1) {
     animalCont1.aCObject.gotoAndStop(0);
   });
+  player.holdX = player.sprite.x;
   player.doIdle();
   setTimeout(function() {
     let fridge = fridges[realIndex],
@@ -68,7 +72,6 @@ function enterHouse(interiorNum, realIndex) {
 
 
     //keep track of world coordinates
-    player.holdX = player.sprite.x;
     player.sprite.x = player.inHouseX;
     player.sprite.y = player.inHouseY;
 
@@ -134,7 +137,6 @@ function enterHouse(interiorNum, realIndex) {
 
 //builds the outside game map
 function buildOutside() {
-  console.log("inside function");
   disableMovement = true;
   player.doIdle();
 
