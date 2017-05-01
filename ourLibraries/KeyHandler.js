@@ -62,7 +62,7 @@ function Keys() {
           }
         })){}
 
-      if (player.inHouse) {
+      if (player.inHouse && !player.jumping && !player.isFlying) {
         player.sprite.x = player.inHouseX + 13;
         if (player.animal == 'skunk') {
           player.sprite.y += 10;
@@ -92,8 +92,8 @@ function Keys() {
   f1.press = function() {
     //fpsEnabled = !fpsEnabled;
     //chaosToAdd += 5;
-    pointsToAdd += 50;
-    chaosToAdd += 50;
+    // pointsToAdd += 50;
+    // chaosToAdd += 50;
   };
 
   nVal.press = function() {
