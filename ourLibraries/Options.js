@@ -31,6 +31,11 @@ function loadSounds() {
   soundsArray.push(menuMusic);
   soundsArray.push(jumpSound);
   soundsArray.push(aiCloseSound);
+  soundsArray.push(lampBreakSound);
+  soundsArray.push(chairRipSound);
+  soundsArray.push(fridgeOpenSound);
+  soundsArray.push(garbageSound1);
+  soundsArray.push(garbageSound2);
 
   lampBreakSound.volume = 0.25;
   chairRipSound.volume = 0.25;
