@@ -119,6 +119,8 @@ function enterHouse(interiorNum, realIndex) {
     //house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(chaosBar);
+    house.addChild(pointsTextShadow);
+    house.addChild(pointsText);
     house.addChild(blackOverlay);
   }, 1667);
   player.setTextures(10);
@@ -147,6 +149,8 @@ function buildOutside() {
       animalCont1.aCObject.vy = 0;
     });
     map.addChild(chaosBar);
+    map.addChild(pointsTextShadow);
+    map.addChild(pointsText);
     gameObjects.addChild(map);
     g.stage.addChild(gameObjects);
     g.stage.addChild(blackOverlay);
@@ -214,6 +218,12 @@ function updateChaos() {
 function updatePoints() {
   points += pointsToAdd * numOfEnemyAi.length;
   pointsToAdd = 0;
-  pointsText.text = 'Score: ' + points;
-  pointsText.anchor.set(0.5, 0.5);
+  pointsText.text = ' Score: ' + points;
+  pointsTextShadow.text = ' Score: ' + points;
+  pointsText.anchor.set(0, 0.5);
+  pointsTextShadow.anchor.set(0, 0.5);
+  if (g.state != gameOverState) {
+    pointsTextShadow.position.set(g.stage.pivot.x - 157, 596);
+    pointsText.position.set(g.stage.pivot.x - 157, 595);
+  }
 }
