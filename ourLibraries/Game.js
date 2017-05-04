@@ -12,9 +12,13 @@ function initGame(animalType = 'raccoon') {
   gameOverText.scale.set(0.25, 0.25);
   gameOverText.anchor.set(0.5, 0.5);
   pointsText.scale.set(0.25, 0.25);
+  pointsTextShadow.scale.set(0.25, 0.25);
+  pointsText.alpha = 1;
   gameObjects.addChild(map);
   gameObjects.addChild(chaosBar);
   gameObjects.addChild(fpsDisplay);
+  gameObjects.addChild(pointsTextShadow);
+  gameObjects.addChild(pointsText);
   g.stage.addChild(gameObjects);
   createGameWorld();
   player = new Player(animalType);
@@ -23,7 +27,7 @@ function initGame(animalType = 'raccoon') {
   map.addChild(player.sprite);
   initChaosBar();
   if (newLevelVal) {
-    let randX = Math.random() < 0.5 ? player.sprite.x - 1000 : player.sprite.x + 1000;
+    let randX = Math.random() < 0.5 ? player.sprite.x - 5000 : player.sprite.x + 5000;
     animalCont1 = new spawnAnimalControl(randX, 600);
     //animalCont1 = new spawnAnimalControl(player.sprite.x, 600, 0.83333 * HEIGHT);
     numOfEnemyAi.push(animalCont1);
@@ -32,4 +36,9 @@ function initGame(animalType = 'raccoon') {
     });
   }
   g.stage.addChild(blackOverlay);
+  gameObjects.addChild(controlsSprite);
+  controlsSprite.anchor.set(0.5, 1);
+  controlsSprite.scale.set(0.25, 0.25);
+  controlsSprite.x = g.stage.pivot.x;
+  controlsSprite.y = player.sprite.y;
 }

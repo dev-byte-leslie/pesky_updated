@@ -7,18 +7,8 @@ function jump() {
     if (player.animal !== 'skunk') {
       player.sprite.vy = jumpVelocity;
     } else {
-      // setTimeout(function() {
-      //   player.jumping = false;
-      //   player.sprite.gotoAndStop(0);
-      //   player.setTextures(5);
-      //   player.doingIdle = false;
-      //   disableAttacking = false;
-      //   disableMovement = false;
-      //   ePressed = false;
-      //   player.sprite.gotoAndStop(0);
-      // }, 1000);
       setTimeout(function() {
-        player.sprite.vy = jumpVelocity / 2 * 144 / fps;
+        player.sprite.vy = jumpVelocity / 1.5;
       }, 400);
     }
     player.setTextures(2);
@@ -129,6 +119,8 @@ function enterHouse(interiorNum, realIndex) {
     //house.addChild(door);
     house.addChild(player.sprite);
     house.addChild(chaosBar);
+    house.addChild(pointsTextShadow);
+    house.addChild(pointsText);
     house.addChild(blackOverlay);
   }, 1667);
   player.setTextures(10);
@@ -157,6 +149,8 @@ function buildOutside() {
       animalCont1.aCObject.vy = 0;
     });
     map.addChild(chaosBar);
+    map.addChild(pointsTextShadow);
+    map.addChild(pointsText);
     gameObjects.addChild(map);
     g.stage.addChild(gameObjects);
     g.stage.addChild(blackOverlay);
@@ -224,6 +218,12 @@ function updateChaos() {
 function updatePoints() {
   points += pointsToAdd * numOfEnemyAi.length;
   pointsToAdd = 0;
-  pointsText.text = 'Score: ' + points;
-  pointsText.anchor.set(0.5, 0.5);
+  pointsText.text = ' Score: ' + points;
+  pointsTextShadow.text = ' Score: ' + points;
+  pointsText.anchor.set(0, 0.5);
+  pointsTextShadow.anchor.set(0, 0.5);
+  if (g.state != gameOverState) {
+    pointsTextShadow.position.set(g.stage.pivot.x - 157, 596);
+    pointsText.position.set(g.stage.pivot.x - 157, 595);
+  }
 }

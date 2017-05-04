@@ -119,6 +119,8 @@ function caughtState() {
         gameOverText.x = pointsText.x = g.stage.pivot.x;
         gameOverText.y = 500;
         pointsText.y = 550;
+        pointsText.alpha = 0;
+        pointsText.anchor.set(0.5, 0.5);
         g.stage.add(pointsText);
         g.stage.add(gameOverText);
         g.state = gameOverState;
@@ -213,6 +215,7 @@ function fadeOutOfHouse() {
     g.state = fadeIntoWorld;
   }
 }
+let counter = 0;
 function play() {
   if (Math.floor(chaos / 30) > numOfEnemyAi.length - 1) {
     let randX = player.sprite.x + (600 * Math.sign(player.sprite.scale.x));
@@ -238,6 +241,18 @@ function play() {
   updateChaos();
   updatePoints();
   updateAI();
+  controlsSprite.x = g.stage.pivot.x;
+  controlsSprite.y = g.stage.pivot.y;
+  if (counter >= fps * 7) {
+    if (controlsSprite.alpha - 0.01 * 60 / fps > 0) {
+      controlsSprite.alpha -= 0.01 * 60 / fps;
+    } else {
+      controlsSprite.alpha = 0;
+    }
+  } else {
+    counter++;
+  }
+
   if (!player.inHouse) {
     numOfEnemyAi.forEach(function(animalControl) {
       animalControl.aiMovement();

@@ -37,7 +37,8 @@ var people1 = [], people2 = [], people3 = [], person1_sick,
 
   //Background textures
   title, titleBackground, blackTitleOverlay, backgroundVideo, hedgeBackground,
-  videoTexture, blackOverlay, gameOverText, pointsText,
+  videoTexture, blackOverlay, gameOverText, pointsText, pointsTextShadow, controlsSprite,
+
 
   //Global var for chaos
   chaos = 0, chaosToAdd = 0,
@@ -149,6 +150,7 @@ function setupGame() {
     .add('../images/WorldObjects/Red_House_noSky.png')
     .add('../images/WorldObjects/bush_no_back.gif')
     .add('../images/WorldObjects/cloud_back_ground.png')
+    .add('../images/Backgrounds/controlsSprite.png')
 
     //interiors
     .add('../images/HouseObjects/Interior_1.png')
@@ -261,6 +263,7 @@ function setup() {
   iDoor = '../images/WorldObjects/Door_Invisible.png';
   sDoor = '../images/AnimalPlaceHolder.png';
 
+  controlsSprite = new Sprite(TextureCache['../images/Backgrounds/controlsSprite.png']);
   hedgeBackground = new Sprite(TextureCache['../images/Backgrounds/CharSelectBackground.png']);
   videoTexture = new Texture.fromVideo('../images/Backgrounds/title_background_noOverlay.mp4');
   titleBackground = new Sprite(videoTexture);
@@ -269,6 +272,7 @@ function setup() {
   blackOverlay = new Sprite(TextureCache['../images/Backgrounds/BlackOverlay.png']);
   gameOverText = new Sprite(TextureCache['../images/Backgrounds/GameOver.png']);
   pointsText = new PIXI.Text('Score: '+ points, {font: '50px Road_Rage', fill: '#eeeeee'});
+  pointsTextShadow = new PIXI.Text('Score: '+ points, {font: '50px Road_Rage', fill: '#111111'});
   backgroundVideo = videoTexture.baseTexture.source;
   backgroundVideo.loop = true;
 

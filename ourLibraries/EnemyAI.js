@@ -23,7 +23,7 @@ function spawnAnimalControl(x, y) {
   this.holdPatrolArea = this.patrolArea;
 
   //detection distrance
-  this.detection = 1000;
+  this.detection = 500;
   this.closeToPlayer = false;
 
   //Sound to be played when player is close to the AI
@@ -39,7 +39,7 @@ function spawnAnimalControl(x, y) {
 
     if (chaos) {
       this.speed = 3 + (Math.floor(chaos / 10) * 0.225);
-      this.detection = 600 + (chaos * 248);
+      this.detection = 500 + (chaos * 248);
     }
 
     //Plays the sound when player is too close
