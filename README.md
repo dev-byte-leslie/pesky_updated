@@ -1,6 +1,6 @@
-# Pesky #
+# pesky_updated #
 
-This is a game being created by a team of six UW Stout students for their game design and development 325 course during the Spring of 2017.  It is private and outside contributions are not being allowed at this time.
+A copy of my original Pesky repo. I wanted to update the game while leaving the original repositpry intact for the contributors.
 
 ### Dependencies ###
 
@@ -8,6 +8,4 @@ The game is being created to run in a browser using HTML5/CSS/JavaScript.  It wi
 
 * [Pixi 4.3.x](http://pixijs.com/)
 
-### Development Environment ###
-
-The team is working distributed on individual laptops running Atom with many packages installed to help with JavaScript development.
+This game game be downloaded and run on a local python server. See [here](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) for more datils.
