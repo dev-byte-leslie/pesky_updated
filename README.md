@@ -1,6 +1,6 @@
 # pesky_updated #
 
-A copy of my original Pesky repo. I wanted to update the game while leaving the original repositpry intact for the contributors.
+A copy of my original Pesky repo. I wanted to update the game while leaving the original repo intact for the contributors.
 
 ### Dependencies ###
 
