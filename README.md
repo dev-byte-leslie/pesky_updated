@@ -8,4 +8,4 @@ The game is being created to run in a browser using HTML5/CSS/JavaScript.  It wi
 
 * [Pixi 4.3.x](http://pixijs.com/)
 
-This game game be downloaded and run on a local python server. See [here](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) for more datils.
+This game game be downloaded and run on a local python server. See [here](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) for more deatils.
