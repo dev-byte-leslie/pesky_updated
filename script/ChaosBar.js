@@ -31,7 +31,7 @@ function initChaosBar() {
   // Top and bottom bars are rectangles of different shades that add to bevel
   topBar = g.rectangle(0, 5, topColor, topColor, 2, player.sprite.position.x-157, 430);
   bottomBar = g.rectangle(0, 5, bottomColor, bottomColor, 2, player.sprite.position.x-157, 435);
-  chaosText = new Sprite(TextureCache['../images/HUD/chaosText.png']);
+  chaosText = new Sprite(TextureCache['./images/HUD/chaosText.png']);
   chaosText.scale.set(0.1, 0.1);
   chaosText.anchor.set(0.5, 0);
   chaosBar.position.set(0, 0);

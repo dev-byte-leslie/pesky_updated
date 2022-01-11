@@ -33,13 +33,13 @@ function startMenu() {
 }
 // Button interaction functions
 function onButtonDown() {
-  this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Click.png');
+  this.texture = PIXI.Texture.fromImage('./images/btn/' + this.spriteName + 'Click.png');
 }
 function onButtonUp() {
-  this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Blank.png');
+  this.texture = PIXI.Texture.fromImage('./images/btn/' + this.spriteName + 'Blank.png');
 }
 function hoverOver() {
-  this.texture = PIXI.Texture.fromImage('../images/btn/' + this.spriteName + 'Hover.png');
+  this.texture = PIXI.Texture.fromImage('./images/btn/' + this.spriteName + 'Hover.png');
 }
 function startGame() {
   newLevelVal = true;
@@ -82,7 +82,7 @@ function showOptions() {
 // Returns the button as a PIXI sprite
 function createButton(x, y, clickFunction, buttonGroup, spriteName,
   spriteState = 'Blank', hasStates = true) {
-  var buttonSprite = PIXI.Texture.fromImage('../images/btn/' + spriteName +
+  var buttonSprite = PIXI.Texture.fromImage('./images/btn/' + spriteName +
     spriteState + '.png');
   var button = new PIXI.Sprite(buttonSprite);
   button.anchor.set(0.5, 0.5);

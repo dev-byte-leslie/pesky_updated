@@ -44,7 +44,7 @@ function initCharacterSwitch()
   g.stage.pivot.set(0.5, 0);
   g.stage.addChild(switchCharacterGroup);
 }
-function raccoonInput() { // -- Handes Raccoon Button Press -- //
+function raccoonInput() { // -- Handles Raccoon Button Press -- //
   player.setCharacter('raccoon');
   comeFromBush();
 }
